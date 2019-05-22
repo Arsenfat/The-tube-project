@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import requests
 import json
 
@@ -9,14 +9,7 @@ def call_api(call_str):
     d = {}
     res = requests.get(call_str)     
     data = res.json()
-    for stop in data:
-        name = stop['commonName']
-        d[name] = {}
-        d[name]['connections'] = []
-        for line in stop['lines']:
-            if line['id'] in lines:
-                d[name]['connections'].append(line)
-        d[name]['naptan'] = stop['stationNaptan']
+    d['sequences'] = data['stopPointSequences']
     return d
 
 if __name__ == '__main__':
@@ -24,12 +17,15 @@ if __name__ == '__main__':
     api_key = '7d5fa71302afb46d76a29bcaee18abc2'
 
 
-    api_call = 'https://api.tfl.gov.uk/line/{0}/stoppoints'
+    api_call = 'https://api.tfl.gov.uk/line/{0}/route/sequence/{1}'
 
     lines_dict = {}
 
     for line in lines:
-        lines_dict[line] = call_api(api_call.format(line))
-    with open('result.json', 'w') as f:
+        lines_dict[line] = {}
+        lines_dict[line]['outbound'] = call_api(api_call.format(line, 'outbound'))
+        lines_dict[line]['inbound'] = call_api(api_call.format(line, 'inbound'))
+
+    with open('data_result.json', 'w') as f:
         f.write(json.dumps(lines_dict))
 
