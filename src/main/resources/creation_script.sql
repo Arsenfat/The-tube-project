@@ -1,12 +1,12 @@
 CREATE TABLE `lines`
 (
-  `id` int PRIMARY KEY,
+  `id` int PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(255) NOT NULL
 );
 
 CREATE TABLE `stations`
 (
-  `id` int PRIMARY KEY,
+  `id` int PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `wheelchair` boolean,
   `zone` int
@@ -14,27 +14,38 @@ CREATE TABLE `stations`
 
 CREATE TABLE `line_stations`
 (
-  `id` int PRIMARY KEY,
+  `id` int PRIMARY KEY AUTO_INCREMENT,
   `line` int,
   `station` int
 );
 
+
 CREATE TABLE `zones`
 (
-  `id` int PRIMARY KEY,
+  `id` int PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(255)
+);
+
+CREATE TABLE `zones_stations`
+(
+    `zone` int,
+    `station` int,
+    CONSTRAINT PRIMARY KEY (zone, station),
+    CONSTRAINT FOREIGN KEY (zone) REFERENCES zones(id),
+    CONSTRAINT FOREIGN KEY (station) REFERENCES stations(id)
 );
 
 CREATE TABLE `station_durations`
 (
   `station_departing` int NOT NULL,
   `station_arriving` int NOT NULL,
-  `duration` time NOT NULL
+  `duration` time NOT NULL,
+  CONSTRAINT PRIMARY KEY (station_departing, station_arriving)
 );
 
 CREATE TABLE `connections`
 (
-  `id` int PRIMARY KEY,
+  `id` int PRIMARY KEY AUTO_INCREMENT,
   `station_one` int NOT NULL,
   `station_two` int NOT NULL
 );
@@ -43,12 +54,13 @@ CREATE TABLE `fares`
 (
   `departing_zone` int,
   `arriving_zone` int,
-  `price` decimal
+  `price` decimal,
+  CONSTRAINT PRIMARY KEY (departing_zone, arriving_zone)
 );
 
 CREATE TABLE `users`
 (
-  `id` int PRIMARY KEY,
+  `id` int PRIMARY KEY AUTO_INCREMENT,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
   `date_of_birth` date NOT NULL,
@@ -67,7 +79,7 @@ CREATE TABLE `roles`
 
 CREATE TABLE `user_addresses`
 (
-  `id` int PRIMARY KEY,
+  `id` int PRIMARY KEY AUTO_INCREMENT,
   `street_number` varchar(255) NOT NULL,
   `street_name` varchar(255) NOT NULL,
   `postal_code` varchar(255) NOT NULL,
@@ -78,7 +90,7 @@ CREATE TABLE `user_addresses`
 
 CREATE TABLE `travels`
 (
-  `id` int PRIMARY KEY,
+  `id` int PRIMARY KEY AUTO_INCREMENT,
   `starting_station` int NOT NULL,
   `arriving_station` int NOT NULL,
   `user_id` int NOT NULL
@@ -86,7 +98,7 @@ CREATE TABLE `travels`
 
 CREATE TABLE `histories`
 (
-  `id` int PRIMARY KEY,
+  `id` int PRIMARY KEY AUTO_INCREMENT,
   `travel_id` int NOT NULL,
   `station` int NOT NULL
 );
