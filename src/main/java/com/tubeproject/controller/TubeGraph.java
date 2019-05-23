@@ -16,8 +16,8 @@ public class TubeGraph {
         }
     }
 
-    public void addEdge(int source, int destination, int weight) {
-        Edge edge = new Edge(source, destination, weight);
+    public void addEdge(int source, int destination, int weight, String name, double latitude, double longitude) {
+        Edge edge = new Edge(source, destination, weight, name, latitude, longitude);
         adjacencylist[source].addFirst(edge); //for directed graph
     }
 
@@ -26,7 +26,7 @@ public class TubeGraph {
             LinkedList<Edge> list = adjacencylist[i];
             for (int j = 0; j <list.size() ; j++) {
                 System.out.println("vertex-" + i + " is connected to " +
-                        list.get(j).getDestination() + " with weight " +  list.get(j).getWeight());
+                        list.get(j).getDestination() + " with weight " +  list.get(j).getWeight() + " with the name " + list.get(j).getName() + " and the latitude " + list.get(j).getLatitude() + " and longitude " + list.get(j).getLongitude());
             }
         }
     }

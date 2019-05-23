@@ -22,4 +22,8 @@ public class Algorithm {
     public void setGraph(TubeGraph graph) {
         this.graph = graph;
     }
+
+    public void calculateDistance(){
+
+    }
 }

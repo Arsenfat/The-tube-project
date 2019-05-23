@@ -4,11 +4,17 @@ public class Edge {
     private int source;
     private int destination;
     private int weight;
+    private String name;
+    private double latitude;
+    private double longitude;
 
-    public Edge(int source, int destination, int weight) {
+    public Edge(int source, int destination, int weight, String name, double latitude, double longitude) {
         this.source = source;
         this.destination = destination;
         this.weight = weight;
+        this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public int getSource() {
@@ -33,5 +39,29 @@ public class Edge {
 
     public void setWeight(int weight) {
         this.weight = weight;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 }
