@@ -63,13 +63,7 @@
                     "status": "Unknown"
                 }
             ],
-            "naptan": "940GZZLUBST",
-            "from": [
-                {
-                    "station": "ID",
-                    "duration": 3
-                }
-            ]
+            "naptan": "940GZZLUBST"
         },
         "Charing Cross Underground Station": {
             "connections": [
