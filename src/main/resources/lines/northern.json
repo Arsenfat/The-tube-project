@@ -1,0 +1,257 @@
+[
+    {
+        "departingPoint": "1000107",
+        "arrivingPoint": "1000237",
+        "duration": 3.0
+    },
+    {
+        "departingPoint": "1000237",
+        "arrivingPoint": "1000276",
+        "duration": 2.0
+    },
+    {
+        "departingPoint": "1000276",
+        "arrivingPoint": "1000261",
+        "duration": 1.0
+    },
+    {
+        "departingPoint": "1000261",
+        "arrivingPoint": "1000081",
+        "duration": 4.5
+    },
+    {
+        "departingPoint": "1000081",
+        "arrivingPoint": "1000067",
+        "duration": 2.0
+    },
+    {
+        "departingPoint": "1000067",
+        "arrivingPoint": "1000109",
+        "duration": 2.0
+    },
+    {
+        "departingPoint": "1000109",
+        "arrivingPoint": "1000008",
+        "duration": 2.0
+    },
+    {
+        "departingPoint": "1000008",
+        "arrivingPoint": "1000239",
+        "duration": 4.0
+    },
+    {
+        "departingPoint": "1000239",
+        "arrivingPoint": "1000123",
+        "duration": 3.0
+    },
+    {
+        "departingPoint": "1000123",
+        "arrivingPoint": "1000036",
+        "duration": 2.0
+    },
+    {
+        "departingPoint": "1000036",
+        "arrivingPoint": "1000077",
+        "duration": 2.0
+    },
+    {
+        "departingPoint": "1000077",
+        "arrivingPoint": "1000129",
+        "duration": 3.25
+    },
+    {
+        "departingPoint": "1000129",
+        "arrivingPoint": "1000007",
+        "duration": 5.0
+    },
+    {
+        "departingPoint": "1000007",
+        "arrivingPoint": "1000169",
+        "duration": 2.0
+    },
+    {
+        "departingPoint": "1000169",
+        "arrivingPoint": "1000149",
+        "duration": 3.75
+    },
+    {
+        "departingPoint": "1000149",
+        "arrivingPoint": "1000013",
+        "duration": 3.5
+    },
+    {
+        "departingPoint": "1000013",
+        "arrivingPoint": "1000139",
+        "duration": 3.75
+    },
+    {
+        "departingPoint": "1000139",
+        "arrivingPoint": "1000026",
+        "duration": 3.25
+    },
+    {
+        "departingPoint": "1000026",
+        "arrivingPoint": "1000073",
+        "duration": 4.5
+    },
+    {
+        "departingPoint": "1000073",
+        "arrivingPoint": "1000121",
+        "duration": 4.25
+    },
+    {
+        "departingPoint": "1000121",
+        "arrivingPoint": "1000172",
+        "duration": 3.5
+    },
+    {
+        "departingPoint": "1000172",
+        "arrivingPoint": "1000223",
+        "duration": 2.0
+    },
+    {
+        "departingPoint": "1000223",
+        "arrivingPoint": "1000051",
+        "duration": 3.75
+    },
+    {
+        "departingPoint": "1000051",
+        "arrivingPoint": "1000050",
+        "duration": 3.5
+    },
+    {
+        "departingPoint": "1000050",
+        "arrivingPoint": "1000052",
+        "duration": 1.0
+    },
+    {
+        "departingPoint": "1000052",
+        "arrivingPoint": "1000012",
+        "duration": 4.5
+    },
+    {
+        "departingPoint": "1000012",
+        "arrivingPoint": "1000233",
+        "duration": 4.0
+    },
+    {
+        "departingPoint": "1000233",
+        "arrivingPoint": "1000234",
+        "duration": 4.25
+    },
+    {
+        "departingPoint": "1000234",
+        "arrivingPoint": "1000055",
+        "duration": 1.6666666666666667
+    },
+    {
+        "departingPoint": "1000055",
+        "arrivingPoint": "1000216",
+        "duration": 4.75
+    },
+    {
+        "departingPoint": "1000216",
+        "arrivingPoint": "1000151",
+        "duration": 3.0
+    },
+    {
+        "departingPoint": "1000036",
+        "arrivingPoint": "1000152",
+        "duration": 2.75
+    },
+    {
+        "departingPoint": "1000152",
+        "arrivingPoint": "1000077",
+        "duration": 4.25
+    },
+    {
+        "departingPoint": "1000077",
+        "arrivingPoint": "1000252",
+        "duration": 2.25
+    },
+    {
+        "departingPoint": "1000252",
+        "arrivingPoint": "1000089",
+        "duration": 6.0
+    },
+    {
+        "departingPoint": "1000089",
+        "arrivingPoint": "1000235",
+        "duration": 2.25
+    },
+    {
+        "departingPoint": "1000235",
+        "arrivingPoint": "1000135",
+        "duration": 2.75
+    },
+    {
+        "departingPoint": "1000135",
+        "arrivingPoint": "1000045",
+        "duration": 5.0
+    },
+    {
+        "departingPoint": "1000045",
+        "arrivingPoint": "1000075",
+        "duration": 3.0
+    },
+    {
+        "departingPoint": "1000075",
+        "arrivingPoint": "1000254",
+        "duration": 3.0
+    },
+    {
+        "departingPoint": "1000254",
+        "arrivingPoint": "1000121",
+        "duration": 3.0
+    },
+    {
+        "departingPoint": "1000070",
+        "arrivingPoint": "1000034",
+        "duration": 1.6666666666666667
+    },
+    {
+        "departingPoint": "1000034",
+        "arrivingPoint": "1000054",
+        "duration": 2.0
+    },
+    {
+        "departingPoint": "1000054",
+        "arrivingPoint": "1000106",
+        "duration": 2.0
+    },
+    {
+        "departingPoint": "1000106",
+        "arrivingPoint": "1000030",
+        "duration": 1.0
+    },
+    {
+        "departingPoint": "1000030",
+        "arrivingPoint": "1000087",
+        "duration": 2.0
+    },
+    {
+        "departingPoint": "1000087",
+        "arrivingPoint": "1000098",
+        "duration": 3.0
+    },
+    {
+        "departingPoint": "1000098",
+        "arrivingPoint": "1000020",
+        "duration": 1.0
+    },
+    {
+        "departingPoint": "1000020",
+        "arrivingPoint": "1000043",
+        "duration": 4.5
+    },
+    {
+        "departingPoint": "1000043",
+        "arrivingPoint": "1000036",
+        "duration": 5.25
+    },
+    {
+        "departingPoint": "1000147",
+        "arrivingPoint": "1000081",
+        "duration": 3.0
+    }
+]
