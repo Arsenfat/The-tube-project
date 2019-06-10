@@ -1,6 +1,5 @@
 package com.tubeproject.view;
 
-import com.jfoenix.controls.JFXTextField;
 import com.tubeproject.utils.FXMLUtils;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
@@ -26,14 +25,6 @@ public class LoginScreen extends Application implements Initializable {
     @FXML
     private ImageView imgView;
 
-    @FXML
-    private ImageView imgViewUser;
-
-    @FXML
-    private ImageView imgViewPassword;
-
-    @FXML
-    private JFXTextField txtUsername;
 
     public static void startWindow() {
         launch();
@@ -58,11 +49,5 @@ public class LoginScreen extends Application implements Initializable {
         InputStream stream = getClass().getResourceAsStream(Resources.Images.LOGO1);
         Image img = new Image(stream);
         imgView.setImage(img);
-        stream = getClass().getResourceAsStream(Resources.Images.PASSWORD);
-        img = new Image(stream);
-        imgViewPassword.setImage(img);
-        stream = getClass().getResourceAsStream(Resources.Images.USERNAME);
-        img = new Image(stream);
-        imgViewUser.setImage(img);
     }
 }
