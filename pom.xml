@@ -56,5 +56,15 @@
                 </configuration>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>view/*.fxml</include>
+                    <include>img/*.jpg</include>
+                    <include>img/*.png</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 </project>
