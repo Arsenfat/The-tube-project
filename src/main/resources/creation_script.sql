@@ -6,9 +6,11 @@ CREATE TABLE `lines`
 
 CREATE TABLE `stations`
 (
-  `naptan` varchar(12) PRIMARY KEY,
-  `name` varchar(255) NOT NULL,
-  `wheelchair` boolean
+  `naptan` VARCHAR(12) PRIMARY KEY,
+  `name` VARCHAR(255) NOT NULL,
+  `wheelchair` BOOLEAN,
+  'latitude' DOUBLE,
+  'longitude' DOUBLE
 );
 
 CREATE TABLE `line_stations`
@@ -40,7 +42,7 @@ CREATE TABLE `station_durations`
 (
   `station_departing` VARCHAR(12) NOT NULL,
   `station_arriving` VARCHAR(12) NOT NULL,
-  `duration` double NOT NULL,
+  `duration` DOUBLE NOT NULL,
   CONSTRAINT PRIMARY KEY (station_departing, station_arriving),
   CONSTRAINT FOREIGN KEY (station_departing) REFERENCES `stations`(naptan),
   CONSTRAINT FOREIGN KEY (station_arriving) REFERENCES `stations`(naptan)
