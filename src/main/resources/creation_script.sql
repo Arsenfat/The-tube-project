@@ -15,9 +15,9 @@ CREATE TABLE `stations`
 
 CREATE TABLE `line_stations`
 (
-  `id` int PRIMARY KEY AUTO_INCREMENT,
   `line` int,
   `station` varchar(12),
+  PRIMARY KEY (line, station)
   FOREIGN KEY (line) REFERENCES `lines`(id),
   FOREIGN KEY (station) REFERENCES `stations`(naptan)
 );
@@ -48,23 +48,17 @@ CREATE TABLE `station_durations`
   CONSTRAINT FOREIGN KEY (station_arriving) REFERENCES `stations`(naptan)
 );
 
-CREATE TABLE `connections`
-(
-  `id` int PRIMARY KEY AUTO_INCREMENT,
-  `station_one` VARCHAR(12) NOT NULL,
-  `station_two` VARCHAR(12) NOT NULL,
-  CONSTRAINT FOREIGN KEY (station_one) REFERENCES `stations`(naptan),
-  CONSTRAINT FOREIGN KEY (station_two) REFERENCES `stations`(naptan)
-);
-
 CREATE TABLE `fares`
 (
-  `departing_zone` int,
-  `arriving_zone` int,
-  `price` decimal,
-  CONSTRAINT PRIMARY KEY (departing_zone, arriving_zone),
-  CONSTRAINT FOREIGN KEY (departing_zone) REFERENCES `zones`(id),
-  CONSTRAINT FOREIGN KEY (arriving_zone) REFERENCES `zones`(id)
+  `zone_from` int,
+  `zone_to` int,
+  `ticket_adult` double,
+  `ticket_child` double,
+  `oyster_peak` double,
+  `oyster_off_peak` double,
+  CONSTRAINT PRIMARY KEY (zone_from, zone_to),
+  CONSTRAINT FOREIGN KEY (zone_from) REFERENCES `zones`(id),
+  CONSTRAINT FOREIGN KEY (zone_to) REFERENCES `zones`(id)
 );
 
 CREATE TABLE `user_addresses`

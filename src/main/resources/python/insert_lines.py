@@ -8,6 +8,7 @@ from mysql.connector import Error
 from collections import defaultdict
 import sys
 import re
+import csv
 
 trans = str.maketrans({"-":  r"\-",
                                           "]":  r"\]",
@@ -171,6 +172,55 @@ def insert_missing_zones(cursor):
         print(final_query)
         cursor.execute(final_query)
 
+def insert_line_stations(cursor):
+    line_dict = {
+        "bakerloo": 1,
+        "central": 2,
+        "circle": 3,
+        "district": 4,
+        "hammersmith-city": 5,
+        "jubilee": 6,
+        "metropolitan": 7,
+        "northern": 8,
+        "piccadilly": 9,
+        "victoria": 10,
+        "waterloo-city": 11
+    }
+    api_call = 'https://api.tfl.gov.uk/StopPoint/%s'
+    select_sql = 'SELECT naptan, name FROM stations'
+    insert_sql = 'INSERT IGNORE INTO line_stations(line, station) VALUES(%d, \'%s\')'
+    cursor.execute(select_sql)
+    result = cursor.fetchall()
+    for row in result:
+        naptan = row[0].decode('UTF-8')
+        name = row[1].decode('UTF-8')
+        res = call_api(api_call % naptan)
+        print("current: %s" % naptan)
+        for line in res['lines']:
+            line_name = line['id']
+            if line_name in line_dict:
+                final_query = insert_sql % (line_dict[line_name], naptan)
+                print(name, final_query)
+                cursor.execute(final_query)
+
+def insert_fares(cursor):
+    insert = 'INSERT INTO fares VALUES(%d,%d,%f,%f,%f,%f)'
+    with open('../fares.csv', 'r') as csvfile:
+        fares_data = csv.reader(csvfile, delimiter=',')
+        i = 0
+        for row in fares_data:
+            if i == 0:
+                i = 1
+                continue
+            zone_from = int(row[0])
+            zone_to = int(row[1])
+            tick_ad = float(row[2])
+            tick_ch = float(row[3])
+            oyster_peak = float(row[4])
+            oyster_off = float(row[5])
+            final_query = insert % (zone_from, zone_to, tick_ad, tick_ch, oyster_peak, oyster_off)
+            print(final_query)
+            cursor.execute(final_query)
 
 def send_to_sql():
     try:
@@ -188,7 +238,9 @@ def send_to_sql():
             #insert_gps(cursor)
             #insert_missing_gps(cursor)
             #insert_stations_zones(cursor)
-            insert_missing_zones(cursor)
+            #insert_missing_zones(cursor)
+            #insert_line_stations(cursor)
+            insert_fares(cursor)
             connection.commit()
             connection.close()
     except Error as e:
@@ -198,3 +250,4 @@ def send_to_sql():
 if __name__ == "__main__":
     #insert_durations("no_cursor")
     send_to_sql()
+    #insert_fares(False)
