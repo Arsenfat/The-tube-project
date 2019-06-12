@@ -12,8 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.io.FileInputStream;
@@ -31,6 +30,9 @@ public class LoginScreen extends Application implements Initializable {
 
     @FXML
     private ImageView imgViewPassword;
+
+    @FXML
+    private AnchorPane anchorPane;
 
     @FXML
     private JFXTextField txtUsername;
@@ -52,6 +54,7 @@ public class LoginScreen extends Application implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeImgView();
+        initializeBackground();
     }
 
     private void initializeImgView() {
@@ -64,5 +67,13 @@ public class LoginScreen extends Application implements Initializable {
         stream = getClass().getResourceAsStream(Resources.Images.USERNAME);
         img = new Image(stream);
         imgViewUser.setImage(img);
+    }
+
+    private void initializeBackground() {
+        InputStream stream = getClass().getResourceAsStream(Resources.Images.BACKGROUND);
+        Image img = new Image(stream);
+        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, false, false);
+        BackgroundImage backgroundImage = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
+        anchorPane.setBackground(new Background(backgroundImage));
     }
 }
