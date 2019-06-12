@@ -1,5 +1,8 @@
 package com.tubeproject.controller;
 
+import com.tubeproject.crypto.Cryptographic;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Date;
 
 public class User {
@@ -9,6 +12,7 @@ public class User {
     private Date dateOfBirth;
     private String email;
     private String password;
+    private String salt;
     private int role;
 
     public User(String firstName, String lastName, Date dateOfBirth, String email, String password, int role) {
@@ -16,8 +20,14 @@ public class User {
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
-        this.password = password;
+        this.password = crypt(password);
         this.role = role;
+    }
+
+    @NotNull
+    private String crypt(String password) {
+        this.salt = Cryptographic.generateSalt(512).get();
+        return Cryptographic.hashPassword(password, salt).get();
     }
 
     public String getFirstName() {
@@ -66,5 +76,13 @@ public class User {
 
     public void setRole(int role) {
         this.role = role;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 }

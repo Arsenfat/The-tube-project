@@ -82,18 +82,19 @@ CREATE TABLE `roles`
 
 CREATE TABLE `users`
 (
-  `id` int PRIMARY KEY AUTO_INCREMENT,
-  `first_name` varchar(255) NOT NULL,
-  `last_name` varchar(255) NOT NULL,
-  `date_of_birth` date NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `home` int,
-  `work` int,
-  `role` int,
-  CONSTRAINT FOREIGN KEY (home) REFERENCES `user_addresses`(id),
-  CONSTRAINT FOREIGN KEY (work) REFERENCES `user_addresses`(id),
-  CONSTRAINT FOREIGN KEY (role) REFERENCES `roles`(id)
+    `id`            int PRIMARY KEY AUTO_INCREMENT,
+    `first_name`    varchar(255) NOT NULL,
+    `last_name`     varchar(255) NOT NULL,
+    `date_of_birth` date         NOT NULL,
+    `email`         varchar(255) NOT NULL,
+    `password`      varchar(255) NOT NULL,
+    `salt`          varchar(684) NOT NULL,
+    `home`          int,
+    `work`          int,
+    `role`          int,
+    CONSTRAINT FOREIGN KEY (home) REFERENCES `user_addresses`(id),
+    CONSTRAINT FOREIGN KEY (work) REFERENCES `user_addresses`(id),
+    CONSTRAINT FOREIGN KEY (role) REFERENCES `roles`(id)
 );
 
 
