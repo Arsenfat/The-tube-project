@@ -1,0 +1,122 @@
+[
+    {
+        "departingPoint": "1000101",
+        "arrivingPoint": "1000124",
+        "duration": 2.0
+    },
+    {
+        "departingPoint": "1000124",
+        "arrivingPoint": "1000213",
+        "duration": 1.6666666666666667
+    },
+    {
+        "departingPoint": "1000213",
+        "arrivingPoint": "1000163",
+        "duration": 5.0
+    },
+    {
+        "departingPoint": "1000163",
+        "arrivingPoint": "1000256",
+        "duration": 1.6666666666666667
+    },
+    {
+        "departingPoint": "1000256",
+        "arrivingPoint": "1000224",
+        "duration": 2.3333333333333335
+    },
+    {
+        "departingPoint": "1000224",
+        "arrivingPoint": "1000100",
+        "duration": 2.0
+    },
+    {
+        "departingPoint": "1000100",
+        "arrivingPoint": "1000271",
+        "duration": 5.5
+    },
+    {
+        "departingPoint": "1000271",
+        "arrivingPoint": "1000122",
+        "duration": 2.0
+    },
+    {
+        "departingPoint": "1000122",
+        "arrivingPoint": "1000186",
+        "duration": 3.0
+    },
+    {
+        "departingPoint": "1000186",
+        "arrivingPoint": "1000127",
+        "duration": 3.75
+    },
+    {
+        "departingPoint": "1000127",
+        "arrivingPoint": "1000141",
+        "duration": 4.5
+    },
+    {
+        "departingPoint": "1000141",
+        "arrivingPoint": "1000253",
+        "duration": 3.75
+    },
+    {
+        "departingPoint": "1000253",
+        "arrivingPoint": "1000174",
+        "duration": 1.0
+    },
+    {
+        "departingPoint": "1000174",
+        "arrivingPoint": "1000071",
+        "duration": 3.75
+    },
+    {
+        "departingPoint": "1000071",
+        "arrivingPoint": "1000145",
+        "duration": 2.75
+    },
+    {
+        "departingPoint": "1000145",
+        "arrivingPoint": "1000011",
+        "duration": 1.75
+    },
+    {
+        "departingPoint": "1000011",
+        "arrivingPoint": "1000191",
+        "duration": 3.25
+    },
+    {
+        "departingPoint": "1000191",
+        "arrivingPoint": "1000173",
+        "duration": 2.0
+    },
+    {
+        "departingPoint": "1000173",
+        "arrivingPoint": "1000179",
+        "duration": 3.0
+    },
+    {
+        "departingPoint": "1000179",
+        "arrivingPoint": "1000045",
+        "duration": 3.0
+    },
+    {
+        "departingPoint": "1000045",
+        "arrivingPoint": "1000075",
+        "duration": 3.0
+    },
+    {
+        "departingPoint": "1000075",
+        "arrivingPoint": "1000254",
+        "duration": 3.0
+    },
+    {
+        "departingPoint": "1000254",
+        "arrivingPoint": "1000132",
+        "duration": 3.0
+    },
+    {
+        "departingPoint": "1000132",
+        "arrivingPoint": "1000073",
+        "duration": 5.5
+    }
+]
