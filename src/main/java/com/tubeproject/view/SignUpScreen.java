@@ -21,16 +21,13 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LoginScreen extends Application implements Initializable {
+public class SignUpScreen extends Application implements Initializable {
 
     @FXML
     private ImageView imgView;
 
     @FXML
-    private ImageView imgViewUser;
-
-    @FXML
-    private ImageView imgViewPassword;
+    private ImageView imgViewLondon;
 
     @FXML
     private JFXTextField txtUsername;
@@ -41,7 +38,7 @@ public class LoginScreen extends Application implements Initializable {
 
     @Override
     public void start(Stage stage) throws Exception {
-        AnchorPane anchorPane = FXMLUtils.loadFXML(Resources.ViewFiles.LOGIN_SCREEN);
+        AnchorPane anchorPane = FXMLUtils.loadFXML(Resources.ViewFiles.SIGN_UP_SCREEN);
 
         Scene scene = new Scene(anchorPane);
         stage.setScene(scene);
@@ -57,12 +54,9 @@ public class LoginScreen extends Application implements Initializable {
     private void initializeImgView() {
         InputStream stream = getClass().getResourceAsStream(Resources.Images.LOGO1);
         Image img = new Image(stream);
-        imgView.setImage(img);
-        stream = getClass().getResourceAsStream(Resources.Images.PASSWORD);
+        this.imgView.setImage(img);
+        stream = getClass().getResourceAsStream(Resources.Images.LONDON);
         img = new Image(stream);
-        imgViewPassword.setImage(img);
-        stream = getClass().getResourceAsStream(Resources.Images.USERNAME);
-        img = new Image(stream);
-        imgViewUser.setImage(img);
+        this.imgViewLondon.setImage(img);
     }
 }
