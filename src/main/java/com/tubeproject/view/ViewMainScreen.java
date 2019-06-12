@@ -1,26 +1,32 @@
 package com.tubeproject.view;
 
+import com.jfoenix.controls.JFXTextField;
 import com.tubeproject.utils.FXMLUtils;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
-public class ViewMainScreen extends Application implements EventHandler<ActionEvent> {
-    private Button buttonTopRight;
-    private Button buttonCenter;
-    private Label topLeftCorner;
-    private Label topRightCorner;
-    private Label center;
-    private Stage stage;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ViewMainScreen extends Application implements Initializable {
+
+    @FXML
+    private ImageView imgView;
+
+    @FXML
+    private AnchorPane anchorPane;
 
 
     public static void startWindow() {
@@ -29,33 +35,31 @@ public class ViewMainScreen extends Application implements EventHandler<ActionEv
 
     @Override
     public void start(Stage stage) throws Exception {
-        this.stage = stage;
-
         AnchorPane anchorPane = FXMLUtils.loadFXML(Resources.ViewFiles.MAIN_SCREEN);
-        //scene : what is display
+
         Scene scene = new Scene(anchorPane);
-        //stage : application
         stage.setScene(scene);
-        stage.setTitle("Tube");
         stage.show();
     }
 
-    //whenever an user click the button
+
     @Override
-    public void handle(ActionEvent actionEvent) {
-        if (actionEvent.getSource() == buttonCenter) {
-
-        }
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        initializeImgView();
+        initializeBackground();
     }
 
-    public void onClickLogin(ActionEvent event) throws Exception {
-        AnchorPane anchorPane = FXMLUtils.loadFXML(Resources.ViewFiles.LOGIN_SCREEN);
-
-        Scene scene = new Scene(anchorPane);
-        stage.setScene(scene);
+    private void initializeImgView() {
+        InputStream stream = getClass().getResourceAsStream(Resources.Images.LOGO1);
+        Image img = new Image(stream);
+        this.imgView.setImage(img);
     }
 
-    public void mangerDuPain(ActionEvent ae) {
-        System.out.println("wallah");
+    private void initializeBackground() {
+        InputStream stream = getClass().getResourceAsStream(Resources.Images.BACKGROUND);
+        Image img = new Image(stream);
+        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, false, false);
+        BackgroundImage backgroundImage = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
+        anchorPane.setBackground(new Background(backgroundImage));
     }
 }
