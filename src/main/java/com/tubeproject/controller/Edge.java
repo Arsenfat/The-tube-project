@@ -17,6 +17,10 @@ public class Edge {
         this.longitude = longitude;
     }
 
+    public String toString(){
+        return ("Source is: " + this.source + " destination is: " + this.destination + " weight is: " + this.weight + " name is: " + this.name);
+    }
+
     public int getSource() {
         return source;
     }
