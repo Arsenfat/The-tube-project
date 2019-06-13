@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="463.0" prefWidth="762.0" xmlns="http://javafx.com/javafx/11.0.1"
+<AnchorPane fx:id="anchorPane" prefHeight="482.0" prefWidth="786.0" xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tubeproject.view.LoginScreen">
     <children>
         <JFXTextField fx:id="txtUsername" alignment="TOP_LEFT" focusColor="#744b4a" layoutX="240.0" layoutY="137.0"
@@ -23,8 +23,6 @@
                 <Font size="21.0"/>
             </font>
         </JFXTextField>
-        <ImageView fitHeight="67.0" fitWidth="78.0" layoutX="118.0" layoutY="149.0" pickOnBounds="true"
-                   preserveRatio="true"/>
         <JFXPasswordField focusColor="#744b4a" layoutX="240.0" layoutY="205.0" prefHeight="26.0" prefWidth="282.0"
                           promptText="Password" style="-fx-prompt-text-fill: #151928; -fx-text-inner-color: #151928;"
                           unFocusColor="#151928">
@@ -36,8 +34,8 @@
                    pickOnBounds="true" preserveRatio="true"/>
         <ImageView fx:id="imgViewPassword" fitHeight="46.0" fitWidth="63.0" layoutX="178.0" layoutY="205.0"
                    pickOnBounds="true" preserveRatio="true"/>
-        <JFXCheckBox layoutX="241.0" layoutY="282.0" prefHeight="38.0" prefWidth="139.0" text="Remember me"
-                     textFill="#151928" unCheckedColor="#151928">
+        <JFXCheckBox checkedColor="#151928" layoutX="241.0" layoutY="282.0" prefHeight="38.0" prefWidth="139.0"
+                     text="Remember me" textFill="#151928" unCheckedColor="#151928">
             <font>
                 <Font size="16.0"/>
             </font>
@@ -56,9 +54,9 @@
         <Pane prefHeight="62.0" prefWidth="786.0" style="-fx-background-color: #000000;">
             <children>
                 <ImageView fx:id="imgView" fitHeight="31.0" fitWidth="102.0" layoutX="47.0" layoutY="18.0"
-                           pickOnBounds="true" preserveRatio="true"/>
-                <JFXButton layoutX="670.0" layoutY="12.0" style="-fx-background-color: #dad1d1;" text="Sign Up"
-                           textFill="#151928">
+                           onMouseClicked="#handleButtonActionHomePage" pickOnBounds="true" preserveRatio="true"/>
+                <JFXButton layoutX="670.0" layoutY="12.0" onAction="#handleButtonActionSignUp"
+                           style="-fx-background-color: #dad1d1;" text="Sign Up" textFill="#151928">
                     <font>
                         <Font size="16.0"/>
                     </font>
@@ -67,6 +65,17 @@
             <opaqueInsets>
                 <Insets/>
             </opaqueInsets>
+        </Pane>
+        <Pane layoutY="436.0" prefHeight="62.0" prefWidth="786.0" style="-fx-background-color: #000000;">
+            <opaqueInsets>
+                <Insets/>
+            </opaqueInsets>
+            <children>
+                <JFXButton fx:id="facebookIcon" layoutX="637.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
+                <JFXButton fx:id="twitterIcon" layoutX="668.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
+                <JFXButton fx:id="instagramIcon" layoutX="700.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
+                <JFXButton fx:id="mailIcon" layoutX="734.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
+            </children>
         </Pane>
     </children>
 </AnchorPane>
