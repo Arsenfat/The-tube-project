@@ -16,8 +16,8 @@
                 <Font name="System Bold" size="21.0"/>
             </font>
         </Label>
-        <JFXButton layoutX="316.0" layoutY="284.0" prefHeight="53.0" prefWidth="124.0"
-                   style="-fx-background-color: #151928;" text="Sign Up" textFill="#dad1d1">
+        <JFXButton layoutX="234.0" layoutY="293.0" onAction="#handleButtonActionSignUp" prefHeight="53.0"
+                   prefWidth="124.0" style="-fx-background-color: #151928;" text="Sign Up" textFill="#dad1d1">
             <font>
                 <Font size="16.0"/>
             </font>
@@ -31,8 +31,8 @@
             <children>
                 <ImageView fx:id="imgView" fitHeight="31.0" fitWidth="102.0" layoutX="47.0" layoutY="18.0"
                            pickOnBounds="true" preserveRatio="true"/>
-                <JFXButton layoutX="670.0" layoutY="12.0" style="-fx-background-color: #dad1d1;" text="Sign Up"
-                           textFill="#151928">
+                <JFXButton layoutX="670.0" layoutY="12.0" onAction="#handleButtonActionSignUp"
+                           style="-fx-background-color: #dad1d1;" text="Sign Up" textFill="#151928">
                     <font>
                         <Font size="16.0"/>
                     </font>
@@ -41,6 +41,23 @@
             <opaqueInsets>
                 <Insets/>
             </opaqueInsets>
+        </Pane>
+        <JFXButton layoutX="398.0" layoutY="293.0" onAction="#handleButtonActionLogin" prefHeight="53.0"
+                   prefWidth="124.0" style="-fx-background-color: #151928;" text="Login" textFill="#dad1d1">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </JFXButton>
+        <Pane layoutY="428.0" prefHeight="62.0" prefWidth="772.0" style="-fx-background-color: #000000;">
+            <opaqueInsets>
+                <Insets/>
+            </opaqueInsets>
+            <children>
+                <JFXButton fx:id="facebookIcon" layoutX="636.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
+                <JFXButton fx:id="twitterIcon" layoutX="668.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
+                <JFXButton fx:id="instagramIcon" layoutX="700.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
+                <JFXButton fx:id="mailIcon" layoutX="734.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
+            </children>
         </Pane>
     </children>
 </AnchorPane>

@@ -14,5 +14,9 @@ public class Resources {
         public static final String PASSWORD = "/img/password.png";
         public static final String USERNAME = "/img/username.png";
         public static final String LONDON = "/img/london.png";
+        public static final String FACEBOOK = "/img/facebook.png";
+        public static final String TWITTER = "/img/twitter.png";
+        public static final String INSTAGRAM = "/img/instagram.png";
+        public static final String MAIL = "/img/mail.png";
     }
 }
