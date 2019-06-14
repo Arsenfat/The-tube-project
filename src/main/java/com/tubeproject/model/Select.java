@@ -1,80 +1,48 @@
 package com.tubeproject.model;
 
-import com.tubeproject.controller.*;
+import com.tubeproject.model.interfaces.Selectable;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Optional;
 
 public class Select {
+    private Selectable selectable;
 
-    private User user;
-    private Line line;
-    private Fare fare;
-    private Zone zone;
-    private Route route;
-    private Station station;
-    private FavoriteRoute favoriteRoute;
-
-    public Select(User user, Line line, Fare fare, Zone zone, Route route, Station station, FavoriteRoute favoriteRoute) {
-        this.user = user;
-        this.line = line;
-        this.fare = fare;
-        this.zone = zone;
-        this.route = route;
-        this.station = station;
-        this.favoriteRoute = favoriteRoute;
+    public Select(Selectable s) {
+        selectable = s;
     }
 
-    public User getUser() {
-        return user;
+    public Optional<?> select() {
+        ResultSet resultSet;
+        PreparedStatement stmt;
+
+        try {
+            stmt = selectable.getSelectQuery();
+        } catch (SQLException e) {
+            System.out.println("Error while preparing stmt -> " + selectable.description());
+            System.out.println(e);
+            return Optional.empty();
+        }
+
+        try {
+            resultSet = stmt.executeQuery();
+            return selectable.buildFromResult(resultSet);
+        } catch (SQLException e) {
+            System.out.println("Error while executing stmt -> " + selectable.description());
+            System.out.println(e);
+            return Optional.empty();
+        } finally {
+            try {
+                stmt.close();
+            } catch (SQLException e) {
+                System.out.println("Error while closing stmt -> " + selectable.description());
+                System.out.println(e);
+
+            }
+        }
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
 
-    public Line getLine() {
-        return line;
-    }
-
-    public void setLine(Line line) {
-        this.line = line;
-    }
-
-    public Fare getFare() {
-        return fare;
-    }
-
-    public void setFare(Fare fare) {
-        this.fare = fare;
-    }
-
-    public Zone getZone() {
-        return zone;
-    }
-
-    public void setZone(Zone zone) {
-        this.zone = zone;
-    }
-
-    public Route getRoute() {
-        return route;
-    }
-
-    public void setRoute(Route route) {
-        this.route = route;
-    }
-
-    public Station getStation() {
-        return station;
-    }
-
-    public void setStation(Station station) {
-        this.station = station;
-    }
-
-    public FavoriteRoute getFavoriteRoute() {
-        return favoriteRoute;
-    }
-
-    public void setFavoriteRoute(FavoriteRoute favoriteRoute) {
-        this.favoriteRoute = favoriteRoute;
-    }
 }

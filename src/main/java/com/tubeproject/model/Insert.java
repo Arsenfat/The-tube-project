@@ -1,5 +1,7 @@
 package com.tubeproject.model;
 
+import com.tubeproject.model.interfaces.Insertable;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
