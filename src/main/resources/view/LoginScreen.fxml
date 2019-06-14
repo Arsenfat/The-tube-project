@@ -23,9 +23,9 @@
                 <Font size="21.0"/>
             </font>
         </JFXTextField>
-        <JFXPasswordField focusColor="#744b4a" layoutX="240.0" layoutY="205.0" prefHeight="26.0" prefWidth="282.0"
-                          promptText="Password" style="-fx-prompt-text-fill: #151928; -fx-text-inner-color: #151928;"
-                          unFocusColor="#151928">
+        <JFXPasswordField fx:id="txtPassword" focusColor="#744b4a" layoutX="240.0" layoutY="205.0" prefHeight="26.0"
+                          prefWidth="282.0" promptText="Password"
+                          style="-fx-prompt-text-fill: #151928; -fx-text-inner-color: #151928;" unFocusColor="#151928">
             <font>
                 <Font size="21.0"/>
             </font>
@@ -40,8 +40,9 @@
                 <Font size="16.0"/>
             </font>
         </JFXCheckBox>
-        <JFXButton layoutX="410.0" layoutY="282.0" prefHeight="38.0" prefWidth="115.0"
-                   style="-fx-background-color: #151928;" text="Login" textFill="#dad1d1">
+        <JFXButton fx:id="loginButton" layoutX="410.0" layoutY="282.0" onAction="#handleButtonActionTryLogin"
+                   prefHeight="38.0" prefWidth="115.0" style="-fx-background-color: #151928;" text="Login"
+                   textFill="#dad1d1">
             <font>
                 <Font size="16.0"/>
             </font>
