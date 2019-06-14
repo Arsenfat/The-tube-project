@@ -3,7 +3,7 @@ package com.tubeproject.controller;
 import com.tubeproject.crypto.Cryptographic;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class User {
 
@@ -20,14 +20,15 @@ public class User {
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
-        this.password = crypt(password);
+        this.password = password;
         this.role = role;
     }
 
     @NotNull
-    private String crypt(String password) {
+    public void crypt() {
         this.salt = Cryptographic.generateSalt(512).get();
-        return Cryptographic.hashPassword(password, salt).get();
+        this.password = Cryptographic.hashPassword(password, salt).get();
+
     }
 
     public String getFirstName() {
@@ -84,5 +85,18 @@ public class User {
 
     public void setSalt(String salt) {
         this.salt = salt;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", salt='" + salt + '\'' +
+                ", role=" + role +
+                '}';
     }
 }

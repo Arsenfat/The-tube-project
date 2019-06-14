@@ -2,10 +2,9 @@ package com.tubeproject.model.requests;
 
 import com.tubeproject.controller.User;
 import com.tubeproject.model.DatabaseConnection;
-import com.tubeproject.model.Insertable;
+import com.tubeproject.model.interfaces.Insertable;
 import org.jetbrains.annotations.NotNull;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -25,7 +24,7 @@ public class UserRequest implements Insertable {
         PreparedStatement stmt = DatabaseConnection.prepareStmt(query);
         stmt.setString(1, user.getFirstName());
         stmt.setString(2, user.getLastName());
-        stmt.setDate(3, new Date(user.getDateOfBirth().getTime()));
+        stmt.setString(3, user.getDateOfBirth().toString());
         stmt.setString(4, user.getEmail());
         stmt.setString(5, user.getPassword());
         stmt.setString(6, user.getSalt());
