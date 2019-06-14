@@ -1,6 +1,7 @@
 package com.tubeproject.view;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.tubeproject.utils.FXMLUtils;
 import javafx.application.Application;
@@ -10,13 +11,20 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.CacheHint;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.effect.Blend;
+import javafx.scene.effect.BlendMode;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.ColorInput;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -51,8 +59,13 @@ public class LoginScreen extends Application implements Initializable {
     private JFXButton mailIcon;
 
     @FXML
+    private JFXTextField txtUsername;
+
+    @FXML
+    private JFXPasswordField txtPassword;
+
+    @FXML
     private void handleButtonActionHomePage() {
-        System.out.println("you've clicked");
         AnchorPane homePage;
         try {
             homePage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.MAIN_SCREEN));
@@ -82,6 +95,12 @@ public class LoginScreen extends Application implements Initializable {
         Stage signUpStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         signUpStage.setScene(signUpScene);
         signUpStage.show();
+    }
+
+
+    @FXML
+    private void handleButtonActionTryLogin(ActionEvent event) {
+        checkIfEmpty();
     }
 
     public static void startWindow() {
@@ -150,5 +169,29 @@ public class LoginScreen extends Application implements Initializable {
         backgroundImage = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
         mailIcon.setBackground(new Background(backgroundImage));
 
+    }
+
+    private void checkIfEmpty() {
+        if (txtUsername.getText() == null || txtUsername.getText().trim().isEmpty()) {
+            txtUsername.requestFocus();
+            txtUsername.setFocusColor(Paint.valueOf("#ef5353"));
+            txtUsername.setUnFocusColor(Paint.valueOf("#ef5353"));
+            txtUsername.setStyle("-fx-text-inner-color : #ef5353");
+            txtUsername.setStyle("-fx-prompt-text-fill : #ef5353");
+            if (txtPassword.getText() == null || txtPassword.getText().trim().isEmpty()) {
+                txtPassword.setFocusColor(Paint.valueOf("#ef5353"));
+                txtPassword.setUnFocusColor(Paint.valueOf("#ef5353"));
+                txtPassword.setStyle("-fx-text-inner-color : #ef5353");
+                txtPassword.setStyle("-fx-prompt-text-fill : #ef5353");
+            }
+
+        } else if (txtPassword.getText() == null || txtPassword.getText().trim().isEmpty()) {
+            txtPassword.requestFocus();
+            txtPassword.setFocusColor(Paint.valueOf("#ef5353"));
+            txtPassword.setUnFocusColor(Paint.valueOf("#ef5353"));
+            txtPassword.setStyle("-fx-text-inner-color : #ef5353");
+            txtPassword.setStyle("-fx-prompt-text-fill : #ef5353");
+
+        }
     }
 }
