@@ -4,29 +4,27 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.tubeproject.utils.FXMLUtils;
+import com.tubeproject.utils.ImageUtils;
+import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
 import javafx.application.Application;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.CacheHint;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.effect.Blend;
-import javafx.scene.effect.BlendMode;
-import javafx.scene.effect.ColorAdjust;
-import javafx.scene.effect.ColorInput;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
-import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -65,6 +63,12 @@ public class LoginScreen extends Application implements Initializable {
     private JFXPasswordField txtPassword;
 
     @FXML
+    private Label txtLabel;
+
+    @FXML
+    private Label lbConnectToServer;
+
+    @FXML
     private void handleButtonActionHomePage() {
         AnchorPane homePage;
         try {
@@ -100,7 +104,7 @@ public class LoginScreen extends Application implements Initializable {
 
     @FXML
     private void handleButtonActionTryLogin(ActionEvent event) {
-        checkIfEmpty();
+        checkFields();
     }
 
     public static void startWindow() {
@@ -137,61 +141,91 @@ public class LoginScreen extends Application implements Initializable {
     }
 
     private void initializeBackground() {
-        InputStream stream = getClass().getResourceAsStream(Resources.Images.BACKGROUND);
-        Image img = new Image(stream);
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, false, false);
-        BackgroundImage backgroundImage = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
-        anchorPane.setBackground(new Background(backgroundImage));
+        BackgroundImage bgImg = ImageUtils.loadBackgroundImage(Resources.Images.BACKGROUND, backgroundSize);
+        anchorPane.setBackground(new Background(bgImg));
     }
 
     private void initializeIcons() {
-        InputStream stream = getClass().getResourceAsStream(Resources.Images.FACEBOOK);
-        Image img = new Image(stream);
+
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        BackgroundImage backgroundImage = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
-        facebookIcon.setBackground(new Background(backgroundImage));
+        BackgroundImage bgImg = ImageUtils.loadBackgroundImage(Resources.Images.FACEBOOK, backgroundSize);
+        facebookIcon.setBackground(new Background(bgImg));
 
-        stream = getClass().getResourceAsStream(Resources.Images.TWITTER);
-        img = new Image(stream);
         backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        backgroundImage = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
-        twitterIcon.setBackground(new Background(backgroundImage));
+        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.TWITTER, backgroundSize);
+        twitterIcon.setBackground(new Background(bgImg));
 
-        stream = getClass().getResourceAsStream(Resources.Images.INSTAGRAM);
-        img = new Image(stream);
-        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        backgroundImage = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
-        instagramIcon.setBackground(new Background(backgroundImage));
 
-        stream = getClass().getResourceAsStream(Resources.Images.MAIL);
-        img = new Image(stream);
         backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        backgroundImage = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
-        mailIcon.setBackground(new Background(backgroundImage));
+        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.INSTAGRAM, backgroundSize);
+        instagramIcon.setBackground(new Background(bgImg));
+
+        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
+        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.MAIL, backgroundSize);
+        mailIcon.setBackground(new Background(bgImg));
 
     }
 
-    private void checkIfEmpty() {
-        if (txtUsername.getText() == null || txtUsername.getText().trim().isEmpty()) {
-            txtUsername.requestFocus();
-            txtUsername.setFocusColor(Paint.valueOf("#ef5353"));
-            txtUsername.setUnFocusColor(Paint.valueOf("#ef5353"));
-            txtUsername.setStyle("-fx-text-inner-color : #ef5353");
-            txtUsername.setStyle("-fx-prompt-text-fill : #ef5353");
-            if (txtPassword.getText() == null || txtPassword.getText().trim().isEmpty()) {
-                txtPassword.setFocusColor(Paint.valueOf("#ef5353"));
-                txtPassword.setUnFocusColor(Paint.valueOf("#ef5353"));
-                txtPassword.setStyle("-fx-text-inner-color : #ef5353");
-                txtPassword.setStyle("-fx-prompt-text-fill : #ef5353");
-            }
-
-        } else if (txtPassword.getText() == null || txtPassword.getText().trim().isEmpty()) {
-            txtPassword.requestFocus();
-            txtPassword.setFocusColor(Paint.valueOf("#ef5353"));
-            txtPassword.setUnFocusColor(Paint.valueOf("#ef5353"));
-            txtPassword.setStyle("-fx-text-inner-color : #ef5353");
-            txtPassword.setStyle("-fx-prompt-text-fill : #ef5353");
-
+    private void checkFields() {
+        String red = "#ef5353";
+        String black = "#151928";
+        if (txtPassword.getText().isEmpty() || !txtPassword.getText().equals("mdp")) {
+            changeNodeColor(txtPassword, red);
+            changeLabelVisibility(true);
         }
+        if (txtUsername.getText().isEmpty() || !txtUsername.getText().equals("Sophie")) {
+            changeNodeColor(txtUsername, red);
+            changeLabelVisibility(true);
+        }
+
+        //if bon
+        if (txtUsername.getText().equals("Sophie") && txtPassword.getText().equals("mdp")) {
+            changeLabelVisibility(false);
+            System.out.println("ON EST SUR LA SCENE SUIVANTE WALLAHs");
+            changeNodeColor(txtPassword, black);
+            changeNodeColor(txtUsername, black);
+        }
+        tryingToConnectToServer();
+    }
+
+
+    //red #ef5353
+    //black #151928
+    private void changeNodeColor(JFXTextField txtField, String color) {
+        txtField.setFocusColor(Paint.valueOf(color));
+        txtField.setUnFocusColor(Paint.valueOf(color));
+        txtField.setStyle(String.format("-fx-text-inner-color : %s", color));
+        txtField.setStyle(String.format("-fx-prompt-text-fill : %s", color));
+        txtField.setStyle(String.format("-fx-text-inner-color: %s", color));
+    }
+
+    private void changeNodeColor(JFXPasswordField txtField, String color) {
+        txtField.setFocusColor(Paint.valueOf(color));
+        txtField.setUnFocusColor(Paint.valueOf(color));
+        txtField.setStyle(String.format("-fx-text-inner-color : %s", color));
+        txtField.setStyle(String.format("-fx-prompt-text-fill : %s", color));
+        txtField.setStyle(String.format("-fx-text-inner-color: %s", color));
+    }
+
+
+    private void changeLabelVisibility(boolean value) {
+        txtLabel.setVisible(value);
+
+    }
+
+    private void tryingToConnectToServer() {
+        lbConnectToServer.setVisible(true);
+        TranslateTransition translate = new TranslateTransition(Duration.seconds(.4), lbConnectToServer);
+        translate.setFromX(0.0);
+        translate.setFromY(0);
+        translate.setToX(0);
+        translate.setToY(-50);
+        translate.play();
+
+        FadeTransition fadeOut = new FadeTransition(Duration.seconds(5), lbConnectToServer);
+        fadeOut.setFromValue(1.0);
+        fadeOut.setToValue(0.0);
+        fadeOut.play();
     }
 }
