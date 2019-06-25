@@ -1,13 +1,12 @@
 package com.tubeproject.core;
 
-import com.tubeproject.controller.TubeGraph;
-import com.tubeproject.controller.Vertice;
-import com.tubeproject.model.DatabaseConnection;
+import com.tubeproject.view.LoginScreen;
+import com.tubeproject.view.SignUpScreen;
+import com.tubeproject.view.ViewMainScreen;
 
 public class Main {
     public static void main(String[] args){
-
-
+        SignUpScreen.startWindow();
     }
 
 }
