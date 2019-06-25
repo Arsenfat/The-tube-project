@@ -3,6 +3,7 @@ package com.tubeproject.view;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.tubeproject.utils.FXMLUtils;
+import com.tubeproject.utils.ImageUtils;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -101,11 +102,9 @@ public class ViewMainScreen extends Application implements Initializable {
     }
 
     private void initializeBackground() {
-        InputStream stream = getClass().getResourceAsStream(Resources.Images.BACKGROUND);
-        Image img = new Image(stream);
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, false, false);
-        BackgroundImage backgroundImage = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
-        anchorPane.setBackground(new Background(backgroundImage));
+        BackgroundImage bgImg = ImageUtils.loadBackgroundImage(Resources.Images.BACKGROUND, backgroundSize);
+        anchorPane.setBackground(new Background(bgImg));
     }
 
 
@@ -116,29 +115,23 @@ public class ViewMainScreen extends Application implements Initializable {
     }
 
     private void initializeIcons() {
-        InputStream stream = getClass().getResourceAsStream(Resources.Images.FACEBOOK);
-        Image img = new Image(stream);
-        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, false);
-        BackgroundImage backgroundImage = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
-        facebookIcon.setBackground(new Background(backgroundImage));
+        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
+        BackgroundImage bgImg = ImageUtils.loadBackgroundImage(Resources.Images.FACEBOOK, backgroundSize);
+        facebookIcon.setBackground(new Background(bgImg));
 
-        stream = getClass().getResourceAsStream(Resources.Images.TWITTER);
-        img = new Image(stream);
-        backgroundSize = new BackgroundSize(100, 100, true, true, true, false);
-        backgroundImage = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
-        twitterIcon.setBackground(new Background(backgroundImage));
-
-        stream = getClass().getResourceAsStream(Resources.Images.INSTAGRAM);
-        img = new Image(stream);
-        backgroundSize = new BackgroundSize(100, 100, true, true, true, false);
-        backgroundImage = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
-        instagramIcon.setBackground(new Background(backgroundImage));
-
-        stream = getClass().getResourceAsStream(Resources.Images.MAIL);
-        img = new Image(stream);
         backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        backgroundImage = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
-        mailIcon.setBackground(new Background(backgroundImage));
+        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.TWITTER, backgroundSize);
+        twitterIcon.setBackground(new Background(bgImg));
+
+
+        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
+        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.INSTAGRAM, backgroundSize);
+        instagramIcon.setBackground(new Background(bgImg));
+
+        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
+        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.MAIL, backgroundSize);
+        mailIcon.setBackground(new Background(bgImg));
+
 
     }
 }
