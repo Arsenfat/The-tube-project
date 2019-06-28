@@ -5,7 +5,7 @@ import java.sql.*;
 
 public class DatabaseConnection {
 
-    private static final String dbPath = "jdbc:mysql://remotemysql.com:3306/5qFaDYUMfJ";
+    private static final String dbPath = "jdbc:mysql://remotemysql.com:3306/5qFaDYUMfJ?connectTimeout=5000&socketTimeout=30000";
     private static final String user = "5qFaDYUMfJ";
     private static final String password = "J7R1UyqPYh";
     private static Connection con = null;
@@ -35,24 +35,16 @@ public class DatabaseConnection {
         }
     }
 
-    public static void DatabaseOpen() {
-        try {
-            Connection con = DriverManager.getConnection(dbPath, user, password);
-            con.setAutoCommit(false);
-            DatabaseConnection.con = con;
-        } catch (SQLException e) {
-            System.out.println("wallah");
-        }
+    public static void DatabaseOpen() throws SQLException {
+        Connection con = DriverManager.getConnection(dbPath, user, password);
+        con.setAutoCommit(false);
+        DatabaseConnection.con = con;
     }
 
 
-    public static int DatabaseClose() {
-        try {
-            //stm.close();
-            con.close();
-        } catch (Exception e) {
-            System.out.println("ERROR in Connection closure to " + dbPath + " : " + e.getMessage());
-        }
+    public static int DatabaseClose() throws SQLException {
+        //stm.close();
+        con.close();
 
         return erreur;
     }

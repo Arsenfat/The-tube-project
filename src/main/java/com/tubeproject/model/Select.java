@@ -1,5 +1,6 @@
 package com.tubeproject.model;
 
+import com.tubeproject.model.annotation.Description;
 import com.tubeproject.model.interfaces.Selectable;
 
 import java.sql.PreparedStatement;
@@ -9,9 +10,13 @@ import java.util.Optional;
 
 public class Select {
     private Selectable selectable;
+    private String description = "none";
 
     public Select(Selectable s) {
+
         selectable = s;
+        if (selectable.getClass().getAnnotation(Description.class) != null)
+            description = selectable.getClass().getAnnotation(Description.class).value();
     }
 
     public Optional<?> select() {
@@ -19,25 +24,27 @@ public class Select {
         PreparedStatement stmt;
 
         try {
-            stmt = selectable.getSelectQuery();
+            stmt = selectable.getSelectStatement();
         } catch (SQLException e) {
-            System.out.println("Error while preparing stmt -> " + selectable.description());
+
+            System.out.println(String.format("Error while preparing stmt -> %s", this.description));
             System.out.println(e);
             return Optional.empty();
         }
 
         try {
+            stmt.setQueryTimeout(2);
             resultSet = stmt.executeQuery();
             return selectable.buildFromResult(resultSet);
         } catch (SQLException e) {
-            System.out.println("Error while executing stmt -> " + selectable.description());
+            System.out.println(String.format("Error while executing stmt -> %s", this.description));
             System.out.println(e);
             return Optional.empty();
         } finally {
             try {
                 stmt.close();
             } catch (SQLException e) {
-                System.out.println("Error while closing stmt -> " + selectable.description());
+                System.out.println(String.format("Error while closing stmt -> %s", this.description));
                 System.out.println(e);
 
             }

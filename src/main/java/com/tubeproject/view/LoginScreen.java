@@ -3,6 +3,12 @@ package com.tubeproject.view;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import com.tubeproject.controller.User;
+import com.tubeproject.core.Login;
+import com.tubeproject.model.ContextMap;
+import com.tubeproject.model.DatabaseConnection;
+import com.tubeproject.model.Select;
+import com.tubeproject.model.requests.LoginRequest;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import javafx.animation.FadeTransition;
@@ -28,6 +34,8 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class LoginScreen extends Application implements Initializable {
@@ -170,23 +178,51 @@ public class LoginScreen extends Application implements Initializable {
     private void checkFields() {
         String red = "#ef5353";
         String black = "#151928";
-        if (txtPassword.getText().isEmpty() || !txtPassword.getText().equals("mdp")) {
+        if (txtPassword.getText().isEmpty()) {
             changeNodeColor(txtPassword, red);
             changeLabelVisibility(true);
         }
-        if (txtUsername.getText().isEmpty() || !txtUsername.getText().equals("Sophie")) {
+        if (txtUsername.getText().isEmpty()) {
             changeNodeColor(txtUsername, red);
             changeLabelVisibility(true);
         }
 
-        //if bon
-        if (txtUsername.getText().equals("Sophie") && txtPassword.getText().equals("mdp")) {
-            changeLabelVisibility(false);
-            System.out.println("ON EST SUR LA SCENE SUIVANTE WALLAHs");
-            changeNodeColor(txtPassword, black);
-            changeNodeColor(txtUsername, black);
+        User u;
+
+        try {
+            DatabaseConnection.DatabaseOpen();
+
+            LoginRequest lR = new LoginRequest(txtUsername.getText());
+            Select select = new Select(lR);
+            Optional<?> opt = select.select();
+            boolean connected;
+            if (opt.isPresent()) {
+                u = (User) (opt.get());
+                connected = Login.checkPassword(txtPassword.getText(), u.getPassword(), u.getSalt());
+                if (connected) {
+                    ContextMap.getContextMap().put("USER", u);
+                    changeLabelVisibility(false);
+
+                    changeNodeColor(txtPassword, black);
+                    changeNodeColor(txtUsername, black);
+                    //INSERT CHANGEMENT DE SCENE
+                }
+            } else
+                connected = false;
+
+            if (!connected) {
+                changeNodeColor(txtUsername, red);
+                changeNodeColor(txtPassword, red);
+                changeLabelVisibility(true);
+            }
+
+
+            DatabaseConnection.DatabaseClose();
+        } catch (SQLException e) {
+            connectionFailed();
+            System.out.println(e);
         }
-        tryingToConnectToServer();
+
     }
 
 
@@ -214,7 +250,7 @@ public class LoginScreen extends Application implements Initializable {
 
     }
 
-    private void tryingToConnectToServer() {
+    private void connectionFailed() {
         lbConnectToServer.setVisible(true);
         TranslateTransition translate = new TranslateTransition(Duration.seconds(.4), lbConnectToServer);
         translate.setFromX(0.0);
