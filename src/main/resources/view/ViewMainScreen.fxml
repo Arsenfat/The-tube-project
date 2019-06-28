@@ -16,8 +16,9 @@
                 <Font name="System Bold" size="21.0"/>
             </font>
         </Label>
-        <JFXButton layoutX="234.0" layoutY="293.0" onAction="#handleButtonActionSignUp" prefHeight="53.0"
-                   prefWidth="124.0" style="-fx-background-color: #151928;" text="Sign Up" textFill="#dad1d1">
+        <JFXButton layoutX="234.0" layoutY="293.0" onAction="#handleButtonActionSignUp"
+                   onMouseClicked="#handleButtonActionSignUp" prefHeight="53.0" prefWidth="124.0"
+                   style="-fx-background-color: #151928;" text="Sign Up" textFill="#dad1d1">
             <font>
                 <Font size="16.0"/>
             </font>

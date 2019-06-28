@@ -1,6 +1,7 @@
 package com.tubeproject.view;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.tubeproject.utils.FXMLUtils;
@@ -71,6 +72,7 @@ public class SignUpScreen extends Application implements Initializable {
     @FXML
     private Label txtLabel;
 
+
     @FXML
     private void handleButtonActionHomePage() {
         System.out.println("you've clicked");
@@ -99,6 +101,7 @@ public class SignUpScreen extends Application implements Initializable {
         Scene scene = new Scene(anchorPane);
         stage.setScene(scene);
         stage.show();
+        scene.getStylesheets().add(getClass().getResource(Resources.Stylesheets.SIGN_UP_SCREEN).toExternalForm());
     }
 
 
