@@ -2,6 +2,7 @@ package com.tubeproject.model.requests;
 
 import com.tubeproject.controller.User;
 import com.tubeproject.model.DatabaseConnection;
+import com.tubeproject.model.annotation.Description;
 import com.tubeproject.model.interfaces.Insertable;
 import org.jetbrains.annotations.NotNull;
 
@@ -11,7 +12,6 @@ import java.sql.SQLException;
 public class UserRequest implements Insertable {
     private User user;
 
-    @org.jetbrains.annotations.Contract(pure = true)
     public UserRequest(User user) {
         this.user = user;
     }
@@ -19,6 +19,7 @@ public class UserRequest implements Insertable {
 
     @Override
     @NotNull
+    @Description("Insert new user into Database")
     public PreparedStatement getInsertStatement() throws SQLException {
         String query = "INSERT INTO users(first_name,last_name,date_of_birth,email,password, salt) VALUES(?,?,?,?,?,?);";
         PreparedStatement stmt = DatabaseConnection.prepareStmt(query);
@@ -29,10 +30,5 @@ public class UserRequest implements Insertable {
         stmt.setString(5, user.getPassword());
         stmt.setString(6, user.getSalt());
         return stmt;
-    }
-
-    @Override
-    public String description() {
-        return "Insert new user into DB";
     }
 }

@@ -15,6 +15,10 @@ public class User {
     private String salt;
     private int role;
 
+    public User() {
+
+    }
+
     public User(String firstName, String lastName, Date dateOfBirth, String email, String password, int role) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -22,6 +26,16 @@ public class User {
         this.email = email;
         this.password = password;
         this.role = role;
+    }
+
+    public User(String firstName, String lastName, Date dateOfBirth, String email, String password, String salt, int role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.salt = salt;
     }
 
     @NotNull

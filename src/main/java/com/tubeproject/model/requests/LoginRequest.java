@@ -2,6 +2,8 @@ package com.tubeproject.model.requests;
 
 import com.tubeproject.controller.User;
 import com.tubeproject.model.DatabaseConnection;
+import com.tubeproject.model.annotation.Description;
+import com.tubeproject.model.builder.UserBuilder;
 import com.tubeproject.model.interfaces.Selectable;
 
 import java.sql.Date;
@@ -19,7 +21,8 @@ public class LoginRequest implements Selectable {
     }
 
     @Override
-    public PreparedStatement getSelectQuery() throws SQLException {
+    @Description("Querying users from database")
+    public PreparedStatement getSelectStatement() throws SQLException {
         String query = "SELECT first_name, last_name, date_of_birth, email, password, salt, home, work, role FROM users WHERE email=?";
         PreparedStatement stmt = DatabaseConnection.prepareStmt(query);
         stmt.setString(1, email);
@@ -55,15 +58,9 @@ public class LoginRequest implements Selectable {
             return Optional.empty();
         }
 
-        User u = new User(firstName, lastName, date, email, password, role);
-        u.setSalt(salt);
+        User u = new UserBuilder().setFirstName(firstName).setLastName(lastName).setDateOfBirth(date).setEmail(email).setPassword(password).setSalt(salt).setRole(role).createUser();
 
 
         return Optional.of(u);
-    }
-
-    @Override
-    public String description() {
-        return "Querying users from database";
     }
 }
