@@ -24,7 +24,7 @@ public class Select {
         PreparedStatement stmt;
 
         try {
-            stmt = selectable.getSelectStatement();
+            stmt = selectable.getSelectQuery();
         } catch (SQLException e) {
 
             System.out.println(String.format("Error while preparing stmt -> %s", this.description));
