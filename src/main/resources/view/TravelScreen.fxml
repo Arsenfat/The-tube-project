@@ -68,7 +68,7 @@
                 <Font size="16.0"/>
             </font>
         </JFXButton>
-        <JFXButton fx:id="goBtn" layoutX="460.0" layoutY="245.0" prefHeight="31.0" prefWidth="48.0"
+        <JFXButton fx:id="goBtn" layoutX="419.0" layoutY="244.0" prefHeight="31.0" prefWidth="48.0"
                    style="-fx-background-color: #686f89; -fx-background-radius: 16.4, 15;" text="GO" textFill="#dad1d1">
             <font>
                 <Font size="16.0"/>
@@ -100,11 +100,11 @@
               style="-fx-background-color: #f78f8f;" visible="false">
             <JFXTimePicker fx:id="leaveTime" defaultColor="#151928" layoutX="334.0" layoutY="17.0" prefHeight="28.0"
                            prefWidth="85.0"/>
-            <DatePicker fx:id="datePicker" layoutX="14.0" layoutY="18.0" prefHeight="26.0" prefWidth="85.0"
+            <DatePicker fx:id="datePicker" layoutX="14.0" layoutY="18.0" prefHeight="26.0" prefWidth="102.0"
                         promptText="datePicker"/>
-            <JFXTimePicker fx:id="arriveTime" defaultColor="#151928" layoutX="184.0" layoutY="17.0" prefHeight="28.0"
+            <JFXTimePicker fx:id="arriveTime" defaultColor="#151928" layoutX="186.0" layoutY="17.0" prefHeight="28.0"
                            prefWidth="85.0"/>
-            <Label fx:id="arrive" layoutX="130.0" layoutY="19.0" text="Arrive">
+            <Label fx:id="arrive" layoutX="133.0" layoutY="19.0" text="Arrive">
                 <font>
                     <Font size="16.0"/>
                 </font>

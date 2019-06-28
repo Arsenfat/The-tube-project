@@ -7,6 +7,7 @@ import com.jfoenix.controls.JFXTimePicker;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -93,8 +94,11 @@ public class TravelScreen extends Application implements Initializable {
     @FXML
     private JFXTimePicker leaveTime;
 
+    @FXML
+    private JFXButton goBtn;
 
-    private String[] possibleWord = {"Gui", "Guigui", "Guillaume", "Sophie", "John"};
+
+    private String[] possibleWord = {"Willesden green", "Baker street", "Guillaume", "Sophie", "Killburn", "John"};
 
 
     @FXML
@@ -143,7 +147,10 @@ public class TravelScreen extends Application implements Initializable {
         initializeIcons();
         //initializeMap();
         setClickoutEvent();
-
+        initializeTextFieldEvent(txtStart, startBtn);
+        initializeTextFieldEvent(txtEnd, endBtn);
+        autocomplete(txtStart);
+        autocomplete(txtEnd);
     }
 
     public static ArrayList<Node> getAllNodes(Parent root) {
@@ -213,7 +220,10 @@ public class TravelScreen extends Application implements Initializable {
     }
 
     public void setClickoutEvent() {
-
+        anchorPane.setOnMouseClicked((evt) -> {
+            txtStart.setVisible(false);
+            txtEnd.setVisible(false);
+        });
         for (Node tmpNode : getAllNodes(anchorPane)) {
             tmpNode.setOnMouseClicked((evt) -> {
                 Object source = evt.getSource();
@@ -227,7 +237,6 @@ public class TravelScreen extends Application implements Initializable {
                 } else if (source instanceof Pane) {
                     Pane pane = (Pane) source;
                     if (pane.getId() != null && pane.getId().equals(timeInfo.getId())) {
-                        System.out.println("je suis la");
                         txtStart.setVisible(false);
                         txtEnd.setVisible(false);
                     } else {
@@ -239,12 +248,6 @@ public class TravelScreen extends Application implements Initializable {
                     if (button.getId().equals(startBtn.getId())) {
                         txtStart.setVisible(true);
                         txtEnd.setVisible(false);
-                        /*
-                        if(!txtStart.getText().equals("")){
-                            startBtn.setText(txtStart.getText());
-                            startBtn.setStyle("-fx-background-color: red;");
-                        }
-                         */
                     } else if (button.getId().equals(endBtn.getId())) {
                         txtEnd.setVisible(true);
                         txtStart.setVisible(false);
@@ -285,4 +288,17 @@ public class TravelScreen extends Application implements Initializable {
     public void autocomplete(JFXTextField txtField) {
         TextFields.bindAutoCompletion(txtField, possibleWord);
     }
+
+    public void initializeTextFieldEvent(JFXTextField textField, JFXButton button) {
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            button.setText(newValue);
+            button.setStyle("-fx-background-color:  #f78f8f ; -fx-text-fill: black");
+        });
+        textField.focusedProperty().addListener(((observable, oldValue, newValue) -> {
+            if (!txtStart.getText().equals("") && !txtEnd.getText().equals("")) {
+                goBtn.setStyle("-fx-background-color:  #6fcc90; -fx-background-radius:   16.4, 15 ; -fx-text-fill: black");
+            }
+        }));
+    }
+
 }
