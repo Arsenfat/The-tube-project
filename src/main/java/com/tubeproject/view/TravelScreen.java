@@ -292,11 +292,11 @@ public class TravelScreen extends Application implements Initializable {
     public void initializeTextFieldEvent(JFXTextField textField, JFXButton button) {
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
             button.setText(newValue);
-            button.setStyle("-fx-background-color:  #f78f8f ; -fx-text-fill: black");
+            button.setStyle("-fx-background-color:  #C3ECB2 ; -fx-text-fill: black");
         });
         textField.focusedProperty().addListener(((observable, oldValue, newValue) -> {
             if (!txtStart.getText().equals("") && !txtEnd.getText().equals("")) {
-                goBtn.setStyle("-fx-background-color:  #6fcc90; -fx-background-radius:   16.4, 15 ; -fx-text-fill: black");
+                goBtn.setStyle("-fx-background-color:  #C3ECB2; -fx-background-radius:   16.4, 15 ; -fx-text-fill: black");
             }
         }));
     }

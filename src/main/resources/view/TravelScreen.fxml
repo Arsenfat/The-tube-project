@@ -76,8 +76,8 @@
         </JFXButton>
         <JFXTextField fx:id="txtStart" alignment="TOP_LEFT" focusColor="#744b4a" layoutX="508.0" layoutY="120.0"
                       prefHeight="46.0" prefWidth="198.0" promptText="Start"
-                      style="-fx-text-inner-color: #151928; -fx-prompt-text-fill: #151928; -fx-background-color: #f78f8f;"
-                      unFocusColor="#24131f" visible="false">
+                      style="-fx-text-inner-color: #151928; -fx-prompt-text-fill: #151928;" unFocusColor="#24131f"
+                      visible="false">
             <opaqueInsets>
                 <Insets/>
             </opaqueInsets>
@@ -87,8 +87,8 @@
         </JFXTextField>
         <JFXTextField fx:id="txtEnd" alignment="TOP_LEFT" focusColor="#744b4a" layoutX="508.0" layoutY="184.0"
                       prefHeight="46.0" prefWidth="198.0" promptText="End"
-                      style="-fx-text-inner-color: #151928; -fx-prompt-text-fill: #151928; -fx-background-color: #f78f8f;"
-                      unFocusColor="#261e14" visible="false">
+                      style="-fx-text-inner-color: #151928; -fx-prompt-text-fill: #151928;" unFocusColor="#261e14"
+                      visible="false">
             <opaqueInsets>
                 <Insets/>
             </opaqueInsets>
@@ -96,8 +96,7 @@
                 <Font size="21.0"/>
             </font>
         </JFXTextField>
-        <Pane fx:id="timeInfo" layoutX="202.0" layoutY="290.0" prefHeight="62.0" prefWidth="434.0"
-              style="-fx-background-color: #f78f8f;" visible="false">
+        <Pane fx:id="timeInfo" layoutX="202.0" layoutY="290.0" prefHeight="62.0" prefWidth="434.0" visible="false">
             <JFXTimePicker fx:id="leaveTime" defaultColor="#151928" layoutX="334.0" layoutY="17.0" prefHeight="28.0"
                            prefWidth="85.0"/>
             <DatePicker fx:id="datePicker" layoutX="14.0" layoutY="18.0" prefHeight="26.0" prefWidth="102.0"
