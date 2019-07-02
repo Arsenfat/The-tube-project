@@ -3,6 +3,7 @@ package com.tubeproject.model.requests;
 import com.tubeproject.controller.User;
 import com.tubeproject.model.DatabaseConnection;
 import com.tubeproject.model.annotation.Description;
+import com.tubeproject.model.builder.UserBuilder;
 import com.tubeproject.model.interfaces.Selectable;
 
 import java.sql.Date;
@@ -56,9 +57,15 @@ public class LoginRequest implements Selectable {
             return Optional.empty();
         }
 
-        User u = new User(firstName, lastName, date, email, password, role);
-        u.setSalt(salt);
-
+        User u = new UserBuilder()
+                .setEmail(email)
+                .setFirstName(firstName)
+                .setDateOfBirth(date)
+                .setLastName(lastName)
+                .setRole(role)
+                .setPassword(password)
+                .setSalt(salt)
+                .createUser();
 
         return Optional.of(u);
     }
