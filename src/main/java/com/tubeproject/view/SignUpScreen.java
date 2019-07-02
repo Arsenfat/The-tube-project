@@ -118,7 +118,6 @@ public class SignUpScreen extends Application implements Initializable {
         initializeImgView();
         initializeBackground();
         initializeIcons();
-
     }
 
     @FXML

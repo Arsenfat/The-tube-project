@@ -1,6 +1,7 @@
 package com.tubeproject.model.requests;
 
 import com.tubeproject.model.DatabaseConnection;
+import com.tubeproject.model.annotation.Description;
 import com.tubeproject.model.interfaces.Selectable;
 
 import java.sql.PreparedStatement;
@@ -15,6 +16,7 @@ public class DuplicateMailRequest implements Selectable {
         this.email = email;
     }
 
+    @Description("Get Email, no result if not duplicated")
     @Override
     public PreparedStatement getSelectQuery() throws SQLException {
         String query = "SELECT email FROM users WHERE email=?";
