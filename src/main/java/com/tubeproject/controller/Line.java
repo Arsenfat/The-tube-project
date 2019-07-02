@@ -8,6 +8,11 @@ public class Line {
     private String name;
     private List<Station> stations;
 
+    public Line(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Line(int id, String name, List<Station> stations) {
         this.id = id;
         this.name = name;
@@ -38,5 +43,11 @@ public class Line {
         this.id = id;
     }
 
-
+    @Override
+    public String toString() {
+        return "Line{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

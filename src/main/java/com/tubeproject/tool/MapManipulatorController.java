@@ -8,6 +8,7 @@ import com.tubeproject.model.requests.GetAllLinesWithStationsRequest;
 import com.tubeproject.model.requests.GetAllStationsRequest;
 import com.tubeproject.utils.FXMLUtils;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -24,17 +25,17 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class MapManipulatorController extends Application implements Initializable {
 
-    private static List<Station> stationList;
-    private static List<Line> lineList;
+    private static List<LineMap> lineList;
 
     @FXML
-    ComboBox<Line> lines;
+    ComboBox<LineMap> lines;
 
     @FXML
-    ListView<Station> stations;
+    ListView<StationMapPos> stations;
 
     @FXML
     Button btnSave;
@@ -64,20 +65,21 @@ public class MapManipulatorController extends Application implements Initializab
             System.out.println(String.format("(%f;%f)", event.getX(), event.getY()));
         });
         try {
-            stationList = loadStations();
-            lineList = loadLines();
+            //stationList = loadStations();
+            lineList = loadLines().stream()//Map Line object to LineMap
+                    .map(line -> new LineMap(line, line.getStations().stream()
+                            .map(StationMapPos::new)//Map Station object to StationMapPos
+                            .collect(Collectors.toList())))
+                    .collect(Collectors.toList());
         } catch (SQLException e) {
             System.out.println("PROBLEME ON EXIT");
             System.exit(2);
         }
+        lines.setItems(FXCollections.observableArrayList(lineList));
+        lines.valueProperty().addListener((observable, oldValue, newValue) -> {
+            stations.setItems(FXCollections.observableArrayList(newValue.getStationTool()));
+        });
 
-        for (Line line : lineList) {
-            System.out.println("###########################################################");
-            System.out.println("line.getName() = " + line.getName());
-            for (Station station : line.getStations()) {
-                System.out.println("station.getName() = " + station.getName());
-            }
-        }
     }
 
     public List<Station> loadStations() throws SQLException {
