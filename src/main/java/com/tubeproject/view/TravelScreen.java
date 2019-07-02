@@ -4,6 +4,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
+import com.tubeproject.controller.Station;
+import com.tubeproject.controller.Zone;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import javafx.application.Application;
@@ -33,7 +35,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class TravelScreen extends Application implements Initializable {
 
@@ -99,6 +103,13 @@ public class TravelScreen extends Application implements Initializable {
 
 
     private String[] possibleWord = {"Willesden green", "Baker street", "Guillaume", "Sophie", "Killburn", "John"};
+
+    private List<Station> listStation = List.of(new Station("Willesden green", false, new Zone("Zone 1", 2)),
+            new Station("Killburn", false, new Zone("Zone 1", 2)),
+            new Station("Baker street", false, new Zone("Zone 1", 2)),
+            new Station("London bridge", false, new Zone("Zone 1", 2)));
+
+    private List<String> listStationName = listStation.stream().map(Station::getName).collect(Collectors.toList());
 
 
     @FXML
@@ -286,17 +297,21 @@ public class TravelScreen extends Application implements Initializable {
     }
 
     public void autocomplete(JFXTextField txtField) {
-        TextFields.bindAutoCompletion(txtField, possibleWord);
+
+        //TextFields.bindAutoCompletion(txtField, possibleWord);
+        TextFields.bindAutoCompletion(txtField, listStationName);
+
+
     }
 
     public void initializeTextFieldEvent(JFXTextField textField, JFXButton button) {
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
             button.setText(newValue);
-            button.setStyle("-fx-background-color:  #C3ECB2 ; -fx-text-fill: black");
+            button.setStyle("-fx-background-color:  #97bb91 ; -fx-text-fill: black");
         });
         textField.focusedProperty().addListener(((observable, oldValue, newValue) -> {
             if (!txtStart.getText().equals("") && !txtEnd.getText().equals("")) {
-                goBtn.setStyle("-fx-background-color:  #C3ECB2; -fx-background-radius:   16.4, 15 ; -fx-text-fill: black");
+                goBtn.setStyle("-fx-background-color:  #97bb91; -fx-background-radius:   16.4, 15 ; -fx-text-fill: black");
             }
         }));
     }
