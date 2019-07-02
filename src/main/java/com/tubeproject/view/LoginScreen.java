@@ -9,6 +9,7 @@ import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.DatabaseConnection;
 import com.tubeproject.model.Select;
 import com.tubeproject.model.requests.LoginRequest;
+import com.tubeproject.utils.EmailUtils;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import javafx.animation.FadeTransition;
@@ -178,15 +179,16 @@ public class LoginScreen extends Application implements Initializable {
     private void checkFields() {
         String red = "#ef5353";
         String black = "#151928";
-        if (txtPassword.getText().isEmpty()) {
+
+        if (txtUsername.getText().isEmpty()
+                || !EmailUtils.checkEmail(txtUsername.getText())
+                || txtPassword.getText().isEmpty()) {
+            changeNodeColor(txtUsername, red);
             changeNodeColor(txtPassword, red);
             changeLabelVisibility(true);
+            return;
         }
-        if (txtUsername.getText().isEmpty()) {
-            changeNodeColor(txtUsername, red);
-            changeLabelVisibility(true);
-        }
-
+        System.out.println("OYH");
         User u;
 
         try {
@@ -220,7 +222,7 @@ public class LoginScreen extends Application implements Initializable {
             DatabaseConnection.DatabaseClose();
         } catch (SQLException e) {
             connectionFailed();
-            System.out.println(e);
+            System.out.println("Error: Connection to the server failed.");
         }
 
     }

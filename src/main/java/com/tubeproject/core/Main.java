@@ -1,6 +1,6 @@
 package com.tubeproject.core;
 
-import com.tubeproject.view.SignUpScreen;
+import com.tubeproject.view.LoginScreen;
 
 import java.sql.SQLException;
 
@@ -19,8 +19,7 @@ public class Main {
         insert.insert();
         DatabaseConnection.DatabaseClose();*/
 
-        SignUpScreen.startWindow();
-
+        LoginScreen.startWindow();
     }
 
 }
