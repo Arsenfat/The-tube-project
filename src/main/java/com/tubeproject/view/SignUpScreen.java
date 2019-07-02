@@ -3,34 +3,42 @@ package com.tubeproject.view;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import com.tubeproject.controller.User;
+import com.tubeproject.model.DatabaseConnection;
+import com.tubeproject.model.Insert;
+import com.tubeproject.model.Select;
+import com.tubeproject.model.builder.UserBuilder;
+import com.tubeproject.model.requests.DuplicateMailRequest;
+import com.tubeproject.model.requests.InsertUserRequest;
+import com.tubeproject.utils.EmailUtils;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.paint.Paint;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.awt.*;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class SignUpScreen extends Application implements Initializable {
@@ -72,6 +80,9 @@ public class SignUpScreen extends Application implements Initializable {
     private Label txtLabel;
 
     @FXML
+    private DatePicker dpDate;
+
+    @FXML
     private void handleButtonActionHomePage() {
         System.out.println("you've clicked");
         AnchorPane homePage;
@@ -107,13 +118,20 @@ public class SignUpScreen extends Application implements Initializable {
         initializeImgView();
         initializeBackground();
         initializeIcons();
+
     }
 
     @FXML
     private void handleButtonActionTrySignUp(ActionEvent event) {
-        tryingToConnectToServer();
-        checkFields();
-        //TODO CHECK IF RIGHT MAIL
+        boolean valid = checkFields();
+        if (valid) {
+            String black = "#151928";
+            changeNodeColor(txtPassword, black);
+            changeNodeColor(txtFirstName, black);
+            changeNodeColor(txtLastName, black);
+            changeNodeColor(txtMail, black);
+            insertUser();
+        }
     }
 
     private void initializeImgView() {
@@ -149,36 +167,65 @@ public class SignUpScreen extends Application implements Initializable {
 
     }
 
-    private void checkFields() {
+    private boolean checkFields() {
         String red = "#ef5353";
-        String black = "#151928";
-        if (txtPassword.getText().isEmpty() || !txtPassword.getText().equals("mdp")) {
+        boolean succeed = true;
+        if (txtPassword.getText().isEmpty()) {
             changeNodeColor(txtPassword, red);
             changeLabelVisibility(true);
+            succeed = false;
         }
-        if (txtFirstName.getText().isEmpty() || !txtFirstName.getText().equals("Sophie")) {
+        if (txtFirstName.getText().isEmpty()) {
             changeNodeColor(txtFirstName, red);
             changeLabelVisibility(true);
+            succeed = false;
         }
-        if (txtLastName.getText().isEmpty() || !txtLastName.getText().equals("Pages")) {
+        if (txtLastName.getText().isEmpty()) {
             changeNodeColor(txtLastName, red);
             changeLabelVisibility(true);
+            succeed = false;
         }
-        if (txtMail.getText().isEmpty() || !txtMail.getText().equals("sophie.pages@gmail.com")) {
+        if (txtMail.getText().isEmpty() || !EmailUtils.checkEmail(txtMail.getText())) {
             changeNodeColor(txtMail, red);
             changeLabelVisibility(true);
+            succeed = false;
         }
 
-        //if bon
-        if (txtFirstName.getText().equals("Sophie") && txtPassword.getText().equals("mdp") && txtMail.getText().equals("sophie.pages@gmail.com") && txtLastName.getText().equals("Pages")) {
-            changeLabelVisibility(false);
-            System.out.println("ON EST SUR LA SCENE SUIVANTE WALLAHs");
-            changeNodeColor(txtPassword, black);
-            changeNodeColor(txtFirstName, black);
-            changeNodeColor(txtLastName, black);
-            changeNodeColor(txtMail, black);
+        return succeed;
+    }
+
+    private void insertUser() {
+        String firstName = txtFirstName.getText();
+        String lastName = txtLastName.getText();
+        String password = txtPassword.getText();
+        String email = txtMail.getText();
+        Date dateOfBirth = Date.valueOf(dpDate.getValue());
+
+        User userToInsert = new UserBuilder().setFirstName(firstName)
+                .setLastName(lastName)
+                .setDateOfBirth(dateOfBirth)
+                .setEmail(email)
+                .setRole(1)
+                .setPassword(password)
+                .createUser();
+        userToInsert.crypt();
+        try {
+            DatabaseConnection.DatabaseOpen();
+            DuplicateMailRequest dMR = new DuplicateMailRequest(email);
+            Select s = new Select(dMR);
+            boolean duplicate = (Boolean) s.select().get();
+            if (duplicate) {
+                InsertUserRequest uR = new InsertUserRequest(userToInsert);
+                Insert insert = new Insert(uR);
+                insert.insert();
+            } else {
+                System.out.println("DUPLICATE");
+            }
+            DatabaseConnection.DatabaseClose();
+        } catch (SQLException e) {
+            System.out.println(e);
+            connectionFailed();
         }
-        tryingToConnectToServer();
     }
 
     private void changeLabelVisibility(boolean value) {
@@ -205,7 +252,7 @@ public class SignUpScreen extends Application implements Initializable {
     }
 
 
-    private void tryingToConnectToServer() {
+    private void connectionFailed() {
         lbConnectToServer.setVisible(true);
         TranslateTransition translate = new TranslateTransition(Duration.seconds(.4), lbConnectToServer);
         translate.setFromX(0.0);

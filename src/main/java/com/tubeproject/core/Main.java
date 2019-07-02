@@ -14,7 +14,7 @@ public class Main {
             "guillaume",
             3);
         user.crypt();
-        UserRequest uR = new UserRequest(user);
+        InsertUserRequest uR = new InsertUserRequest(user);
         Insert insert = new Insert(uR);
         insert.insert();
         DatabaseConnection.DatabaseClose();*/

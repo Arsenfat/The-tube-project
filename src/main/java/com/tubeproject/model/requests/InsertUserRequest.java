@@ -8,10 +8,10 @@ import com.tubeproject.model.interfaces.Insertable;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class UserRequest implements Insertable {
+public class InsertUserRequest implements Insertable {
     private User user;
 
-    public UserRequest(User user) {
+    public InsertUserRequest(User user) {
         this.user = user;
     }
 
