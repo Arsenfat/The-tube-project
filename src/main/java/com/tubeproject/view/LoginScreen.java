@@ -188,7 +188,6 @@ public class LoginScreen extends Application implements Initializable {
             changeLabelVisibility(true);
             return;
         }
-        System.out.println("OYH");
         User u;
 
         try {
