@@ -5,6 +5,7 @@ public class Resources {
         public static final String LOGIN_SCREEN = "/view/LoginScreen.fxml";
         public static final String MAIN_SCREEN = "/view/ViewMainScreen.fxml";
         public static final String SIGN_UP_SCREEN = "/view/SignUpScreen.fxml";
+        public static final String TRAVEL_SCREEN = "/view/TravelScreen.fxml";
     }
 
     public static class Images {
@@ -18,5 +19,12 @@ public class Resources {
         public static final String TWITTER = "/img/twitter.png";
         public static final String INSTAGRAM = "/img/instagram.png";
         public static final String MAIL = "/img/mail.png";
+        public static final String MAP = "/img/bakerStreet.png";
+        public static final String TRAVELMAP = "/img/bakerToKillburn.png";
+    }
+
+    public static class Stylesheets {
+        public static final String TRAVEL_SCREEN = "/css/TravelScreen.css";
+        public static final String SIGN_UP_SCREEN = "/css/SignUpScreen.css";
     }
 }
