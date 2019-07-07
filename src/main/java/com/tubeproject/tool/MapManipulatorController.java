@@ -14,6 +14,7 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Bounds;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -21,6 +22,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -53,6 +56,8 @@ public class MapManipulatorController extends Application implements Initializab
     @FXML
     ImageView imgView;
 
+    @FXML
+    Pane parentPane;
 
     public static void launchWindow() {
         launch();
@@ -69,9 +74,13 @@ public class MapManipulatorController extends Application implements Initializab
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        imgView.setImage(new Image("/img/tube_map.gif"));
         double width = imgView.getFitWidth();
         double heigth = imgView.getFitHeight();
-        imgView.setImage(new Image("/img/tube_map.gif"));
+        Bounds b = imgView.getBoundsInParent();
+
+        System.out.println(String.format("%f %f", b.getMaxX(), b.getMaxY()));
         imgView.setOnMouseClicked(event -> {
             currentMapPos.setX(event.getX());
             currentMapPos.setY(event.getY());
@@ -99,7 +108,15 @@ public class MapManipulatorController extends Application implements Initializab
         stations.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
             currentMapPos = newValue;
         }));
+        lineList.forEach((lineMap -> lineMap.getStationTool().forEach(this::drawCircle)));
+    }
 
+    public void drawCircle(StationMapPos s1) {
+        Circle c = new Circle();
+        c.setCenterX(s1.getX() + 14);
+        c.setCenterY(s1.getY() + 14);
+        c.setRadius(5);
+        parentPane.getChildren().add(c);
     }
 
     @FXML
