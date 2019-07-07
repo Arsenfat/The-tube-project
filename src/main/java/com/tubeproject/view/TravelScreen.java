@@ -1,11 +1,13 @@
 package com.tubeproject.view;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXHamburger;
-import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXTimePicker;
+import com.jfoenix.controls.*;
+import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 import com.tubeproject.controller.Station;
 import com.tubeproject.controller.Zone;
+import com.tubeproject.model.ContextMap;
+import com.tubeproject.model.DatabaseConnection;
+import com.tubeproject.model.Select;
+import com.tubeproject.model.requests.GetAllStations;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import javafx.application.Application;
@@ -31,7 +33,9 @@ import org.w3c.dom.Text;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -83,35 +87,46 @@ public class TravelScreen extends Application implements Initializable {
     private DatePicker datePicker;
 
     @FXML
-    private Label arrive;
+    private JFXButton arriveBtn;
 
     @FXML
-    private Label leave;
+    private JFXButton leaveBtn;
 
     @FXML
-    private JFXTimePicker arriveTime;
-
-    @FXML
-    private JFXTimePicker leaveTime;
+    private JFXTimePicker time;
 
     @FXML
     private JFXButton goBtn;
 
-
-    private String[] possibleWord = {"Willesden green", "Baker street", "Guillaume", "Sophie", "Killburn", "John"};
-
-    private List<Station> listStation = List.of(new Station("Willesden green", false, new Zone("Zone 1", 2)),
-            new Station("Killburn", false, new Zone("Zone 1", 2)),
-            new Station("Baker street", false, new Zone("Zone 1", 2)),
-            new Station("London bridge", false, new Zone("Zone 1", 2)));
-
-    private List<String> listStationName = listStation.stream().map(Station::getName).collect(Collectors.toList());
+    @FXML
+    private JFXDrawer drawer;
 
 
     @FXML
     private void handleButtonActionHome(ActionEvent event) {
 
     }
+
+    @FXML
+    private void handleButtonActionArrive(ActionEvent event) {
+        arriveBtn.setStyle("-fx-background-color:  #97bb91 ; -fx-text-fill: black");
+        leaveBtn.setStyle(" -fx-text-fill: #151928");
+        time.setVisible(true);
+    }
+
+    @FXML
+    private void handleButtonActionLeave(ActionEvent event) {
+        leaveBtn.setStyle("-fx-background-color:  #97bb91 ; -fx-text-fill: black");
+        arriveBtn.setStyle(" -fx-text-fill: #151928");
+        time.setVisible(true);
+    }
+
+    @FXML
+    private void handleButtonActionNow(ActionEvent event) {
+        datePicker.setValue(LocalDate.now());
+        time.setValue(LocalTime.now());
+    }
+
 
 
     @FXML
@@ -156,9 +171,11 @@ public class TravelScreen extends Application implements Initializable {
         setClickoutEvent();
         initializeTextFieldEvent(txtStart, startBtn);
         initializeTextFieldEvent(txtEnd, endBtn);
-        autocomplete(txtStart);
-        autocomplete(txtEnd);
+        List<String> listStationName = loadStation();
+        autocomplete(txtStart, listStationName);
+        autocomplete(txtEnd, listStationName);
         checkTime();
+        initializeBurger();
     }
 
     public static ArrayList<Node> getAllNodes(Parent root) {
@@ -263,25 +280,19 @@ public class TravelScreen extends Application implements Initializable {
                         txtStart.setVisible(false);
                         txtEnd.setVisible(false);
                         timeInfo.setVisible(true);
+                    } else if (button.getId().equals(arriveBtn.getId())) {
+                        //do nothing
+                    } else if (button.getId().equals(leaveBtn.getId())) {
+                        //do nothing
                     }
                 } else if (source instanceof DatePicker) {
                     DatePicker datePicker = (DatePicker) source;
                     if (datePicker.getId().equals(datePicker.getId())) {
                         //do nothing
                     }
-                } else if (source instanceof Label) {
-                    Label label = (Label) source;
-                    if (label.getId().equals(arrive.getId())) {
-                        //do nothing
-                    } else if (label.getId().equals(leave.getId())) {
-                        //do nothing
-                    }
                 } else if (source instanceof JFXTimePicker) {
                     JFXTimePicker label = (JFXTimePicker) source;
-                    if (label.getId().equals(arriveTime.getId())) {
-                        //do nothing
-                    }
-                    if (label.getId().equals(leaveTime.getId())) {
+                    if (label.getId().equals(time.getId())) {
                         //do nothing
                     }
                 } else {
@@ -293,9 +304,7 @@ public class TravelScreen extends Application implements Initializable {
 
     }
 
-    public void autocomplete(JFXTextField txtField) {
-
-        //TextFields.bindAutoCompletion(txtField, possibleWord);
+    public void autocomplete(JFXTextField txtField, List<String> listStationName) {
         TextFields.bindAutoCompletion(txtField, listStationName);
 
 
@@ -321,6 +330,88 @@ public class TravelScreen extends Application implements Initializable {
                 setDisable(empty || date.compareTo(today) < 0);
             }
         });
+    }
+
+    public List<String> loadStation() {
+        List<String> stationList = new ArrayList<>();
+        try {
+            DatabaseConnection.DatabaseOpen();
+            GetAllStations stations = new GetAllStations();
+            Select s = new Select(stations);
+
+            List<Station> tmpList = (List<Station>) s.select().get();
+
+            stationList = tmpList.stream().map(Station::getName).collect(Collectors.toList());
+            DatabaseConnection.DatabaseClose();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return stationList;
+    }
+
+    public void initializeBurger() {
+        try {
+            VBox vbox = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.VBOX));
+            drawer.setSidePane(vbox);
+            for (Node node : vbox.getChildren()) {
+                if (node.getId() != null) {
+                    node.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
+                        switch (node.getId()) {
+                            case "btnHistory":
+                                //TODO
+                                break;
+                            case "btnAdministration":
+                                AnchorPane administrationPage;
+                                try {
+                                    administrationPage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.ADMINISTRATOR_SCREEN));
+
+                                } catch (IOException ex) {
+                                    System.out.println("Warning unandled exeption.");
+                                    return;
+                                }
+                                Scene homeScene = new Scene(administrationPage);
+                                Stage homeStage = (Stage) anchorPane.getScene().getWindow();
+                                homeStage.setScene(homeScene);
+                                homeStage.show();
+                                break;
+                            case "btnLogOut":
+                                ContextMap.getContextMap().put("USER", null);
+                                AnchorPane homePage;
+                                try {
+                                    homePage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.MAIN_SCREEN));
+
+                                } catch (IOException ex) {
+                                    System.out.println("Warning unandled exeption.");
+                                    return;
+                                }
+                                homeScene = new Scene(homePage);
+                                homeStage = (Stage) anchorPane.getScene().getWindow();
+                                homeStage.setScene(homeScene);
+                                homeStage.show();
+                                break;
+                            case "btnProfile":
+                                //TODO
+                                break;
+                        }
+                    });
+                }
+            }
+
+            HamburgerSlideCloseTransition transition = new HamburgerSlideCloseTransition(burger);
+            transition.setRate(-1);
+            burger.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
+                transition.setRate(transition.getRate() * -1);
+                transition.play();
+                if (drawer.isShown()) {
+                    drawer.close();
+                } else {
+                    drawer.open();
+                }
+            });
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
     }
 
 }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0"
+      prefWidth="200.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label alignment="CENTER" prefHeight="66.0" prefWidth="200.0" text="Nom Prenom" textFill="#dad1d1"/>
+        <JFXButton fx:id="btnProfile" prefHeight="68.0" prefWidth="200.0" style="-fx-background-color: black;"
+                   text="Profile" textFill="#dad1d1">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXButton>
+        <JFXButton fx:id="btnHistory" prefHeight="69.0" prefWidth="200.0" style="-fx-background-color: black;"
+                   text="History" textFill="#dad1d1">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXButton>
+        <JFXButton fx:id="btnLogOut" prefHeight="66.0" prefWidth="200.0" style="-fx-background-color: Black;"
+                   text="Log out" textFill="#dad1d1">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXButton>
+        <JFXButton fx:id="btnAdministration" prefHeight="66.0" prefWidth="200.0" style="-fx-background-color: black;"
+                   text="Administration" textFill="#dad1d1">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXButton>
+    </children>
+</VBox>

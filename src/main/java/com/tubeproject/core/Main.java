@@ -1,7 +1,8 @@
 package com.tubeproject.core;
 
 //Views
-import com.tubeproject.view.ViewMainScreen;
+
+import com.tubeproject.view.*;
 //Model
 import com.tubeproject.controller.Station;
 import com.tubeproject.model.DatabaseConnection;
@@ -21,12 +22,6 @@ public class Main {
             "guillaume",
             3);
         user.crypt();*/
-        /*DatabaseConnection.DatabaseOpen();
-        GetAllStations stations = new GetAllStations();
-        Select s = new Select(stations);
-        List<Station> stationList = (List<Station>) s.select().get();
-        stationList.stream().forEach(System.out::println);
-        DatabaseConnection.DatabaseClose();*/
 
         ViewMainScreen.startWindow();
     }
