@@ -278,8 +278,8 @@
         "wheelchair": false,
         "latitude": 51.514304,
         "longitude": -0.149723,
-        "x": 422.0,
-        "y": 335.0
+        "x": 421.0,
+        "y": 333.0
       },
       {
         "naptan": "940GZZLUBNK",
@@ -359,7 +359,7 @@
         "wheelchair": false,
         "latitude": 51.542424,
         "longitude": -0.34605,
-        "x": 102.0,
+        "x": 100.0,
         "y": 230.0
       },
       {
@@ -404,8 +404,8 @@
         "wheelchair": false,
         "latitude": 51.603659,
         "longitude": 0.093482,
-        "x": 900.0,
-        "y": 108.0
+        "x": 898.0,
+        "y": 105.0
       },
       {
         "naptan": "940GZZLUHPK",
@@ -566,8 +566,8 @@
         "wheelchair": false,
         "latitude": 51.617199,
         "longitude": 0.043647,
-        "x": 851.0,
-        "y": 93.0
+        "x": 849.0,
+        "y": 90.0
       },
       {
         "naptan": "940GZZLUSBC",
@@ -576,7 +576,7 @@
         "latitude": 51.504376,
         "longitude": -0.218813,
         "x": 297.0,
-        "y": 335.0
+        "y": 334.0
       },
       {
         "naptan": "940GZZLUSNB",
@@ -602,8 +602,8 @@
         "wheelchair": false,
         "latitude": 51.556853,
         "longitude": -0.398915,
-        "x": 94.0,
-        "y": 164.0
+        "x": 92.0,
+        "y": 162.0
       },
       {
         "naptan": "940GZZLUSTD",
@@ -656,8 +656,8 @@
         "wheelchair": false,
         "latitude": 51.606899,
         "longitude": 0.03397,
-        "x": 835.0,
-        "y": 114.0
+        "x": 834.0,
+        "y": 112.0
       },
       {
         "naptan": "940GZZLUWRP",
@@ -1899,8 +1899,8 @@
         "wheelchair": false,
         "latitude": 51.514304,
         "longitude": -0.149723,
-        "x": 423.0,
-        "y": 335.0
+        "x": 422.0,
+        "y": 333.0
       },
       {
         "naptan": "940GZZLUBST",
@@ -1944,8 +1944,8 @@
         "wheelchair": false,
         "latitude": 51.503488,
         "longitude": -0.018246,
-        "x": 776.0,
-        "y": 422.0
+        "x": 775.0,
+        "y": 420.0
       },
       {
         "naptan": "940GZZLUDOH",
@@ -2016,8 +2016,8 @@
         "wheelchair": false,
         "latitude": 51.50047,
         "longitude": 0.004287,
-        "x": 810.0,
-        "y": 417.0
+        "x": 809.0,
+        "y": 415.0
       },
       {
         "naptan": "940GZZLUQBY",
@@ -2124,8 +2124,8 @@
         "wheelchair": false,
         "latitude": 51.563198,
         "longitude": -0.279262,
-        "x": 319.0,
-        "y": 151.0
+        "x": 318.0,
+        "y": 150.0
       }
     ]
   },
@@ -2446,8 +2446,8 @@
         "wheelchair": false,
         "latitude": 51.563198,
         "longitude": -0.279262,
-        "x": 312.0,
-        "y": 158.0
+        "x": 313.0,
+        "y": 155.0
       }
     ]
   },
@@ -3502,8 +3502,8 @@
         "wheelchair": false,
         "latitude": 51.58333,
         "longitude": -0.072584,
-        "x": 706.0,
-        "y": 150.0
+        "x": 705.0,
+        "y": 148.0
       },
       {
         "naptan": "940GZZLUTMH",
@@ -3548,7 +3548,7 @@
         "latitude": 51.582948,
         "longitude": -0.019842,
         "x": 788.0,
-        "y": 150.0
+        "y": 147.0
       }
     ]
   },

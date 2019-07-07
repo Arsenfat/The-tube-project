@@ -7,6 +7,6 @@
             fx:controller="com.tubeproject.view.TestTravelViewer"
             prefHeight="700.0" prefWidth="1000.0">
     <children>
-        <TravelViewer fx:id="tV"/>
+        <TravelViewer fx:id="tV" layoutX="150" layoutY="105"/>
     </children>
 </AnchorPane>

@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
 import java.net.URL;
@@ -23,8 +24,8 @@ public class TravelViewerController implements Initializable {
     private double height;
     private double width;
     private Image map;
-    private double baseHeight;
-    private double baseWidth;
+    private static final double BASE_HEIGHT = 668.125;
+    private static final double BASE_WIDTH = 1000;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -46,15 +47,11 @@ public class TravelViewerController implements Initializable {
         imgView.setFitWidth(width);
         imgView.setFitHeight(height);
         imgView.setImage(map);
+        imgView.setPreserveRatio(false);
     }
 
     public void reset() {
         init(width, height, map);
-    }
-
-    public void setBaseSize(double width, double height) {
-        baseWidth = width;
-        baseHeight = height;
     }
 
     public void setMaxHeight(double height) {
@@ -71,11 +68,24 @@ public class TravelViewerController implements Initializable {
     }
 
     private double computeRelativeHeight(double value) {
-        return value * (height / baseHeight);
+        return value * (height / BASE_HEIGHT);
     }
 
     private double computeRelativeWidth(double value) {
-        return value * (width / baseWidth);
+        return value * (width / BASE_WIDTH);
+    }
+
+    public void drawCircle(StationMapPos s1) {
+        double s1X = computeRelativeWidth(s1.getX());
+        double s1Y = computeRelativeHeight(s1.getY());
+        Circle outerBlack = new Circle();
+        outerBlack.setCenterX(s1X);
+        outerBlack.setCenterY(s1Y);
+        outerBlack.setRadius(3);
+        outerBlack.setFill(Color.WHITE);
+        outerBlack.setStroke(Color.BLACK);
+        outerBlack.setStrokeWidth(2);
+        parent.getChildren().add(outerBlack);
     }
 
     public void drawLine(StationMapPos s1, StationMapPos s2) {
@@ -83,15 +93,11 @@ public class TravelViewerController implements Initializable {
         double s1Height = computeRelativeHeight(s1.getY());
         double s2Width = computeRelativeWidth(s2.getX());
         double s2Height = computeRelativeHeight(s2.getY());
-        System.out.println(String.format("pos %f, %f", parent.getLayoutX(), parent.getLayoutY()));
-        System.out.println("s1 = " + s1);
-        System.out.println(String.format("%f, %f", s1Width, s1Height));
-        System.out.println("s2 = " + s2);
-        System.out.println(String.format("%f, %f", s2Width, s2Height));
         Line line = new Line(s1Width, s1Height, s2Width, s2Height);
-        line.setFill(null);
+        line.setFill(Color.RED);
         line.setStroke(Color.RED);
-        line.setStrokeWidth(3);
+        line.setStrokeWidth(4);
         parent.getChildren().add(line);
     }
+
 }

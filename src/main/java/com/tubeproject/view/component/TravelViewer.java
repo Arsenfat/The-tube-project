@@ -50,16 +50,56 @@ public class TravelViewer extends Pane {
         controller.reset();
     }
 
-    public void setBaseSize(double width, double height) {
-        controller.setBaseSize(width, height);
-    }
-
     public void drawTravel(List<LineMap> lineMapList) {
+        double minX = 0;
+        double maxX = 0;
+        double minY = 0;
+        double maxY = 0;
         for (LineMap lMap : lineMapList) {
             for (int i = 0; i < lMap.getStationTool().size() - 1; i++) {
-                drawLine(lMap.getStationTool().get(i), lMap.getStationTool().get(i + 1));
+                StationMapPos s1 = lMap.getStationTool().get(i);
+                StationMapPos s2 = lMap.getStationTool().get(i + 1);
+                drawLine(s1, s2);
+                drawCircle(s1);
+                minX = threeMin(minX, s1.getX(), s2.getX());
+                maxX = threeMax(maxX, s1.getX(), s2.getX());
+                minY = threeMin(minY, s1.getY(), s2.getY());
+                maxY = threeMax(maxY, s1.getY(), s2.getY());
             }
+            drawCircle(lMap.getStationTool().get(lMap.getStationTool().size() - 1));
         }
+
+        //TODO LES MATHS DU ZOOM SI C'EST POSSIBLE
+    }
+
+    private double threeMin(double v1, double v2, double v3) {
+        double min;
+        if (v1 <= v2 && v1 <= v3) {
+            min = v1;
+        } else if (v2 <= v3 && v2 <= v1) {
+            min = v2;
+        } else {
+            min = v3;
+        }
+
+        return min;
+    }
+
+    private double threeMax(double v1, double v2, double v3) {
+        double max;
+        if (v1 >= v2 && v1 <= v3) {
+            max = v1;
+        } else if (v2 >= v3 && v2 >= v1) {
+            max = v2;
+        } else {
+            max = v3;
+        }
+
+        return max;
+    }
+
+    public void drawCircle(StationMapPos s1) {
+        controller.drawCircle(s1);
     }
 
     public void drawLine(StationMapPos s1, StationMapPos s2) {

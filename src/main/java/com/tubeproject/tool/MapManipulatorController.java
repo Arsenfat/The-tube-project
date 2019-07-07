@@ -15,6 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -84,6 +85,16 @@ public class MapManipulatorController extends Application implements Initializab
         imgView.setOnMouseClicked(event -> {
             currentMapPos.setX(event.getX());
             currentMapPos.setY(event.getY());
+            for (Node node : parentPane.getChildren()) {
+                if (node instanceof Circle) {
+                    Circle c = (Circle) node;
+                    if (c.getId().equals(currentMapPos.getNaptan())) {
+                        c.setCenterY(event.getY() + 14);
+                        c.setCenterX(event.getX() + 14);
+                        break;
+                    }
+                }
+            }
             System.out.println(String.format("%s (%f;%f)", currentMapPos.getName(), event.getX(), event.getY()));
             stations.refresh();
         });
@@ -115,7 +126,9 @@ public class MapManipulatorController extends Application implements Initializab
         Circle c = new Circle();
         c.setCenterX(s1.getX() + 14);
         c.setCenterY(s1.getY() + 14);
-        c.setRadius(5);
+        c.setRadius(4.5);
+        c.setId(s1.getNaptan());
+        c.setMouseTransparent(true);
         parentPane.getChildren().add(c);
     }
 

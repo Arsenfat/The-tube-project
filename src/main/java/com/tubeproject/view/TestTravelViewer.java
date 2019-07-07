@@ -42,12 +42,15 @@ public class TestTravelViewer extends Application implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Image img = new Image(Resources.Images.TUBE_MAP);
-        tV.init(1000, 700, img);
-        tV.setBaseSize(1000, 668.125);
+        tV.init(500, 400, img);
         List<LineMap> ll = load().stream().filter((lMap) -> lMap.getId() == 1).collect(Collectors.toList());
-        List<StationMapPos> t = List.of(ll.get(0).getStationTool().get(0), ll.get(0).getStationTool().get(1));
+        List<StationMapPos> t = List.of(getTmp(ll.get(0).getStationTool(), "Edgware Road"), getTmp(ll.get(0).getStationTool(), "Marylebone"), getTmp(ll.get(0).getStationTool(), "Baker Street"));
         LineMap lM = new LineMap(new Line(0, "wllah"), t);
         tV.drawTravel(List.of(lM));
+    }
+
+    public StationMapPos getTmp(List<StationMapPos> ll, String name) {
+        return ll.stream().filter((stationMapPos -> stationMapPos.getName().contains(name))).collect(Collectors.toList()).get(0);
     }
 
     public List<LineMap> load() {
