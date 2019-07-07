@@ -1,5 +1,11 @@
 package com.tubeproject.core;
 
+//Views
+import com.tubeproject.view.LoginScreen;
+import com.tubeproject.view.SignUpScreen;
+import com.tubeproject.view.TravelScreen;
+import com.tubeproject.view.ViewMainScreen;
+//Model
 import com.tubeproject.controller.Station;
 import com.tubeproject.model.DatabaseConnection;
 import com.tubeproject.model.Select;
@@ -18,14 +24,14 @@ public class Main {
             "guillaume",
             3);
         user.crypt();*/
-        DatabaseConnection.DatabaseOpen();
+        /*DatabaseConnection.DatabaseOpen();
         GetAllStations stations = new GetAllStations();
         Select s = new Select(stations);
         List<Station> stationList = (List<Station>) s.select().get();
         stationList.stream().forEach(System.out::println);
-        DatabaseConnection.DatabaseClose();
+        DatabaseConnection.DatabaseClose();*/
 
-        //LoginScreen.startWindow();
+        MainScreen.startWindow();
     }
 
 }

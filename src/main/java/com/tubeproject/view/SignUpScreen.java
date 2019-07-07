@@ -1,6 +1,7 @@
 package com.tubeproject.view;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.tubeproject.utils.FXMLUtils;
@@ -16,6 +17,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.DateCell;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -31,6 +34,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ResourceBundle;
 
 public class SignUpScreen extends Application implements Initializable {
@@ -72,6 +77,10 @@ public class SignUpScreen extends Application implements Initializable {
     private Label txtLabel;
 
     @FXML
+    private DatePicker datePicker;
+
+
+    @FXML
     private void handleButtonActionHomePage() {
         System.out.println("you've clicked");
         AnchorPane homePage;
@@ -99,6 +108,7 @@ public class SignUpScreen extends Application implements Initializable {
         Scene scene = new Scene(anchorPane);
         stage.setScene(scene);
         stage.show();
+        scene.getStylesheets().add(getClass().getResource(Resources.Stylesheets.SIGN_UP_SCREEN).toExternalForm());
     }
 
 
@@ -107,6 +117,7 @@ public class SignUpScreen extends Application implements Initializable {
         initializeImgView();
         initializeBackground();
         initializeIcons();
+        checkTime();
     }
 
     @FXML
@@ -223,5 +234,16 @@ public class SignUpScreen extends Application implements Initializable {
                     lbConnectToServer.setVisible(false);
                 }
         );
+    }
+
+
+    public void checkTime() {
+        datePicker.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                LocalDate today = LocalDate.now();
+                setDisable(empty || date.compareTo(today.minus(Period.ofYears(5))) > 0);
+            }
+        });
     }
 }
