@@ -1,7 +1,6 @@
 package com.tubeproject.view;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.tubeproject.controller.User;
@@ -208,7 +207,7 @@ public class SignUpScreen extends Application implements Initializable {
         String lastName = txtLastName.getText();
         String password = txtPassword.getText();
         String email = txtMail.getText();
-        Date dateOfBirth = Date.valueOf(dpDate.getValue());
+        Date dateOfBirth = Date.valueOf(datePicker.getValue());
 
         User userToInsert = new UserBuilder().setFirstName(firstName)
                 .setLastName(lastName)

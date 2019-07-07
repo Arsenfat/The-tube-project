@@ -5,14 +5,11 @@ import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 import com.tubeproject.controller.Station;
-import com.tubeproject.controller.Zone;
+import com.tubeproject.model.builder.StationBuilder;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,17 +19,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import org.controlsfx.control.textfield.TextFields;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 public class TravelScreen extends Application implements Initializable {
@@ -100,10 +97,7 @@ public class TravelScreen extends Application implements Initializable {
 
     private String[] possibleWord = {"Willesden green", "Baker street", "Guillaume", "Sophie", "Killburn", "John"};
 
-    private List<Station> listStation = List.of(new Station("Willesden green", false, new Zone("Zone 1", 2)),
-            new Station("Killburn", false, new Zone("Zone 1", 2)),
-            new Station("Baker street", false, new Zone("Zone 1", 2)),
-            new Station("London bridge", false, new Zone("Zone 1", 2)));
+    private List<Station> listStation = List.of(new StationBuilder().setName("WillesdenGreen").createStation());
 
     private List<String> listStationName = listStation.stream().map(Station::getName).collect(Collectors.toList());
 
