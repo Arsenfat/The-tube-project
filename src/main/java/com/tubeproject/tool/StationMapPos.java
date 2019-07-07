@@ -32,6 +32,6 @@ public class StationMapPos extends Station {
 
     @Override
     public String toString() {
-        return String.format("(%.02f;%.02f) - %s", getX(), getY(), getName());
+        return String.format("(%.00f;%.00f) - %s", getX(), getY(), getName());
     }
 }
