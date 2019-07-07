@@ -1,6 +1,8 @@
 package com.tubeproject.controller;
 
-import java.util.Date;
+import com.tubeproject.crypto.Cryptographic;
+
+import java.sql.Date;
 
 public class User {
 
@@ -9,7 +11,12 @@ public class User {
     private Date dateOfBirth;
     private String email;
     private String password;
+    private String salt;
     private int role;
+
+    public User() {
+
+    }
 
     public User(String firstName, String lastName, Date dateOfBirth, String email, String password, int role) {
         this.firstName = firstName;
@@ -18,6 +25,22 @@ public class User {
         this.email = email;
         this.password = password;
         this.role = role;
+    }
+
+    public User(String firstName, String lastName, Date dateOfBirth, String email, String password, String salt, int role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.salt = salt;
+    }
+
+    public void crypt() {
+        this.salt = Cryptographic.generateSalt(512).get();
+        this.password = Cryptographic.hashPassword(password, salt).get();
+
     }
 
     public String getFirstName() {
@@ -66,5 +89,26 @@ public class User {
 
     public void setRole(int role) {
         this.role = role;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", salt='" + salt + '\'' +
+                ", role=" + role +
+                '}';
     }
 }

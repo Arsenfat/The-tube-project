@@ -1,6 +1,7 @@
 package com.tubeproject.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Vertice {
 
@@ -8,7 +9,7 @@ public class Vertice {
     private String name;
     private double latitude;
     private double longitude;
-    private ArrayList<Edge> edges = new ArrayList<Edge>();
+    private List<Edge> edges = new ArrayList<>();
 
     public Vertice(int id, String name, double latitude, double longitude) {
         this.id = id;
@@ -55,7 +56,7 @@ public class Vertice {
         this.longitude = longitude;
     }
 
-    public ArrayList<Edge> getEdges() {
+    public List<Edge> getEdges() {
         return edges;
     }
 
