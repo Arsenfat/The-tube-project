@@ -1,9 +1,6 @@
 package com.tubeproject.core;
 
 //Views
-import com.tubeproject.view.LoginScreen;
-import com.tubeproject.view.SignUpScreen;
-import com.tubeproject.view.TravelScreen;
 import com.tubeproject.view.ViewMainScreen;
 //Model
 import com.tubeproject.controller.Station;
@@ -31,7 +28,7 @@ public class Main {
         stationList.stream().forEach(System.out::println);
         DatabaseConnection.DatabaseClose();*/
 
-        MainScreen.startWindow();
+        ViewMainScreen.startWindow();
     }
 
 }
