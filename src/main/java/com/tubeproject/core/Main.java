@@ -1,6 +1,6 @@
 package com.tubeproject.core;
 
-import com.tubeproject.view.SignUpScreen;
+import com.tubeproject.tool.MapManipulatorController;
 
 import java.sql.SQLException;
 
@@ -21,7 +21,7 @@ public class Main {
         stationList.stream().forEach(System.out::println);
         DatabaseConnection.DatabaseClose();*/
 
-        SignUpScreen.startWindow();
+        MapManipulatorController.launchWindow();
     }
 
 }

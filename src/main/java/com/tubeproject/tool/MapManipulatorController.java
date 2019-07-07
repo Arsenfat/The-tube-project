@@ -1,5 +1,8 @@
 package com.tubeproject.tool;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tubeproject.controller.Line;
 import com.tubeproject.controller.Station;
 import com.tubeproject.model.DatabaseConnection;
@@ -20,7 +23,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +37,9 @@ import java.util.stream.Collectors;
 
 public class MapManipulatorController extends Application implements Initializable {
 
+
     private static List<LineMap> lineList;
+    private StationMapPos currentMapPos = new StationMapPos(new Station());
 
     @FXML
     ComboBox<LineMap> lines;
@@ -42,6 +52,7 @@ public class MapManipulatorController extends Application implements Initializab
 
     @FXML
     ImageView imgView;
+
 
     public static void launchWindow() {
         launch();
@@ -62,15 +73,20 @@ public class MapManipulatorController extends Application implements Initializab
         double heigth = imgView.getFitHeight();
         imgView.setImage(new Image("/img/tube_map.gif"));
         imgView.setOnMouseClicked(event -> {
-            System.out.println(String.format("(%f;%f)", event.getX(), event.getY()));
+            currentMapPos.setX(event.getX());
+            currentMapPos.setY(event.getY());
+            System.out.println(String.format("%s (%f;%f)", currentMapPos.getName(), event.getX(), event.getY()));
+            stations.refresh();
         });
         try {
             //stationList = loadStations();
-            lineList = loadLines().stream()//Map Line object to LineMap
-                    .map(line -> new LineMap(line, line.getStations().stream()
-                            .map(StationMapPos::new)//Map Station object to StationMapPos
-                            .collect(Collectors.toList())))
-                    .collect(Collectors.toList());
+            if (!load()) {
+                lineList = loadLines().stream()//Map Line object to LineMap
+                        .map(line -> new LineMap(line, line.getStations().stream()
+                                .map(StationMapPos::new)//Map Station object to StationMapPos
+                                .collect(Collectors.toList())))
+                        .collect(Collectors.toList());
+            }
         } catch (SQLException e) {
             System.out.println("PROBLEME ON EXIT");
             System.exit(2);
@@ -80,6 +96,44 @@ public class MapManipulatorController extends Application implements Initializab
             stations.setItems(FXCollections.observableArrayList(newValue.getStationTool()));
         });
 
+        stations.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
+            currentMapPos = newValue;
+        }));
+
+    }
+
+    @FXML
+    public void save() {
+        try (FileOutputStream fO = new FileOutputStream(new File("src/main/resources/manip.json"))) {
+            ObjectMapper mapper = new ObjectMapper();
+            String jsonString = mapper.writeValueAsString(lineList);
+            fO.write(jsonString.getBytes(StandardCharsets.UTF_8));
+        } catch (JsonProcessingException e) {
+            System.out.println("ERROR: json processing error " + e);
+        } catch (FileNotFoundException e) {
+            System.out.println("ERROR: file not found " + e);
+        } catch (IOException e) {
+            System.out.println("ERROR: IO exception " + e);
+        }
+
+    }
+
+    public boolean load() {
+        try {
+            //String jsonString = Files.readString(Paths.get("~/stationList.json"), StandardCharsets.UTF_8);
+
+            ObjectMapper mapper = new ObjectMapper();
+            lineList = mapper.readValue(getClass().getResourceAsStream("/manip.json").readAllBytes(), new TypeReference<List<LineMap>>() {
+            });
+            return true;
+        } catch (JsonProcessingException e) {
+            System.out.println("ERROR: json processing error " + e);
+        } catch (FileNotFoundException e) {
+            System.out.println("ERROR: file not found " + e);
+        } catch (IOException e) {
+            System.out.println("ERROR: IO exception " + e);
+        }
+        return false;
     }
 
     public List<Station> loadStations() throws SQLException {

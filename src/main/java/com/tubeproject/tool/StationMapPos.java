@@ -6,6 +6,10 @@ public class StationMapPos extends Station {
     private double X;
     private double Y;
 
+    public StationMapPos() {
+        super();
+    }
+
     public StationMapPos(Station station) {
         super(station.getNaptan(), station.getName(), false, station.getLatitude(), station.getLongitude());
     }
@@ -28,6 +32,6 @@ public class StationMapPos extends Station {
 
     @Override
     public String toString() {
-        return String.format("%s - (%f;%f)", getName(), getX(), getY());
+        return String.format("(%.02f;%.02f) - %s", getX(), getY(), getName());
     }
 }

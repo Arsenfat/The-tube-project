@@ -7,6 +7,10 @@ import java.util.List;
 public class LineMap extends Line {
     private List<StationMapPos> stationTool;
 
+    public LineMap() {
+        super();
+    }
+
     public LineMap(Line line, List<StationMapPos> stations) {
         super(line.getId(), line.getName());
         this.stationTool = stations;

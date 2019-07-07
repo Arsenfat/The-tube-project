@@ -1,0 +1,3580 @@
+[
+  {
+    "id": 1,
+    "name": "bakerloo",
+    "stations": null,
+    "stationTool": [
+      {
+        "naptan": "940GZZLUBST",
+        "name": "Baker Street Underground Station",
+        "wheelchair": false,
+        "latitude": 51.522883,
+        "longitude": -0.15713,
+        "x": 422.0,
+        "y": 287.0
+      },
+      {
+        "naptan": "940GZZLUCHX",
+        "name": "Charing Cross Underground Station",
+        "wheelchair": false,
+        "latitude": 51.50741,
+        "longitude": -0.127277,
+        "x": 503.0,
+        "y": 394.0
+      },
+      {
+        "naptan": "940GZZLUEAC",
+        "name": "Elephant & Castle Underground Station",
+        "wheelchair": false,
+        "latitude": 51.494536,
+        "longitude": -0.100606,
+        "x": 522.0,
+        "y": 517.0
+      },
+      {
+        "naptan": "940GZZLUEMB",
+        "name": "Embankment Underground Station",
+        "wheelchair": false,
+        "latitude": 51.507058,
+        "longitude": -0.122666,
+        "x": 509.0,
+        "y": 424.0
+      },
+      {
+        "naptan": "940GZZLUERB",
+        "name": "Edgware Road (Bakerloo) Underground Station",
+        "wheelchair": false,
+        "latitude": 51.520299,
+        "longitude": -0.17015,
+        "x": 359.0,
+        "y": 266.0
+      },
+      {
+        "naptan": "940GZZLUHAW",
+        "name": "Harrow & Wealdstone Underground Station",
+        "wheelchair": false,
+        "latitude": 51.592216,
+        "longitude": -0.334896,
+        "x": 273.0,
+        "y": 102.0
+      },
+      {
+        "naptan": "940GZZLUHSN",
+        "name": "Harlesden Underground Station",
+        "wheelchair": false,
+        "latitude": 51.53631,
+        "longitude": -0.257883,
+        "x": 272.0,
+        "y": 193.0
+      },
+      {
+        "naptan": "940GZZLUKEN",
+        "name": "Kenton Underground Station",
+        "wheelchair": false,
+        "latitude": 51.581756,
+        "longitude": -0.31691,
+        "x": 273.0,
+        "y": 116.0
+      },
+      {
+        "naptan": "940GZZLUKPK",
+        "name": "Kilburn Park Underground Station",
+        "wheelchair": false,
+        "latitude": 51.534979,
+        "longitude": -0.194232,
+        "x": 275.0,
+        "y": 246.0
+      },
+      {
+        "naptan": "940GZZLUKSL",
+        "name": "Kensal Green Underground Station",
+        "wheelchair": false,
+        "latitude": 51.530539,
+        "longitude": -0.225016,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLULBN",
+        "name": "Lambeth North Underground Station",
+        "wheelchair": false,
+        "latitude": 51.498808,
+        "longitude": -0.112315,
+        "x": 510.0,
+        "y": 491.0
+      },
+      {
+        "naptan": "940GZZLUMVL",
+        "name": "Maida Vale Underground Station",
+        "wheelchair": false,
+        "latitude": 51.529777,
+        "longitude": -0.185758,
+        "x": 282.0,
+        "y": 255.0
+      },
+      {
+        "naptan": "940GZZLUMYB",
+        "name": "Marylebone Underground Station",
+        "wheelchair": false,
+        "latitude": 51.522322,
+        "longitude": -0.163207,
+        "x": 387.0,
+        "y": 266.0
+      },
+      {
+        "naptan": "940GZZLUNWY",
+        "name": "North Wembley Underground Station",
+        "wheelchair": false,
+        "latitude": 51.562551,
+        "longitude": -0.304,
+        "x": 272.0,
+        "y": 159.0
+      },
+      {
+        "naptan": "940GZZLUOXC",
+        "name": "Oxford Circus Underground Station",
+        "wheelchair": false,
+        "latitude": 51.515224,
+        "longitude": -0.141903,
+        "x": 454.0,
+        "y": 335.0
+      },
+      {
+        "naptan": "940GZZLUPAC",
+        "name": "Paddington Underground Station",
+        "wheelchair": false,
+        "latitude": 51.516581,
+        "longitude": -0.175689,
+        "x": 323.0,
+        "y": 265.0
+      },
+      {
+        "naptan": "940GZZLUPAH",
+        "name": "Paddington (H&C Line)-Underground",
+        "wheelchair": false,
+        "latitude": 51.516981,
+        "longitude": -0.17616,
+        "x": 332.0,
+        "y": 274.0
+      },
+      {
+        "naptan": "940GZZLUPCC",
+        "name": "Piccadilly Circus Underground Station",
+        "wheelchair": false,
+        "latitude": 51.51005,
+        "longitude": -0.133798,
+        "x": 476.0,
+        "y": 369.0
+      },
+      {
+        "naptan": "940GZZLUQPS",
+        "name": "Queen's Park Underground Station",
+        "wheelchair": false,
+        "latitude": 51.534158,
+        "longitude": -0.204574,
+        "x": 272.0,
+        "y": 230.0
+      },
+      {
+        "naptan": "940GZZLURGP",
+        "name": "Regent's Park Underground Station",
+        "wheelchair": false,
+        "latitude": 51.523344,
+        "longitude": -0.146444,
+        "x": 440.0,
+        "y": 304.0
+      },
+      {
+        "naptan": "940GZZLUSGP",
+        "name": "Stonebridge Park Underground Station",
+        "wheelchair": false,
+        "latitude": 51.543959,
+        "longitude": -0.275892,
+        "x": 272.0,
+        "y": 181.0
+      },
+      {
+        "naptan": "940GZZLUSKT",
+        "name": "South Kenton Underground Station",
+        "wheelchair": false,
+        "latitude": 51.570232,
+        "longitude": -0.308433,
+        "x": 272.0,
+        "y": 147.0
+      },
+      {
+        "naptan": "940GZZLUWJN",
+        "name": "Willesden Junction Underground Station",
+        "wheelchair": false,
+        "latitude": 51.532259,
+        "longitude": -0.244283,
+        "x": 273.0,
+        "y": 208.0
+      },
+      {
+        "naptan": "940GZZLUWKA",
+        "name": "Warwick Avenue Underground Station",
+        "wheelchair": false,
+        "latitude": 51.523263,
+        "longitude": -0.183783,
+        "x": 291.0,
+        "y": 260.0
+      },
+      {
+        "naptan": "940GZZLUWLO",
+        "name": "Waterloo Underground Station",
+        "wheelchair": false,
+        "latitude": 51.503299,
+        "longitude": -0.11478,
+        "x": 510.0,
+        "y": 443.0
+      },
+      {
+        "naptan": "940GZZLUWYC",
+        "name": "Wembley Central Underground Station",
+        "wheelchair": false,
+        "latitude": 51.552304,
+        "longitude": -0.296852,
+        "x": 273.0,
+        "y": 168.0
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "central",
+    "stations": null,
+    "stationTool": [
+      {
+        "naptan": "940GZZLUBKE",
+        "name": "Barkingside Underground Station",
+        "wheelchair": false,
+        "latitude": 51.585689,
+        "longitude": 0.088585,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBKH",
+        "name": "Buckhurst Hill Underground Station",
+        "wheelchair": false,
+        "latitude": 51.626605,
+        "longitude": 0.046757,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBLG",
+        "name": "Bethnal Green Underground Station",
+        "wheelchair": false,
+        "latitude": 51.527222,
+        "longitude": -0.055506,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBND",
+        "name": "Bond Street Underground Station",
+        "wheelchair": false,
+        "latitude": 51.514304,
+        "longitude": -0.149723,
+        "x": 422.0,
+        "y": 335.0
+      },
+      {
+        "naptan": "940GZZLUBNK",
+        "name": "Bank Underground Station",
+        "wheelchair": false,
+        "latitude": 51.513586,
+        "longitude": -0.08814,
+        "x": 601.0,
+        "y": 353.0
+      },
+      {
+        "naptan": "940GZZLUCHL",
+        "name": "Chancery Lane Underground Station",
+        "wheelchair": false,
+        "latitude": 51.518247,
+        "longitude": -0.111583,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUCWL",
+        "name": "Chigwell Underground Station",
+        "wheelchair": false,
+        "latitude": 51.617916,
+        "longitude": 0.075041,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUDBN",
+        "name": "Debden Underground Station",
+        "wheelchair": false,
+        "latitude": 51.645386,
+        "longitude": 0.083782,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUEAN",
+        "name": "East Acton Underground Station",
+        "wheelchair": false,
+        "latitude": 51.516612,
+        "longitude": -0.247248,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUEBY",
+        "name": "Ealing Broadway Underground Station",
+        "wheelchair": false,
+        "latitude": 51.515017,
+        "longitude": -0.301457,
+        "x": 133.0,
+        "y": 334.0
+      },
+      {
+        "naptan": "940GZZLUEPG",
+        "name": "Epping Underground Station",
+        "wheelchair": false,
+        "latitude": 51.69368,
+        "longitude": 0.113767,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUFLP",
+        "name": "Fairlop Underground Station",
+        "wheelchair": false,
+        "latitude": 51.595618,
+        "longitude": 0.091004,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUGFD",
+        "name": "Greenford Underground Station",
+        "wheelchair": false,
+        "latitude": 51.542424,
+        "longitude": -0.34605,
+        "x": 102.0,
+        "y": 230.0
+      },
+      {
+        "naptan": "940GZZLUGGH",
+        "name": "Grange Hill Underground Station",
+        "wheelchair": false,
+        "latitude": 51.613378,
+        "longitude": 0.092066,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUGTH",
+        "name": "Gants Hill Underground Station",
+        "wheelchair": false,
+        "latitude": 51.576544,
+        "longitude": 0.066185,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHBN",
+        "name": "Holborn Underground Station",
+        "wheelchair": false,
+        "latitude": 51.51758,
+        "longitude": -0.120475,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHGR",
+        "name": "Hanger Lane Underground Station",
+        "wheelchair": false,
+        "latitude": 51.530177,
+        "longitude": -0.292704,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHLT",
+        "name": "Hainault Underground Station",
+        "wheelchair": false,
+        "latitude": 51.603659,
+        "longitude": 0.093482,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHPK",
+        "name": "Holland Park Underground Station",
+        "wheelchair": false,
+        "latitude": 51.507143,
+        "longitude": -0.205679,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLULGN",
+        "name": "Loughton Underground Station",
+        "wheelchair": false,
+        "latitude": 51.641443,
+        "longitude": 0.055476,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLULGT",
+        "name": "Lancaster Gate Underground Station",
+        "wheelchair": false,
+        "latitude": 51.511723,
+        "longitude": -0.175494,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLULVT",
+        "name": "Liverpool Street Underground Station",
+        "wheelchair": false,
+        "latitude": 51.517372,
+        "longitude": -0.083182,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLULYN",
+        "name": "Leyton Underground Station",
+        "wheelchair": false,
+        "latitude": 51.556589,
+        "longitude": -0.005523,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLULYS",
+        "name": "Leytonstone Underground Station",
+        "wheelchair": false,
+        "latitude": 51.568324,
+        "longitude": 0.008194,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUMBA",
+        "name": "Marble Arch Underground Station",
+        "wheelchair": false,
+        "latitude": 51.513424,
+        "longitude": -0.158953,
+        "x": 401.0,
+        "y": 335.0
+      },
+      {
+        "naptan": "940GZZLUMED",
+        "name": "Mile End Underground Station",
+        "wheelchair": false,
+        "latitude": 51.525122,
+        "longitude": -0.03364,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUNAN",
+        "name": "North Acton Underground Station",
+        "wheelchair": false,
+        "latitude": 51.523524,
+        "longitude": -0.259755,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUNBP",
+        "name": "Newbury Park Underground Station",
+        "wheelchair": false,
+        "latitude": 51.575726,
+        "longitude": 0.090004,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUNHG",
+        "name": "Notting Hill Gate Underground Station",
+        "wheelchair": false,
+        "latitude": 51.509128,
+        "longitude": -0.196104,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUNHT",
+        "name": "Northolt Underground Station",
+        "wheelchair": false,
+        "latitude": 51.548236,
+        "longitude": -0.368699,
+        "x": 94.0,
+        "y": 192.0
+      },
+      {
+        "naptan": "940GZZLUOXC",
+        "name": "Oxford Circus Underground Station",
+        "wheelchair": false,
+        "latitude": 51.515224,
+        "longitude": -0.141903,
+        "x": 454.0,
+        "y": 335.0
+      },
+      {
+        "naptan": "940GZZLUPVL",
+        "name": "Perivale Underground Station",
+        "wheelchair": false,
+        "latitude": 51.536717,
+        "longitude": -0.323446,
+        "x": 122.0,
+        "y": 254.0
+      },
+      {
+        "naptan": "940GZZLUQWY",
+        "name": "Queensway Underground Station",
+        "wheelchair": false,
+        "latitude": 51.510312,
+        "longitude": -0.187152,
+        "x": 366.0,
+        "y": 334.0
+      },
+      {
+        "naptan": "940GZZLURBG",
+        "name": "Redbridge Underground Station",
+        "wheelchair": false,
+        "latitude": 51.576243,
+        "longitude": 0.04536,
+        "x": 868.0,
+        "y": 166.0
+      },
+      {
+        "naptan": "940GZZLURSG",
+        "name": "Ruislip Gardens Underground Station",
+        "wheelchair": false,
+        "latitude": 51.560736,
+        "longitude": -0.41071,
+        "x": 93.0,
+        "y": 137.0
+      },
+      {
+        "naptan": "940GZZLURVY",
+        "name": "Roding Valley Underground Station",
+        "wheelchair": false,
+        "latitude": 51.617199,
+        "longitude": 0.043647,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUSBC",
+        "name": "Shepherd's Bush (Central) Underground Station",
+        "wheelchair": false,
+        "latitude": 51.504376,
+        "longitude": -0.218813,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUSNB",
+        "name": "Snaresbrook Underground Station",
+        "wheelchair": false,
+        "latitude": 51.580678,
+        "longitude": 0.02144,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUSPU",
+        "name": "St. Paul's Underground Station",
+        "wheelchair": false,
+        "latitude": 51.514936,
+        "longitude": -0.097567,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUSRP",
+        "name": "South Ruislip Underground Station",
+        "wheelchair": false,
+        "latitude": 51.556853,
+        "longitude": -0.398915,
+        "x": 93.0,
+        "y": 162.0
+      },
+      {
+        "naptan": "940GZZLUSTD",
+        "name": "Stratford Underground Station",
+        "wheelchair": false,
+        "latitude": 51.541806,
+        "longitude": -0.003458,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUSWF",
+        "name": "South Woodford Underground Station",
+        "wheelchair": false,
+        "latitude": 51.591907,
+        "longitude": 0.027338,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUTCR",
+        "name": "Tottenham Court Road Underground Station",
+        "wheelchair": false,
+        "latitude": 51.516426,
+        "longitude": -0.13041,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUTHB",
+        "name": "Theydon Bois Underground Station",
+        "wheelchair": false,
+        "latitude": 51.671759,
+        "longitude": 0.103085,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWCY",
+        "name": "White City Underground Station",
+        "wheelchair": false,
+        "latitude": 51.511959,
+        "longitude": -0.224297,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWOF",
+        "name": "Woodford Underground Station",
+        "wheelchair": false,
+        "latitude": 51.606899,
+        "longitude": 0.03397,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWRP",
+        "name": "West Ruislip Underground Station",
+        "wheelchair": false,
+        "latitude": 51.569688,
+        "longitude": -0.437886,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWSD",
+        "name": "Wanstead Underground Station",
+        "wheelchair": false,
+        "latitude": 51.575501,
+        "longitude": 0.028527,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWTA",
+        "name": "West Acton Underground Station",
+        "wheelchair": false,
+        "latitude": 51.518001,
+        "longitude": -0.28098,
+        "x": 93.0,
+        "y": 82.0
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "circle",
+    "stations": null,
+    "stationTool": [
+      {
+        "naptan": "940GZZLUALD",
+        "name": "Aldgate Underground Station",
+        "wheelchair": false,
+        "latitude": 51.514246,
+        "longitude": -0.075689,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBBN",
+        "name": "Barbican Underground Station",
+        "wheelchair": false,
+        "latitude": 51.520275,
+        "longitude": -0.097993,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBKF",
+        "name": "Blackfriars Underground Station",
+        "wheelchair": false,
+        "latitude": 51.511581,
+        "longitude": -0.103659,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBST",
+        "name": "Baker Street Underground Station",
+        "wheelchair": false,
+        "latitude": 51.522883,
+        "longitude": -0.15713,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBWT",
+        "name": "Bayswater Underground Station",
+        "wheelchair": false,
+        "latitude": 51.512284,
+        "longitude": -0.187938,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUCST",
+        "name": "Cannon Street Underground Station",
+        "wheelchair": false,
+        "latitude": 51.51151,
+        "longitude": -0.090432,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUEMB",
+        "name": "Embankment Underground Station",
+        "wheelchair": false,
+        "latitude": 51.507058,
+        "longitude": -0.122666,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUERC",
+        "name": "Edgware Road (Circle Line) Underground Station",
+        "wheelchair": false,
+        "latitude": 51.519858,
+        "longitude": -0.167832,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUESQ",
+        "name": "Euston Square Underground Station",
+        "wheelchair": false,
+        "latitude": 51.525604,
+        "longitude": -0.135829,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUFCN",
+        "name": "Farringdon Underground Station",
+        "wheelchair": false,
+        "latitude": 51.520252,
+        "longitude": -0.104913,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUGHK",
+        "name": "Goldhawk Road Underground Station",
+        "wheelchair": false,
+        "latitude": 51.502005,
+        "longitude": -0.226715,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUGPS",
+        "name": "Great Portland Street Underground Station",
+        "wheelchair": false,
+        "latitude": 51.52384,
+        "longitude": -0.144262,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUGTR",
+        "name": "Gloucester Road Underground Station",
+        "wheelchair": false,
+        "latitude": 51.494316,
+        "longitude": -0.182658,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHSC",
+        "name": "Hammersmith (H&C Line) Underground Station",
+        "wheelchair": false,
+        "latitude": 51.492304,
+        "longitude": -0.223619,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHSD",
+        "name": "Hammersmith (Dist&Picc Line) Underground Station",
+        "wheelchair": false,
+        "latitude": 51.4923,
+        "longitude": -0.22362,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHSK",
+        "name": "High Street Kensington Underground Station",
+        "wheelchair": false,
+        "latitude": 51.501055,
+        "longitude": -0.192792,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUKSX",
+        "name": "King's Cross St. Pancras Underground Station",
+        "wheelchair": false,
+        "latitude": 51.530663,
+        "longitude": -0.123194,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLULAD",
+        "name": "Ladbroke Grove Underground Station",
+        "wheelchair": false,
+        "latitude": 51.517449,
+        "longitude": -0.210391,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLULRD",
+        "name": "Latimer Road Underground Station",
+        "wheelchair": false,
+        "latitude": 51.513389,
+        "longitude": -0.217799,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLULVT",
+        "name": "Liverpool Street Underground Station",
+        "wheelchair": false,
+        "latitude": 51.517372,
+        "longitude": -0.083182,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUMGT",
+        "name": "Moorgate Underground Station",
+        "wheelchair": false,
+        "latitude": 51.518176,
+        "longitude": -0.088322,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUMMT",
+        "name": "Monument Underground Station",
+        "wheelchair": false,
+        "latitude": 51.5107,
+        "longitude": -0.085969,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUMSH",
+        "name": "Mansion House Underground Station",
+        "wheelchair": false,
+        "latitude": 51.512117,
+        "longitude": -0.094009,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUNHG",
+        "name": "Notting Hill Gate Underground Station",
+        "wheelchair": false,
+        "latitude": 51.509128,
+        "longitude": -0.196104,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUPAC",
+        "name": "Paddington Underground Station",
+        "wheelchair": false,
+        "latitude": 51.516581,
+        "longitude": -0.175689,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUPAH",
+        "name": "Paddington (H&C Line)-Underground",
+        "wheelchair": false,
+        "latitude": 51.516981,
+        "longitude": -0.17616,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLURYO",
+        "name": "Royal Oak Underground Station",
+        "wheelchair": false,
+        "latitude": 51.519113,
+        "longitude": -0.188748,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUSBM",
+        "name": "Shepherd's Bush Market Underground Station",
+        "wheelchair": false,
+        "latitude": 51.505579,
+        "longitude": -0.226375,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUSJP",
+        "name": "St. James's Park Underground Station",
+        "wheelchair": false,
+        "latitude": 51.499544,
+        "longitude": -0.133608,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUSKS",
+        "name": "South Kensington Underground Station",
+        "wheelchair": false,
+        "latitude": 51.494094,
+        "longitude": -0.174138,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUSSQ",
+        "name": "Sloane Square Underground Station",
+        "wheelchair": false,
+        "latitude": 51.49227,
+        "longitude": -0.156377,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUTMP",
+        "name": "Temple Underground Station",
+        "wheelchair": false,
+        "latitude": 51.511006,
+        "longitude": -0.11426,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUTWH",
+        "name": "Tower Hill Underground Station",
+        "wheelchair": false,
+        "latitude": 51.509971,
+        "longitude": -0.076546,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUVIC",
+        "name": "Victoria Underground Station",
+        "wheelchair": false,
+        "latitude": 51.496359,
+        "longitude": -0.143102,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWLA",
+        "name": "Wood Lane Underground Station",
+        "wheelchair": false,
+        "latitude": 51.509669,
+        "longitude": -0.22453,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWSM",
+        "name": "Westminster Underground Station",
+        "wheelchair": false,
+        "latitude": 51.50132,
+        "longitude": -0.124861,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWSP",
+        "name": "Westbourne Park Underground Station",
+        "wheelchair": false,
+        "latitude": 51.52111,
+        "longitude": -0.201065,
+        "x": 0.0,
+        "y": 0.0
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "district",
+    "stations": null,
+    "stationTool": [
+      {
+        "naptan": "940GZZLUACT",
+        "name": "Acton Town Underground Station",
+        "wheelchair": false,
+        "latitude": 51.503057,
+        "longitude": -0.280462,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUADE",
+        "name": "Aldgate East Underground Station",
+        "wheelchair": false,
+        "latitude": 51.515037,
+        "longitude": -0.072384,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBBB",
+        "name": "Bromley-by-Bow Underground Station",
+        "wheelchair": false,
+        "latitude": 51.524839,
+        "longitude": -0.011538,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBEC",
+        "name": "Becontree Underground Station",
+        "wheelchair": false,
+        "latitude": 51.540331,
+        "longitude": 0.127016,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBKF",
+        "name": "Blackfriars Underground Station",
+        "wheelchair": false,
+        "latitude": 51.511581,
+        "longitude": -0.103659,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBKG",
+        "name": "Barking Underground Station",
+        "wheelchair": false,
+        "latitude": 51.539321,
+        "longitude": 0.081053,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBSC",
+        "name": "Barons Court Underground Station",
+        "wheelchair": false,
+        "latitude": 51.490311,
+        "longitude": -0.213427,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBWR",
+        "name": "Bow Road Underground Station",
+        "wheelchair": false,
+        "latitude": 51.52694,
+        "longitude": -0.025128,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBWT",
+        "name": "Bayswater Underground Station",
+        "wheelchair": false,
+        "latitude": 51.512284,
+        "longitude": -0.187938,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUCST",
+        "name": "Cannon Street Underground Station",
+        "wheelchair": false,
+        "latitude": 51.51151,
+        "longitude": -0.090432,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUCWP",
+        "name": "Chiswick Park Underground Station",
+        "wheelchair": false,
+        "latitude": 51.494627,
+        "longitude": -0.267972,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUDGE",
+        "name": "Dagenham East Underground Station",
+        "wheelchair": false,
+        "latitude": 51.544096,
+        "longitude": 0.166017,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUDGY",
+        "name": "Dagenham Heathway Underground Station",
+        "wheelchair": false,
+        "latitude": 51.541639,
+        "longitude": 0.147527,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUEBY",
+        "name": "Ealing Broadway Underground Station",
+        "wheelchair": false,
+        "latitude": 51.515017,
+        "longitude": -0.301457,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUECM",
+        "name": "Ealing Common Underground Station",
+        "wheelchair": false,
+        "latitude": 51.51014,
+        "longitude": -0.288265,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUECT",
+        "name": "Earl's Court Underground Station",
+        "wheelchair": false,
+        "latitude": 51.492063,
+        "longitude": -0.193378,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUEHM",
+        "name": "East Ham Underground Station",
+        "wheelchair": false,
+        "latitude": 51.538948,
+        "longitude": 0.051186,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUEMB",
+        "name": "Embankment Underground Station",
+        "wheelchair": false,
+        "latitude": 51.507058,
+        "longitude": -0.122666,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUEPK",
+        "name": "Elm Park Underground Station",
+        "wheelchair": false,
+        "latitude": 51.549775,
+        "longitude": 0.19864,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUEPY",
+        "name": "East Putney Underground Station",
+        "wheelchair": false,
+        "latitude": 51.459205,
+        "longitude": -0.211,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUERC",
+        "name": "Edgware Road (Circle Line) Underground Station",
+        "wheelchair": false,
+        "latitude": 51.519858,
+        "longitude": -0.167832,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUFBY",
+        "name": "Fulham Broadway Underground Station",
+        "wheelchair": false,
+        "latitude": 51.480081,
+        "longitude": -0.195422,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUGBY",
+        "name": "Gunnersbury Underground Station",
+        "wheelchair": false,
+        "latitude": 51.491803,
+        "longitude": -0.275267,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUGTR",
+        "name": "Gloucester Road Underground Station",
+        "wheelchair": false,
+        "latitude": 51.494316,
+        "longitude": -0.182658,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHCH",
+        "name": "Hornchurch Underground Station",
+        "wheelchair": false,
+        "latitude": 51.554093,
+        "longitude": 0.219116,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHSC",
+        "name": "Hammersmith (H&C Line) Underground Station",
+        "wheelchair": false,
+        "latitude": 51.492304,
+        "longitude": -0.223619,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHSD",
+        "name": "Hammersmith (Dist&Picc Line) Underground Station",
+        "wheelchair": false,
+        "latitude": 51.4923,
+        "longitude": -0.22362,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHSK",
+        "name": "High Street Kensington Underground Station",
+        "wheelchair": false,
+        "latitude": 51.501055,
+        "longitude": -0.192792,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUKOY",
+        "name": "Kensington (Olympia) Underground Station",
+        "wheelchair": false,
+        "latitude": 51.497624,
+        "longitude": -0.210015,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUKWG",
+        "name": "Kew Gardens Underground Station",
+        "wheelchair": false,
+        "latitude": 51.477058,
+        "longitude": -0.285241,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUMED",
+        "name": "Mile End Underground Station",
+        "wheelchair": false,
+        "latitude": 51.525122,
+        "longitude": -0.03364,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUMMT",
+        "name": "Monument Underground Station",
+        "wheelchair": false,
+        "latitude": 51.5107,
+        "longitude": -0.085969,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUMSH",
+        "name": "Mansion House Underground Station",
+        "wheelchair": false,
+        "latitude": 51.512117,
+        "longitude": -0.094009,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUNHG",
+        "name": "Notting Hill Gate Underground Station",
+        "wheelchair": false,
+        "latitude": 51.509128,
+        "longitude": -0.196104,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUPAC",
+        "name": "Paddington Underground Station",
+        "wheelchair": false,
+        "latitude": 51.516581,
+        "longitude": -0.175689,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUPAH",
+        "name": "Paddington (H&C Line)-Underground",
+        "wheelchair": false,
+        "latitude": 51.516981,
+        "longitude": -0.17616,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUPLW",
+        "name": "Plaistow Underground Station",
+        "wheelchair": false,
+        "latitude": 51.531341,
+        "longitude": 0.017451,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUPSG",
+        "name": "Parsons Green Underground Station",
+        "wheelchair": false,
+        "latitude": 51.475277,
+        "longitude": -0.20117,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUPYB",
+        "name": "Putney Bridge Underground Station",
+        "wheelchair": false,
+        "latitude": 51.468262,
+        "longitude": -0.208731,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLURMD",
+        "name": "Richmond Underground Station",
+        "wheelchair": false,
+        "latitude": 51.463237,
+        "longitude": -0.301336,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLURVP",
+        "name": "Ravenscourt Park Underground Station",
+        "wheelchair": false,
+        "latitude": 51.494122,
+        "longitude": -0.235881,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUSFB",
+        "name": "Stamford Brook Underground Station",
+        "wheelchair": false,
+        "latitude": 51.494917,
+        "longitude": -0.245704,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUSFS",
+        "name": "Southfields Underground Station",
+        "wheelchair": false,
+        "latitude": 51.445073,
+        "longitude": -0.206602,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUSGN",
+        "name": "Stepney Green Underground Station",
+        "wheelchair": false,
+        "latitude": 51.521858,
+        "longitude": -0.046596,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUSJP",
+        "name": "St. James's Park Underground Station",
+        "wheelchair": false,
+        "latitude": 51.499544,
+        "longitude": -0.133608,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUSKS",
+        "name": "South Kensington Underground Station",
+        "wheelchair": false,
+        "latitude": 51.494094,
+        "longitude": -0.174138,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUSSQ",
+        "name": "Sloane Square Underground Station",
+        "wheelchair": false,
+        "latitude": 51.49227,
+        "longitude": -0.156377,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUTMP",
+        "name": "Temple Underground Station",
+        "wheelchair": false,
+        "latitude": 51.511006,
+        "longitude": -0.11426,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUTNG",
+        "name": "Turnham Green Underground Station",
+        "wheelchair": false,
+        "latitude": 51.495148,
+        "longitude": -0.254555,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUTWH",
+        "name": "Tower Hill Underground Station",
+        "wheelchair": false,
+        "latitude": 51.509971,
+        "longitude": -0.076546,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUUPB",
+        "name": "Upminster Bridge Underground Station",
+        "wheelchair": false,
+        "latitude": 51.55856,
+        "longitude": 0.235809,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUUPK",
+        "name": "Upton Park Underground Station",
+        "wheelchair": false,
+        "latitude": 51.53534,
+        "longitude": 0.035263,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUUPM",
+        "name": "Upminster Underground Station",
+        "wheelchair": false,
+        "latitude": 51.558659,
+        "longitude": 0.250855,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUUPY",
+        "name": "Upney Underground Station",
+        "wheelchair": false,
+        "latitude": 51.538372,
+        "longitude": 0.10153,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUVIC",
+        "name": "Victoria Underground Station",
+        "wheelchair": false,
+        "latitude": 51.496359,
+        "longitude": -0.143102,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWBN",
+        "name": "West Brompton Underground Station",
+        "wheelchair": false,
+        "latitude": 51.487268,
+        "longitude": -0.195599,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWHM",
+        "name": "West Ham Underground Station",
+        "wheelchair": false,
+        "latitude": 51.528136,
+        "longitude": 0.005055,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWIM",
+        "name": "Wimbledon Underground Station",
+        "wheelchair": false,
+        "latitude": 51.421207,
+        "longitude": -0.206573,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWIP",
+        "name": "Wimbledon Park Underground Station",
+        "wheelchair": false,
+        "latitude": 51.434573,
+        "longitude": -0.199719,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWKN",
+        "name": "West Kensington Underground Station",
+        "wheelchair": false,
+        "latitude": 51.490459,
+        "longitude": -0.206636,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWPL",
+        "name": "Whitechapel Underground Station",
+        "wheelchair": false,
+        "latitude": 51.519518,
+        "longitude": -0.059971,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWSM",
+        "name": "Westminster Underground Station",
+        "wheelchair": false,
+        "latitude": 51.50132,
+        "longitude": -0.124861,
+        "x": 0.0,
+        "y": 0.0
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "hammersmith-city",
+    "stations": null,
+    "stationTool": [
+      {
+        "naptan": "940GZZLUADE",
+        "name": "Aldgate East Underground Station",
+        "wheelchair": false,
+        "latitude": 51.515037,
+        "longitude": -0.072384,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBBB",
+        "name": "Bromley-by-Bow Underground Station",
+        "wheelchair": false,
+        "latitude": 51.524839,
+        "longitude": -0.011538,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBBN",
+        "name": "Barbican Underground Station",
+        "wheelchair": false,
+        "latitude": 51.520275,
+        "longitude": -0.097993,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBKG",
+        "name": "Barking Underground Station",
+        "wheelchair": false,
+        "latitude": 51.539321,
+        "longitude": 0.081053,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBST",
+        "name": "Baker Street Underground Station",
+        "wheelchair": false,
+        "latitude": 51.522883,
+        "longitude": -0.15713,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBWR",
+        "name": "Bow Road Underground Station",
+        "wheelchair": false,
+        "latitude": 51.52694,
+        "longitude": -0.025128,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUEHM",
+        "name": "East Ham Underground Station",
+        "wheelchair": false,
+        "latitude": 51.538948,
+        "longitude": 0.051186,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUERC",
+        "name": "Edgware Road (Circle Line) Underground Station",
+        "wheelchair": false,
+        "latitude": 51.519858,
+        "longitude": -0.167832,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUESQ",
+        "name": "Euston Square Underground Station",
+        "wheelchair": false,
+        "latitude": 51.525604,
+        "longitude": -0.135829,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUFCN",
+        "name": "Farringdon Underground Station",
+        "wheelchair": false,
+        "latitude": 51.520252,
+        "longitude": -0.104913,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUGHK",
+        "name": "Goldhawk Road Underground Station",
+        "wheelchair": false,
+        "latitude": 51.502005,
+        "longitude": -0.226715,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUGPS",
+        "name": "Great Portland Street Underground Station",
+        "wheelchair": false,
+        "latitude": 51.52384,
+        "longitude": -0.144262,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHSC",
+        "name": "Hammersmith (H&C Line) Underground Station",
+        "wheelchair": false,
+        "latitude": 51.492304,
+        "longitude": -0.223619,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHSD",
+        "name": "Hammersmith (Dist&Picc Line) Underground Station",
+        "wheelchair": false,
+        "latitude": 51.4923,
+        "longitude": -0.22362,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUKSX",
+        "name": "King's Cross St. Pancras Underground Station",
+        "wheelchair": false,
+        "latitude": 51.530663,
+        "longitude": -0.123194,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLULAD",
+        "name": "Ladbroke Grove Underground Station",
+        "wheelchair": false,
+        "latitude": 51.517449,
+        "longitude": -0.210391,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLULRD",
+        "name": "Latimer Road Underground Station",
+        "wheelchair": false,
+        "latitude": 51.513389,
+        "longitude": -0.217799,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLULVT",
+        "name": "Liverpool Street Underground Station",
+        "wheelchair": false,
+        "latitude": 51.517372,
+        "longitude": -0.083182,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUMED",
+        "name": "Mile End Underground Station",
+        "wheelchair": false,
+        "latitude": 51.525122,
+        "longitude": -0.03364,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUMGT",
+        "name": "Moorgate Underground Station",
+        "wheelchair": false,
+        "latitude": 51.518176,
+        "longitude": -0.088322,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUPAC",
+        "name": "Paddington Underground Station",
+        "wheelchair": false,
+        "latitude": 51.516581,
+        "longitude": -0.175689,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUPAH",
+        "name": "Paddington (H&C Line)-Underground",
+        "wheelchair": false,
+        "latitude": 51.516981,
+        "longitude": -0.17616,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUPLW",
+        "name": "Plaistow Underground Station",
+        "wheelchair": false,
+        "latitude": 51.531341,
+        "longitude": 0.017451,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLURYO",
+        "name": "Royal Oak Underground Station",
+        "wheelchair": false,
+        "latitude": 51.519113,
+        "longitude": -0.188748,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUSBM",
+        "name": "Shepherd's Bush Market Underground Station",
+        "wheelchair": false,
+        "latitude": 51.505579,
+        "longitude": -0.226375,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUSGN",
+        "name": "Stepney Green Underground Station",
+        "wheelchair": false,
+        "latitude": 51.521858,
+        "longitude": -0.046596,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUUPK",
+        "name": "Upton Park Underground Station",
+        "wheelchair": false,
+        "latitude": 51.53534,
+        "longitude": 0.035263,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWHM",
+        "name": "West Ham Underground Station",
+        "wheelchair": false,
+        "latitude": 51.528136,
+        "longitude": 0.005055,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWLA",
+        "name": "Wood Lane Underground Station",
+        "wheelchair": false,
+        "latitude": 51.509669,
+        "longitude": -0.22453,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWPL",
+        "name": "Whitechapel Underground Station",
+        "wheelchair": false,
+        "latitude": 51.519518,
+        "longitude": -0.059971,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWSP",
+        "name": "Westbourne Park Underground Station",
+        "wheelchair": false,
+        "latitude": 51.52111,
+        "longitude": -0.201065,
+        "x": 0.0,
+        "y": 0.0
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "jubilee",
+    "stations": null,
+    "stationTool": [
+      {
+        "naptan": "940GZZLUBMY",
+        "name": "Bermondsey Underground Station",
+        "wheelchair": false,
+        "latitude": 51.49775,
+        "longitude": -0.063993,
+        "x": 664.0,
+        "y": 422.0
+      },
+      {
+        "naptan": "940GZZLUBND",
+        "name": "Bond Street Underground Station",
+        "wheelchair": false,
+        "latitude": 51.514304,
+        "longitude": -0.149723,
+        "x": 423.0,
+        "y": 335.0
+      },
+      {
+        "naptan": "940GZZLUBST",
+        "name": "Baker Street Underground Station",
+        "wheelchair": false,
+        "latitude": 51.522883,
+        "longitude": -0.15713,
+        "x": 423.0,
+        "y": 288.0
+      },
+      {
+        "naptan": "940GZZLUCGT",
+        "name": "Canning Town Underground Station",
+        "wheelchair": false,
+        "latitude": 51.513584,
+        "longitude": 0.008322,
+        "x": 833.0,
+        "y": 372.0
+      },
+      {
+        "naptan": "940GZZLUCPK",
+        "name": "Canons Park Underground Station",
+        "wheelchair": false,
+        "latitude": 51.607701,
+        "longitude": -0.294693,
+        "x": 313.0,
+        "y": 103.0
+      },
+      {
+        "naptan": "940GZZLUCWR",
+        "name": "Canada Water Underground Station",
+        "wheelchair": false,
+        "latitude": 51.497931,
+        "longitude": -0.049405,
+        "x": 713.0,
+        "y": 421.0
+      },
+      {
+        "naptan": "940GZZLUCYF",
+        "name": "Canary Wharf Underground Station",
+        "wheelchair": false,
+        "latitude": 51.503488,
+        "longitude": -0.018246,
+        "x": 776.0,
+        "y": 422.0
+      },
+      {
+        "naptan": "940GZZLUDOH",
+        "name": "Dollis Hill Underground Station",
+        "wheelchair": false,
+        "latitude": 51.551955,
+        "longitude": -0.239068,
+        "x": 340.0,
+        "y": 170.0
+      },
+      {
+        "naptan": "940GZZLUFYR",
+        "name": "Finchley Road Underground Station",
+        "wheelchair": false,
+        "latitude": 51.546825,
+        "longitude": -0.179845,
+        "x": 388.0,
+        "y": 219.0
+      },
+      {
+        "naptan": "940GZZLUGPK",
+        "name": "Green Park Underground Station",
+        "wheelchair": false,
+        "latitude": 51.506947,
+        "longitude": -0.142787,
+        "x": 430.0,
+        "y": 368.0
+      },
+      {
+        "naptan": "940GZZLUKBN",
+        "name": "Kilburn Underground Station",
+        "wheelchair": false,
+        "latitude": 51.547183,
+        "longitude": -0.204248,
+        "x": 365.0,
+        "y": 197.0
+      },
+      {
+        "naptan": "940GZZLUKBY",
+        "name": "Kingsbury Underground Station",
+        "wheelchair": false,
+        "latitude": 51.584845,
+        "longitude": -0.27879,
+        "x": 313.0,
+        "y": 131.0
+      },
+      {
+        "naptan": "940GZZLULNB",
+        "name": "London Bridge Underground Station",
+        "wheelchair": false,
+        "latitude": 51.505721,
+        "longitude": -0.088873,
+        "x": 611.0,
+        "y": 423.0
+      },
+      {
+        "naptan": "940GZZLUNDN",
+        "name": "Neasden Underground Station",
+        "wheelchair": false,
+        "latitude": 51.553986,
+        "longitude": -0.249837,
+        "x": 328.0,
+        "y": 161.0
+      },
+      {
+        "naptan": "940GZZLUNGW",
+        "name": "North Greenwich Underground Station",
+        "wheelchair": false,
+        "latitude": 51.50047,
+        "longitude": 0.004287,
+        "x": 810.0,
+        "y": 417.0
+      },
+      {
+        "naptan": "940GZZLUQBY",
+        "name": "Queensbury Underground Station",
+        "wheelchair": false,
+        "latitude": 51.594188,
+        "longitude": -0.286219,
+        "x": 313.0,
+        "y": 118.0
+      },
+      {
+        "naptan": "940GZZLUSJW",
+        "name": "St. John's Wood Underground Station",
+        "wheelchair": false,
+        "latitude": 51.534521,
+        "longitude": -0.173948,
+        "x": 407.0,
+        "y": 238.0
+      },
+      {
+        "naptan": "940GZZLUSTD",
+        "name": "Stratford Underground Station",
+        "wheelchair": false,
+        "latitude": 51.541806,
+        "longitude": -0.003458,
+        "x": 815.0,
+        "y": 250.0
+      },
+      {
+        "naptan": "940GZZLUSTM",
+        "name": "Stanmore Underground Station",
+        "wheelchair": false,
+        "latitude": 51.619839,
+        "longitude": -0.303266,
+        "x": 312.0,
+        "y": 91.0
+      },
+      {
+        "naptan": "940GZZLUSWC",
+        "name": "Swiss Cottage Underground Station",
+        "wheelchair": false,
+        "latitude": 51.543681,
+        "longitude": -0.174894,
+        "x": 397.0,
+        "y": 229.0
+      },
+      {
+        "naptan": "940GZZLUSWK",
+        "name": "Southwark Underground Station",
+        "wheelchair": false,
+        "latitude": 51.50427,
+        "longitude": -0.105331,
+        "x": 534.0,
+        "y": 458.0
+      },
+      {
+        "naptan": "940GZZLUWHM",
+        "name": "West Ham Underground Station",
+        "wheelchair": false,
+        "latitude": 51.528136,
+        "longitude": 0.005055,
+        "x": 835.0,
+        "y": 305.0
+      },
+      {
+        "naptan": "940GZZLUWHP",
+        "name": "West Hampstead Underground Station",
+        "wheelchair": false,
+        "latitude": 51.546638,
+        "longitude": -0.191059,
+        "x": 375.0,
+        "y": 208.0
+      },
+      {
+        "naptan": "940GZZLUWIG",
+        "name": "Willesden Green Underground Station",
+        "wheelchair": false,
+        "latitude": 51.549146,
+        "longitude": -0.221537,
+        "x": 353.0,
+        "y": 184.0
+      },
+      {
+        "naptan": "940GZZLUWLO",
+        "name": "Waterloo Underground Station",
+        "wheelchair": false,
+        "latitude": 51.503299,
+        "longitude": -0.11478,
+        "x": 493.0,
+        "y": 444.0
+      },
+      {
+        "naptan": "940GZZLUWSM",
+        "name": "Westminster Underground Station",
+        "wheelchair": false,
+        "latitude": 51.50132,
+        "longitude": -0.124861,
+        "x": 478.0,
+        "y": 416.0
+      },
+      {
+        "naptan": "940GZZLUWYP",
+        "name": "Wembley Park Underground Station",
+        "wheelchair": false,
+        "latitude": 51.563198,
+        "longitude": -0.279262,
+        "x": 319.0,
+        "y": 151.0
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "metropolitan",
+    "stations": null,
+    "stationTool": [
+      {
+        "naptan": "940GZZLUALD",
+        "name": "Aldgate Underground Station",
+        "wheelchair": false,
+        "latitude": 51.514246,
+        "longitude": -0.075689,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUAMS",
+        "name": "Amersham Underground Station",
+        "wheelchair": false,
+        "latitude": 51.674126,
+        "longitude": -0.607714,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBBN",
+        "name": "Barbican Underground Station",
+        "wheelchair": false,
+        "latitude": 51.520275,
+        "longitude": -0.097993,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBST",
+        "name": "Baker Street Underground Station",
+        "wheelchair": false,
+        "latitude": 51.522883,
+        "longitude": -0.15713,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUCAL",
+        "name": "Chalfont & Latimer Underground Station",
+        "wheelchair": false,
+        "latitude": 51.667985,
+        "longitude": -0.560689,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUCSM",
+        "name": "Chesham Underground Station",
+        "wheelchair": false,
+        "latitude": 51.705208,
+        "longitude": -0.611247,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUCXY",
+        "name": "Croxley Underground Station",
+        "wheelchair": false,
+        "latitude": 51.647044,
+        "longitude": -0.441718,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUCYD",
+        "name": "Chorleywood Underground Station",
+        "wheelchair": false,
+        "latitude": 51.654358,
+        "longitude": -0.518461,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUEAE",
+        "name": "Eastcote Underground Station",
+        "wheelchair": false,
+        "latitude": 51.576506,
+        "longitude": -0.397373,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUESQ",
+        "name": "Euston Square Underground Station",
+        "wheelchair": false,
+        "latitude": 51.525604,
+        "longitude": -0.135829,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUFCN",
+        "name": "Farringdon Underground Station",
+        "wheelchair": false,
+        "latitude": 51.520252,
+        "longitude": -0.104913,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUFYR",
+        "name": "Finchley Road Underground Station",
+        "wheelchair": false,
+        "latitude": 51.546825,
+        "longitude": -0.179845,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUGPS",
+        "name": "Great Portland Street Underground Station",
+        "wheelchair": false,
+        "latitude": 51.52384,
+        "longitude": -0.144262,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHGD",
+        "name": "Hillingdon Underground Station",
+        "wheelchair": false,
+        "latitude": 51.553715,
+        "longitude": -0.449828,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHOH",
+        "name": "Harrow-on-the-Hill Underground Station",
+        "wheelchair": false,
+        "latitude": 51.579195,
+        "longitude": -0.337225,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUICK",
+        "name": "Ickenham Underground Station",
+        "wheelchair": false,
+        "latitude": 51.561992,
+        "longitude": -0.442001,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUKSX",
+        "name": "King's Cross St. Pancras Underground Station",
+        "wheelchair": false,
+        "latitude": 51.530663,
+        "longitude": -0.123194,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLULVT",
+        "name": "Liverpool Street Underground Station",
+        "wheelchair": false,
+        "latitude": 51.517372,
+        "longitude": -0.083182,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUMGT",
+        "name": "Moorgate Underground Station",
+        "wheelchair": false,
+        "latitude": 51.518176,
+        "longitude": -0.088322,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUMPK",
+        "name": "Moor Park Underground Station",
+        "wheelchair": false,
+        "latitude": 51.629845,
+        "longitude": -0.432454,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUNHA",
+        "name": "North Harrow Underground Station",
+        "wheelchair": false,
+        "latitude": 51.584872,
+        "longitude": -0.362408,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUNKP",
+        "name": "Northwick Park Underground Station",
+        "wheelchair": false,
+        "latitude": 51.578481,
+        "longitude": -0.318056,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUNOW",
+        "name": "Northwood Underground Station",
+        "wheelchair": false,
+        "latitude": 51.611053,
+        "longitude": -0.423829,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUNWH",
+        "name": "Northwood Hills Underground Station",
+        "wheelchair": false,
+        "latitude": 51.600572,
+        "longitude": -0.409464,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUPNR",
+        "name": "Pinner Underground Station",
+        "wheelchair": false,
+        "latitude": 51.592901,
+        "longitude": -0.381161,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUPRD",
+        "name": "Preston Road Underground Station",
+        "wheelchair": false,
+        "latitude": 51.571972,
+        "longitude": -0.295107,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLURKW",
+        "name": "Rickmansworth Underground Station",
+        "wheelchair": false,
+        "latitude": 51.640207,
+        "longitude": -0.473703,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLURSM",
+        "name": "Ruislip Manor Underground Station",
+        "wheelchair": false,
+        "latitude": 51.573202,
+        "longitude": -0.412973,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLURSP",
+        "name": "Ruislip Underground Station",
+        "wheelchair": false,
+        "latitude": 51.571354,
+        "longitude": -0.421898,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLURYL",
+        "name": "Rayners Lane Underground Station",
+        "wheelchair": false,
+        "latitude": 51.575147,
+        "longitude": -0.371127,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUUXB",
+        "name": "Uxbridge Underground Station",
+        "wheelchair": false,
+        "latitude": 51.546565,
+        "longitude": -0.477949,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWAF",
+        "name": "Watford Underground Station",
+        "wheelchair": false,
+        "latitude": 51.657446,
+        "longitude": -0.417377,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWHW",
+        "name": "West Harrow Underground Station",
+        "wheelchair": false,
+        "latitude": 51.57971,
+        "longitude": -0.3534,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWIG",
+        "name": "Willesden Green Underground Station",
+        "wheelchair": false,
+        "latitude": 51.549146,
+        "longitude": -0.221537,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWYP",
+        "name": "Wembley Park Underground Station",
+        "wheelchair": false,
+        "latitude": 51.563198,
+        "longitude": -0.279262,
+        "x": 0.0,
+        "y": 0.0
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "northern",
+    "stations": null,
+    "stationTool": [
+      {
+        "naptan": "940GZZLUACY",
+        "name": "Archway Underground Station",
+        "wheelchair": false,
+        "latitude": 51.565478,
+        "longitude": -0.134819,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUAGL",
+        "name": "Angel Underground Station",
+        "wheelchair": false,
+        "latitude": 51.532796,
+        "longitude": -0.105992,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBLM",
+        "name": "Balham Underground Station",
+        "wheelchair": false,
+        "latitude": 51.443288,
+        "longitude": -0.152997,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBNK",
+        "name": "Bank Underground Station",
+        "wheelchair": false,
+        "latitude": 51.513586,
+        "longitude": -0.08814,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBOR",
+        "name": "Borough Underground Station",
+        "wheelchair": false,
+        "latitude": 51.501199,
+        "longitude": -0.09337,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBTK",
+        "name": "Burnt Oak Underground Station",
+        "wheelchair": false,
+        "latitude": 51.602774,
+        "longitude": -0.264048,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBTX",
+        "name": "Brent Cross Underground Station",
+        "wheelchair": false,
+        "latitude": 51.57665,
+        "longitude": -0.213622,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBZP",
+        "name": "Belsize Park Underground Station",
+        "wheelchair": false,
+        "latitude": 51.550311,
+        "longitude": -0.164648,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUCFM",
+        "name": "Chalk Farm Underground Station",
+        "wheelchair": false,
+        "latitude": 51.544118,
+        "longitude": -0.153388,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUCHX",
+        "name": "Charing Cross Underground Station",
+        "wheelchair": false,
+        "latitude": 51.50741,
+        "longitude": -0.127277,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUCND",
+        "name": "Colindale Underground Station",
+        "wheelchair": false,
+        "latitude": 51.595424,
+        "longitude": -0.249919,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUCPC",
+        "name": "Clapham Common Underground Station",
+        "wheelchair": false,
+        "latitude": 51.461742,
+        "longitude": -0.138317,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUCPN",
+        "name": "Clapham North Underground Station",
+        "wheelchair": false,
+        "latitude": 51.465135,
+        "longitude": -0.130016,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUCPS",
+        "name": "Clapham South Underground Station",
+        "wheelchair": false,
+        "latitude": 51.452654,
+        "longitude": -0.147582,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUCSD",
+        "name": "Colliers Wood Underground Station",
+        "wheelchair": false,
+        "latitude": 51.41816,
+        "longitude": -0.178086,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUCTN",
+        "name": "Camden Town Underground Station",
+        "wheelchair": false,
+        "latitude": 51.539292,
+        "longitude": -0.14274,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUEAC",
+        "name": "Elephant & Castle Underground Station",
+        "wheelchair": false,
+        "latitude": 51.494536,
+        "longitude": -0.100606,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUEFY",
+        "name": "East Finchley Underground Station",
+        "wheelchair": false,
+        "latitude": 51.587131,
+        "longitude": -0.165012,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUEGW",
+        "name": "Edgware Underground Station",
+        "wheelchair": false,
+        "latitude": 51.613653,
+        "longitude": -0.274928,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUEMB",
+        "name": "Embankment Underground Station",
+        "wheelchair": false,
+        "latitude": 51.507058,
+        "longitude": -0.122666,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUEUS",
+        "name": "Euston Underground Station",
+        "wheelchair": false,
+        "latitude": 51.527999,
+        "longitude": -0.133785,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUFYC",
+        "name": "Finchley Central Underground Station",
+        "wheelchair": false,
+        "latitude": 51.600921,
+        "longitude": -0.192527,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUGDG",
+        "name": "Goodge Street Underground Station",
+        "wheelchair": false,
+        "latitude": 51.520599,
+        "longitude": -0.134361,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUGGN",
+        "name": "Golders Green Underground Station",
+        "wheelchair": false,
+        "latitude": 51.572259,
+        "longitude": -0.194039,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHBT",
+        "name": "High Barnet Underground Station",
+        "wheelchair": false,
+        "latitude": 51.650541,
+        "longitude": -0.194298,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHCL",
+        "name": "Hendon Central Underground Station",
+        "wheelchair": false,
+        "latitude": 51.583301,
+        "longitude": -0.226424,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHGT",
+        "name": "Highgate Underground Station",
+        "wheelchair": false,
+        "latitude": 51.577532,
+        "longitude": -0.145857,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHTD",
+        "name": "Hampstead Underground Station",
+        "wheelchair": false,
+        "latitude": 51.556239,
+        "longitude": -0.177464,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUKNG",
+        "name": "Kennington Underground Station",
+        "wheelchair": false,
+        "latitude": 51.488337,
+        "longitude": -0.105963,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUKSH",
+        "name": "Kentish Town Underground Station",
+        "wheelchair": false,
+        "latitude": 51.550312,
+        "longitude": -0.140733,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUKSX",
+        "name": "King's Cross St. Pancras Underground Station",
+        "wheelchair": false,
+        "latitude": 51.530663,
+        "longitude": -0.123194,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLULNB",
+        "name": "London Bridge Underground Station",
+        "wheelchair": false,
+        "latitude": 51.505721,
+        "longitude": -0.088873,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLULSQ",
+        "name": "Leicester Square Underground Station",
+        "wheelchair": false,
+        "latitude": 51.511386,
+        "longitude": -0.128426,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUMDN",
+        "name": "Morden Underground Station",
+        "wheelchair": false,
+        "latitude": 51.402142,
+        "longitude": -0.194839,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUMGT",
+        "name": "Moorgate Underground Station",
+        "wheelchair": false,
+        "latitude": 51.518176,
+        "longitude": -0.088322,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUMHL",
+        "name": "Mill Hill East Underground Station",
+        "wheelchair": false,
+        "latitude": 51.608229,
+        "longitude": -0.209986,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUMTC",
+        "name": "Mornington Crescent Underground Station",
+        "wheelchair": false,
+        "latitude": 51.534679,
+        "longitude": -0.138789,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUODS",
+        "name": "Old Street Underground Station",
+        "wheelchair": false,
+        "latitude": 51.525864,
+        "longitude": -0.08777,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUOVL",
+        "name": "Oval Underground Station",
+        "wheelchair": false,
+        "latitude": 51.48185,
+        "longitude": -0.112439,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUSKW",
+        "name": "Stockwell Underground Station",
+        "wheelchair": false,
+        "latitude": 51.472184,
+        "longitude": -0.122644,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUSWN",
+        "name": "South Wimbledon Underground Station",
+        "wheelchair": false,
+        "latitude": 51.415309,
+        "longitude": -0.192005,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUTAW",
+        "name": "Totteridge & Whetstone Underground Station",
+        "wheelchair": false,
+        "latitude": 51.630597,
+        "longitude": -0.17921,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUTBC",
+        "name": "Tooting Bec Underground Station",
+        "wheelchair": false,
+        "latitude": 51.435678,
+        "longitude": -0.159736,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUTBY",
+        "name": "Tooting Broadway Underground Station",
+        "wheelchair": false,
+        "latitude": 51.42763,
+        "longitude": -0.168374,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUTCR",
+        "name": "Tottenham Court Road Underground Station",
+        "wheelchair": false,
+        "latitude": 51.516426,
+        "longitude": -0.13041,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUTFP",
+        "name": "Tufnell Park Underground Station",
+        "wheelchair": false,
+        "latitude": 51.556822,
+        "longitude": -0.138433,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWFN",
+        "name": "West Finchley Underground Station",
+        "wheelchair": false,
+        "latitude": 51.609426,
+        "longitude": -0.188362,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWLO",
+        "name": "Waterloo Underground Station",
+        "wheelchair": false,
+        "latitude": 51.503299,
+        "longitude": -0.11478,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWOP",
+        "name": "Woodside Park Underground Station",
+        "wheelchair": false,
+        "latitude": 51.618014,
+        "longitude": -0.18542,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWRR",
+        "name": "Warren Street Underground Station",
+        "wheelchair": false,
+        "latitude": 51.524951,
+        "longitude": -0.138321,
+        "x": 0.0,
+        "y": 0.0
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "piccadilly",
+    "stations": null,
+    "stationTool": [
+      {
+        "naptan": "940GZZLUACT",
+        "name": "Acton Town Underground Station",
+        "wheelchair": false,
+        "latitude": 51.503057,
+        "longitude": -0.280462,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUALP",
+        "name": "Alperton Underground Station",
+        "wheelchair": false,
+        "latitude": 51.540627,
+        "longitude": -0.29961,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUASG",
+        "name": "Arnos Grove Underground Station",
+        "wheelchair": false,
+        "latitude": 51.616446,
+        "longitude": -0.133062,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUASL",
+        "name": "Arsenal Underground Station",
+        "wheelchair": false,
+        "latitude": 51.558655,
+        "longitude": -0.107457,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBDS",
+        "name": "Bounds Green Underground Station",
+        "wheelchair": false,
+        "latitude": 51.607034,
+        "longitude": -0.124235,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBOS",
+        "name": "Boston Manor Underground Station",
+        "wheelchair": false,
+        "latitude": 51.495635,
+        "longitude": -0.324939,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBSC",
+        "name": "Barons Court Underground Station",
+        "wheelchair": false,
+        "latitude": 51.490311,
+        "longitude": -0.213427,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUCAR",
+        "name": "Caledonian Road Underground Station",
+        "wheelchair": false,
+        "latitude": 51.548519,
+        "longitude": -0.118493,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUCGN",
+        "name": "Covent Garden Underground Station",
+        "wheelchair": false,
+        "latitude": 51.513093,
+        "longitude": -0.124436,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUCKS",
+        "name": "Cockfosters Underground Station",
+        "wheelchair": false,
+        "latitude": 51.65152,
+        "longitude": -0.149171,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUEAE",
+        "name": "Eastcote Underground Station",
+        "wheelchair": false,
+        "latitude": 51.576506,
+        "longitude": -0.397373,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUECM",
+        "name": "Ealing Common Underground Station",
+        "wheelchair": false,
+        "latitude": 51.51014,
+        "longitude": -0.288265,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUECT",
+        "name": "Earl's Court Underground Station",
+        "wheelchair": false,
+        "latitude": 51.492063,
+        "longitude": -0.193378,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUFPK",
+        "name": "Finsbury Park Underground Station",
+        "wheelchair": false,
+        "latitude": 51.564158,
+        "longitude": -0.106825,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUGPK",
+        "name": "Green Park Underground Station",
+        "wheelchair": false,
+        "latitude": 51.506947,
+        "longitude": -0.142787,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUGTR",
+        "name": "Gloucester Road Underground Station",
+        "wheelchair": false,
+        "latitude": 51.494316,
+        "longitude": -0.182658,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHBN",
+        "name": "Holborn Underground Station",
+        "wheelchair": false,
+        "latitude": 51.51758,
+        "longitude": -0.120475,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHGD",
+        "name": "Hillingdon Underground Station",
+        "wheelchair": false,
+        "latitude": 51.553715,
+        "longitude": -0.449828,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHNX",
+        "name": "Hatton Cross Underground Station",
+        "wheelchair": false,
+        "latitude": 51.466747,
+        "longitude": -0.423191,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHPC",
+        "name": "Hyde Park Corner Underground Station",
+        "wheelchair": false,
+        "latitude": 51.503035,
+        "longitude": -0.152441,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHR4",
+        "name": "Heathrow Terminal 4 Underground Station",
+        "wheelchair": false,
+        "latitude": 51.458524,
+        "longitude": -0.445771,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHR5",
+        "name": "Heathrow Terminal 5 Underground Station",
+        "wheelchair": false,
+        "latitude": 51.470052,
+        "longitude": -0.49056,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHRC",
+        "name": "Heathrow Terminals 2 & 3 Underground Station",
+        "wheelchair": false,
+        "latitude": 51.471235,
+        "longitude": -0.452265,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHSC",
+        "name": "Hammersmith (H&C Line) Underground Station",
+        "wheelchair": false,
+        "latitude": 51.492304,
+        "longitude": -0.223619,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHSD",
+        "name": "Hammersmith (Dist&Picc Line) Underground Station",
+        "wheelchair": false,
+        "latitude": 51.4923,
+        "longitude": -0.22362,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHWC",
+        "name": "Hounslow Central Underground Station",
+        "wheelchair": false,
+        "latitude": 51.471295,
+        "longitude": -0.366578,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHWE",
+        "name": "Hounslow East Underground Station",
+        "wheelchair": false,
+        "latitude": 51.473213,
+        "longitude": -0.356474,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHWT",
+        "name": "Hounslow West Underground Station",
+        "wheelchair": false,
+        "latitude": 51.473469,
+        "longitude": -0.386544,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHWY",
+        "name": "Holloway Road Underground Station",
+        "wheelchair": false,
+        "latitude": 51.552697,
+        "longitude": -0.113244,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUICK",
+        "name": "Ickenham Underground Station",
+        "wheelchair": false,
+        "latitude": 51.561992,
+        "longitude": -0.442001,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUKNB",
+        "name": "Knightsbridge Underground Station",
+        "wheelchair": false,
+        "latitude": 51.501669,
+        "longitude": -0.160508,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUKSX",
+        "name": "King's Cross St. Pancras Underground Station",
+        "wheelchair": false,
+        "latitude": 51.530663,
+        "longitude": -0.123194,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLULSQ",
+        "name": "Leicester Square Underground Station",
+        "wheelchair": false,
+        "latitude": 51.511386,
+        "longitude": -0.128426,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUMRH",
+        "name": "Manor House Underground Station",
+        "wheelchair": false,
+        "latitude": 51.570738,
+        "longitude": -0.096118,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUNEN",
+        "name": "North Ealing Underground Station",
+        "wheelchair": false,
+        "latitude": 51.517505,
+        "longitude": -0.288868,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUNFD",
+        "name": "Northfields Underground Station",
+        "wheelchair": false,
+        "latitude": 51.499319,
+        "longitude": -0.314719,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUOAK",
+        "name": "Oakwood Underground Station",
+        "wheelchair": false,
+        "latitude": 51.647726,
+        "longitude": -0.132182,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUOSY",
+        "name": "Osterley Underground Station",
+        "wheelchair": false,
+        "latitude": 51.481274,
+        "longitude": -0.352224,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUPCC",
+        "name": "Piccadilly Circus Underground Station",
+        "wheelchair": false,
+        "latitude": 51.51005,
+        "longitude": -0.133798,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUPKR",
+        "name": "Park Royal Underground Station",
+        "wheelchair": false,
+        "latitude": 51.527123,
+        "longitude": -0.284341,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLURSM",
+        "name": "Ruislip Manor Underground Station",
+        "wheelchair": false,
+        "latitude": 51.573202,
+        "longitude": -0.412973,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLURSP",
+        "name": "Ruislip Underground Station",
+        "wheelchair": false,
+        "latitude": 51.571354,
+        "longitude": -0.421898,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLURSQ",
+        "name": "Russell Square Underground Station",
+        "wheelchair": false,
+        "latitude": 51.523073,
+        "longitude": -0.124285,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLURYL",
+        "name": "Rayners Lane Underground Station",
+        "wheelchair": false,
+        "latitude": 51.575147,
+        "longitude": -0.371127,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUSEA",
+        "name": "South Ealing Underground Station",
+        "wheelchair": false,
+        "latitude": 51.501003,
+        "longitude": -0.307424,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUSGT",
+        "name": "Southgate Underground Station",
+        "wheelchair": false,
+        "latitude": 51.632315,
+        "longitude": -0.127816,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUSHH",
+        "name": "South Harrow Underground Station",
+        "wheelchair": false,
+        "latitude": 51.564888,
+        "longitude": -0.352492,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUSKS",
+        "name": "South Kensington Underground Station",
+        "wheelchair": false,
+        "latitude": 51.494094,
+        "longitude": -0.174138,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUSUH",
+        "name": "Sudbury Hill Underground Station",
+        "wheelchair": false,
+        "latitude": 51.556946,
+        "longitude": -0.336435,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUSUT",
+        "name": "Sudbury Town Underground Station",
+        "wheelchair": false,
+        "latitude": 51.550815,
+        "longitude": -0.315745,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUTNG",
+        "name": "Turnham Green Underground Station",
+        "wheelchair": false,
+        "latitude": 51.495148,
+        "longitude": -0.254555,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUTPN",
+        "name": "Turnpike Lane Underground Station",
+        "wheelchair": false,
+        "latitude": 51.590272,
+        "longitude": -0.102953,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUUXB",
+        "name": "Uxbridge Underground Station",
+        "wheelchair": false,
+        "latitude": 51.546565,
+        "longitude": -0.477949,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWOG",
+        "name": "Wood Green Underground Station",
+        "wheelchair": false,
+        "latitude": 51.597479,
+        "longitude": -0.109886,
+        "x": 0.0,
+        "y": 0.0
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "name": "victoria",
+    "stations": null,
+    "stationTool": [
+      {
+        "naptan": "940GZZLUBLR",
+        "name": "Blackhorse Road Underground Station",
+        "wheelchair": false,
+        "latitude": 51.586919,
+        "longitude": -0.04115,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUBXN",
+        "name": "Brixton Underground Station",
+        "wheelchair": false,
+        "latitude": 51.462618,
+        "longitude": -0.114888,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUEUS",
+        "name": "Euston Underground Station",
+        "wheelchair": false,
+        "latitude": 51.527999,
+        "longitude": -0.133785,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUFPK",
+        "name": "Finsbury Park Underground Station",
+        "wheelchair": false,
+        "latitude": 51.564158,
+        "longitude": -0.106825,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUGPK",
+        "name": "Green Park Underground Station",
+        "wheelchair": false,
+        "latitude": 51.506947,
+        "longitude": -0.142787,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUHAI",
+        "name": "Highbury & Islington Underground Station",
+        "wheelchair": false,
+        "latitude": 51.54635,
+        "longitude": -0.103324,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUKSX",
+        "name": "King's Cross St. Pancras Underground Station",
+        "wheelchair": false,
+        "latitude": 51.530663,
+        "longitude": -0.123194,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUOXC",
+        "name": "Oxford Circus Underground Station",
+        "wheelchair": false,
+        "latitude": 51.515224,
+        "longitude": -0.141903,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUPCO",
+        "name": "Pimlico Underground Station",
+        "wheelchair": false,
+        "latitude": 51.489097,
+        "longitude": -0.133761,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUSKW",
+        "name": "Stockwell Underground Station",
+        "wheelchair": false,
+        "latitude": 51.472184,
+        "longitude": -0.122644,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUSVS",
+        "name": "Seven Sisters Underground Station",
+        "wheelchair": false,
+        "latitude": 51.58333,
+        "longitude": -0.072584,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUTMH",
+        "name": "Tottenham Hale Underground Station",
+        "wheelchair": false,
+        "latitude": 51.588108,
+        "longitude": -0.060241,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUVIC",
+        "name": "Victoria Underground Station",
+        "wheelchair": false,
+        "latitude": 51.496359,
+        "longitude": -0.143102,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUVXL",
+        "name": "Vauxhall Underground Station",
+        "wheelchair": false,
+        "latitude": 51.485743,
+        "longitude": -0.124204,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWRR",
+        "name": "Warren Street Underground Station",
+        "wheelchair": false,
+        "latitude": 51.524951,
+        "longitude": -0.138321,
+        "x": 0.0,
+        "y": 0.0
+      },
+      {
+        "naptan": "940GZZLUWWL",
+        "name": "Walthamstow Central Underground Station",
+        "wheelchair": false,
+        "latitude": 51.582948,
+        "longitude": -0.019842,
+        "x": 0.0,
+        "y": 0.0
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "name": "waterloo-city",
+    "stations": null,
+    "stationTool": [
+      {
+        "naptan": "940GZZLUBNK",
+        "name": "Bank Underground Station",
+        "wheelchair": false,
+        "latitude": 51.513586,
+        "longitude": -0.08814,
+        "x": 601.0,
+        "y": 352.0
+      },
+      {
+        "naptan": "940GZZLUWLO",
+        "name": "Waterloo Underground Station",
+        "wheelchair": false,
+        "latitude": 51.503299,
+        "longitude": -0.11478,
+        "x": 492.0,
+        "y": 444.0
+      }
+    ]
+  }
+]

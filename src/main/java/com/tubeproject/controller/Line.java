@@ -8,6 +8,10 @@ public class Line {
     private String name;
     private List<Station> stations;
 
+    public Line() {
+
+    }
+
     public Line(int id, String name) {
         this.id = id;
         this.name = name;
