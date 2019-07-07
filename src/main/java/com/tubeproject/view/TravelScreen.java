@@ -19,10 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -34,9 +31,8 @@ import org.w3c.dom.Text;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.time.LocalDate;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class TravelScreen extends Application implements Initializable {
@@ -162,6 +158,7 @@ public class TravelScreen extends Application implements Initializable {
         initializeTextFieldEvent(txtEnd, endBtn);
         autocomplete(txtStart);
         autocomplete(txtEnd);
+        checkTime();
     }
 
     public static ArrayList<Node> getAllNodes(Parent root) {
@@ -314,6 +311,16 @@ public class TravelScreen extends Application implements Initializable {
                 goBtn.setStyle("-fx-background-color:  #97bb91; -fx-background-radius:   16.4, 15 ; -fx-text-fill: black");
             }
         }));
+    }
+
+    public void checkTime() {
+        datePicker.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                LocalDate today = LocalDate.now();
+                setDisable(empty || date.compareTo(today) < 0);
+            }
+        });
     }
 
 }

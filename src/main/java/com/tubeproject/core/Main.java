@@ -7,7 +7,7 @@ import com.tubeproject.view.ViewMainScreen;
 
 public class Main {
     public static void main(String[] args){
-        TravelScreen.startWindow();
+        SignUpScreen.startWindow();
     }
 
 }

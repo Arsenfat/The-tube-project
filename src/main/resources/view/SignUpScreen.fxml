@@ -119,6 +119,6 @@
                 <Font size="16.0"/>
             </font>
         </Label>
-        <DatePicker layoutX="471.0" layoutY="281.0"/>
+        <DatePicker fx:id="datePicker" layoutX="471.0" layoutY="281.0"/>
     </children>
 </AnchorPane>
