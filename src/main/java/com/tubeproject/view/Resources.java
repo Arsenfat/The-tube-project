@@ -21,10 +21,15 @@ public class Resources {
         public static final String MAIL = "/img/mail.png";
         public static final String MAP = "/img/bakerStreet.png";
         public static final String TRAVELMAP = "/img/bakerToKillburn.png";
+        public static final String TUBE_MAP = "/img/tube_map.gif";
     }
 
     public static class Stylesheets {
         public static final String TRAVEL_SCREEN = "/css/TravelScreen.css";
         public static final String SIGN_UP_SCREEN = "/css/SignUpScreen.css";
+    }
+
+    public static class Components {
+        public static final String TRAVEL_VIEWER = "/view/components/TravelViewer.fxml";
     }
 }
