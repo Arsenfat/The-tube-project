@@ -10,6 +10,7 @@ import com.tubeproject.view.component.BurgerMenu;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -79,7 +80,6 @@ public class EditFaresScreen extends Application implements Initializable {
         initializeIcons();
         initializeBurger();
     }
-
 
     private void initializeBackground() {
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, false, false);

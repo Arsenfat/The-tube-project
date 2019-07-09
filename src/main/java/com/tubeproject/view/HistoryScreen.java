@@ -56,7 +56,6 @@ public class HistoryScreen extends Application implements Initializable {
     @FXML
     private void handleButtonActionHomePage() {
         StageManager.changeStage(anchorPane, Resources.ViewFiles.MAIN_SCREEN);
-
     }
 
     public static void startWindow() {
