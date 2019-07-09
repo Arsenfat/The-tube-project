@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDrawer?>
 <?import com.jfoenix.controls.JFXHamburger?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="435.0" prefWidth="753.0"
             xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.tubeproject.view.EditFaresScreen">
+            fx:controller="com.tubeproject.view.TravelScreen">
     <children>
         <Pane fx:id="topPane" prefHeight="62.0" prefWidth="772.0" style="-fx-background-color: #000000;">
             <children>
@@ -44,5 +49,61 @@
             </children>
         </Pane>
         <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" prefHeight="490.0" prefWidth="2.0"/>
+        <Label fx:id="smhLabel" layoutX="340.0" layoutY="79.0" text="Edit fares" textAlignment="CENTER"
+               textFill="#151928">
+            <font>
+                <Font name="System Bold" size="21.0"/>
+            </font>
+        </Label>
+        <Label layoutX="141.0" layoutY="110.0" text="Tickets" textFill="#151928">
+            <font>
+                <Font name="System Bold" size="16.0"/>
+            </font>
+        </Label>
+        <Label layoutX="581.0" layoutY="110.0" text="Oyster" textFill="#151928">
+            <font>
+                <Font name="System Bold" size="16.0"/>
+            </font>
+        </Label>
+        <JFXComboBox layoutX="81.0" layoutY="179.0" prefHeight="31.0" prefWidth="172.0" promptText="Zones">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXComboBox>
+        <JFXCheckBox layoutX="68.0" layoutY="263.0" text="Off-peak"/>
+        <JFXCheckBox layoutX="200.0" layoutY="263.0" text="Peak"/>
+        <JFXCheckBox layoutX="508.0" layoutY="263.0" text="Off-peak"/>
+        <JFXCheckBox layoutX="648.0" layoutY="263.0" text="Peak"/>
+        <JFXTextField fx:id="txtUsername" alignment="TOP_LEFT" focusColor="#744b4a" layoutX="85.0" layoutY="328.0"
+                      prefHeight="0.0" prefWidth="163.0" promptText="New price"
+                      style="-fx-text-inner-color: #151928; -fx-prompt-text-fill: #151928;" unFocusColor="#151928">
+            <opaqueInsets>
+                <Insets/>
+            </opaqueInsets>
+            <font>
+                <Font size="13.0"/>
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXTextField>
+        <JFXComboBox layoutX="520.0" layoutY="179.0" prefHeight="31.0" prefWidth="172.0" promptText="Zones">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXComboBox>
+        <JFXTextField fx:id="txtUsername1" alignment="TOP_LEFT" focusColor="#744b4a" layoutX="524.0" layoutY="328.0"
+                      prefHeight="0.0" prefWidth="163.0" promptText="New price"
+                      style="-fx-text-inner-color: #151928; -fx-prompt-text-fill: #151928;" unFocusColor="#151928">
+            <opaqueInsets>
+                <Insets/>
+            </opaqueInsets>
+            <font>
+                <Font size="13.0"/>
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXTextField>
     </children>
 </AnchorPane>
