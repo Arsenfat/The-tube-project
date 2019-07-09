@@ -1,12 +1,12 @@
-package com.tubeproject.model.requests;
+package com.tubeproject.model.requests.select;
 
 import com.tubeproject.controller.Line;
 import com.tubeproject.controller.Station;
 import com.tubeproject.model.DatabaseConnection;
-import com.tubeproject.model.Select;
 import com.tubeproject.model.annotation.Description;
 import com.tubeproject.model.builder.LineBuilder;
 import com.tubeproject.model.interfaces.Selectable;
+import com.tubeproject.model.requests.Select;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

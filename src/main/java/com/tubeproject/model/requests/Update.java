@@ -1,47 +1,46 @@
-package com.tubeproject.model;
+package com.tubeproject.model.requests;
 
+import com.tubeproject.model.DatabaseConnection;
 import com.tubeproject.model.annotation.Description;
-import com.tubeproject.model.interfaces.Selectable;
+import com.tubeproject.model.interfaces.Updatable;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Optional;
 
-public class Select {
-    private Selectable selectable;
+public class Update {
+    private Updatable updatable;
     private String description = "none";
 
-    public Select(Selectable s) {
+    public Update(Updatable u) {
 
-        selectable = s;
-        if (selectable.getClass().getAnnotation(Description.class) != null)
-            description = selectable.getClass().getAnnotation(Description.class).value();
+        updatable = u;
+        System.out.println(updatable.getClass());
+        if (updatable.getClass().getAnnotation(Description.class) != null)
+            description = updatable.getClass().getAnnotation(Description.class).value();
     }
 
-    public Optional<?> select() {
-        ResultSet resultSet;
+    public void update() {
+        Connection connection = DatabaseConnection.getCon();
         PreparedStatement stmt;
 
         try {
-            stmt = selectable.getSelectQuery();
+            stmt = updatable.getUpdateStatement();
         } catch (SQLException e) {
-
             System.out.println(String.format("Error while preparing stmt -> %s", this.description));
             System.out.println(e);
-            return Optional.empty();
+            return;
         }
 
         try {
             stmt.setQueryTimeout(2);
-            resultSet = stmt.executeQuery();
-            return selectable.buildFromResult(resultSet);
+            stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(String.format("Error while executing stmt -> %s", this.description));
             System.out.println(e);
-            return Optional.empty();
         } finally {
             try {
+                connection.commit();
                 stmt.close();
             } catch (SQLException e) {
                 System.out.println(String.format("Error while closing stmt -> %s", this.description));
@@ -50,6 +49,4 @@ public class Select {
             }
         }
     }
-
-
 }

@@ -1,4 +1,4 @@
-package com.tubeproject.model.requests;
+package com.tubeproject.model.requests.update;
 
 import com.tubeproject.controller.User;
 import com.tubeproject.model.DatabaseConnection;
@@ -17,7 +17,7 @@ public class UpdatePasswordRequest implements Updatable {
     }
 
     @Override
-    @Description("Update password from user")
+    @Description("update password from user")
     public PreparedStatement getUpdateStatement() throws SQLException {
         String query = "UPDATE `users` SET password=?, salt=? WHERE email=?";
         PreparedStatement stmt = DatabaseConnection.prepareStmt(query);

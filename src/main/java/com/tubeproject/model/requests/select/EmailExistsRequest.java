@@ -1,4 +1,4 @@
-package com.tubeproject.model.requests;
+package com.tubeproject.model.requests.select;
 
 import com.tubeproject.model.DatabaseConnection;
 import com.tubeproject.model.annotation.Description;

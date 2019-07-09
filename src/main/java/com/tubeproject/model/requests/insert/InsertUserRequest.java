@@ -1,4 +1,4 @@
-package com.tubeproject.model.requests;
+package com.tubeproject.model.requests.insert;
 
 import com.tubeproject.controller.User;
 import com.tubeproject.model.DatabaseConnection;
@@ -19,7 +19,7 @@ public class InsertUserRequest implements Insertable {
     @Override
     @Description("Insert new user into Database")
     public PreparedStatement getInsertStatement() throws SQLException {
-        String query = "INSERT INTO users(first_name,last_name,date_of_birth,email,password, salt) VALUES(?,?,?,?,?,?);";
+        String query = "INSERT INTO users(first_name,last_name,date_of_birth,email,password,salt,role) VALUES(?,?,?,?,?,?,1);";
         PreparedStatement stmt = DatabaseConnection.prepareStmt(query);
         stmt.setString(1, user.getFirstName());
         stmt.setString(2, user.getLastName());

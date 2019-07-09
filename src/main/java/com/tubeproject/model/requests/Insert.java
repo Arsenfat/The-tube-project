@@ -1,5 +1,6 @@
-package com.tubeproject.model;
+package com.tubeproject.model.requests;
 
+import com.tubeproject.model.DatabaseConnection;
 import com.tubeproject.model.annotation.Description;
 import com.tubeproject.model.interfaces.Insertable;
 
