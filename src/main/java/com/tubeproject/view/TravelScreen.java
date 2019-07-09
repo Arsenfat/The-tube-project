@@ -157,7 +157,7 @@ public class TravelScreen extends Application implements Initializable {
         Scene scene = new Scene(anchorPane);
         stage.setScene(scene);
         stage.show();
-        scene.getStylesheets().add(getClass().getResource(Resources.Stylesheets.TRAVEL_SCREEN).toExternalForm());
+        scene.getStylesheets().add(getClass().getResource(Resources.Stylesheets.MENU).toExternalForm());
 
     }
 
@@ -359,7 +359,19 @@ public class TravelScreen extends Application implements Initializable {
                     node.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
                         switch (node.getId()) {
                             case "btnHistory":
-                                //TODO
+                                AnchorPane historyPage;
+                                try {
+                                    historyPage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.HISTORY_SCREEN));
+
+                                } catch (IOException ex) {
+                                    System.out.println("Warning unandled exeption.");
+                                    return;
+                                }
+                                Scene homeScene = new Scene(historyPage);
+                                Stage homeStage = (Stage) anchorPane.getScene().getWindow();
+                                homeStage.setScene(homeScene);
+                                homeScene.getStylesheets().add(getClass().getResource(Resources.Stylesheets.MENU).toExternalForm());
+                                homeStage.show();
                                 break;
                             case "btnAdministration":
                                 AnchorPane administrationPage;
@@ -370,9 +382,10 @@ public class TravelScreen extends Application implements Initializable {
                                     System.out.println("Warning unandled exeption.");
                                     return;
                                 }
-                                Scene homeScene = new Scene(administrationPage);
-                                Stage homeStage = (Stage) anchorPane.getScene().getWindow();
+                                homeScene = new Scene(administrationPage);
+                                homeStage = (Stage) anchorPane.getScene().getWindow();
                                 homeStage.setScene(homeScene);
+                                homeScene.getStylesheets().add(getClass().getResource(Resources.Stylesheets.MENU).toExternalForm());
                                 homeStage.show();
                                 break;
                             case "btnLogOut":
@@ -391,7 +404,19 @@ public class TravelScreen extends Application implements Initializable {
                                 homeStage.show();
                                 break;
                             case "btnProfile":
-                                //TODO
+                                AnchorPane profilPage;
+                                try {
+                                    profilPage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.PROFIL_SCREEN));
+
+                                } catch (IOException ex) {
+                                    System.out.println("Warning unandled exeption.");
+                                    return;
+                                }
+                                homeScene = new Scene(profilPage);
+                                homeStage = (Stage) anchorPane.getScene().getWindow();
+                                homeStage.setScene(homeScene);
+                                homeScene.getStylesheets().add(getClass().getResource(Resources.Stylesheets.MENU).toExternalForm());
+                                homeStage.show();
                                 break;
                         }
                     });
