@@ -164,6 +164,7 @@ public class TravelScreen extends Application implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        drawer.setVisible(false);
         initializeImgView();
         initializeBackground();
         initializeIcons();
@@ -404,7 +405,9 @@ public class TravelScreen extends Application implements Initializable {
                 transition.play();
                 if (drawer.isShown()) {
                     drawer.close();
+                    drawer.setVisible(false);
                 } else {
+                    drawer.setVisible(true);
                     drawer.open();
                 }
             });

@@ -148,6 +148,6 @@
                 </font>
             </JFXButton>
         </Pane>
-        <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" prefHeight="490.0" prefWidth="198.0"/>
+        <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" prefHeight="490.0" prefWidth="2.0"/>
     </children>
 </AnchorPane>

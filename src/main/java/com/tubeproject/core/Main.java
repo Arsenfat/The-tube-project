@@ -23,7 +23,7 @@ public class Main {
             3);
         user.crypt();*/
 
-        ViewMainScreen.startWindow();
+        TravelScreen.startWindow();
     }
 
 }
