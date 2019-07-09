@@ -72,7 +72,7 @@ public class Astar{
                 double cost = e.getCost();
                 double temp_g_scores = current.getG_scores() + cost;
                 double temp_f_scores = temp_g_scores + child.getH_scores(goal.getLatitude(), goal.getLongitude());
-                System.out.println(child.toString() + " wihth h value: " + child.getH_scores(goal.getLatitude(), goal.getLongitude()) + " and f value:" + temp_f_scores );
+                //System.out.println(child.toString() + " wihth h value: " + child.getH_scores(goal.getLatitude(), goal.getLongitude()) + " and f value:" + temp_f_scores );
 
                 //if the new f cost is higher then we skip it
 

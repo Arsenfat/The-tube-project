@@ -1,13 +1,18 @@
 package com.tubeproject.core;
 
-import com.tubeproject.controller.Astar;
-import com.tubeproject.controller.Edge;
-import com.tubeproject.controller.Node;
+import com.tubeproject.controller.*;
 import com.tubeproject.model.ContextMap;
+import com.tubeproject.model.DatabaseConnection;
+import com.tubeproject.model.Select;
+import com.tubeproject.model.requests.GetAllLinesWithStationsRequest;
+import com.tubeproject.model.requests.LoginRequest;
 import com.tubeproject.view.ViewMainScreen;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class Main {
     public static void main(String[] args) {
@@ -65,8 +70,6 @@ public class Main {
                 new Edge(n1,4),
                 new Edge(n3,2),
                 new Edge(n5,6)
-
-                //178
         });
 
         //Station 5
@@ -79,6 +82,37 @@ public class Main {
         List<Node> path = aStar.printPath(n5);
 
         System.out.println("Path: " + path);
+
+
+        try {
+            DatabaseConnection.DatabaseOpen();
+
+            GetAllLinesWithStationsRequest obj = new GetAllLinesWithStationsRequest();
+            Select select = new Select(obj);
+            Optional<?> opt = select.select();
+            boolean connected;
+            if (opt.isPresent()) {
+                List<Line> l = new ArrayList<>();
+                l = (List<Line>)opt.get();
+                System.out.println("is ok: " + l.get(1).getStations());
+                displayStationLocation(l);
+            }
+            else {
+                System.out.println("Impossible to retrieve lines");
+            }
+            DatabaseConnection.DatabaseClose();
+        } catch (SQLException e) {
+            System.out.println("Error: Connection to the server failed.");
+        }
+
+    }
+
+    public static void displayStationLocation (List<Line> l){
+
+        for (Station value : l.get(1).getStations()){
+            System.out.println("name is: " + value.getName() + " location: " + value.getLatitude() + " " + value.getLongitude());
+        }
+
     }
 
 }
