@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns:fx="http://javafx.com/fxml" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity" prefHeight="490.0" prefWidth="200.0" style="-fx-background-color: black;"
+      xmlns="http://javafx.com/javafx/11" fx:controller="com.tubeproject.view.component.BurgerMenuController">
+    <children>
+        <Label alignment="CENTER" prefHeight="66.0" prefWidth="200.0" text="Nom Prenom" textFill="#dad1d1"/>
+        <JFXButton fx:id="btnProfile" onAction="#profile" prefHeight="68.0" prefWidth="200.0"
+                   style="-fx-background-color: black;" text="Profile" textFill="#dad1d1">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXButton>
+        <JFXButton fx:id="btnHistory" onAction="#history" prefHeight="69.0" prefWidth="200.0"
+                   style="-fx-background-color: black;" text="History" textFill="#dad1d1">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXButton>
+        <JFXButton fx:id="btnLogOut" onAction="#logOut" prefHeight="66.0" prefWidth="200.0"
+                   style="-fx-background-color: Black;" text="Log out" textFill="#dad1d1">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXButton>
+        <JFXButton fx:id="btnAdministration" onAction="#administration" prefHeight="66.0" prefWidth="200.0"
+                   style="-fx-background-color: black;" text="Administration" textFill="#dad1d1">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXButton>
+    </children>
+</VBox>

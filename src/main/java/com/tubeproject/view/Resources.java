@@ -9,7 +9,6 @@ public class Resources {
         public static final String JOURNEY_SCREEN = "/view/JourneyScreen.fxml";
         public static final String CHANGE_PASSWORD_SCREEN = "/view/ChangePasswordScreen.fxml";
         public static final String ADMINISTRATOR_SCREEN = "/view/ViewAdministrator.fxml";
-        public static final String VBOX = "/view/Vbox.fxml";
         public static final String EDIT_FARES_SCREEN = "/view/EditFaresScreen.fxml";
         public static final String EDIT_LINES_SCREEN = "/view/EditLinesScreen.fxml";
         public static final String HISTORY_SCREEN = "/view/HistoryScreen.fxml";
@@ -41,5 +40,6 @@ public class Resources {
 
     public static class Components {
         public static final String TRAVEL_VIEWER = "/view/components/TravelViewer.fxml";
+        public static final String BURGER_MENU = "/view/components/BurgerMenu.fxml";
     }
 }
