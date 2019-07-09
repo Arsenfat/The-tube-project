@@ -1,5 +1,7 @@
 package com.tubeproject.controller;
 
+import java.util.Objects;
+
 public class Station {
     private String naptan;
     private String name;
@@ -68,5 +70,22 @@ public class Station {
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Station station = (Station) o;
+        return wheelchair == station.wheelchair &&
+                Double.compare(station.latitude, latitude) == 0 &&
+                Double.compare(station.longitude, longitude) == 0 &&
+                naptan.equals(station.naptan) &&
+                name.equals(station.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(naptan, name, wheelchair, latitude, longitude);
     }
 }
