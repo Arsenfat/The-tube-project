@@ -1,13 +1,24 @@
 package com.tubeproject.controller;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Line {
 
+    private int id;
     private String name;
-    private ArrayList<Station> stations = new ArrayList<Station>();
+    private List<Station> stations;
 
-    public Line(String name, ArrayList<Station> stations) {
+    public Line() {
+
+    }
+
+    public Line(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Line(int id, String name, List<Station> stations) {
+        this.id = id;
         this.name = name;
         this.stations = stations;
     }
@@ -20,11 +31,27 @@ public class Line {
         this.name = name;
     }
 
-    public ArrayList<Station> getStations() {
+    public List<Station> getStations() {
         return stations;
     }
 
-    public void setStations(ArrayList<Station> stations) {
+    public void setStations(List<Station> stations) {
         this.stations = stations;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

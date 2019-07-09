@@ -52,6 +52,12 @@
             <version>RELEASE</version>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.8</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -83,10 +89,12 @@
                 <directory>src/main/resources</directory>
                 <includes>
                     <include>view/*.fxml</include>
+                    <include>view/*/*.fxml</include>
                     <include>css/*.css</include>
                     <include>img/*.jpg</include>
                     <include>img/*.png</include>
                     <include>img/*.gif</include>
+                    <include>manip.json</include>
                 </includes>
             </resource>
         </resources>

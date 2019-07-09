@@ -217,7 +217,9 @@ public class LoginScreen extends Application implements Initializable {
                 u = (User) (opt.get());
                 connected = Login.checkPassword(txtPassword.getText(), u.getPassword(), u.getSalt());
                 if (connected) {
-                    ContextMap.getContextMap().put("USER", u);
+                    u.setSalt("");
+                    u.setPassword("");
+                    ContextMap.getContextMap().put("user", u);
                     changeLabelVisibility(false);
 
                     changeNodeColor(txtPassword, black);

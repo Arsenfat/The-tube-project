@@ -11,7 +11,7 @@ public class UserBuilder {
     private String email;
     private String password;
     private int role;
-    private String salt = "";
+    private String salt;
 
     public UserBuilder setFirstName(String firstName) {
         this.firstName = firstName;
