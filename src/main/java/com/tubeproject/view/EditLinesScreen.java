@@ -12,7 +12,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -23,7 +22,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class EditLinesScreen extends Application implements Initializable {
@@ -54,7 +52,6 @@ public class EditLinesScreen extends Application implements Initializable {
 
     @FXML
     private void handleButtonActionHomePage() {
-        System.out.println("you've clicked");
         AnchorPane homePage;
         try {
             homePage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.MAIN_SCREEN));
@@ -94,19 +91,6 @@ public class EditLinesScreen extends Application implements Initializable {
         initializeBurger();
     }
 
-    public static ArrayList<Node> getAllNodes(Parent root) {
-        ArrayList<Node> nodes = new ArrayList<Node>();
-        addAllDescendents(root, nodes);
-        return nodes;
-    }
-
-    private static void addAllDescendents(Parent parent, ArrayList<Node> nodes) {
-        for (Node node : parent.getChildrenUnmodifiable()) {
-            nodes.add(node);
-            if (node instanceof Parent)
-                addAllDescendents((Parent) node, nodes);
-        }
-    }
 
     private void initializeBackground() {
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, false, false);

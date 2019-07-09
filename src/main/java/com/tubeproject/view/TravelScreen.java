@@ -130,7 +130,6 @@ public class TravelScreen extends Application implements Initializable {
 
     @FXML
     private void handleButtonActionHomePage() {
-        System.out.println("you've clicked");
         AnchorPane homePage;
         try {
             homePage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.MAIN_SCREEN));
