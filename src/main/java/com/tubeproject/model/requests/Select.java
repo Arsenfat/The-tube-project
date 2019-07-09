@@ -15,8 +15,11 @@ public class Select {
     public Select(Selectable s) {
 
         selectable = s;
-        if (selectable.getClass().getAnnotation(Description.class) != null)
-            description = selectable.getClass().getAnnotation(Description.class).value();
+        try {
+            description = selectable.getClass().getMethod("getSelectQuery").getAnnotation(Description.class).value();
+        } catch (NoSuchMethodException e) {
+            System.out.println(e);
+        }
     }
 
     public Optional<?> select() {
