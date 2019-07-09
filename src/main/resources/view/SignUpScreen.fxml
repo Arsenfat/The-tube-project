@@ -1,32 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.text.Font?>
+
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="512.0" prefWidth="761.0" xmlns="http://javafx.com/javafx/11.0.1"
+            prefHeight="490.0" prefWidth="772.0" xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tubeproject.view.SignUpScreen">
     <children>
-        <Label layoutX="109.0" layoutY="126.0" text="First name" textFill="#151928">
+        <Label layoutX="105.0" layoutY="99.0" text="First name" textFill="#151928">
             <font>
                 <Font size="16.0"/>
             </font>
         </Label>
-        <Label layoutX="109.0" layoutY="221.0" text="E-mail" textFill="#151928">
+        <Label layoutX="109.0" layoutY="208.0" text="E-mail" textFill="#151928">
             <font>
                 <Font size="16.0"/>
             </font>
         </Label>
-        <Label layoutX="108.0" layoutY="317.0" text="Password" textFill="#151928">
+        <Label layoutX="108.0" layoutY="307.0" text="Password" textFill="#151928">
             <font>
                 <Font size="16.0"/>
             </font>
         </Label>
-        <JFXTextField fx:id="txtFirstName" alignment="TOP_LEFT" focusColor="#744b4a" layoutX="109.0" layoutY="152.0"
+        <JFXTextField fx:id="txtFirstName" alignment="TOP_LEFT" focusColor="#744b4a" layoutX="98.0" layoutY="133.0"
                       prefHeight="38.0" prefWidth="185.0"
                       style="-fx-text-inner-color: #151928; -fx-prompt-text-fill: #151928;" unFocusColor="#151928">
             <opaqueInsets>
@@ -35,8 +40,11 @@
             <font>
                 <Font size="16.0"/>
             </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
         </JFXTextField>
-        <JFXTextField fx:id="txtMail" alignment="TOP_LEFT" focusColor="#744b4a" layoutX="109.0" layoutY="247.0"
+        <JFXTextField fx:id="txtMail" alignment="TOP_LEFT" focusColor="#744b4a" layoutX="98.0" layoutY="245.0"
                       prefHeight="38.0" prefWidth="185.0"
                       style="-fx-text-inner-color: #151928; -fx-prompt-text-fill: #151928;" unFocusColor="#151928">
             <opaqueInsets>
@@ -45,13 +53,16 @@
             <font>
                 <Font size="16.0"/>
             </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
         </JFXTextField>
-        <Label layoutX="466.0" layoutY="126.0" text="Last Name" textFill="#151928">
+        <Label layoutX="452.0" layoutY="99.0" text="Last Name" textFill="#151928">
             <font>
                 <Font size="16.0"/>
             </font>
         </Label>
-        <JFXTextField fx:id="txtLastName" alignment="TOP_LEFT" focusColor="#744b4a" layoutX="466.0" layoutY="152.0"
+        <JFXTextField fx:id="txtLastName" alignment="TOP_LEFT" focusColor="#744b4a" layoutX="452.0" layoutY="133.0"
                       prefHeight="38.0" prefWidth="185.0"
                       style="-fx-text-inner-color: #151928; -fx-prompt-text-fill: #151928;" unFocusColor="#151928">
             <opaqueInsets>
@@ -60,30 +71,43 @@
             <font>
                 <Font size="16.0"/>
             </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
         </JFXTextField>
-        <Label layoutX="466.0" layoutY="221.0" text="Birth date" textFill="#151928">
+        <Label layoutX="455.0" layoutY="208.0" text="Birth date" textFill="#151928">
             <font>
                 <Font size="16.0"/>
             </font>
         </Label>
-        <JFXButton fx:id="signUpButton" layoutX="465.0" layoutY="343.0" onAction="#handleButtonActionTrySignUp"
+        <JFXButton fx:id="signUpButton" layoutX="451.0" layoutY="343.0" onAction="#handleButtonActionTrySignUp"
                    prefHeight="38.0" prefWidth="186.0" style="-fx-background-color: #151928;" text="Sign Up"
                    textFill="#dad1d1">
             <font>
                 <Font size="16.0"/>
             </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
         </JFXButton>
-        <JFXPasswordField fx:id="txtPassword" alignment="TOP_LEFT" focusColor="#744b4a" layoutX="108.0" layoutY="343.0"
+        <JFXPasswordField fx:id="txtPassword" alignment="TOP_LEFT" focusColor="#744b4a" layoutX="97.0" layoutY="343.0"
                           prefHeight="38.0" prefWidth="186.0"
                           style="-fx-prompt-text-fill: #151928; -fx-text-inner-color: #151928;" unFocusColor="#151928">
             <font>
                 <Font size="16.0"/>
             </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
         </JFXPasswordField>
-        <Pane layoutX="-5.0" prefHeight="62.0" prefWidth="769.0" style="-fx-background-color: #000000;">
+        <Pane layoutX="-5.0" prefHeight="62.0" prefWidth="779.0" style="-fx-background-color: #000000;">
             <children>
                 <ImageView fx:id="imgView" fitHeight="31.0" fitWidth="102.0" layoutX="47.0" layoutY="18.0"
-                           onMouseClicked="#handleButtonActionHomePage" pickOnBounds="true" preserveRatio="true"/>
+                           onMouseClicked="#handleButtonActionHomePage" pickOnBounds="true" preserveRatio="true">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </ImageView>
                 <Label layoutX="342.0" layoutY="15.0" prefHeight="38.0" prefWidth="86.0" text="Sign Up"
                        textFill="#dad1d1">
                     <font>
@@ -95,7 +119,7 @@
                 <Insets/>
             </opaqueInsets>
         </Pane>
-        <Pane layoutX="-5.0" layoutY="449.0" prefHeight="62.0" prefWidth="772.0" style="-fx-background-color: #000000;">
+        <Pane layoutY="427.0" prefHeight="62.0" prefWidth="772.0" style="-fx-background-color: #000000;">
             <opaqueInsets>
                 <Insets/>
             </opaqueInsets>
@@ -106,15 +130,19 @@
                 <JFXButton fx:id="mailIcon" layoutX="734.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
             </children>
         </Pane>
-        <Label fx:id="lbConnectToServer" alignment="CENTER" layoutX="98.0" layoutY="383.0" prefHeight="131.0"
+        <Label fx:id="lbConnectToServer" alignment="CENTER" layoutX="98.0" layoutY="357.0" prefHeight="131.0"
                prefWidth="206.0" style="-fx-background-color: black;" text="Unabled to connect to the server."
                textAlignment="CENTER" textFill="#dad1d1" visible="false"/>
-        <Label fx:id="txtLabel" layoutX="229.0" layoutY="86.0" text="An information is incorrect or already used."
+        <Label fx:id="txtLabel" layoutX="232.0" layoutY="73.0" text="An information is incorrect or already used."
                textFill="#ef5353" visible="false">
             <font>
                 <Font size="16.0"/>
             </font>
         </Label>
-        <DatePicker fx:id="datePicker" layoutX="471.0" layoutY="281.0"/>
+        <DatePicker fx:id="datePicker" layoutX="449.0" layoutY="264.0">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </DatePicker>
     </children>
 </AnchorPane>

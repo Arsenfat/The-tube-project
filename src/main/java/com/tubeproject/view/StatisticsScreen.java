@@ -39,7 +39,7 @@ import java.time.LocalTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class ViewAdministrator extends Application implements Initializable {
+public class StatisticsScreen extends Application implements Initializable {
 
     @FXML
     private ImageView imgView;
@@ -60,12 +60,10 @@ public class ViewAdministrator extends Application implements Initializable {
     private JFXButton mailIcon;
 
     @FXML
-    private JFXDrawer drawer;
-
-    @FXML
     private JFXHamburger burger;
 
-
+    @FXML
+    private JFXDrawer drawer;
 
     @FXML
     private void handleButtonActionHomePage() {
@@ -90,12 +88,12 @@ public class ViewAdministrator extends Application implements Initializable {
 
     @Override
     public void start(Stage stage) throws Exception {
-        anchorPane = FXMLUtils.loadFXML(Resources.ViewFiles.ADMINISTRATOR_SCREEN);
+        anchorPane = FXMLUtils.loadFXML(Resources.ViewFiles.STATISTICS_SCREEN);
 
         Scene scene = new Scene(anchorPane);
         stage.setScene(scene);
         stage.show();
-        scene.getStylesheets().add(getClass().getResource(Resources.Stylesheets.MENU).toExternalForm());
+
     }
 
 
@@ -155,7 +153,6 @@ public class ViewAdministrator extends Application implements Initializable {
 
     }
 
-
     public void initializeBurger() {
         try {
             VBox vbox = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.VBOX));
@@ -176,7 +173,6 @@ public class ViewAdministrator extends Application implements Initializable {
                                 Scene homeScene = new Scene(historyPage);
                                 Stage homeStage = (Stage) anchorPane.getScene().getWindow();
                                 homeStage.setScene(homeScene);
-                                homeScene.getStylesheets().add(getClass().getResource(Resources.Stylesheets.MENU).toExternalForm());
                                 homeStage.show();
                                 break;
                             case "btnAdministration":
@@ -207,6 +203,7 @@ public class ViewAdministrator extends Application implements Initializable {
                                 homeScene = new Scene(homePage);
                                 homeStage = (Stage) anchorPane.getScene().getWindow();
                                 homeStage.setScene(homeScene);
+                                homeScene.getStylesheets().add(getClass().getResource(Resources.Stylesheets.MENU).toExternalForm());
                                 homeStage.show();
                                 break;
                             case "btnProfile":

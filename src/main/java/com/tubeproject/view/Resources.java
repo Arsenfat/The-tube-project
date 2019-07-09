@@ -6,6 +6,16 @@ public class Resources {
         public static final String MAIN_SCREEN = "/view/ViewMainScreen.fxml";
         public static final String SIGN_UP_SCREEN = "/view/SignUpScreen.fxml";
         public static final String TRAVEL_SCREEN = "/view/TravelScreen.fxml";
+        public static final String JOURNEY_SCREEN = "/view/JourneyScreen.fxml";
+        public static final String CHANGE_PASSWORD_SCREEN = "/view/ChangePasswordScreen.fxml";
+        public static final String ADMINISTRATOR_SCREEN = "/view/ViewAdministrator.fxml";
+        public static final String VBOX = "/view/Vbox.fxml";
+        public static final String EDIT_FARES_SCREEN = "/view/EditFaresScreen.fxml";
+        public static final String EDIT_LINES_SCREEN = "/view/EditLinesScreen.fxml";
+        public static final String HISTORY_SCREEN = "/view/HistoryScreen.fxml";
+        public static final String STATISTICS_SCREEN = "/view/StatisticsScreen.fxml";
+        public static final String PROFIL_SCREEN = "/view/ProfilScreen.fxml";
+        public static final String JOURNEY_INFORMATIONS_SCREEN = "/view/JourneyInformationsScreen.fxml";
     }
 
     public static class Images {
@@ -25,7 +35,7 @@ public class Resources {
     }
 
     public static class Stylesheets {
-        public static final String TRAVEL_SCREEN = "/css/TravelScreen.css";
+        public static final String MENU = "/css/Menu.css";
         public static final String SIGN_UP_SCREEN = "/css/SignUpScreen.css";
     }
 

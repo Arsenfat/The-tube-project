@@ -1,11 +1,19 @@
 package com.tubeproject.view;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXTimePicker;
+import com.tubeproject.controller.Station;
+import com.tubeproject.controller.Zone;
+import com.tubeproject.model.DatabaseConnection;
+import com.tubeproject.model.Select;
+import com.tubeproject.model.requests.GetAllStations;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import javafx.application.Application;
-import javafx.collections.ObservableList;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -14,22 +22,25 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Hyperlink;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import org.controlsfx.control.textfield.TextFields;
+import org.w3c.dom.Text;
 
-import java.awt.*;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.*;
+import java.util.stream.Collectors;
 
-public class ViewMainScreen extends Application implements Initializable {
+public class ChangePasswordScreen extends Application implements Initializable {
 
     @FXML
     private ImageView imgView;
@@ -51,66 +62,21 @@ public class ViewMainScreen extends Application implements Initializable {
 
 
     @FXML
-    private void handleButtonActionFacebook(ActionEvent event) {
-        Hyperlink myHyperlink = new Hyperlink();
-        myHyperlink.setText("My Link Text");
-
-        myHyperlink.setOnAction(e -> {
-            if (Desktop.isDesktopSupported()) {
-                try {
-                    Desktop.getDesktop().browse(new URI("https://www.facebook.com/Tube-Project-600314397160600/"));
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                } catch (URISyntaxException e1) {
-                    e1.printStackTrace();
-                }
-            }
-        });
-    }
-
-    @FXML
-    private void handleButtonActionTwitter(ActionEvent event) {
-
-    }
-
-    @FXML
-    private void HandleButtonActionEmail(ActionEvent event) {
-
-    }
-
-    @FXML
-    private void handleButtonActionLogin(ActionEvent event) {
-        AnchorPane loginPage;
+    private void handleButtonActionHomePage() {
+        System.out.println("you've clicked");
+        AnchorPane homePage;
         try {
-            loginPage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.LOGIN_SCREEN));
+            homePage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.MAIN_SCREEN));
 
         } catch (IOException e) {
             System.out.println("Warning unandled exeption.");
             return;
         }
-        Scene loginScene = new Scene(loginPage);
-        Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        loginStage.setScene(loginScene);
-        loginStage.show();
+        Scene homeScene = new Scene(homePage);
+        Stage homeStage = (Stage) anchorPane.getScene().getWindow();
+        homeStage.setScene(homeScene);
+        homeStage.show();
     }
-
-    @FXML
-    private void handleButtonActionSignUp(ActionEvent event) {
-        AnchorPane signUpPage;
-        try {
-            signUpPage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.SIGN_UP_SCREEN));
-
-        } catch (IOException e) {
-            System.out.println("Warning unandled exeption.");
-            return;
-        }
-        Scene signUpScene = new Scene(signUpPage);
-        Stage signUpStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        signUpStage.setScene(signUpScene);
-        signUpStage.show();
-    }
-
-
 
     public static void startWindow() {
         launch();
@@ -118,12 +84,12 @@ public class ViewMainScreen extends Application implements Initializable {
 
     @Override
     public void start(Stage stage) throws Exception {
-        AnchorPane anchorPane = FXMLUtils.loadFXML(Resources.ViewFiles.MAIN_SCREEN);
+        anchorPane = FXMLUtils.loadFXML(Resources.ViewFiles.CHANGE_PASSWORD_SCREEN);
 
         Scene scene = new Scene(anchorPane);
         stage.setScene(scene);
-        stage.setResizable(false);
         stage.show();
+
     }
 
 
@@ -132,6 +98,20 @@ public class ViewMainScreen extends Application implements Initializable {
         initializeImgView();
         initializeBackground();
         initializeIcons();
+    }
+
+    public static ArrayList<Node> getAllNodes(Parent root) {
+        ArrayList<Node> nodes = new ArrayList<Node>();
+        addAllDescendents(root, nodes);
+        return nodes;
+    }
+
+    private static void addAllDescendents(Parent parent, ArrayList<Node> nodes) {
+        for (Node node : parent.getChildrenUnmodifiable()) {
+            nodes.add(node);
+            if (node instanceof Parent)
+                addAllDescendents((Parent) node, nodes);
+        }
     }
 
     private void initializeBackground() {
@@ -165,6 +145,6 @@ public class ViewMainScreen extends Application implements Initializable {
         bgImg = ImageUtils.loadBackgroundImage(Resources.Images.MAIL, backgroundSize);
         mailIcon.setBackground(new Background(bgImg));
 
-
     }
+
 }

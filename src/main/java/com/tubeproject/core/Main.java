@@ -25,6 +25,7 @@ import java.util.Optional;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
+
         //Toujours initialiser la context map
         Map<String, Object> ctxMap = ContextMap.getContextMap();
         DatabaseConnection.DatabaseOpen();
@@ -127,7 +128,6 @@ public class Main {
         for (Station value : l.get(1).getStations()){
             System.out.println("name is: " + value.getName() + " location: " + value.getLatitude() + " " + value.getLongitude());
         }
-
     }
 
 }

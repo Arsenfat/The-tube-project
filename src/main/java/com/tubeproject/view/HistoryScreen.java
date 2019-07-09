@@ -39,7 +39,7 @@ import java.time.LocalTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class ViewAdministrator extends Application implements Initializable {
+public class HistoryScreen extends Application implements Initializable {
 
     @FXML
     private ImageView imgView;
@@ -60,12 +60,10 @@ public class ViewAdministrator extends Application implements Initializable {
     private JFXButton mailIcon;
 
     @FXML
-    private JFXDrawer drawer;
-
-    @FXML
     private JFXHamburger burger;
 
-
+    @FXML
+    private JFXDrawer drawer;
 
     @FXML
     private void handleButtonActionHomePage() {
@@ -90,12 +88,13 @@ public class ViewAdministrator extends Application implements Initializable {
 
     @Override
     public void start(Stage stage) throws Exception {
-        anchorPane = FXMLUtils.loadFXML(Resources.ViewFiles.ADMINISTRATOR_SCREEN);
+        anchorPane = FXMLUtils.loadFXML(Resources.ViewFiles.HISTORY_SCREEN);
 
         Scene scene = new Scene(anchorPane);
         stage.setScene(scene);
         stage.show();
         scene.getStylesheets().add(getClass().getResource(Resources.Stylesheets.MENU).toExternalForm());
+
     }
 
 
@@ -154,7 +153,6 @@ public class ViewAdministrator extends Application implements Initializable {
         mailIcon.setBackground(new Background(bgImg));
 
     }
-
 
     public void initializeBurger() {
         try {
@@ -249,3 +247,4 @@ public class ViewAdministrator extends Application implements Initializable {
     }
 
 }
+

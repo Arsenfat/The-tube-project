@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -22,6 +23,9 @@
             <font>
                 <Font size="16.0"/>
             </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
         </JFXButton>
         <Label layoutX="199.0" layoutY="218.0" text="Do you want to go to Baker street ? " textFill="#151928">
             <font>
@@ -31,12 +35,19 @@
         <Pane prefHeight="62.0" prefWidth="772.0" style="-fx-background-color: #000000;">
             <children>
                 <ImageView fx:id="imgView" fitHeight="31.0" fitWidth="102.0" layoutX="47.0" layoutY="18.0"
-                           pickOnBounds="true" preserveRatio="true"/>
+                           pickOnBounds="true" preserveRatio="true">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </ImageView>
                 <JFXButton layoutX="670.0" layoutY="12.0" onAction="#handleButtonActionSignUp"
                            style="-fx-background-color: #dad1d1;" text="Sign Up" textFill="#151928">
                     <font>
                         <Font size="16.0"/>
                     </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
                 </JFXButton>
             </children>
             <opaqueInsets>
@@ -48,16 +59,22 @@
             <font>
                 <Font size="16.0"/>
             </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
         </JFXButton>
         <Pane layoutY="428.0" prefHeight="62.0" prefWidth="772.0" style="-fx-background-color: #000000;">
             <opaqueInsets>
                 <Insets/>
             </opaqueInsets>
             <children>
-                <JFXButton fx:id="facebookIcon" layoutX="636.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
-                <JFXButton fx:id="twitterIcon" layoutX="668.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
+                <JFXButton fx:id="facebookIcon" layoutX="636.0" layoutY="19.0" onAction="#handleButtonActionFacebook"
+                           prefHeight="25.0" prefWidth="24.0"/>
+                <JFXButton fx:id="twitterIcon" layoutX="668.0" layoutY="19.0" onAction="#handleButtonActionTwitter"
+                           prefHeight="25.0" prefWidth="24.0"/>
                 <JFXButton fx:id="instagramIcon" layoutX="700.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
-                <JFXButton fx:id="mailIcon" layoutX="734.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
+                <JFXButton fx:id="mailIcon" layoutX="734.0" layoutY="19.0" onAction="#HandleButtonActionEmail"
+                           prefHeight="25.0" prefWidth="24.0"/>
             </children>
         </Pane>
     </children>

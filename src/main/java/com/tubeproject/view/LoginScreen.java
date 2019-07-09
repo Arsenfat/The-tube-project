@@ -93,6 +93,22 @@ public class LoginScreen extends Application implements Initializable {
         homeStage.show();
     }
 
+    @FXML
+    private void handleButtonActionForgotPassword() {
+        AnchorPane homePage;
+        try {
+            homePage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.CHANGE_PASSWORD_SCREEN));
+
+        } catch (IOException e) {
+            System.out.println("Warning unandled exeption.");
+            return;
+        }
+        Scene homeScene = new Scene(homePage);
+        Stage homeStage = (Stage) anchorPane.getScene().getWindow();
+        homeStage.setScene(homeScene);
+        homeStage.show();
+    }
+
 
     @FXML
     private void handleButtonActionSignUp(ActionEvent event) {
@@ -208,7 +224,18 @@ public class LoginScreen extends Application implements Initializable {
 
                     changeNodeColor(txtPassword, black);
                     changeNodeColor(txtUsername, black);
-                    //INSERT CHANGEMENT DE SCENE
+                    AnchorPane homePage;
+                    try {
+                        homePage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.TRAVEL_SCREEN));
+
+                    } catch (IOException e) {
+                        System.out.println("Warning unandled exeption.");
+                        return;
+                    }
+                    Scene homeScene = new Scene(homePage);
+                    Stage homeStage = (Stage) anchorPane.getScene().getWindow();
+                    homeStage.setScene(homeScene);
+                    homeStage.show();
                 }
             } else
                 connected = false;
