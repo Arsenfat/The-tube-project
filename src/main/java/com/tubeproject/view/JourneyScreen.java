@@ -1,11 +1,10 @@
 package com.tubeproject.view;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXHamburger;
-import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXTimePicker;
+import com.jfoenix.controls.*;
+import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 import com.tubeproject.controller.Station;
 import com.tubeproject.controller.Zone;
+import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.DatabaseConnection;
 import com.tubeproject.model.Select;
 import com.tubeproject.model.requests.GetAllStations;
@@ -60,6 +59,11 @@ public class JourneyScreen extends Application implements Initializable {
     @FXML
     private JFXButton mailIcon;
 
+    @FXML
+    private JFXHamburger burger;
+
+    @FXML
+    private JFXDrawer drawer;
 
     @FXML
     private void handleButtonActionHomePage() {
@@ -89,15 +93,18 @@ public class JourneyScreen extends Application implements Initializable {
         Scene scene = new Scene(anchorPane);
         stage.setScene(scene);
         stage.show();
+        scene.getStylesheets().add(getClass().getResource(Resources.Stylesheets.TRAVEL_SCREEN).toExternalForm());
 
     }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        drawer.setVisible(false);
         initializeImgView();
         initializeBackground();
         initializeIcons();
+        initializeBurger();
     }
 
     public static ArrayList<Node> getAllNodes(Parent root) {
@@ -144,6 +151,73 @@ public class JourneyScreen extends Application implements Initializable {
         backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
         bgImg = ImageUtils.loadBackgroundImage(Resources.Images.MAIL, backgroundSize);
         mailIcon.setBackground(new Background(bgImg));
+
+    }
+
+    public void initializeBurger() {
+        try {
+            VBox vbox = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.VBOX));
+            drawer.setSidePane(vbox);
+            for (Node node : vbox.getChildren()) {
+                if (node.getId() != null) {
+                    node.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
+                        switch (node.getId()) {
+                            case "btnHistory":
+                                //TODO
+                                break;
+                            case "btnAdministration":
+                                AnchorPane administrationPage;
+                                try {
+                                    administrationPage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.ADMINISTRATOR_SCREEN));
+
+                                } catch (IOException ex) {
+                                    System.out.println("Warning unandled exeption.");
+                                    return;
+                                }
+                                Scene homeScene = new Scene(administrationPage);
+                                Stage homeStage = (Stage) anchorPane.getScene().getWindow();
+                                homeStage.setScene(homeScene);
+                                homeStage.show();
+                                break;
+                            case "btnLogOut":
+                                ContextMap.getContextMap().put("USER", null);
+                                AnchorPane homePage;
+                                try {
+                                    homePage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.MAIN_SCREEN));
+
+                                } catch (IOException ex) {
+                                    System.out.println("Warning unandled exeption.");
+                                    return;
+                                }
+                                homeScene = new Scene(homePage);
+                                homeStage = (Stage) anchorPane.getScene().getWindow();
+                                homeStage.setScene(homeScene);
+                                homeStage.show();
+                                break;
+                            case "btnProfile":
+                                //TODO
+                                break;
+                        }
+                    });
+                }
+            }
+
+            HamburgerSlideCloseTransition transition = new HamburgerSlideCloseTransition(burger);
+            transition.setRate(-1);
+            burger.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
+                transition.setRate(transition.getRate() * -1);
+                transition.play();
+                if (drawer.isShown()) {
+                    drawer.close();
+                    drawer.setVisible(false);
+                } else {
+                    drawer.setVisible(true);
+                    drawer.open();
+                }
+            });
+        } catch (Exception e) {
+            System.out.println(e);
+        }
 
     }
 

@@ -10,6 +10,11 @@ public class Resources {
         public static final String CHANGE_PASSWORD_SCREEN = "/view/ChangePasswordScreen.fxml";
         public static final String ADMINISTRATOR_SCREEN = "/view/ViewAdministrator.fxml";
         public static final String VBOX = "/view/Vbox.fxml";
+        public static final String EDIT_FARES_SCREEN = "/view/EditFaresScreen.fxml";
+        public static final String EDIT_LINES_SCREEN = "/view/EditLinesScreen.fxml";
+        public static final String HISTORY_SCREEN = "/view/SignUpScreen.fxml";
+        public static final String STATISTICS_SCREEN = "/view/StatisticsScreen.fxml";
+        public static final String PROFIL_SCREEN = "/view/ProfilScreen.fxml";
     }
 
     public static class Images {
