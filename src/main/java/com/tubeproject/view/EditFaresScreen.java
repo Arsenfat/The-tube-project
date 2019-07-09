@@ -6,11 +6,9 @@ import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
-import com.tubeproject.view.component.BurgerMenu;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -115,7 +113,7 @@ public class EditFaresScreen extends Application implements Initializable {
     }
 
     public void initializeBurger() {
-        drawer.setSidePane(new BurgerMenu());
+        //drawer.setSidePane(new BurgerMenu());
 
         HamburgerSlideCloseTransition transition = new HamburgerSlideCloseTransition(burger);
         transition.setRate(-1);
