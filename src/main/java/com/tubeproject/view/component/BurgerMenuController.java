@@ -1,5 +1,6 @@
 package com.tubeproject.view.component;
 
+import com.tubeproject.controller.User;
 import com.tubeproject.model.ContextMap;
 import com.tubeproject.view.Resources;
 import com.tubeproject.view.StageManager;
@@ -7,15 +8,44 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class BurgerMenuController implements Initializable {
 
+    private User user;
+
+    @FXML
+    private Label userInfo;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    }
 
+
+    public void kickNotLoggedIn() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Not connected");
+        alert.setHeaderText("You must be logged in to access this page");
+        alert.showAndWait();
+
+        StageManager.changeStage(userInfo, Resources.ViewFiles.LOGIN_SCREEN);
+    }
+
+    public void checkUserLoggedIn(User user) {
+        this.user = user;
+        if (user == null) {
+            kickNotLoggedIn();
+            return;
+        }
+        setUserInfo(user);
+    }
+
+    private void setUserInfo(User user) {
+        userInfo.setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
     }
 
     @FXML
