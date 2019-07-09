@@ -9,10 +9,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 
-public class DuplicateMailRequest implements Selectable {
+public class EmailExistsRequest implements Selectable {
     private String email;
 
-    public DuplicateMailRequest(String email) {
+    public EmailExistsRequest(String email) {
         this.email = email;
     }
 
@@ -29,12 +29,12 @@ public class DuplicateMailRequest implements Selectable {
     public Optional<Boolean> buildFromResult(ResultSet resultSet) {
         try {
             if (resultSet.next()) {
-                return Optional.of(Boolean.FALSE);
+                return Optional.of(Boolean.TRUE);
             }
         } catch (SQLException e) {
             System.out.println(e);
-            return Optional.of(Boolean.TRUE);
+            return Optional.of(Boolean.FALSE);
         }
-        return Optional.of(Boolean.TRUE);
+        return Optional.of(Boolean.FALSE);
     }
 }
