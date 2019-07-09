@@ -15,7 +15,6 @@ import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import javafx.application.Application;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -29,7 +28,6 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
@@ -73,19 +71,7 @@ public class ChangePasswordScreen extends Application implements Initializable {
 
     @FXML
     private void handleButtonActionHomePage() {
-        System.out.println("you've clicked");
-        AnchorPane homePage;
-        try {
-            homePage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.MAIN_SCREEN));
-
-        } catch (IOException e) {
-            System.out.println("Warning unandled exeption.");
-            return;
-        }
-        Scene homeScene = new Scene(homePage);
-        Stage homeStage = (Stage) anchorPane.getScene().getWindow();
-        homeStage.setScene(homeScene);
-        homeStage.show();
+        StageManager.changeStage(anchorPane, Resources.ViewFiles.MAIN_SCREEN);
     }
 
     public static void startWindow() {
@@ -212,18 +198,8 @@ public class ChangePasswordScreen extends Application implements Initializable {
             alert.setContentText("Your password has been changed successfully !");
 
             alert.showAndWait();
-            AnchorPane loginScreen;
-            try {
-                loginScreen = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.MAIN_SCREEN));
+            StageManager.changeStage(anchorPane, Resources.ViewFiles.LOGIN_SCREEN);
 
-            } catch (IOException e) {
-                System.out.println("Warning unandled exeption.");
-                return;
-            }
-            Scene homeScene = new Scene(loginScreen);
-            Stage homeStage = (Stage) anchorPane.getScene().getWindow();
-            homeStage.setScene(homeScene);
-            homeStage.show();
         }
 
 

@@ -4,12 +4,11 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
-import com.tubeproject.model.ContextMap;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
+import com.tubeproject.view.component.BurgerMenu;
 import javafx.application.Application;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -17,10 +16,12 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundSize;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
@@ -54,19 +55,7 @@ public class JourneyScreen extends Application implements Initializable {
 
     @FXML
     private void handleButtonActionHomePage() {
-        System.out.println("you've clicked");
-        AnchorPane homePage;
-        try {
-            homePage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.MAIN_SCREEN));
-
-        } catch (IOException e) {
-            System.out.println("Warning unandled exeption.");
-            return;
-        }
-        Scene homeScene = new Scene(homePage);
-        Stage homeStage = (Stage) anchorPane.getScene().getWindow();
-        homeStage.setScene(homeScene);
-        homeStage.show();
+        StageManager.changeStage(anchorPane, Resources.ViewFiles.MAIN_SCREEN);
     }
 
     public static void startWindow() {
@@ -142,94 +131,20 @@ public class JourneyScreen extends Application implements Initializable {
     }
 
     public void initializeBurger() {
-        try {
-            VBox vbox = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.VBOX));
-            drawer.setSidePane(vbox);
-            for (Node node : vbox.getChildren()) {
-                if (node.getId() != null) {
-                    node.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
-                        switch (node.getId()) {
-                            case "btnHistory":
-                                AnchorPane historyPage;
-                                try {
-                                    historyPage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.HISTORY_SCREEN));
-
-                                } catch (IOException ex) {
-                                    System.out.println("Warning unandled exeption.");
-                                    return;
-                                }
-                                Scene homeScene = new Scene(historyPage);
-                                Stage homeStage = (Stage) anchorPane.getScene().getWindow();
-                                homeStage.setScene(homeScene);
-                                homeStage.show();
-                                break;
-                            case "btnAdministration":
-                                AnchorPane administrationPage;
-                                try {
-                                    administrationPage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.ADMINISTRATOR_SCREEN));
-
-                                } catch (IOException ex) {
-                                    System.out.println("Warning unandled exeption.");
-                                    return;
-                                }
-                                homeScene = new Scene(administrationPage);
-                                homeStage = (Stage) anchorPane.getScene().getWindow();
-                                homeStage.setScene(homeScene);
-                                homeScene.getStylesheets().add(getClass().getResource(Resources.Stylesheets.MENU).toExternalForm());
-                                homeStage.show();
-                                break;
-                            case "btnLogOut":
-                                ContextMap.getContextMap().put("USER", null);
-                                AnchorPane homePage;
-                                try {
-                                    homePage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.MAIN_SCREEN));
-
-                                } catch (IOException ex) {
-                                    System.out.println("Warning unandled exeption.");
-                                    return;
-                                }
-                                homeScene = new Scene(homePage);
-                                homeStage = (Stage) anchorPane.getScene().getWindow();
-                                homeStage.setScene(homeScene);
-                                homeScene.getStylesheets().add(getClass().getResource(Resources.Stylesheets.MENU).toExternalForm());
-                                homeStage.show();
-                                break;
-                            case "btnProfile":
-                                AnchorPane profilPage;
-                                try {
-                                    profilPage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.PROFIL_SCREEN));
-
-                                } catch (IOException ex) {
-                                    System.out.println("Warning unandled exeption.");
-                                    return;
-                                }
-                                homeScene = new Scene(profilPage);
-                                homeStage = (Stage) anchorPane.getScene().getWindow();
-                                homeStage.setScene(homeScene);
-                                homeScene.getStylesheets().add(getClass().getResource(Resources.Stylesheets.MENU).toExternalForm());
-                                homeStage.show();
-                                break;
-                        }
-                    });
-                }
+        drawer.setSidePane(new BurgerMenu());
+        HamburgerSlideCloseTransition transition = new HamburgerSlideCloseTransition(burger);
+        transition.setRate(-1);
+        burger.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
+            transition.setRate(transition.getRate() * -1);
+            transition.play();
+            if (drawer.isShown()) {
+                drawer.close();
+                drawer.setVisible(false);
+            } else {
+                drawer.setVisible(true);
+                drawer.open();
             }
-
-            HamburgerSlideCloseTransition transition = new HamburgerSlideCloseTransition(burger);
-            transition.setRate(-1);
-            burger.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
-                transition.setRate(transition.getRate() * -1);
-                transition.play();
-                if (drawer.isShown()) {
-                    drawer.close();
-                    drawer.setVisible(false);
-                } else {
-                    drawer.setVisible(true);
-                    drawer.open();
-                }
-            });
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        });
 
     }
 
