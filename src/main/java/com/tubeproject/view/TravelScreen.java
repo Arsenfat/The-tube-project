@@ -3,13 +3,10 @@ package com.tubeproject.view;
 import com.jfoenix.controls.*;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 import com.tubeproject.controller.Station;
-import com.tubeproject.controller.Zone;
 import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.DatabaseConnection;
 import com.tubeproject.model.Select;
-import com.tubeproject.model.requests.GetAllStations;
-import com.tubeproject.model.builder.StationBuilder;
-
+import com.tubeproject.model.requests.GetAllStationsRequest;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import javafx.application.Application;
@@ -20,9 +17,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.DateCell;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import org.controlsfx.control.textfield.TextFields;
@@ -33,8 +34,9 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.*;
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 public class TravelScreen extends Application implements Initializable {
@@ -334,7 +336,7 @@ public class TravelScreen extends Application implements Initializable {
         List<String> stationList = new ArrayList<>();
         try {
             DatabaseConnection.DatabaseOpen();
-            GetAllStations stations = new GetAllStations();
+            GetAllStationsRequest stations = new GetAllStationsRequest();
             Select s = new Select(stations);
 
             List<Station> tmpList = (List<Station>) s.select().get();
