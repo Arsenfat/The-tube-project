@@ -6,11 +6,11 @@ import com.jfoenix.controls.JFXTextField;
 import com.tubeproject.controller.User;
 import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.DatabaseConnection;
-import com.tubeproject.model.Insert;
-import com.tubeproject.model.Select;
 import com.tubeproject.model.builder.UserBuilder;
-import com.tubeproject.model.requests.DuplicateMailRequest;
-import com.tubeproject.model.requests.InsertUserRequest;
+import com.tubeproject.model.requests.Insert;
+import com.tubeproject.model.requests.Select;
+import com.tubeproject.model.requests.insert.InsertUserRequest;
+import com.tubeproject.model.requests.select.EmailExistsRequest;
 import com.tubeproject.utils.EmailUtils;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
@@ -219,16 +219,17 @@ public class SignUpScreen extends Application implements Initializable {
         userToInsert.crypt();
         try {
             DatabaseConnection.DatabaseOpen();
-            DuplicateMailRequest dMR = new DuplicateMailRequest(email);
-            Select s = new Select(dMR);
-            boolean noDuplicate = (Boolean) s.select().get();
-            if (noDuplicate) {
+            EmailExistsRequest eER = new EmailExistsRequest(email);
+            Select s = new Select(eER);
+            boolean exists = (Boolean) s.select().get();
+            if (!exists) {
                 InsertUserRequest uR = new InsertUserRequest(userToInsert);
                 Insert insert = new Insert(uR);
                 insert.insert();
                 userToInsert.setPassword("");
                 userToInsert.setSalt("");
-                ContextMap.getContextMap().put("user", userToInsert);
+                ContextMap.getContextMap().put("USER", userToInsert);
+                StageManager.changeStage(anchorPane, Resources.ViewFiles.TRAVEL_SCREEN, Resources.Stylesheets.MENU);
             } else {
                 changeLabelVisibility(true);
             }

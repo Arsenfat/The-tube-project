@@ -1,4 +1,4 @@
-package com.tubeproject.model.requests;
+package com.tubeproject.model.requests.select;
 
 import com.tubeproject.controller.Station;
 import com.tubeproject.model.builder.StationBuilder;

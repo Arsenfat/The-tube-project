@@ -6,6 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public interface Updatable {
-    @Description("Update interface")
+    @Description("update interface")
     PreparedStatement getUpdateStatement() throws SQLException;
 }

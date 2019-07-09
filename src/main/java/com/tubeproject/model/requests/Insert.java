@@ -1,5 +1,6 @@
-package com.tubeproject.model;
+package com.tubeproject.model.requests;
 
+import com.tubeproject.model.DatabaseConnection;
 import com.tubeproject.model.annotation.Description;
 import com.tubeproject.model.interfaces.Insertable;
 
@@ -13,10 +14,11 @@ public class Insert {
 
     public Insert(Insertable i) {
         insertable = i;
-
-        if (insertable.getClass().getAnnotation(Description.class) != null)
-            description = insertable.getClass().getAnnotation(Description.class).value();
-
+        try {
+            description = insertable.getClass().getMethod("getInsertStatement").getAnnotation(Description.class).value();
+        } catch (NoSuchMethodException e) {
+            System.out.println(e);
+        }
     }
 
     public void insert() {

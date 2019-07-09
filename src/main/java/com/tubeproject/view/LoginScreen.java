@@ -7,8 +7,8 @@ import com.tubeproject.controller.User;
 import com.tubeproject.core.Login;
 import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.DatabaseConnection;
-import com.tubeproject.model.Select;
-import com.tubeproject.model.requests.LoginRequest;
+import com.tubeproject.model.requests.Select;
+import com.tubeproject.model.requests.select.LoginRequest;
 import com.tubeproject.utils.EmailUtils;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
@@ -79,18 +79,7 @@ public class LoginScreen extends Application implements Initializable {
 
     @FXML
     private void handleButtonActionHomePage() {
-        AnchorPane homePage;
-        try {
-            homePage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.MAIN_SCREEN));
-
-        } catch (IOException e) {
-            System.out.println("Warning unandled exeption.");
-            return;
-        }
-        Scene homeScene = new Scene(homePage);
-        Stage homeStage = (Stage) anchorPane.getScene().getWindow();
-        homeStage.setScene(homeScene);
-        homeStage.show();
+        StageManager.changeStage(anchorPane, Resources.ViewFiles.MAIN_SCREEN);
     }
 
     @FXML
@@ -112,18 +101,7 @@ public class LoginScreen extends Application implements Initializable {
 
     @FXML
     private void handleButtonActionSignUp(ActionEvent event) {
-        AnchorPane signUpPage;
-        try {
-            signUpPage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.SIGN_UP_SCREEN));
-
-        } catch (IOException e) {
-            System.out.println("Warning unandle exeption.");
-            return;
-        }
-        Scene signUpScene = new Scene(signUpPage);
-        Stage signUpStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        signUpStage.setScene(signUpScene);
-        signUpStage.show();
+        StageManager.changeStage((Node) event.getSource(), Resources.ViewFiles.SIGN_UP_SCREEN);
     }
 
 
@@ -219,23 +197,12 @@ public class LoginScreen extends Application implements Initializable {
                 if (connected) {
                     u.setSalt("");
                     u.setPassword("");
-                    ContextMap.getContextMap().put("user", u);
+                    ContextMap.getContextMap().put("USER", u);
                     changeLabelVisibility(false);
 
                     changeNodeColor(txtPassword, black);
                     changeNodeColor(txtUsername, black);
-                    AnchorPane homePage;
-                    try {
-                        homePage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.TRAVEL_SCREEN));
-
-                    } catch (IOException e) {
-                        System.out.println("Warning unandled exeption.");
-                        return;
-                    }
-                    Scene homeScene = new Scene(homePage);
-                    Stage homeStage = (Stage) anchorPane.getScene().getWindow();
-                    homeStage.setScene(homeScene);
-                    homeStage.show();
+                    StageManager.changeStage(anchorPane, Resources.ViewFiles.TRAVEL_SCREEN, Resources.Stylesheets.MENU);
                 }
             } else
                 connected = false;

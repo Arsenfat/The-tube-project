@@ -10,7 +10,7 @@
 <?import javafx.scene.text.*?>
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="435.0" prefWidth="753.0"
             xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.tubeproject.view.TravelScreen">
+            fx:controller="com.tubeproject.view.EditFaresScreen">
     <children>
         <Pane fx:id="topPane" prefHeight="62.0" prefWidth="772.0" style="-fx-background-color: #000000;">
             <children>
@@ -42,7 +42,6 @@
                 <JFXButton fx:id="mailIcon" layoutX="734.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
             </children>
         </Pane>
-        <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" prefHeight="490.0" prefWidth="2.0"/>
         <Label fx:id="smhLabel" layoutX="340.0" layoutY="79.0" text="Edit fares" textAlignment="CENTER"
                textFill="#151928">
             <font>
@@ -121,6 +120,7 @@
                 <Cursor fx:constant="DEFAULT"/>
             </cursor>
         </JFXRadioButton>
+        <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" prefHeight="490.0" prefWidth="2.0"/>
     </children>
     <cursor>
         <Cursor fx:constant="HAND"/>

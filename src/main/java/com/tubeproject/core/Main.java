@@ -1,7 +1,7 @@
 package com.tubeproject.core;
 
 import com.tubeproject.model.ContextMap;
-import com.tubeproject.view.EditLinesScreen;
+import com.tubeproject.view.ViewMainScreen;
 
 import java.util.Map;
 
@@ -10,9 +10,8 @@ public class Main {
 
         //Toujours initialiser la context map
         Map<String, Object> ctxMap = ContextMap.getContextMap();
-        EditLinesScreen.startWindow();
+        ViewMainScreen.startWindow();
 
     }
-
 
 }
