@@ -12,6 +12,7 @@ import com.tubeproject.model.requests.select.GetFaresRequest;
 import com.tubeproject.model.requests.update.UpdateFareRequest;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
+import com.tubeproject.view.component.BurgerMenu;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -280,7 +281,7 @@ public class EditFaresScreen extends Application implements Initializable {
     }
 
     public void initializeBurger() {
-        //drawer.setSidePane(new BurgerMenu());
+        drawer.setSidePane(new BurgerMenu());
 
         HamburgerSlideCloseTransition transition = new HamburgerSlideCloseTransition(burger);
         transition.setRate(-1);
