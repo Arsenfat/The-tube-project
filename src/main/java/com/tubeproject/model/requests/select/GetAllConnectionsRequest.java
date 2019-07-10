@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
-public class GetAllConnections implements Selectable {
+public class GetAllConnectionsRequest implements Selectable {
     @Description("Load all the connections from the grid")
     @Override
     public PreparedStatement getSelectQuery() throws SQLException {
@@ -34,7 +34,7 @@ public class GetAllConnections implements Selectable {
                 String s1_naptan = resultSet.getString("S1_NAPTAN");
                 String s1_name = resultSet.getString("S1_NAME");
                 double s1_latitude = resultSet.getDouble("S1_LATITUDE");
-                double s1_longitude = resultSet.getDouble("S2_LONGITUDE");
+                double s1_longitude = resultSet.getDouble("S1_LONGITUDE");
 
                 Station s1 = new StationBuilder()
                         .setNaptan(s1_naptan)
@@ -43,12 +43,13 @@ public class GetAllConnections implements Selectable {
                         .setLongitude(s1_longitude)
                         .createStation();
 
-                List<Connection> connectionList = connectionGrid.computeIfAbsent(s1, k -> new ArrayList<>());
+                List<Connection> connectionList = connectionGrid.computeIfAbsent(s1, key -> new ArrayList<>());
 
                 String s2_naptan = resultSet.getString("S2_NAPTAN");
                 String s2_name = resultSet.getString("S2_NAME");
                 double s2_latitude = resultSet.getDouble("S2_LATITUDE");
                 double s2_longitude = resultSet.getDouble("S2_LONGITUDE");
+
                 Station s2 = new StationBuilder()
                         .setNaptan(s2_naptan)
                         .setName(s2_name)
@@ -56,15 +57,25 @@ public class GetAllConnections implements Selectable {
                         .setLongitude(s2_longitude)
                         .createStation();
 
+                List<Connection> connectionList2 = connectionGrid.computeIfAbsent(s2, key -> new ArrayList<>());
+
                 double duration = resultSet.getDouble("duration");
 
                 Connection connection = new ConnectionBuilder()
                         .setStation(s2)
                         .setDuration(duration)
                         .createConnection();
+                Connection connection2 = new ConnectionBuilder()
+                        .setStation(s1)
+                        .setDuration(duration)
+                        .createConnection();
 
+                //Stations have two directions
+                //Ex Finchley Road to Swiss Cottage
+                //   Swiss Cottage to Finchley Road
+                //We assume the duration is the same in the two directions
                 connectionList.add(connection);
-
+                connectionList2.add(connection2);
             }
         } catch (SQLException e) {
             System.out.println(e);
