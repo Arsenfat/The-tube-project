@@ -34,7 +34,7 @@ public class GetAllConnections implements Selectable {
                 String s1_naptan = resultSet.getString("S1_NAPTAN");
                 String s1_name = resultSet.getString("S1_NAME");
                 double s1_latitude = resultSet.getDouble("S1_LATITUDE");
-                double s1_longitude = resultSet.getDouble("S2_LONGITUDE");
+                double s1_longitude = resultSet.getDouble("S1_LONGITUDE");
 
                 Station s1 = new StationBuilder()
                         .setNaptan(s1_naptan)
@@ -57,13 +57,18 @@ public class GetAllConnections implements Selectable {
                         .createStation();
 
                 double duration = resultSet.getDouble("duration");
-
+                List<Connection> connectionList2 = connectionGrid.computeIfAbsent(s2, k-> new ArrayList<>());
                 Connection connection = new ConnectionBuilder()
                         .setStation(s2)
                         .setDuration(duration)
                         .createConnection();
-
+                Connection connection2 = new ConnectionBuilder()
+                        .setStation(s1)
+                        .setDuration(duration)
+                        .createConnection();
+                //We assume that the two directions take the same time
                 connectionList.add(connection);
+                connectionList2.add(connection2);
 
             }
         } catch (SQLException e) {

@@ -5,35 +5,26 @@ import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.DatabaseConnection;
 import com.tubeproject.model.Select;
 import com.tubeproject.model.requests.GetAllLinesWithStationsRequest;
-import com.tubeproject.model.requests.LoginRequest;
 import com.tubeproject.view.ViewMainScreen;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import com.tubeproject.controller.Station;
-import com.tubeproject.model.ContextMap;
-import com.tubeproject.model.DatabaseConnection;
-import com.tubeproject.model.Select;
 import com.tubeproject.model.requests.GetAllConnections;
-import com.tubeproject.view.ViewMainScreen;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
-        //Toujours initialiser la context map
-        Map<String, Object> ctxMap = ContextMap.getContextMap();
-        DatabaseConnection.DatabaseOpen();
-        GetAllConnections gac = new GetAllConnections();
-        Select s = new Select(gac);
-        Map<Station, List<Connection>> map = (Map<Station, List<Connection>>) s.select().get();
-        System.out.println(map);
-        DatabaseConnection.DatabaseOpen();
-        ViewMainScreen.startWindow();
+
+        //DatabaseConnection.DatabaseOpen();
+        //ViewMainScreen.startWindow();
+
+        GraphCreation graph = new GraphCreation();
+        graph.getData();
 
         Astar aStar = new Astar();
 
@@ -97,36 +88,6 @@ public class Main {
         List<Node> path = aStar.printPath(n5);
 
         System.out.println("Path: " + path);
-
-
-        try {
-            DatabaseConnection.DatabaseOpen();
-
-            GetAllLinesWithStationsRequest obj = new GetAllLinesWithStationsRequest();
-            Select select = new Select(obj);
-            Optional<?> opt = select.select();
-            boolean connected;
-            if (opt.isPresent()) {
-                List<Line> l = new ArrayList<>();
-                l = (List<Line>)opt.get();
-                System.out.println("is ok: " + l.get(1).getStations());
-                displayStationLocation(l);
-            }
-            else {
-                System.out.println("Impossible to retrieve lines");
-            }
-            DatabaseConnection.DatabaseClose();
-        } catch (SQLException e) {
-            System.out.println("Error: Connection to the server failed.");
-        }
-
-    }
-
-    public static void displayStationLocation (List<Line> l){
-
-        for (Station value : l.get(1).getStations()){
-            System.out.println("name is: " + value.getName() + " location: " + value.getLatitude() + " " + value.getLongitude());
-        }
 
     }
 
