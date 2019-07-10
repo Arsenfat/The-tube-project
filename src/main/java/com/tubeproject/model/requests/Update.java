@@ -15,7 +15,6 @@ public class Update {
     public Update(Updatable u) {
 
         updatable = u;
-        System.out.println(updatable.getClass());
         try {
             description = updatable.getClass().getMethod("getUpdateStatement").getAnnotation(Description.class).value();
         } catch (NoSuchMethodException e) {
