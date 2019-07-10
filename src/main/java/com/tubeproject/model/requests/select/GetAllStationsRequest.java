@@ -17,7 +17,7 @@ public class GetAllStationsRequest implements Selectable {
     @Description("Get all stations as a list")
     @Override
     public PreparedStatement getSelectQuery() throws SQLException {
-        String query = "SELECT naptan, name, latitude, longitude FROM stations";
+        String query = "SELECT naptan, name, latitude, longitude, wheelchair FROM stations";
         PreparedStatement stmt = DatabaseConnection.prepareStmt(query);
         return stmt;
     }

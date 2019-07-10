@@ -23,7 +23,7 @@ public class GetStationsFromLineRequest implements Selectable {
     @Description("Get all stations on a line")
     @Override
     public PreparedStatement getSelectQuery() throws SQLException {
-        String query = "SELECT naptan, s.name, latitude, longitude FROM `lines` l, `line_stations` k JOIN `stations` s ON s.naptan=k.station WHERE l.id=k.line AND l.id=?";
+        String query = "SELECT naptan, s.name, latitude, longitude, wheelchair FROM `lines` l, `line_stations` k JOIN `stations` s ON s.naptan=k.station WHERE l.id=k.line AND l.id=?";
         PreparedStatement stmt = DatabaseConnection.prepareStmt(query);
         stmt.setInt(1, line.getId());
         return stmt;

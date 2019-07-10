@@ -28,7 +28,7 @@ public class Select {
 
         try {
             stmt = selectable.getSelectQuery();
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
 
             System.out.println(String.format("Error while preparing stmt -> %s", this.description));
             System.out.println(e);
