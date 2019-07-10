@@ -2,14 +2,15 @@
 
 <?import com.jfoenix.controls.*?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.*?>
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="435.0" prefWidth="753.0"
-            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity"
+            prefHeight="435.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/11.0.1"
             fx:controller="com.tubeproject.view.EditFaresScreen">
     <children>
         <Pane fx:id="topPane" prefHeight="62.0" prefWidth="772.0" style="-fx-background-color: #000000;">
@@ -48,79 +49,33 @@
                 <Font name="System Bold" size="21.0"/>
             </font>
         </Label>
-        <Label layoutX="141.0" layoutY="110.0" text="Tickets" textFill="#151928">
-            <font>
-                <Font name="System Bold" size="16.0"/>
-            </font>
-        </Label>
-        <Label layoutX="581.0" layoutY="110.0" text="Oyster" textFill="#151928">
-            <font>
-                <Font name="System Bold" size="16.0"/>
-            </font>
-        </Label>
-        <JFXComboBox layoutX="81.0" layoutY="179.0" prefHeight="31.0" prefWidth="172.0" promptText="Zones">
-            <cursor>
-                <Cursor fx:constant="HAND"/>
-            </cursor>
-        </JFXComboBox>
-        <JFXTextField fx:id="txtUsername" alignment="TOP_LEFT" focusColor="#744b4a" layoutX="85.0" layoutY="328.0"
-                      prefHeight="0.0" prefWidth="163.0" promptText="New price"
-                      style="-fx-text-inner-color: #151928; -fx-prompt-text-fill: #151928;" unFocusColor="#151928">
-            <opaqueInsets>
-                <Insets/>
-            </opaqueInsets>
-            <font>
-                <Font size="13.0"/>
-            </font>
-            <cursor>
-                <Cursor fx:constant="HAND"/>
-            </cursor>
-        </JFXTextField>
-        <JFXComboBox layoutX="520.0" layoutY="179.0" prefHeight="31.0" prefWidth="172.0" promptText="Zones">
-            <cursor>
-                <Cursor fx:constant="HAND"/>
-            </cursor>
-        </JFXComboBox>
-        <JFXTextField fx:id="txtUsername1" alignment="TOP_LEFT" focusColor="#744b4a" layoutX="524.0" layoutY="328.0"
-                      prefHeight="0.0" prefWidth="163.0" promptText="New price"
-                      style="-fx-text-inner-color: #151928; -fx-prompt-text-fill: #151928;" unFocusColor="#151928">
-            <opaqueInsets>
-                <Insets/>
-            </opaqueInsets>
-            <font>
-                <Font size="13.0"/>
-            </font>
-            <cursor>
-                <Cursor fx:constant="HAND"/>
-            </cursor>
-        </JFXTextField>
-        <JFXRadioButton layoutX="74.0" layoutY="263.0" text="Off-peak">
-            <toggleGroup>
-                <ToggleGroup fx:id="ticketRadio"/>
-            </toggleGroup>
-            <cursor>
-                <Cursor fx:constant="DEFAULT"/>
-            </cursor>
-        </JFXRadioButton>
-        <JFXRadioButton layoutX="199.0" layoutY="263.0" text="Peak" toggleGroup="$ticketRadio">
-            <cursor>
-                <Cursor fx:constant="DEFAULT"/>
-            </cursor>
-        </JFXRadioButton>
-        <JFXRadioButton layoutX="520.0" layoutY="263.0" text="Off-peak">
-            <toggleGroup>
-                <ToggleGroup fx:id="oysterRadio"/>
-            </toggleGroup>
-            <cursor>
-                <Cursor fx:constant="DEFAULT"/>
-            </cursor>
-        </JFXRadioButton>
-        <JFXRadioButton layoutX="647.0" layoutY="263.0" text="Peak" toggleGroup="$oysterRadio">
-            <cursor>
-                <Cursor fx:constant="DEFAULT"/>
-            </cursor>
-        </JFXRadioButton>
         <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" prefHeight="490.0" prefWidth="2.0"/>
+        <Pane id="formPane" layoutX="217.0" layoutY="121.0" prefHeight="283.0" prefWidth="338.0">
+            <children>
+                <Label layoutX="140.0" layoutY="33.0" text="Zones">
+                    <font>
+                        <Font size="19.0"/>
+                    </font>
+                </Label>
+                <JFXComboBox fx:id="zoneFrom" layoutX="14.0" layoutY="72.0" prefHeight="23.0" prefWidth="115.0"
+                             promptText="From:"/>
+                <JFXComboBox fx:id="zoneTo" layoutX="209.0" layoutY="72.0" prefHeight="23.0" prefWidth="115.0"
+                             promptText="To:"/>
+                <JFXRadioButton fx:id="rdAdult" layoutX="18.0" layoutY="126.0" text="Adult Ticket">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="ticketType"/>
+                    </toggleGroup>
+                </JFXRadioButton>
+                <JFXRadioButton fx:id="rdOysOffPeak" layoutX="18.0" layoutY="152.0" text="Oyster Off Peak"
+                                toggleGroup="$ticketType"/>
+                <JFXRadioButton fx:id="rdOysPeak" layoutX="198.0" layoutY="152.0" text="Oyster Peak"
+                                toggleGroup="$ticketType"/>
+                <JFXRadioButton fx:id="rdChild" layoutX="198.0" layoutY="126.0" text="Child Ticket"
+                                toggleGroup="$ticketType"/>
+                <JFXTextField fx:id="txtPrice" layoutX="92.0" layoutY="197.0" text="Price"/>
+                <JFXButton fx:id="btnSave" layoutX="257.0" layoutY="243.0" onAction="#saveValue" text="Save"/>
+            </children>
+        </Pane>
     </children>
     <cursor>
         <Cursor fx:constant="HAND"/>

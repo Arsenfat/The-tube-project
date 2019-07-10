@@ -23,7 +23,7 @@ public class GetFaresRequest implements Selectable {
         String query = "SELECT z1.id AS Z1_ID, z1.name AS Z1_NAME, z2.id AS Z2_ID, z2.name AS Z2_NAME, ticket_adult, ticket_child, oyster_peak, oyster_off_peak " +
                 "FROM `zones` AS z1 " +
                 "INNER JOIN `fares` AS f ON z1.id = f.zone_from " +
-                "INNER JOIN `zones` AS z2 ON s2.naptan = f.zone_to";
+                "INNER JOIN `zones` AS z2 ON z2.id = f.zone_to";
         PreparedStatement stmt = DatabaseConnection.prepareStmt(query);
         return stmt;
     }

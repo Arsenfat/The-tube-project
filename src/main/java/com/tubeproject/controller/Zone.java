@@ -1,5 +1,7 @@
 package com.tubeproject.controller;
 
+import java.util.Objects;
+
 public class Zone {
 
     private String name;
@@ -24,5 +26,24 @@ public class Zone {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Zone zone = (Zone) o;
+        return id == zone.id &&
+                name.equals(zone.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, id);
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

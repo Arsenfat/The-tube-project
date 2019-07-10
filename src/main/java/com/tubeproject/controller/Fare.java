@@ -1,5 +1,7 @@
 package com.tubeproject.controller;
 
+import java.util.Objects;
+
 public class Fare {
     private Type type;
 
@@ -55,5 +57,21 @@ public class Fare {
         ADULT,
         OYSTER_PEAK,
         OYSTER_OFF_PEAK
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Fare fare = (Fare) o;
+        return Double.compare(fare.price, price) == 0 &&
+                type == fare.type &&
+                departingZone.equals(fare.departingZone) &&
+                arrivingZone.equals(fare.arrivingZone);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type, departingZone, arrivingZone, price);
     }
 }
