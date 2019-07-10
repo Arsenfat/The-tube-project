@@ -18,12 +18,13 @@ public class RequestUtils {
                 String name = resultSet.getString("name");
                 double latitude = resultSet.getDouble("latitude");
                 double longitude = resultSet.getDouble("longitude");
-
+                boolean wheelchair = resultSet.getBoolean("wheelchair");
                 Station tmp = new StationBuilder()
                         .setNaptan(naptan)
                         .setName(name)
                         .setLatitude(latitude)
                         .setLongitude(longitude)
+                        .setWheelchair(wheelchair)
                         .createStation();
                 stations.add(tmp);
             }

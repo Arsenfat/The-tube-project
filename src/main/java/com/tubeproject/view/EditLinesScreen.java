@@ -1,17 +1,25 @@
 package com.tubeproject.view;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDrawer;
-import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.controls.*;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
+import com.tubeproject.controller.Line;
+import com.tubeproject.controller.Station;
+import com.tubeproject.model.DatabaseConnection;
+import com.tubeproject.model.builder.StationBuilder;
+import com.tubeproject.model.requests.Select;
+import com.tubeproject.model.requests.Update;
+import com.tubeproject.model.requests.select.GetAllLinesWithStationsRequest;
+import com.tubeproject.model.requests.update.UpdateStationRequest;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.component.BurgerMenu;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -20,10 +28,12 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundSize;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 import java.io.InputStream;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.sql.SQLException;
+import java.util.*;
 
 public class EditLinesScreen extends Application implements Initializable {
 
@@ -50,6 +60,27 @@ public class EditLinesScreen extends Application implements Initializable {
 
     @FXML
     private JFXDrawer drawer;
+
+    @FXML
+    private Label naptanValue;
+
+    @FXML
+    private JFXTextField txtName;
+
+    @FXML
+    private JFXTextField txtLatitude;
+
+    @FXML
+    private JFXTextField txtLongitude;
+
+    @FXML
+    private JFXCheckBox chkWheelchair;
+
+    @FXML
+    private JFXComboBox<Line> cmbLine;
+
+    @FXML
+    private JFXComboBox<Station> cmbStation;
 
     @FXML
     private void handleButtonActionHomePage() {
@@ -80,8 +111,130 @@ public class EditLinesScreen extends Application implements Initializable {
         initializeBackground();
         initializeIcons();
         initializeBurger();
+        chkWheelchair.setAllowIndeterminate(false);
+        List<Line> lineList = loadData();
+        fillCombBox(lineList);
     }
 
+    private List<Line> loadData() {
+
+        try {
+            DatabaseConnection.DatabaseOpen();
+            GetAllLinesWithStationsRequest getAllLinesWithStationsRequest = new GetAllLinesWithStationsRequest();
+            Select s = new Select(getAllLinesWithStationsRequest);
+            Optional<List<Line>> optional = (Optional<List<Line>>) s.select();
+            if (optional.isPresent())
+                return optional.get();
+            DatabaseConnection.DatabaseClose();
+        } catch (SQLException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Couldn't load data");
+            alert.setHeaderText("Couldn't load data from the server ! Try reloading the page.");
+            alert.showAndWait();
+        }
+
+        return new ArrayList<>();
+    }
+
+    private void fillCombBox(List<Line> lineData) {
+
+        cmbLine.setItems(FXCollections.observableArrayList(lineData));
+        cmbLine.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(Line line) {
+                return line.getName();
+            }
+
+            @Override
+            public Line fromString(String string) {
+                return lineData.stream().filter(line -> line.getName().equals(string)).findFirst().orElse(null);
+            }
+        });
+        cmbStation.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(Station station) {
+                return station.getName();
+            }
+
+            @Override
+            public Station fromString(String stationName) {
+                return lineData
+                        .stream()
+                        .filter(line -> line.equals(cmbLine.getValue()))
+                        .map(Line::getStations)
+                        .flatMap(Collection::stream)
+                        .filter((station) -> stationName.equals(station))
+                        .findFirst()
+                        .orElse(null);
+            }
+        });
+        cmbLine.valueProperty().addListener(((observable, oldValue, newValue) -> {
+            cmbStation.setItems(FXCollections.observableArrayList(newValue.getStations()));
+            cmbStation.getSelectionModel().select(0);
+        }));
+
+        cmbStation.valueProperty().addListener(((observable, oldValue, newValue) -> fillForm(newValue)));
+
+    }
+
+    private void fillForm(Station station) {
+        naptanValue.setText(station.getNaptan());
+        txtName.setText(station.getName());
+        txtLatitude.setText(String.format("%.02f", station.getLatitude()));
+        txtLongitude.setText(String.format("%.02f", station.getLongitude()));
+        chkWheelchair.setSelected(station.isWheelchair());
+    }
+
+    @FXML
+    public void updateData() {
+        String naptan = naptanValue.getText();
+        String name = txtName.getText();
+        double longitude = warnDoubleParsing(txtLongitude);
+        double latitude = warnDoubleParsing(txtLatitude);
+        if (longitude == Double.MIN_VALUE || latitude == Double.MIN_VALUE)
+            return;
+        boolean wheelchair = chkWheelchair.isSelected();
+        Station station = new StationBuilder()
+                .setNaptan(naptan)
+                .setName(name)
+                .setLatitude(latitude)
+                .setLongitude(longitude)
+                .setWheelchair(wheelchair)
+                .createStation();
+        try {
+            DatabaseConnection.DatabaseOpen();
+            UpdateStationRequest updateStationRequest = new UpdateStationRequest(station);
+            Update update = new Update(updateStationRequest);
+            update.update();
+            DatabaseConnection.DatabaseClose();
+        } catch (SQLException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error while sending data.");
+            alert.setHeaderText("Update failure");
+            alert.setContentText("An error occurred while sending data to the server.");
+            alert.showAndWait();
+            return;
+        }
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Update success");
+        alert.setHeaderText("Update success");
+        alert.setContentText(String.format("%s has been updated with success.", name));
+        alert.showAndWait();
+    }
+
+    public double warnDoubleParsing(JFXTextField textField) {
+        try {
+            return Double.parseDouble(textField.getText());
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Number wrong format");
+            alert.setHeaderText("Enter a valid floating point number !");
+            alert.setContentText(String.format("%s is a wrong number.", textField.getPromptText()));
+            alert.showAndWait();
+            return Double.MIN_VALUE;
+        }
+    }
 
     private void initializeBackground() {
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, false, false);
