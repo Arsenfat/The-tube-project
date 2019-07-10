@@ -1,7 +1,7 @@
 package com.tubeproject.core;
 
 import com.tubeproject.model.ContextMap;
-import com.tubeproject.view.ViewMainScreen;
+import com.tubeproject.view.user.ViewMainScreen;
 
 import java.util.Map;
 

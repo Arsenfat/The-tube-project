@@ -2,15 +2,13 @@
 
 <?import com.jfoenix.controls.*?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.*?>
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="435.0" prefWidth="753.0"
             xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.tubeproject.view.StatisticsScreen">
+            fx:controller="com.tubeproject.view.connected.travel.JourneyInformationsScreen">
     <children>
         <Pane fx:id="topPane" prefHeight="62.0" prefWidth="772.0" style="-fx-background-color: #000000;">
             <children>
@@ -42,42 +40,6 @@
                 <JFXButton fx:id="mailIcon" layoutX="734.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
             </children>
         </Pane>
-        <Label fx:id="smhLabel" layoutX="350.0" layoutY="89.0" text="Statistics" textAlignment="CENTER"
-               textFill="#151928">
-            <font>
-                <Font name="System Bold" size="21.0"/>
-            </font>
-        </Label>
-        <Label layoutX="213.0" layoutY="238.0" text="Total number of travels :" textFill="#151928">
-            <font>
-                <Font size="16.0"/>
-            </font>
-        </Label>
-        <Label layoutX="181.0" layoutY="306.0" text="Total time of transportation :" textFill="#151928">
-            <font>
-                <Font size="16.0"/>
-            </font>
-        </Label>
-        <Label layoutX="223.0" layoutY="172.0" text="Total number of users :" textFill="#151928">
-            <font>
-                <Font size="16.0"/>
-            </font>
-        </Label>
-        <Label layoutX="437.0" layoutY="172.0" text="00" textFill="#151928">
-            <font>
-                <Font size="16.0"/>
-            </font>
-        </Label>
-        <Label layoutX="437.0" layoutY="238.0" text="00" textFill="#151928">
-            <font>
-                <Font size="16.0"/>
-            </font>
-        </Label>
-        <Label layoutX="437.0" layoutY="306.0" text="00" textFill="#151928">
-            <font>
-                <Font size="16.0"/>
-            </font>
-        </Label>
         <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" prefHeight="490.0" prefWidth="2.0"/>
     </children>
 </AnchorPane>

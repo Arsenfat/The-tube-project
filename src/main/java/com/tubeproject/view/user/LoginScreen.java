@@ -1,19 +1,19 @@
-package com.tubeproject.view;
+package com.tubeproject.view.user;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.tubeproject.controller.User;
+import com.tubeproject.core.Login;
 import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.DatabaseConnection;
-import com.tubeproject.model.builder.UserBuilder;
-import com.tubeproject.model.requests.Insert;
 import com.tubeproject.model.requests.Select;
-import com.tubeproject.model.requests.insert.InsertUserRequest;
-import com.tubeproject.model.requests.select.EmailExistsRequest;
+import com.tubeproject.model.requests.select.LoginRequest;
 import com.tubeproject.utils.EmailUtils;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
+import com.tubeproject.view.Resources;
+import com.tubeproject.view.StageManager;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
@@ -21,13 +21,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.DateCell;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -39,22 +37,23 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.Period;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class SignUpScreen extends Application implements Initializable {
+public class LoginScreen extends Application implements Initializable {
 
     @FXML
     private ImageView imgView;
 
     @FXML
-    private AnchorPane anchorPane;
+    private ImageView imgViewUser;
 
     @FXML
-    private JFXTextField txtFirstName;
+    private ImageView imgViewPassword;
+
+    @FXML
+    private AnchorPane anchorPane;
 
     @FXML
     private JFXButton facebookIcon;
@@ -69,29 +68,27 @@ public class SignUpScreen extends Application implements Initializable {
     private JFXButton mailIcon;
 
     @FXML
-    private JFXTextField txtLastName;
-
-    @FXML
-    private JFXTextField txtMail;
+    private JFXTextField txtUsername;
 
     @FXML
     private JFXPasswordField txtPassword;
 
     @FXML
-    private Label lbConnectToServer;
-
-    @FXML
     private Label txtLabel;
 
     @FXML
-    private DatePicker datePicker;
+    private Label lbConnectToServer;
 
     @FXML
     private void handleButtonActionHomePage() {
-        System.out.println("you've clicked");
+        StageManager.changeStage(anchorPane, Resources.ViewFiles.MAIN_SCREEN);
+    }
+
+    @FXML
+    private void handleButtonActionForgotPassword() {
         AnchorPane homePage;
         try {
-            homePage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.MAIN_SCREEN));
+            homePage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.CHANGE_PASSWORD_SCREEN));
 
         } catch (IOException e) {
             System.out.println("Warning unandled exeption.");
@@ -103,18 +100,29 @@ public class SignUpScreen extends Application implements Initializable {
         homeStage.show();
     }
 
+
+    @FXML
+    private void handleButtonActionSignUp(ActionEvent event) {
+        StageManager.changeStage((Node) event.getSource(), Resources.ViewFiles.SIGN_UP_SCREEN);
+    }
+
+
+    @FXML
+    private void handleButtonActionTryLogin(ActionEvent event) {
+        checkFields();
+    }
+
     public static void startWindow() {
         launch();
     }
 
     @Override
     public void start(Stage stage) throws Exception {
-        AnchorPane anchorPane = FXMLUtils.loadFXML(Resources.ViewFiles.SIGN_UP_SCREEN);
+        AnchorPane anchorPane = FXMLUtils.loadFXML(Resources.ViewFiles.LOGIN_SCREEN);
 
         Scene scene = new Scene(anchorPane);
         stage.setScene(scene);
         stage.show();
-        scene.getStylesheets().add(getClass().getResource(Resources.Stylesheets.SIGN_UP_SCREEN).toExternalForm());
     }
 
 
@@ -123,27 +131,18 @@ public class SignUpScreen extends Application implements Initializable {
         initializeImgView();
         initializeBackground();
         initializeIcons();
-        checkTime();
-    }
-
-    @FXML
-    private void handleButtonActionTrySignUp(ActionEvent event) {
-        boolean valid = checkFields();
-        checkFields();
-        if (valid) {
-            String black = "#151928";
-            changeNodeColor(txtPassword, black);
-            changeNodeColor(txtFirstName, black);
-            changeNodeColor(txtLastName, black);
-            changeNodeColor(txtMail, black);
-            insertUser();
-        }
     }
 
     private void initializeImgView() {
         InputStream stream = getClass().getResourceAsStream(Resources.Images.LOGO1);
         Image img = new Image(stream);
-        this.imgView.setImage(img);
+        imgView.setImage(img);
+        stream = getClass().getResourceAsStream(Resources.Images.PASSWORD);
+        img = new Image(stream);
+        imgViewPassword.setImage(img);
+        stream = getClass().getResourceAsStream(Resources.Images.USERNAME);
+        img = new Image(stream);
+        imgViewUser.setImage(img);
     }
 
     private void initializeBackground() {
@@ -153,6 +152,7 @@ public class SignUpScreen extends Application implements Initializable {
     }
 
     private void initializeIcons() {
+
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
         BackgroundImage bgImg = ImageUtils.loadBackgroundImage(Resources.Images.FACEBOOK, backgroundSize);
         facebookIcon.setBackground(new Background(bgImg));
@@ -170,80 +170,60 @@ public class SignUpScreen extends Application implements Initializable {
         bgImg = ImageUtils.loadBackgroundImage(Resources.Images.MAIL, backgroundSize);
         mailIcon.setBackground(new Background(bgImg));
 
-
     }
 
-    private boolean checkFields() {
+    private void checkFields() {
         String red = "#ef5353";
-        boolean succeed = true;
-        if (txtPassword.getText().isEmpty()) {
+        String black = "#151928";
+
+        if (txtUsername.getText().isEmpty()
+                || !EmailUtils.checkEmail(txtUsername.getText())
+                || txtPassword.getText().isEmpty()) {
+            changeNodeColor(txtUsername, red);
             changeNodeColor(txtPassword, red);
             changeLabelVisibility(true);
-            succeed = false;
+            return;
         }
-        if (txtFirstName.getText().isEmpty()) {
-            changeNodeColor(txtFirstName, red);
-            changeLabelVisibility(true);
-            succeed = false;
-        }
-        if (txtLastName.getText().isEmpty()) {
-            changeNodeColor(txtLastName, red);
-            changeLabelVisibility(true);
-            succeed = false;
-        }
-        if (txtMail.getText().isEmpty() || !EmailUtils.checkEmail(txtMail.getText())) {
-            changeNodeColor(txtMail, red);
-            changeLabelVisibility(true);
-            succeed = false;
-        }
+        User u;
 
-
-        return succeed;
-    }
-
-
-    private void insertUser() {
-        String firstName = txtFirstName.getText();
-        String lastName = txtLastName.getText();
-        String password = txtPassword.getText();
-        String email = txtMail.getText();
-        Date dateOfBirth = Date.valueOf(datePicker.getValue());
-
-        User userToInsert = new UserBuilder().setFirstName(firstName)
-                .setLastName(lastName)
-                .setDateOfBirth(dateOfBirth)
-                .setEmail(email)
-                .setRole(1)
-                .setPassword(password)
-                .createUser();
-        userToInsert.crypt();
         try {
             DatabaseConnection.DatabaseOpen();
-            EmailExistsRequest eER = new EmailExistsRequest(email);
-            Select s = new Select(eER);
-            boolean exists = (Boolean) s.select().get();
-            if (!exists) {
-                InsertUserRequest uR = new InsertUserRequest(userToInsert);
-                Insert insert = new Insert(uR);
-                insert.insert();
-                userToInsert.setPassword("");
-                userToInsert.setSalt("");
-                ContextMap.getContextMap().put("USER", userToInsert);
-                StageManager.changeStage(anchorPane, Resources.ViewFiles.TRAVEL_SCREEN, Resources.Stylesheets.MENU);
-            } else {
+
+            LoginRequest lR = new LoginRequest(txtUsername.getText());
+            Select select = new Select(lR);
+            Optional<?> opt = select.select();
+            boolean connected;
+            if (opt.isPresent()) {
+                u = (User) (opt.get());
+                connected = Login.checkPassword(txtPassword.getText(), u.getPassword(), u.getSalt());
+                if (connected) {
+                    u.setSalt("");
+                    u.setPassword("");
+                    ContextMap.getContextMap().put("USER", u);
+                    changeLabelVisibility(false);
+
+                    changeNodeColor(txtPassword, black);
+                    changeNodeColor(txtUsername, black);
+                    StageManager.changeStage(anchorPane, Resources.ViewFiles.TRAVEL_SCREEN, Resources.Stylesheets.MENU);
+                }
+            } else
+                connected = false;
+
+            if (!connected) {
+                changeNodeColor(txtUsername, red);
+                changeNodeColor(txtPassword, red);
                 changeLabelVisibility(true);
             }
+
+
             DatabaseConnection.DatabaseClose();
         } catch (SQLException e) {
-            System.out.println(e);
             connectionFailed();
+            System.out.println("Error: Connection to the server failed.");
         }
-    }
-
-    private void changeLabelVisibility(boolean value) {
-        txtLabel.setVisible(value);
 
     }
+
 
     //red #ef5353
     //black #151928
@@ -264,6 +244,11 @@ public class SignUpScreen extends Application implements Initializable {
     }
 
 
+    private void changeLabelVisibility(boolean value) {
+        txtLabel.setVisible(value);
+
+    }
+
     private void connectionFailed() {
         lbConnectToServer.setVisible(true);
         TranslateTransition translate = new TranslateTransition(Duration.seconds(.4), lbConnectToServer);
@@ -277,21 +262,5 @@ public class SignUpScreen extends Application implements Initializable {
         fadeOut.setFromValue(1.0);
         fadeOut.setToValue(0.0);
         fadeOut.play();
-        fadeOut.setOnFinished((ActionEvent event) -> lbConnectToServer.setVisible(false));
-        lbConnectToServer.setOnMouseClicked((MouseEvent event) -> {
-                    lbConnectToServer.setVisible(false);
-                }
-        );
-    }
-
-
-    public void checkTime() {
-        datePicker.setDayCellFactory(picker -> new DateCell() {
-            public void updateItem(LocalDate date, boolean empty) {
-                super.updateItem(date, empty);
-                LocalDate today = LocalDate.now();
-                setDisable(empty || date.compareTo(today.minus(Period.ofYears(5))) > 0);
-            }
-        });
     }
 }

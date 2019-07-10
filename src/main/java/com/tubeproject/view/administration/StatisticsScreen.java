@@ -1,4 +1,4 @@
-package com.tubeproject.view;
+package com.tubeproject.view.administration;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
@@ -6,12 +6,12 @@ import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
+import com.tubeproject.view.Resources;
+import com.tubeproject.view.StageManager;
 import com.tubeproject.view.component.BurgerMenu;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,10 +24,9 @@ import javafx.stage.Stage;
 
 import java.io.InputStream;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ProfilScreen extends Application implements Initializable {
+public class StatisticsScreen extends Application implements Initializable {
 
     @FXML
     private ImageView imgView;
@@ -64,12 +63,12 @@ public class ProfilScreen extends Application implements Initializable {
 
     @Override
     public void start(Stage stage) throws Exception {
-        anchorPane = FXMLUtils.loadFXML(Resources.ViewFiles.PROFIL_SCREEN);
+        anchorPane = FXMLUtils.loadFXML(Resources.ViewFiles.STATISTICS_SCREEN);
 
         Scene scene = new Scene(anchorPane);
         stage.setScene(scene);
         stage.show();
-        scene.getStylesheets().add(getClass().getResource(Resources.Stylesheets.MENU).toExternalForm());
+
     }
 
 
@@ -80,20 +79,6 @@ public class ProfilScreen extends Application implements Initializable {
         initializeBackground();
         initializeIcons();
         initializeBurger();
-    }
-
-    public static ArrayList<Node> getAllNodes(Parent root) {
-        ArrayList<Node> nodes = new ArrayList<Node>();
-        addAllDescendents(root, nodes);
-        return nodes;
-    }
-
-    private static void addAllDescendents(Parent parent, ArrayList<Node> nodes) {
-        for (Node node : parent.getChildrenUnmodifiable()) {
-            nodes.add(node);
-            if (node instanceof Parent)
-                addAllDescendents((Parent) node, nodes);
-        }
     }
 
     private void initializeBackground() {
@@ -131,7 +116,6 @@ public class ProfilScreen extends Application implements Initializable {
 
     public void initializeBurger() {
         drawer.setSidePane(new BurgerMenu());
-
         HamburgerSlideCloseTransition transition = new HamburgerSlideCloseTransition(burger);
         transition.setRate(-1);
         burger.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {

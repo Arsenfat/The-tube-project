@@ -1,4 +1,4 @@
-package com.tubeproject.view;
+package com.tubeproject.view.user;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
@@ -13,6 +13,8 @@ import com.tubeproject.model.requests.update.UpdatePasswordRequest;
 import com.tubeproject.utils.EmailUtils;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
+import com.tubeproject.view.Resources;
+import com.tubeproject.view.StageManager;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

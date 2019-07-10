@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.*?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-
+<?import javafx.scene.text.*?>
 <AnchorPane fx:id="anchorPane" prefHeight="435.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tubeproject.view.ViewMainScreen">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tubeproject.view.user.ViewMainScreen">
     <children>
         <Label layoutX="234.0" layoutY="167.0" text="Welcome to the Tube project" textFill="#151928">
             <font>

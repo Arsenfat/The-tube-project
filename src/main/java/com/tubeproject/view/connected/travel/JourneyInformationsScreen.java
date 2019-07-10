@@ -1,4 +1,4 @@
-package com.tubeproject.view;
+package com.tubeproject.view.connected.travel;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
@@ -6,11 +6,12 @@ import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
+import com.tubeproject.view.Resources;
+import com.tubeproject.view.StageManager;
 import com.tubeproject.view.component.BurgerMenu;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -25,7 +26,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ViewAdministrator extends Application implements Initializable {
+public class JourneyInformationsScreen extends Application implements Initializable {
 
     @FXML
     private ImageView imgView;
@@ -46,11 +47,10 @@ public class ViewAdministrator extends Application implements Initializable {
     private JFXButton mailIcon;
 
     @FXML
-    private JFXDrawer drawer;
-
-    @FXML
     private JFXHamburger burger;
 
+    @FXML
+    private JFXDrawer drawer;
 
     @FXML
     private void handleButtonActionHomePage() {
@@ -63,12 +63,12 @@ public class ViewAdministrator extends Application implements Initializable {
 
     @Override
     public void start(Stage stage) throws Exception {
-        anchorPane = FXMLUtils.loadFXML(Resources.ViewFiles.ADMINISTRATOR_SCREEN);
+        anchorPane = FXMLUtils.loadFXML(Resources.ViewFiles.JOURNEY_INFORMATIONS_SCREEN);
 
         Scene scene = new Scene(anchorPane);
         stage.setScene(scene);
         stage.show();
-        scene.getStylesheets().add(getClass().getResource(Resources.Stylesheets.MENU).toExternalForm());
+
     }
 
 
@@ -114,22 +114,22 @@ public class ViewAdministrator extends Application implements Initializable {
 
     }
 
-
     public void initializeBurger() {
+
         drawer.setSidePane(new BurgerMenu());
-        HamburgerSlideCloseTransition transition = new HamburgerSlideCloseTransition(burger);
-        transition.setRate(-1);
-        burger.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
-            transition.setRate(transition.getRate() * -1);
-            transition.play();
-            if (drawer.isShown()) {
-                drawer.close();
-                drawer.setVisible(false);
-            } else {
-                drawer.setVisible(true);
-                drawer.open();
-            }
-        });
+            HamburgerSlideCloseTransition transition = new HamburgerSlideCloseTransition(burger);
+            transition.setRate(-1);
+            burger.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
+                transition.setRate(transition.getRate() * -1);
+                transition.play();
+                if (drawer.isShown()) {
+                    drawer.close();
+                    drawer.setVisible(false);
+                } else {
+                    drawer.setVisible(true);
+                    drawer.open();
+                }
+            });
     }
 
 }

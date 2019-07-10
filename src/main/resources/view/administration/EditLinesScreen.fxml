@@ -10,7 +10,7 @@
 <?import javafx.scene.text.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity"
             prefHeight="435.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/11.0.1"
-            fx:controller="com.tubeproject.view.EditLinesScreen">
+            fx:controller="com.tubeproject.view.administration.EditLinesScreen">
     <children>
         <Pane fx:id="topPane" prefHeight="62.0" prefWidth="772.0" style="-fx-background-color: #000000;">
             <children>

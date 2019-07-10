@@ -1,4 +1,4 @@
-package com.tubeproject.view;
+package com.tubeproject.view.administration;
 
 import com.jfoenix.controls.*;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
@@ -12,6 +12,8 @@ import com.tubeproject.model.requests.select.GetAllLinesWithStationsRequest;
 import com.tubeproject.model.requests.update.UpdateStationRequest;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
+import com.tubeproject.view.Resources;
+import com.tubeproject.view.StageManager;
 import com.tubeproject.view.component.BurgerMenu;
 import javafx.application.Application;
 import javafx.collections.FXCollections;

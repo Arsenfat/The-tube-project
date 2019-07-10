@@ -1,4 +1,4 @@
-package com.tubeproject.view;
+package com.tubeproject.view.connected.travel;
 
 import com.jfoenix.controls.*;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
@@ -8,6 +8,8 @@ import com.tubeproject.model.requests.Select;
 import com.tubeproject.model.requests.select.GetAllStationsRequest;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
+import com.tubeproject.view.Resources;
+import com.tubeproject.view.StageManager;
 import com.tubeproject.view.component.BurgerMenu;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
