@@ -43,54 +43,55 @@
             </children>
         </Pane>
         <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" prefHeight="490.0" prefWidth="2.0"/>
-        <Label fx:id="smhLabel" layoutX="318.0" layoutY="92.0" text="Profile details" textAlignment="CENTER"
+        <Label fx:id="smhLabel" layoutX="318.0" layoutY="83.0" text="Profile details" textAlignment="CENTER"
                textFill="#151928">
             <font>
                 <Font name="System Bold" size="21.0"/>
             </font>
         </Label>
-        <Label layoutX="281.0" layoutY="153.0" text="First name" textFill="#151928">
+        <Label layoutX="281.0" layoutY="140.0" text="First name" textFill="#151928">
             <font>
                 <Font size="16.0"/>
             </font>
         </Label>
-        <Label layoutX="280.0" layoutY="205.0" text="Last Name" textFill="#151928">
+        <Label layoutX="280.0" layoutY="179.0" text="Last Name" textFill="#151928">
             <font>
                 <Font size="16.0"/>
             </font>
         </Label>
-        <Label layoutX="281.0" layoutY="252.0" text="E-mail" textFill="#151928">
+        <Label layoutX="283.0" layoutY="218.0" text="E-mail" textFill="#151928">
             <font>
                 <Font size="16.0"/>
             </font>
         </Label>
-        <Label layoutX="280.0" layoutY="302.0" text="Birth date" textFill="#151928">
+        <Label layoutX="283.0" layoutY="258.0" text="Birth date" textFill="#151928">
             <font>
                 <Font size="16.0"/>
             </font>
         </Label>
-        <Label fx:id="lbFirstName" layoutX="427.0" layoutY="153.0" text="Sophie" textFill="#151928">
+        <Label fx:id="lbFirstName" layoutX="427.0" layoutY="140.0" text="Sophie" textFill="#151928">
             <font>
                 <Font size="16.0"/>
             </font>
         </Label>
-        <Label fx:id="lbLastName" layoutX="430.0" layoutY="205.0" text="Pages" textFill="#151928">
+        <Label fx:id="lbLastName" layoutX="430.0" layoutY="179.0" text="Pages" textFill="#151928">
             <font>
                 <Font size="16.0"/>
             </font>
         </Label>
-        <Label fx:id="lbEmail" layoutX="430.0" layoutY="252.0" text="sophie.pages@yahoo.fr" textFill="#151928">
+        <Label fx:id="lbEmail" layoutX="427.0" layoutY="218.0" text="sophie.pages@yahoo.fr" textFill="#151928">
             <font>
                 <Font size="16.0"/>
             </font>
         </Label>
-        <Label fx:id="lbBirth" layoutX="433.0" layoutY="302.0" text="05 / 23 / 1992" textFill="#151928">
+        <Label fx:id="lbBirth" layoutX="430.0" layoutY="258.0" text="05 / 23 / 1992" textFill="#151928">
             <font>
                 <Font size="16.0"/>
             </font>
         </Label>
-        <JFXButton fx:id="startBtn" layoutX="305.0" layoutY="357.0" prefHeight="38.0" prefWidth="162.0"
-                   style="-fx-background-color: #151928;" text="Change Password" textFill="#dad1d1">
+        <JFXButton fx:id="startBtn" layoutX="305.0" layoutY="323.0" onAction="#handleButtonActionForgotPassword"
+                   prefHeight="38.0" prefWidth="162.0" style="-fx-background-color: #151928;" text="Change Password"
+                   textFill="#dad1d1">
             <font>
                 <Font size="16.0"/>
             </font>
