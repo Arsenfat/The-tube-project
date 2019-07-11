@@ -41,22 +41,27 @@ public class GraphCreation {
                 .collect(Collectors.toList());
 
         for (Station station : map.keySet()){
+            edges.clear();
             for (Node node : nodes)
             {
-              if (station.getName() == node.getValue())
+              if (station.getName().equals(node.getValue()))
               {
                   for (Connection connection : map.get(station))
                   {
                       for (Node subNode : nodes)
                       {
-                          if (subNode.getValue() == connection.getStation().getName())
+                          if (subNode.getValue().equals(connection.getStation().getName()))
                           {
                               edges.add(new Edge (subNode, connection.getDuration()));
                           }
                       }
                   }
                   node.setAdjacencies(edges);
-                  System.out.println("adjancies: " + node.getAdjacencies().toString());
+                  for (Edge e : node.getAdjacencies())
+                  {
+                      System.out.println(e.toString());
+                  }
+                  System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||");
               }
             }
         }

@@ -16,4 +16,8 @@ public class Edge{
     public Node getTarget() {
         return target;
     }
+
+    public String toString(){
+        return "Traget is: " + target.getValue() + " Cost id : " + cost;
+    }
 }
