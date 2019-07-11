@@ -203,7 +203,6 @@ public class SignUpScreen extends Application implements Initializable {
         return succeed;
     }
 
-
     private void insertUser() {
         String firstName = txtFirstName.getText();
         String lastName = txtLastName.getText();
