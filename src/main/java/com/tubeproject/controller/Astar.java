@@ -26,7 +26,7 @@ public class Astar{
 
         Set<Node> explored = new HashSet<Node>();
 
-        PriorityQueue<Node> queue = new PriorityQueue<Node>(20,
+        PriorityQueue<Node> queue = new PriorityQueue<Node>(3000,
                 new Comparator<Node>(){
                     //override compare method
                     public int compare(Node i, Node j){
@@ -55,6 +55,8 @@ public class Astar{
 
         //we continue while the open list is not empty and goal has not been found
         while((!queue.isEmpty())&&(!found)){
+            //System.out.println("queue:");
+            //System.out.println(queue);
 
             //the node in having the lowest f_score value
             Node current = queue.poll();
@@ -63,12 +65,15 @@ public class Astar{
 
             //if we found the goal we stop
             if(current.getValue().equals(goal.getValue())){
+                System.out.println("FOUND !!!");
                 found = true;
             }
 
             //check every neighbour of current node
             for(Edge e : current.getAdjacencies()){
                 Node child = e.getTarget();
+                //System.out.println("child:");
+                //System.out.println(child.getValue());
                 double cost = e.getCost();
                 double temp_g_scores = current.getG_scores() + cost;
                 double temp_f_scores = temp_g_scores + child.getH_scores(goal.getLatitude(), goal.getLongitude());

@@ -18,11 +18,13 @@ import java.sql.Connection;
 public class Main {
     public static void main(String[] args) throws SQLException {
 
+        List<Node> nodes = new ArrayList<Node>();
+
         //DatabaseConnection.DatabaseOpen();
         //ViewMainScreen.startWindow();
 
         GraphCreation graph = new GraphCreation();
-        graph.getData();
+        nodes = graph.getData();
 
         Astar aStar = new Astar();
 
@@ -88,9 +90,22 @@ public class Main {
                 new Edge(n4,6)
         )));
 
-        aStar.AstarSearch(n1,n5);
+        //System.out.println("nodes nodes" + nodes.get(130).getAdjacencies().get(0).getTarget());
+        System.out.println(nodes.get(130).getValue());
+        for (Edge e : nodes.get(130).getAdjacencies())
+        {
+            System.out.println("target: " + e.getTarget());
+        }
 
-        List<Node> path = aStar.printPath(n5);
+        System.out.println(nodes.get(12).getValue());
+        for (Edge e : nodes.get(12).getAdjacencies())
+        {
+            System.out.println("target: " + e.getTarget());
+        }
+
+        aStar.AstarSearch(nodes.get(130),nodes.get(1));
+
+        List<Node> path = aStar.printPath(nodes.get(1));
 
         System.out.println("Path: " + path);
 

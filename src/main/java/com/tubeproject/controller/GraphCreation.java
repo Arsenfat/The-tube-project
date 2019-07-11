@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 
 public class GraphCreation {
     private List<Node> nodes = new ArrayList<Node>();
-    private List<Edge> edges = new ArrayList<Edge>();
     private List<Station> stations = new ArrayList<Station>();
 
 
@@ -24,7 +23,7 @@ public class GraphCreation {
     }
 
 
-    public void getData() throws SQLException {
+    public List<Node> getData() throws SQLException {
         //Toujours initialiser la context map
         Map<String, Object> ctxMap = ContextMap.getContextMap();
 
@@ -41,7 +40,7 @@ public class GraphCreation {
                 .collect(Collectors.toList());
 
         for (Station station : map.keySet()){
-            edges.clear();
+            List<Edge> edges = new ArrayList<Edge>();
             for (Node node : nodes)
             {
               if (station.getName().equals(node.getValue()))
@@ -57,15 +56,17 @@ public class GraphCreation {
                       }
                   }
                   node.setAdjacencies(edges);
+                  /*System.out.println("Name of the station is: " + station.getName());
                   for (Edge e : node.getAdjacencies())
                   {
                       System.out.println(e.toString());
                   }
-                  System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||");
+                  System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||");*/
               }
             }
         }
 
+        return nodes;
     }
 
     public void getStation() throws SQLException {
