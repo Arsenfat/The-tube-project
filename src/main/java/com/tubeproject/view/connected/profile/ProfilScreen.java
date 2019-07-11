@@ -4,6 +4,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
+import com.tubeproject.controller.User;
+import com.tubeproject.model.ContextMap;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
@@ -11,10 +13,13 @@ import com.tubeproject.view.StageManager;
 import com.tubeproject.view.component.BurgerMenu;
 import javafx.application.Application;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -24,6 +29,7 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundSize;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
@@ -56,8 +62,36 @@ public class ProfilScreen extends Application implements Initializable {
     private JFXDrawer drawer;
 
     @FXML
+    private Label lbFirstName;
+
+    @FXML
+    private Label lbLastName;
+
+    @FXML
+    private Label lbEmail;
+
+    @FXML
+    private Label lbBirth;
+
+    @FXML
     private void handleButtonActionHomePage() {
         StageManager.changeStage(anchorPane, Resources.ViewFiles.MAIN_SCREEN);
+    }
+
+    @FXML
+    private void handleButtonActionForgotPassword() {
+        AnchorPane homePage;
+        try {
+            homePage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.CHANGE_PASSWORD_SCREEN));
+
+        } catch (IOException e) {
+            System.out.println("Warning unandled exeption.");
+            return;
+        }
+        Scene homeScene = new Scene(homePage);
+        Stage homeStage = (Stage) anchorPane.getScene().getWindow();
+        homeStage.setScene(homeScene);
+        homeStage.show();
     }
 
     public static void startWindow() {
@@ -82,6 +116,7 @@ public class ProfilScreen extends Application implements Initializable {
         initializeBackground();
         initializeIcons();
         initializeBurger();
+        initializeUser();
     }
 
     public static ArrayList<Node> getAllNodes(Parent root) {
@@ -147,8 +182,22 @@ public class ProfilScreen extends Application implements Initializable {
                 drawer.open();
             }
         });
-
-
     }
 
+    public void initializeUser() {
+        User user = (User) ContextMap.getContextMap().get("USER");
+        if (user != null) {
+            lbFirstName.setText(user.getFirstName());
+            lbLastName.setText(user.getLastName());
+            lbEmail.setText(user.getEmail());
+            lbBirth.setText(user.getDateOfBirth().toString());
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Not connected");
+            alert.setHeaderText("Please log in");
+            alert.setContentText("You must be connected to have access to this page.");
+            alert.showAndWait();
+            StageManager.changeStage(anchorPane, Resources.ViewFiles.LOGIN_SCREEN);
+        }
+    }
 }

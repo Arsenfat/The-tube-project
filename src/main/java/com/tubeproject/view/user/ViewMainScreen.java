@@ -4,12 +4,11 @@ import com.jfoenix.controls.JFXButton;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
+import com.tubeproject.view.StageManager;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.image.Image;
@@ -79,34 +78,12 @@ public class ViewMainScreen extends Application implements Initializable {
 
     @FXML
     private void handleButtonActionLogin(ActionEvent event) {
-        AnchorPane loginPage;
-        try {
-            loginPage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.LOGIN_SCREEN));
-
-        } catch (IOException e) {
-            System.out.println("Warning unandled exeption.");
-            return;
-        }
-        Scene loginScene = new Scene(loginPage);
-        Stage loginStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        loginStage.setScene(loginScene);
-        loginStage.show();
+        StageManager.changeStage(anchorPane, Resources.ViewFiles.LOGIN_SCREEN);
     }
 
     @FXML
     private void handleButtonActionSignUp(ActionEvent event) {
-        AnchorPane signUpPage;
-        try {
-            signUpPage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.SIGN_UP_SCREEN));
-
-        } catch (IOException e) {
-            System.out.println("Warning unandled exeption.");
-            return;
-        }
-        Scene signUpScene = new Scene(signUpPage);
-        Stage signUpStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        signUpStage.setScene(signUpScene);
-        signUpStage.show();
+        StageManager.changeStage(anchorPane, Resources.ViewFiles.SIGN_UP_SCREEN);
     }
 
 

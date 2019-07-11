@@ -25,6 +25,7 @@ public class StageManager {
 
         } catch (IOException e) {
             System.out.println("Error while loading FXML");
+            System.out.println(e);
             return;
         }
         Scene homeScene = new Scene(homePage);
