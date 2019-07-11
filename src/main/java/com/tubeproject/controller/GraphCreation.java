@@ -34,18 +34,31 @@ public class GraphCreation {
         Map<Station, List<Connection>> map = (Map<Station, List<Connection>>) s.select().get();
         System.out.println(map);
 
-        /*nodes = map
+        nodes = map
                 .keySet()
                 .stream()
                 .map(station -> new Node(station.getName(), station.getLatitude(), station.getLongitude()))
-                .collect(Collectors.toList());*/
+                .collect(Collectors.toList());
 
         for (Station station : map.keySet()){
-            this.nodes.add(new Node(station.getName(), station.getLatitude(), station.getLongitude()));
-            /*for (Connection connection : map.get(station))
+            for (Node node : nodes)
             {
-                edges.add(new Edge(n1,connection.getDuration()))
-            }*/
+              if (station.getName() == node.getValue())
+              {
+                  for (Connection connection : map.get(station))
+                  {
+                      for (Node subNode : nodes)
+                      {
+                          if (subNode.getValue() == connection.getStation().getName())
+                          {
+                              edges.add(new Edge (subNode, connection.getDuration()));
+                          }
+                      }
+                  }
+                  node.setAdjacencies(edges);
+                  System.out.println("adjancies: " + node.getAdjacencies().toString());
+              }
+            }
         }
 
     }

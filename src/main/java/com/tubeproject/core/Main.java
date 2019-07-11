@@ -8,14 +8,12 @@ import com.tubeproject.model.requests.GetAllLinesWithStationsRequest;
 import com.tubeproject.view.ViewMainScreen;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.*;
+
 import com.tubeproject.controller.Station;
 import com.tubeproject.model.requests.GetAllConnections;
 
 import java.sql.Connection;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
@@ -39,49 +37,56 @@ public class Main {
 
         //initialize the edges
 
+
         //Station 0
-        n0.setAdjacencies(new Edge[]{
+        n0.setAdjacencies(new ArrayList<Edge>(
+                Arrays.asList(
                 new Edge(n1,4),
                 new Edge(n2,3),
                 new Edge(n4,4)
-        });
+        )));
 
         //Station 1
-        n1.setAdjacencies(new Edge[]{
+        n1.setAdjacencies(new ArrayList<Edge>(
+                Arrays.asList(
                 new Edge(n0,4),
                 new Edge(n2,5),
                 new Edge(n3,2),
                 new Edge(n4,4)
-        });
+                )));
 
 
         //Station 2
-        n2.setAdjacencies(new Edge[]{
+        n2.setAdjacencies(new ArrayList<Edge>(
+                Arrays.asList(
                 new Edge(n0,3),
                 new Edge(n1,5),
                 new Edge(n3,7)
-        });
+        )));
 
         //Station 3
-        n3.setAdjacencies(new Edge[]{
+        n3.setAdjacencies(new ArrayList<Edge>(
+        Arrays.asList(
                 new Edge(n1,2),
                 new Edge(n2,7),
                 new Edge(n4,2)
-        });
+        )));
 
 
         //Station 4
-        n4.setAdjacencies(new Edge[]{
+        n4.setAdjacencies(new ArrayList<Edge>(
+        Arrays.asList(
                 new Edge(n0,4),
                 new Edge(n1,4),
                 new Edge(n3,2),
                 new Edge(n5,6)
-        });
+        )));
 
         //Station 5
-        n5.setAdjacencies(new Edge[]{
-                new Edge(n4,6),
-        });
+        n5.setAdjacencies(new ArrayList<Edge>(
+        Arrays.asList(
+                new Edge(n4,6)
+        )));
 
         aStar.AstarSearch(n1,n5);
 

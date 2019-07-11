@@ -1,5 +1,8 @@
 package com.tubeproject.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Node{
 
     private final String value;
@@ -8,7 +11,7 @@ public class Node{
     private final double latitude;
     private final double longitude;
     private double f_scores = 0;
-    private Edge[] adjacencies;
+    private List<Edge> adjacencies = new ArrayList<Edge>();
     private Node parent;
 
     public Node(String val, double latitude, double longitude){
@@ -25,11 +28,11 @@ public class Node{
         return this.h_scores;
     }
 
-    public Edge[] getAdjacencies() {
+    public List<Edge> getAdjacencies() {
         return adjacencies;
     }
 
-    public void setAdjacencies(Edge[] adjacencies) {
+    public void setAdjacencies(List<Edge> adjacencies) {
         this.adjacencies = adjacencies;
     }
 
