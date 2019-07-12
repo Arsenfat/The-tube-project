@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.*?>
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="490.0" prefWidth="772.0" xmlns="http://javafx.com/javafx/11.0.1"
+            prefHeight="490.0" prefWidth="772.0" xmlns="http://javafx.com/javafx/11"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tubeproject.view.user.SignUpScreen">
     <children>
         <Label layoutX="105.0" layoutY="99.0" text="First name" textFill="#151928">

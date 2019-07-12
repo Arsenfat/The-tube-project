@@ -13,6 +13,7 @@ import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -52,7 +53,14 @@ public class ViewAdministrator extends Application implements Initializable {
     @FXML
     private JFXHamburger burger;
 
+    @FXML
+    private Button editLines;
 
+    @FXML
+    private Button editFares;
+
+    @FXML
+    private Button btnStats;
     @FXML
     private void handleButtonActionHomePage() {
         StageManager.changeStage(anchorPane, Resources.ViewFiles.MAIN_SCREEN);
@@ -80,6 +88,10 @@ public class ViewAdministrator extends Application implements Initializable {
         initializeBackground();
         initializeIcons();
         initializeBurger();
+        editLines.setOnAction((event) -> StageManager.changeStage(anchorPane, Resources.ViewFiles.EDIT_LINES_SCREEN, Resources.Stylesheets.MENU));
+        editFares.setOnAction((event) -> StageManager.changeStage(anchorPane, Resources.ViewFiles.EDIT_FARES_SCREEN, Resources.Stylesheets.MENU));
+        btnStats.setOnAction((event) -> StageManager.changeStage(anchorPane, Resources.ViewFiles.STATISTICS_SCREEN, Resources.Stylesheets.MENU));
+
     }
 
     private void initializeBackground() {

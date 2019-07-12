@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="700.0" prefWidth="1200.0"
-            xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.tubeproject.tool.MapManipulatorController">
+            xmlns="http://javafx.com/javafx/11" fx:controller="com.tubeproject.tool.MapManipulatorController">
     <children>
         <Pane fx:id="parentPane">
             <children>
