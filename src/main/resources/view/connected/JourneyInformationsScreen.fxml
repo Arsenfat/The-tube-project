@@ -2,15 +2,17 @@
 
 <?import com.jfoenix.controls.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.*?>
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="435.0" prefWidth="753.0"
             xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.tubeproject.view.connected.travel.JourneyInformationsScreen">
     <children>
-        <Pane fx:id="topPane" prefHeight="62.0" prefWidth="772.0" style="-fx-background-color: #000000;">
+        <Pane fx:id="topPane" prefHeight="62.0" prefWidth="774.0" style="-fx-background-color: #000000;">
             <children>
                 <ImageView fx:id="imgView" fitHeight="31.0" fitWidth="102.0" layoutX="47.0" layoutY="18.0"
                            onMouseClicked="#handleButtonActionHomePage" pickOnBounds="true" preserveRatio="true">
@@ -28,7 +30,7 @@
                 <Insets/>
             </opaqueInsets>
         </Pane>
-        <Pane fx:id="bottomPane" focusTraversable="true" layoutY="428.0" prefHeight="62.0" prefWidth="772.0"
+        <Pane fx:id="bottomPane" focusTraversable="true" layoutY="428.0" prefHeight="62.0" prefWidth="774.0"
               style="-fx-background-color: #000000;">
             <opaqueInsets>
                 <Insets/>
@@ -41,5 +43,72 @@
             </children>
         </Pane>
         <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" prefHeight="490.0" prefWidth="2.0"/>
+        <ScrollPane fx:id="scrlPane" hbarPolicy="NEVER" layoutX="1.0" layoutY="62.0" prefHeight="367.0"
+                    prefWidth="772.0" vbarPolicy="ALWAYS">
+            <content>
+                <AnchorPane fx:id="scrollPane" minHeight="0.0" minWidth="0.0" prefHeight="367.0" prefWidth="772.0">
+                    <children>
+                        <Label layoutX="316.0" layoutY="17.0" text="0:00" textFill="#151928">
+                            <font>
+                                <Font size="30.0"/>
+                            </font>
+                        </Label>
+                        <Label layoutX="386.0" layoutY="23.0" prefHeight="20.0" prefWidth="38.0" text="min"
+                               textFill="#151928">
+                            <font>
+                                <Font size="23.0"/>
+                            </font>
+                        </Label>
+                        <Label layoutX="570.0" layoutY="11.0" text="Ticket" textFill="#151928">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                        <Label layoutX="568.0" layoutY="43.0" text="Oyster" textFill="#151928">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                        <Label layoutX="654.0" layoutY="11.0" text="£6.50" textFill="#151928">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                        <Label layoutX="654.0" layoutY="43.0" text="£5.50" textFill="#151928">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                        <Line endX="136.00006103515625" layoutX="372.0" layoutY="84.0" startX="-131.2000274658203"/>
+                        <Label layoutX="30.0" layoutY="10.0" text="From" textFill="#151928">
+                            <font>
+                                <Font size="16.0"/>
+                            </font>
+                        </Label>
+                        <Label layoutX="30.0" layoutY="36.0" text="To" textFill="#151928">
+                            <font>
+                                <Font size="16.0"/>
+                            </font>
+                        </Label>
+                        <Label layoutX="72.0" layoutY="10.0" text="Baker" textFill="#151928">
+                            <font>
+                                <Font size="16.0"/>
+                            </font>
+                        </Label>
+                        <Label layoutX="72.0" layoutY="36.0" text="Baker" textFill="#151928">
+                            <font>
+                                <Font size="16.0"/>
+                            </font>
+                        </Label>
+                        <ScrollPane layoutX="111.0" layoutY="128.0" prefHeight="200.0" prefWidth="574.0">
+                            <content>
+                                <VBox fx:id="vbxLineContainer" prefHeight="458.0" prefWidth="558.0"
+                                      style="-fx-background-color: transparent;"/>
+                            </content>
+                        </ScrollPane>
+                    </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
     </children>
 </AnchorPane>

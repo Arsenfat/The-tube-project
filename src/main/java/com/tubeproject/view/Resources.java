@@ -36,10 +36,12 @@ public class Resources {
     public static class Stylesheets {
         public static final String MENU = "/css/Menu.css";
         public static final String SIGN_UP_SCREEN = "/css/SignUpScreen.css";
+        public static final String TRANSPARENT_SCROLL_PANE = "/css/TransparentScrollPane.css";
     }
 
     public static class Components {
         public static final String TRAVEL_VIEWER = "/view/components/TravelViewer.fxml";
         public static final String BURGER_MENU = "/view/components/BurgerMenu.fxml";
+        public static final String LINE_PANE = "/view/components/LinePane.fxml";
     }
 }

@@ -13,6 +13,7 @@ import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
 import com.tubeproject.view.StageManager;
+import com.tubeproject.view.component.BurgerMenu;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -71,6 +72,11 @@ public class JourneyScreen extends Application implements Initializable {
     @FXML
     private void handleButtonActionHomePage() {
         StageManager.changeStage(anchorPane, Resources.ViewFiles.MAIN_SCREEN);
+    }
+
+    @FXML
+    private void handleButtonActionGoBack() {
+        StageManager.changeStage(anchorPane, Resources.ViewFiles.TRAVEL_SCREEN);
     }
 
     public static void startWindow() {
@@ -144,7 +150,7 @@ public class JourneyScreen extends Application implements Initializable {
     }
 
     public void initializeBurger() {
-        //drawer.setSidePane(new BurgerMenu());
+        drawer.setSidePane(new BurgerMenu());
         HamburgerSlideCloseTransition transition = new HamburgerSlideCloseTransition(burger);
         transition.setRate(-1);
         burger.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {

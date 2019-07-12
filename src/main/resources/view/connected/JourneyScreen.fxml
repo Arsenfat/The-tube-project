@@ -41,8 +41,8 @@
                 <JFXButton fx:id="mailIcon" layoutX="734.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
             </children>
         </Pane>
-        <JFXButton layoutX="156.0" layoutY="377.0" prefHeight="38.0" prefWidth="162.0"
-                   style="-fx-background-color: #151928;" text="Go back" textFill="#dad1d1">
+        <JFXButton layoutX="156.0" layoutY="377.0" onAction="#handleButtonActionGoBack" prefHeight="38.0"
+                   prefWidth="162.0" style="-fx-background-color: #151928;" text="Go back" textFill="#dad1d1">
             <font>
                 <Font size="16.0"/>
             </font>
@@ -93,7 +93,7 @@
                         <Font size="18.0"/>
                     </font>
                 </Label>
-                <Label layoutX="387.0" layoutY="1.0" text="Oyster" textFill="#151928">
+                <Label layoutX="386.0" layoutY="1.0" text="Oyster" textFill="#151928">
                     <font>
                         <Font size="18.0"/>
                     </font>
@@ -136,7 +136,7 @@
                         <Font size="18.0"/>
                     </font>
                 </Label>
-                <Label layoutX="394.0" layoutY="31.0" text="£5.50" textFill="#151928">
+                <Label layoutX="392.0" layoutY="30.0" text="£5.50" textFill="#151928">
                     <font>
                         <Font size="18.0"/>
                     </font>
