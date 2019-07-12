@@ -58,9 +58,6 @@ public class JourneyInformationsScreen extends Application implements Initializa
     private JFXDrawer drawer;
 
     @FXML
-    private AnchorPane scrollPane;
-
-    @FXML
     private ScrollPane scrlPane;
 
     @FXML
@@ -83,7 +80,6 @@ public class JourneyInformationsScreen extends Application implements Initializa
         stage.setScene(scene);
         scene.getStylesheets().add(StageManager.class.getResource(Resources.Stylesheets.TRANSPARENT_SCROLL_PANE).toExternalForm());
         stage.show();
-
     }
 
 
@@ -118,7 +114,7 @@ public class JourneyInformationsScreen extends Application implements Initializa
     private void initializeBackground() {
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, false, false);
         BackgroundImage bgImg = ImageUtils.loadBackgroundImage(Resources.Images.BACKGROUND, backgroundSize);
-        scrollPane.setBackground(new Background(bgImg));
+        anchorPane.setBackground(new Background(bgImg));
     }
 
 
