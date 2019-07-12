@@ -1,9 +1,12 @@
 package com.tubeproject.view.component;
 
 import com.tubeproject.controller.Line;
+import com.tubeproject.controller.Station;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,6 +24,14 @@ public class LinePaneController implements Initializable {
     @FXML
     private Label lblChangePlatform;
 
+    @FXML
+    private VBox vbxStations;
+
+    @FXML
+    private Pane parent;
+
+
+    private double lblYPos;
     private Line line;
     private String direction;
     private boolean isLast;
@@ -60,6 +71,22 @@ public class LinePaneController implements Initializable {
         this.lblDirection.setText(direction);
         if (isLast) {
             this.lblChangePlatform.setVisible(false);
+        }
+        lblYPos = lblChangePlatform.getLayoutBounds().getMaxY();
+        fillVBox();
+        vbxStations.setVisible(false);
+    }
+
+    @FXML
+    public void expandStations() {
+        vbxStations.setVisible(true);
+        lblChangePlatform.setLayoutY(lblYPos + vbxStations.getHeight());
+        parent.setMaxHeight(parent.getHeight() + lblYPos + vbxStations.getHeight());
+    }
+
+    private void fillVBox() {
+        for (Station station : line.getStations()) {
+            vbxStations.getChildren().add(new Label(station.getName()));
         }
     }
 }

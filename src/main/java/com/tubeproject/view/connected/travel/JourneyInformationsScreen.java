@@ -95,7 +95,7 @@ public class JourneyInformationsScreen extends Application implements Initializa
             Line bakerloo = new Line(1, "Bakerloo");
             GetStationsFromLineRequest getStationsFromLineRequest = new GetStationsFromLineRequest(bakerloo);
             bakerloo.setStations((List<Station>) new Select(getStationsFromLineRequest).select().get());
-            for (int i = 0; i < 1; i++) {
+            for (int i = 0; i < 10; i++) {
                 LinePane lp = new LinePane(bakerloo, String.format("%d lo", i), false);
                 vbxLineContainer.getChildren().add(lp);
                 vbxLineContainer.setPrefHeight(vbxLineContainer.getMaxHeight() + lp.getHeight());
