@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 import java.net.URL;
@@ -20,6 +21,9 @@ public class BurgerMenuController implements Initializable {
 
     @FXML
     private Label userInfo;
+
+    @FXML
+    private Button btnAdministration;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -46,6 +50,10 @@ public class BurgerMenuController implements Initializable {
 
     private void setUserInfo(User user) {
         userInfo.setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
+        if (user.getRole() < 3) {
+            btnAdministration.setDisable(true);
+            btnAdministration.setVisible(false);
+        }
     }
 
     @FXML

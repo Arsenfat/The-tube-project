@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.*?>
-<AnchorPane fx:id="anchorPane" prefHeight="482.0" prefWidth="786.0" xmlns="http://javafx.com/javafx/11.0.1"
+<AnchorPane fx:id="anchorPane" prefHeight="482.0" prefWidth="786.0" xmlns="http://javafx.com/javafx/11"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tubeproject.view.user.LoginScreen">
     <children>
         <JFXTextField fx:id="txtUsername" alignment="TOP_LEFT" focusColor="#744b4a" layoutX="252.0" layoutY="137.0"
