@@ -4,15 +4,20 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
+import com.tubeproject.controller.Line;
+import com.tubeproject.controller.Station;
+import com.tubeproject.model.DatabaseConnection;
+import com.tubeproject.model.requests.Select;
+import com.tubeproject.model.requests.select.GetStationsFromLineRequest;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
 import com.tubeproject.view.StageManager;
-import com.tubeproject.view.component.BurgerMenu;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -24,6 +29,9 @@ import javafx.stage.Stage;
 
 import java.io.InputStream;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class JourneyScreen extends Application implements Initializable {
@@ -53,6 +61,14 @@ public class JourneyScreen extends Application implements Initializable {
     private JFXDrawer drawer;
 
     @FXML
+    private Label lbQuickestListLine;
+
+    @FXML
+    private Label lbLessConnectionListLine;
+
+    private List<Line> listLines = new ArrayList<>();
+
+    @FXML
     private void handleButtonActionHomePage() {
         StageManager.changeStage(anchorPane, Resources.ViewFiles.MAIN_SCREEN);
     }
@@ -64,7 +80,6 @@ public class JourneyScreen extends Application implements Initializable {
     @Override
     public void start(Stage stage) throws Exception {
         anchorPane = FXMLUtils.loadFXML(Resources.ViewFiles.JOURNEY_SCREEN);
-
         Scene scene = new Scene(anchorPane);
         stage.setScene(scene);
         stage.show();
@@ -80,6 +95,19 @@ public class JourneyScreen extends Application implements Initializable {
         initializeBackground();
         initializeIcons();
         initializeBurger();
+        try {
+            DatabaseConnection.DatabaseOpen();
+            Line bakerloo = new Line(1, "Bakerloo");
+            GetStationsFromLineRequest getStationsFromLineRequest = new GetStationsFromLineRequest(bakerloo);
+            bakerloo.setStations((List<Station>) new Select(getStationsFromLineRequest).select().get());
+            listLines.add(bakerloo);
+            DatabaseConnection.DatabaseClose();
+        } catch (SQLException e) {
+
+        }
+        initializeQuickestListLine();
+        initializeLessConnectionListLine();
+
     }
 
     private void initializeBackground() {
@@ -116,7 +144,7 @@ public class JourneyScreen extends Application implements Initializable {
     }
 
     public void initializeBurger() {
-        drawer.setSidePane(new BurgerMenu());
+        //drawer.setSidePane(new BurgerMenu());
         HamburgerSlideCloseTransition transition = new HamburgerSlideCloseTransition(burger);
         transition.setRate(-1);
         burger.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
@@ -133,4 +161,11 @@ public class JourneyScreen extends Application implements Initializable {
 
     }
 
+    public void initializeQuickestListLine() {
+        lbQuickestListLine.setText(listLines.get(0).getName());
+    }
+
+    public void initializeLessConnectionListLine() {
+        lbLessConnectionListLine.setText(listLines.get(0).getName());
+    }
 }
