@@ -13,10 +13,7 @@ public class LinePane extends Pane {
     private Node view;
     private LinePaneController controller;
 
-    private Line line;
-    private String direction;
-
-    public LinePane(Line line, String direction) {
+    public LinePane(Line line, String direction, boolean isLast) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Resources.Components.LINE_PANE));
         fxmlLoader.setControllerFactory(new Callback<Class<?>, Object>() {
             @Override
@@ -32,6 +29,7 @@ public class LinePane extends Pane {
         }
         controller.setLine(line);
         controller.setDirection(direction);
+        controller.setLast(isLast);
         controller.init();
         getChildren().add(view);
 

@@ -45,22 +45,22 @@
             </children>
         </Pane>
         <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" prefHeight="490.0" prefWidth="2.0"/>
-        <Label layoutX="54.0" layoutY="75.0" text="From" textFill="#151928">
+        <Label layoutX="26.0" layoutY="70.0" text="From" textFill="#151928">
             <font>
                 <Font size="16.0"/>
             </font>
         </Label>
-        <Label layoutX="54.0" layoutY="101.0" text="To" textFill="#151928">
+        <Label layoutX="26.0" layoutY="101.0" text="To" textFill="#151928">
             <font>
                 <Font size="16.0"/>
             </font>
         </Label>
-        <Label layoutX="106.0" layoutY="75.0" text="Baker" textFill="#151928">
+        <Label layoutX="67.0" layoutY="70.0" text="Baker" textFill="#151928">
             <font>
                 <Font size="16.0"/>
             </font>
         </Label>
-        <Label layoutX="106.0" layoutY="101.0" text="Baker" textFill="#151928">
+        <Label layoutX="47.0" layoutY="101.0" text="Baker" textFill="#151928">
             <font>
                 <Font size="16.0"/>
             </font>

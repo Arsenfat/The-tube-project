@@ -18,8 +18,12 @@ public class LinePaneController implements Initializable {
     @FXML
     private Label lblStations;
 
+    @FXML
+    private Label lblChangePlatform;
+
     private Line line;
     private String direction;
+    private boolean isLast;
 
 
     @Override
@@ -42,10 +46,20 @@ public class LinePaneController implements Initializable {
         this.direction = direction;
     }
 
+    public boolean isLast() {
+        return isLast;
+    }
+
+    public void setLast(boolean last) {
+        isLast = last;
+    }
+
     public void init() {
         this.lblLine.setText(line.getName());
         this.lblStations.setText(String.format("%d stations", line.getStations().size()));
         this.lblDirection.setText(direction);
-        System.out.println(lblLine.isVisible());
+        if (isLast) {
+            this.lblChangePlatform.setVisible(false);
+        }
     }
 }
