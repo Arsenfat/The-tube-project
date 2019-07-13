@@ -9,8 +9,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity"
-            prefHeight="435.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/11"
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="435.0" prefWidth="753.0"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.tubeproject.view.administration.EditFaresScreen">
     <children>
         <Pane fx:id="topPane" prefHeight="62.0" prefWidth="772.0" style="-fx-background-color: #000000;">
@@ -57,10 +57,10 @@
                         <Font size="19.0"/>
                     </font>
                 </Label>
-                <JFXComboBox fx:id="zoneFrom" layoutX="14.0" layoutY="72.0" prefHeight="23.0" prefWidth="115.0"
-                             promptText="From:"/>
-                <JFXComboBox fx:id="zoneTo" layoutX="209.0" layoutY="72.0" prefHeight="23.0" prefWidth="115.0"
-                             promptText="To:"/>
+                <JFXComboBox fx:id="zoneFrom" focusColor="#744b4a" layoutX="14.0" layoutY="72.0" prefHeight="23.0"
+                             prefWidth="115.0" promptText="From:"/>
+                <JFXComboBox fx:id="zoneTo" focusColor="#744b4a" layoutX="209.0" layoutY="72.0" prefHeight="23.0"
+                             prefWidth="115.0" promptText="To:"/>
                 <JFXRadioButton fx:id="rdAdult" layoutX="18.0" layoutY="126.0" text="Adult Ticket">
                     <toggleGroup>
                         <ToggleGroup fx:id="ticketType"/>
@@ -72,8 +72,9 @@
                                 toggleGroup="$ticketType"/>
                 <JFXRadioButton fx:id="rdChild" layoutX="198.0" layoutY="126.0" text="Child Ticket"
                                 toggleGroup="$ticketType"/>
-                <JFXTextField fx:id="txtPrice" layoutX="92.0" layoutY="197.0" text="Price"/>
-                <JFXButton fx:id="btnSave" layoutX="257.0" layoutY="243.0" onAction="#saveValue" text="Save"/>
+                <JFXTextField fx:id="txtPrice" focusColor="#744b4a" layoutX="92.0" layoutY="197.0" text="Price"/>
+                <JFXButton fx:id="btnSave" layoutX="257.0" layoutY="243.0" onAction="#saveValue" prefHeight="25.0"
+                           prefWidth="68.0" style="-fx-background-color: #151928;" text="Save" textFill="#dad1d1"/>
             </children>
         </Pane>
     </children>

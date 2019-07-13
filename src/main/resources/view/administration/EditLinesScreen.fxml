@@ -8,8 +8,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity"
-            prefHeight="435.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/11"
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="435.0" prefWidth="753.0"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.tubeproject.view.administration.EditLinesScreen">
     <children>
         <Pane fx:id="topPane" prefHeight="62.0" prefWidth="772.0" style="-fx-background-color: #000000;">
@@ -48,8 +48,8 @@
                 <Font name="System Bold" size="21.0"/>
             </font>
         </Label>
-        <JFXComboBox fx:id="cmbStation" layoutX="109.0" layoutY="222.0" prefHeight="23.0" prefWidth="161.0"
-                     promptText="Station"/>
+        <JFXComboBox fx:id="cmbStation" focusColor="#744b4a" layoutX="109.0" layoutY="222.0" prefHeight="23.0"
+                     prefWidth="161.0" promptText="Station"/>
         <Pane layoutX="286.0" layoutY="150.0" prefHeight="238.0" prefWidth="404.0">
             <children>
                 <Label layoutX="38.0" layoutY="17.0" text="Naptan :" textFill="#151928">
@@ -62,8 +62,8 @@
                         <Font name="System Bold" size="16.0"/>
                     </font>
                 </Label>
-                <JFXCheckBox fx:id="chkWheelchair" layoutX="37.0" layoutY="150.0" prefHeight="37.0" prefWidth="330.0"
-                             text="Wheelchair access">
+                <JFXCheckBox fx:id="chkWheelchair" checkedColor="#151928" layoutX="37.0" layoutY="150.0"
+                             prefHeight="37.0" prefWidth="330.0" text="Wheelchair access">
                     <cursor>
                         <Cursor fx:constant="HAND"/>
                     </cursor>
@@ -111,11 +111,11 @@
                     </cursor>
                 </JFXTextField>
                 <JFXButton fx:id="btnSave" layoutX="300.0" layoutY="193.0" onAction="#updateData" prefHeight="31.0"
-                           prefWidth="90.0" text="Save"/>
+                           prefWidth="90.0" style="-fx-background-color: #151928;" text="Save" textFill="#dad1d1"/>
             </children>
         </Pane>
-        <JFXComboBox fx:id="cmbLine" layoutX="109.0" layoutY="170.0" prefHeight="23.0" prefWidth="161.0"
-                     promptText="Line"/>
+        <JFXComboBox fx:id="cmbLine" focusColor="#744b4a" layoutX="109.0" layoutY="170.0" prefHeight="23.0"
+                     prefWidth="161.0" promptText="Line"/>
         <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" prefHeight="490.0" prefWidth="2.0"/>
     </children>
 </AnchorPane>
