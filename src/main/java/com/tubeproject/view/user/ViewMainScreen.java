@@ -97,6 +97,10 @@ public class ViewMainScreen extends Application implements Initializable {
         Scene scene = new Scene(anchorPane);
         stage.setScene(scene);
         stage.setResizable(false);
+        stage.setOnCloseRequest(event -> {
+            System.out.println("Application shutdown");
+            System.exit(0);
+        });
         stage.show();
     }
 

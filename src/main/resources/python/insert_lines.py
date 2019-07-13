@@ -1,14 +1,13 @@
 #!/bin/python3
 
+import csv
+import json
+from collections import defaultdict
+
 import mysql.connector
 import requests
-import json
-from mysql.connector.connection import MySQLCursorPrepared
 from mysql.connector import Error
-from collections import defaultdict
-import sys
-import re
-import csv
+from mysql.connector.connection import MySQLCursorPrepared
 
 trans = str.maketrans({"-":  r"\-",
                                           "]":  r"\]",
@@ -78,6 +77,47 @@ def insert_durations(cursor):
                     print(final_query)
                     cursor.execute(final_query)
 
+
+def insert_line_durations(cursor):
+    line_dict = {
+        "bakerloo": 1,
+        "central": 2,
+        "circle": 3,
+        "district": 4,
+        "hammersmith-city": 5,
+        "jubilee": 6,
+        "metropolitan": 7,
+        "northern": 8,
+        "piccadilly": 9,
+        "victoria": 10,
+        "waterloo-city": 11
+    }
+    query = 'INSERT IGNORE INTO `station_line_durations` VALUES(\'%s\', \'%s\', %d, %f)'
+    with open('../duration_result.json', 'r') as json_data:
+        data = json.loads(''.join(json_data.readlines()))
+        with open('../data_result.json', 'r') as result_data:
+            result_data_dict = json.loads(''.join(result_data.readlines()))
+            station_dict = defaultdict()
+            station_dict["1000097"] = "940GZZLUHSC"
+            for line in result_data_dict:
+                for bound in result_data_dict[line]['outbound'].items():
+                    for sequence in bound[1]:
+                        stopPoints = sequence['stopPoint']
+                        for i in range(0, len(stopPoints) - 1):
+                            station_dict[stopPoints[i]['icsId']] = stopPoints[i]['stationId']
+                for bound in result_data_dict[line]['inbound'].items():
+                    for sequence in bound[1]:
+                        stopPoints = sequence['stopPoint']
+                        for i in range(0, len(stopPoints) - 1):
+                            station_dict[stopPoints[i]['icsId']] = stopPoints[i]['stationId']
+            for line in data:
+                for stopPoint in data[line]:
+                    departing = station_dict[stopPoint['departingPoint']]
+                    arriving = station_dict[stopPoint['arrivingPoint']]
+                    duration = float(stopPoint['duration'])
+                    final_query = query % (departing, arriving, line_dict[line], duration)
+                    print(final_query)
+                    cursor.execute(final_query)
 
 def insert_gps(cursor):
     query = 'UPDATE stations SET latitude=%f, longitude=%f WHERE naptan=\'%s\''
@@ -225,7 +265,7 @@ def insert_fares(cursor):
 def send_to_sql():
     try:
         connection=mysql.connector.connect(
-            host = 'remotemysql.com', database = 'scrape', user = 'scrape', password = 'scrape', use_pure = True)
+            host='remotemysql.com', database='5qFaDYUMfJ', user='5qFaDYUMfJ', password='J7R1UyqPYh', use_pure=True)
         if connection.is_connected():
             db_info=connection.get_server_info()
             print(db_info)
@@ -240,7 +280,8 @@ def send_to_sql():
             #insert_stations_zones(cursor)
             #insert_missing_zones(cursor)
             #insert_line_stations(cursor)
-            insert_fares(cursor)
+            # insert_fares(cursor)
+            insert_line_durations(cursor)
             connection.commit()
             connection.close()
     except Error as e:
