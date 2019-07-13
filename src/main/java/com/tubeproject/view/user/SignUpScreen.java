@@ -1,6 +1,5 @@
 package com.tubeproject.view.user;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.tubeproject.controller.User;
@@ -16,6 +15,7 @@ import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
 import com.tubeproject.view.StageManager;
+import com.tubeproject.view.component.WebButton;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
@@ -30,10 +30,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -59,16 +56,7 @@ public class SignUpScreen extends Application implements Initializable {
     private JFXTextField txtFirstName;
 
     @FXML
-    private JFXButton facebookIcon;
-
-    @FXML
-    private JFXButton twitterIcon;
-
-    @FXML
-    private JFXButton instagramIcon;
-
-    @FXML
-    private JFXButton mailIcon;
+    private Pane webButtonPane;
 
     @FXML
     private JFXTextField txtLastName;
@@ -90,7 +78,6 @@ public class SignUpScreen extends Application implements Initializable {
 
     @FXML
     private void handleButtonActionHomePage() {
-        System.out.println("you've clicked");
         AnchorPane homePage;
         try {
             homePage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.MAIN_SCREEN));
@@ -124,7 +111,7 @@ public class SignUpScreen extends Application implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeImgView();
         initializeBackground();
-        initializeIcons();
+        webButtonPane.getChildren().add(new WebButton(this.getHostServices()));
         checkTime();
     }
 
@@ -154,26 +141,6 @@ public class SignUpScreen extends Application implements Initializable {
         anchorPane.setBackground(new Background(bgImg));
     }
 
-    private void initializeIcons() {
-        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        BackgroundImage bgImg = ImageUtils.loadBackgroundImage(Resources.Images.FACEBOOK, backgroundSize);
-        facebookIcon.setBackground(new Background(bgImg));
-
-        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.TWITTER, backgroundSize);
-        twitterIcon.setBackground(new Background(bgImg));
-
-
-        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.INSTAGRAM, backgroundSize);
-        instagramIcon.setBackground(new Background(bgImg));
-
-        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.MAIL, backgroundSize);
-        mailIcon.setBackground(new Background(bgImg));
-
-
-    }
 
     private boolean checkFields() {
         String red = "#ef5353";

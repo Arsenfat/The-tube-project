@@ -29,7 +29,6 @@ public class WebButtonController implements Initializable {
 
     @FXML
     private void handleActionPane() {
-        System.out.println("hey hey i am a pane");
     }
 
     @Override

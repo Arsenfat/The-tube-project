@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
@@ -9,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.*?>
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="435.0" prefWidth="753.0"
-            xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.tubeproject.view.connected.profile.ProfilScreen">
     <children>
         <Pane fx:id="topPane" prefHeight="62.0" prefWidth="772.0" style="-fx-background-color: #000000;">
@@ -36,10 +38,7 @@
                 <Insets/>
             </opaqueInsets>
             <children>
-                <JFXButton fx:id="facebookIcon" layoutX="636.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
-                <JFXButton fx:id="twitterIcon" layoutX="668.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
-                <JFXButton fx:id="instagramIcon" layoutX="700.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
-                <JFXButton fx:id="mailIcon" layoutX="734.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
+                <Pane fx:id="webButtonPane" layoutX="578.0" layoutY="4.0" prefHeight="55.0" prefWidth="180.0"/>
             </children>
         </Pane>
         <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" prefHeight="490.0" prefWidth="2.0"/>
