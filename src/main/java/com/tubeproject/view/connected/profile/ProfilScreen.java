@@ -4,7 +4,6 @@ import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 import com.tubeproject.controller.User;
-import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.interfaces.Injectable;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
@@ -14,7 +13,6 @@ import com.tubeproject.view.component.BurgerMenu;
 import com.tubeproject.view.component.WebButton;
 import javafx.application.Application;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -27,7 +25,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
@@ -63,31 +60,25 @@ public class ProfilScreen extends Application implements Initializable, Injectab
     @FXML
     private Label lbBirth;
 
+    private Map<String, Object> contextMap;
+
     @FXML
     private void handleButtonActionHomePage() {
-        ContextMap.getContextMap().put("USER", null);
+        contextMap.put("USER", null);
         StageManager.changeStage(anchorPane, Resources.ViewFiles.MAIN_SCREEN);
     }
 
     @FXML
     private void handleButtonActionForgotPassword() {
-        AnchorPane homePage;
-        try {
-            homePage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.CHANGE_PASSWORD_SCREEN));
+        contextMap.put("USER", null);
+        StageManager.changeStage(anchorPane, Resources.ViewFiles.CHANGE_PASSWORD_SCREEN);
 
-        } catch (IOException e) {
-            System.out.println("Warning unandled exeption.");
-            return;
-        }
-        Scene homeScene = new Scene(homePage);
-        Stage homeStage = (Stage) anchorPane.getScene().getWindow();
-        homeStage.setScene(homeScene);
-        homeStage.show();
     }
 
     @Override
     public void injectMap(Map<String, Object> map) {
-
+        contextMap = map;
+        initializeUser();
     }
 
     public static void startWindow() {
@@ -112,7 +103,6 @@ public class ProfilScreen extends Application implements Initializable, Injectab
         initializeBackground();
         webButtonPane.getChildren().add(new WebButton(this.getHostServices()));
         initializeBurger();
-        initializeUser();
     }
 
     public static ArrayList<Node> getAllNodes(Parent root) {
@@ -161,7 +151,7 @@ public class ProfilScreen extends Application implements Initializable, Injectab
     }
 
     public void initializeUser() {
-        User user = (User) ContextMap.getContextMap().get("USER");
+        User user = (User) contextMap.get("USER");
         if (user != null) {
             lbFirstName.setText(user.getFirstName());
             lbLastName.setText(user.getLastName());
