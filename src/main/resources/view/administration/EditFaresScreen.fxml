@@ -61,24 +61,26 @@
                              prefWidth="115.0" promptText="From:"/>
                 <JFXComboBox fx:id="zoneTo" focusColor="#744b4a" layoutX="200.0" layoutY="60.0" prefHeight="23.0"
                              prefWidth="115.0" promptText="To:"/>
-                <JFXRadioButton fx:id="rdAdult" layoutX="18.0" layoutY="126.0" text="Adult Ticket">
+                <JFXRadioButton fx:id="rdAdult" disable="true" layoutX="18.0" layoutY="126.0" text="Adult Ticket">
                     <toggleGroup>
                         <ToggleGroup fx:id="ticketType"/>
                     </toggleGroup>
                 </JFXRadioButton>
-                <JFXRadioButton fx:id="rdOysOffPeak" layoutX="18.0" layoutY="152.0" text="Oyster Off Peak"
+                <JFXRadioButton fx:id="rdOysOffPeak" disable="true" layoutX="18.0" layoutY="152.0"
+                                text="Oyster Off Peak" toggleGroup="$ticketType"/>
+                <JFXRadioButton fx:id="rdOysPeak" disable="true" layoutX="198.0" layoutY="152.0" text="Oyster Peak"
                                 toggleGroup="$ticketType"/>
-                <JFXRadioButton fx:id="rdOysPeak" layoutX="198.0" layoutY="152.0" text="Oyster Peak"
+                <JFXRadioButton fx:id="rdChild" disable="true" layoutX="198.0" layoutY="126.0" text="Child Ticket"
                                 toggleGroup="$ticketType"/>
-                <JFXRadioButton fx:id="rdChild" layoutX="198.0" layoutY="126.0" text="Child Ticket"
-                                toggleGroup="$ticketType"/>
-                <JFXTextField fx:id="txtPrice" focusColor="#744b4a" layoutX="92.0" layoutY="197.0" text="Price"/>
-                <JFXButton fx:id="btnSave" layoutX="135.0" layoutY="244.0" onAction="#saveValue" prefHeight="25.0"
-                           prefWidth="68.0" style="-fx-background-color: #151928;" text="Save" textFill="#dad1d1"/>
+                <JFXTextField fx:id="txtPrice" disable="true" focusColor="#744b4a" layoutX="92.0" layoutY="197.0"
+                              text="Price"/>
+                <JFXButton fx:id="btnSave" disable="true" layoutX="135.0" layoutY="244.0" onAction="#saveValue"
+                           prefHeight="25.0" prefWidth="68.0" style="-fx-background-color: #151928;" text="Save"
+                           textFill="#dad1d1"/>
             </children>
         </Pane>
     </children>
     <cursor>
-        <Cursor fx:constant="HAND"/>
+        <Cursor fx:constant="DEFAULT"/>
     </cursor>
 </AnchorPane>

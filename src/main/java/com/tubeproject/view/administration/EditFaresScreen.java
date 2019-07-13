@@ -14,7 +14,6 @@ import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
 import com.tubeproject.view.StageManager;
-import com.tubeproject.view.component.BurgerMenu;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -91,8 +90,10 @@ public class EditFaresScreen extends Application implements Initializable {
     @FXML
     private JFXTextField txtPrice;
 
-    private List<Fare> fares;
+    @FXML
+    private JFXButton btnSave;
 
+    private List<Fare> fares;
 
     @FXML
     private void handleButtonActionHomePage() {
@@ -174,6 +175,12 @@ public class EditFaresScreen extends Application implements Initializable {
                             && fare.getArrivingZone().equals(newValue)
                             && fare.getType().equals(Fare.Type.ADULT);
                 }).findFirst().orElseGet(() -> new FareBuilder().createFare()).getPrice()));
+                rdAdult.setDisable(false);
+                rdChild.setDisable(false);
+                rdOysOffPeak.setDisable(false);
+                rdOysPeak.setDisable(false);
+                txtPrice.setDisable(false);
+                btnSave.setDisable(false);
             }
         }));
 
@@ -283,7 +290,7 @@ public class EditFaresScreen extends Application implements Initializable {
     }
 
     public void initializeBurger() {
-        drawer.setSidePane(new BurgerMenu());
+        //drawer.setSidePane(new BurgerMenu());
 
         HamburgerSlideCloseTransition transition = new HamburgerSlideCloseTransition(burger);
         transition.setRate(-1);
