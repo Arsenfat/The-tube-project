@@ -6,11 +6,10 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity"
-            prefHeight="435.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/11"
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="435.0" prefWidth="753.0"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.tubeproject.view.administration.EditFaresScreen">
     <children>
         <Pane fx:id="topPane" prefHeight="62.0" prefWidth="772.0" style="-fx-background-color: #000000;">
@@ -37,10 +36,7 @@
                 <Insets/>
             </opaqueInsets>
             <children>
-                <JFXButton fx:id="facebookIcon" layoutX="636.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
-                <JFXButton fx:id="twitterIcon" layoutX="668.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
-                <JFXButton fx:id="instagramIcon" layoutX="700.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
-                <JFXButton fx:id="mailIcon" layoutX="734.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
+                <Pane fx:id="webButtonPane" layoutX="578.0" layoutY="4.0" prefHeight="55.0" prefWidth="180.0"/>
             </children>
         </Pane>
         <Label fx:id="smhLabel" layoutX="340.0" layoutY="79.0" text="Edit fares" textAlignment="CENTER"
@@ -52,32 +48,42 @@
         <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" prefHeight="490.0" prefWidth="2.0"/>
         <Pane id="formPane" layoutX="217.0" layoutY="121.0" prefHeight="283.0" prefWidth="338.0">
             <children>
-                <Label layoutX="140.0" layoutY="33.0" text="Zones">
+                <Label layoutX="144.0" layoutY="14.0" text="Zones">
                     <font>
                         <Font size="19.0"/>
                     </font>
                 </Label>
-                <JFXComboBox fx:id="zoneFrom" layoutX="14.0" layoutY="72.0" prefHeight="23.0" prefWidth="115.0"
-                             promptText="From:"/>
-                <JFXComboBox fx:id="zoneTo" layoutX="209.0" layoutY="72.0" prefHeight="23.0" prefWidth="115.0"
-                             promptText="To:"/>
-                <JFXRadioButton fx:id="rdAdult" layoutX="18.0" layoutY="126.0" text="Adult Ticket">
+                <JFXComboBox fx:id="zoneFrom" focusColor="#744b4a" layoutX="16.0" layoutY="60.0" prefHeight="23.0"
+                             prefWidth="115.0" promptText="From:"/>
+                <JFXComboBox fx:id="zoneTo" focusColor="#744b4a" layoutX="200.0" layoutY="60.0" prefHeight="23.0"
+                             prefWidth="115.0" promptText="To:"/>
+                <JFXRadioButton fx:id="rdAdult" disable="true" layoutX="18.0" layoutY="126.0" text="Adult Ticket">
                     <toggleGroup>
                         <ToggleGroup fx:id="ticketType"/>
                     </toggleGroup>
                 </JFXRadioButton>
-                <JFXRadioButton fx:id="rdOysOffPeak" layoutX="18.0" layoutY="152.0" text="Oyster Off Peak"
+                <JFXRadioButton fx:id="rdOysOffPeak" disable="true" layoutX="18.0" layoutY="152.0"
+                                text="Oyster Off Peak" toggleGroup="$ticketType"/>
+                <JFXRadioButton fx:id="rdOysPeak" disable="true" layoutX="198.0" layoutY="152.0" text="Oyster Peak"
                                 toggleGroup="$ticketType"/>
-                <JFXRadioButton fx:id="rdOysPeak" layoutX="198.0" layoutY="152.0" text="Oyster Peak"
+                <JFXRadioButton fx:id="rdChild" disable="true" layoutX="198.0" layoutY="126.0" text="Child Ticket"
                                 toggleGroup="$ticketType"/>
-                <JFXRadioButton fx:id="rdChild" layoutX="198.0" layoutY="126.0" text="Child Ticket"
-                                toggleGroup="$ticketType"/>
-                <JFXTextField fx:id="txtPrice" layoutX="92.0" layoutY="197.0" text="Price"/>
-                <JFXButton fx:id="btnSave" layoutX="257.0" layoutY="243.0" onAction="#saveValue" text="Save"/>
+                <JFXTextField fx:id="txtPrice" disable="true" focusColor="#744b4a" layoutX="92.0" layoutY="197.0"
+                              text="Price"/>
+                <JFXButton fx:id="btnSave" disable="true" layoutX="135.0" layoutY="244.0" onAction="#saveValue"
+                           prefHeight="25.0" prefWidth="68.0" style="-fx-background-color: #151928;" text="Save"
+                           textFill="#dad1d1"/>
             </children>
         </Pane>
+        <JFXButton fx:id="btnGoBack" layoutX="606.0" layoutY="381.0" onAction="#handleButtonActionGoBack"
+                   prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: #151928;" text="Go back"
+                   textFill="#dad1d1">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXButton>
     </children>
     <cursor>
-        <Cursor fx:constant="HAND"/>
+        <Cursor fx:constant="DEFAULT"/>
     </cursor>
 </AnchorPane>

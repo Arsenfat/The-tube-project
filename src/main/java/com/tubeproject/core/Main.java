@@ -12,8 +12,8 @@ public class Main {
         //Data Initialization
         Thread t = new Thread(PathCalculator::initializeGraphs);
         t.start();
-
-        //Toujours initialiser la context map
+      
+        //Always initialize context map
         Map<String, Object> ctxMap = ContextMap.getContextMap();
         ViewMainScreen.startWindow();
 

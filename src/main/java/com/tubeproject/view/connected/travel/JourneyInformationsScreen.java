@@ -1,14 +1,15 @@
 package com.tubeproject.view.connected.travel;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
+import com.tubeproject.model.ContextMap;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
 import com.tubeproject.view.StageManager;
 import com.tubeproject.view.component.BurgerMenu;
+import com.tubeproject.view.component.WebButton;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,10 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.io.InputStream;
@@ -35,16 +33,7 @@ public class JourneyInformationsScreen extends Application implements Initializa
     private AnchorPane anchorPane;
 
     @FXML
-    private JFXButton facebookIcon;
-
-    @FXML
-    private JFXButton twitterIcon;
-
-    @FXML
-    private JFXButton instagramIcon;
-
-    @FXML
-    private JFXButton mailIcon;
+    private Pane webButtonPane;
 
     @FXML
     private JFXHamburger burger;
@@ -54,7 +43,13 @@ public class JourneyInformationsScreen extends Application implements Initializa
 
     @FXML
     private void handleButtonActionHomePage() {
+        ContextMap.getContextMap().put("USER", null);
         StageManager.changeStage(anchorPane, Resources.ViewFiles.MAIN_SCREEN);
+    }
+
+    @FXML
+    private void handleButtonActionGoBack() {
+        StageManager.changeStage(anchorPane, Resources.ViewFiles.JOURNEY_SCREEN);
     }
 
     public static void startWindow() {
@@ -77,7 +72,7 @@ public class JourneyInformationsScreen extends Application implements Initializa
         drawer.setVisible(false);
         initializeImgView();
         initializeBackground();
-        initializeIcons();
+        webButtonPane.getChildren().add(new WebButton(this.getHostServices()));
         initializeBurger();
     }
 
@@ -94,25 +89,6 @@ public class JourneyInformationsScreen extends Application implements Initializa
         this.imgView.setImage(img);
     }
 
-    private void initializeIcons() {
-        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        BackgroundImage bgImg = ImageUtils.loadBackgroundImage(Resources.Images.FACEBOOK, backgroundSize);
-        facebookIcon.setBackground(new Background(bgImg));
-
-        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.TWITTER, backgroundSize);
-        twitterIcon.setBackground(new Background(bgImg));
-
-
-        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.INSTAGRAM, backgroundSize);
-        instagramIcon.setBackground(new Background(bgImg));
-
-        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.MAIL, backgroundSize);
-        mailIcon.setBackground(new Background(bgImg));
-
-    }
 
     public void initializeBurger() {
 
