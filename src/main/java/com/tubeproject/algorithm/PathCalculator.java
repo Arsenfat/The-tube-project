@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
 public class PathCalculator {
@@ -29,11 +30,15 @@ public class PathCalculator {
     private static DijkstraShortestPath<StationWLine, DefaultWeightedEdge> dijkstraQuickest;
     private static DijkstraShortestPath<StationWLine, DefaultWeightedEdge> dijkstraLessConnection;
 
+    private static ThreadPoolExecutor threadPoolExecutor;
+    private static CompletionService<PathResponse> completionService;
     private PathCalculator() {
         //we don't instantiate
     }
 
     public static void initializeGraphs() {
+        threadPoolExecutor = new ThreadPoolExecutor(2, 2, 300, TimeUnit.SECONDS, new PriorityBlockingQueue<>());
+        completionService = new ExecutorCompletionService<>(threadPoolExecutor);
         try {
             DatabaseConnection.DatabaseOpen();
             //Data in common in both graphs
@@ -62,12 +67,40 @@ public class PathCalculator {
         }
     }
 
-    public static List<StationWLine> calculateQuickest(StationWLine s1, StationWLine s2) {
-        return dijkstraQuickest.getPath(s1, s2).getVertexList();
+    public static PathResponse calculatePath(StationWLine s1, StationWLine s2) {
+        completionService.submit(() -> calculateQuickest(s1, s2));
+        completionService.submit(() -> calculateLessConnection(s1, s2));
+        PathResponse pathResponse = new PathResponse();
+        try {
+            PathResponse pathResponse1 = completionService.take().get();
+            PathResponse pathResponse2 = completionService.take().get();
+            pathResponse = mergeResponses(pathResponse1, pathResponse2);
+        } catch (InterruptedException | ExecutionException e) {
+            System.out.println(e);
+        }
+
+        return pathResponse;
     }
 
-    public static List<StationWLine> calculateLessConnection(StationWLine s1, StationWLine s2) {
-        return dijkstraLessConnection.getPath(s1, s2).getVertexList();
+
+    private static PathResponse mergeResponses(PathResponse p1, PathResponse p2) {
+        PathResponse pFinal = new PathResponse();
+        if (p1.getQuickest() != null) {
+            pFinal.setQuickest(p1.getQuickest());
+            pFinal.setLessConnection(p2.getLessConnection());
+        } else {
+            pFinal.setQuickest(p2.getQuickest());
+            pFinal.setLessConnection(p1.getLessConnection());
+        }
+        return pFinal;
+    }
+
+    public static PathResponse calculateQuickest(StationWLine s1, StationWLine s2) {
+        return new PathResponse(dijkstraQuickest.getPath(s1, s2).getVertexList(), null);
+    }
+
+    public static PathResponse calculateLessConnection(StationWLine s1, StationWLine s2) {
+        return new PathResponse(null, dijkstraLessConnection.getPath(s1, s2).getVertexList());
     }
 
     public static Map<StationWLine, List<ConnectionWLine>> getTravelEdges() {
