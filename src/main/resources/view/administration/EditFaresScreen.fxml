@@ -52,14 +52,14 @@
         <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" prefHeight="490.0" prefWidth="2.0"/>
         <Pane id="formPane" layoutX="217.0" layoutY="121.0" prefHeight="283.0" prefWidth="338.0">
             <children>
-                <Label layoutX="140.0" layoutY="33.0" text="Zones">
+                <Label layoutX="144.0" layoutY="14.0" text="Zones">
                     <font>
                         <Font size="19.0"/>
                     </font>
                 </Label>
-                <JFXComboBox fx:id="zoneFrom" focusColor="#744b4a" layoutX="14.0" layoutY="72.0" prefHeight="23.0"
+                <JFXComboBox fx:id="zoneFrom" focusColor="#744b4a" layoutX="16.0" layoutY="60.0" prefHeight="23.0"
                              prefWidth="115.0" promptText="From:"/>
-                <JFXComboBox fx:id="zoneTo" focusColor="#744b4a" layoutX="209.0" layoutY="72.0" prefHeight="23.0"
+                <JFXComboBox fx:id="zoneTo" focusColor="#744b4a" layoutX="200.0" layoutY="60.0" prefHeight="23.0"
                              prefWidth="115.0" promptText="To:"/>
                 <JFXRadioButton fx:id="rdAdult" layoutX="18.0" layoutY="126.0" text="Adult Ticket">
                     <toggleGroup>
@@ -73,7 +73,7 @@
                 <JFXRadioButton fx:id="rdChild" layoutX="198.0" layoutY="126.0" text="Child Ticket"
                                 toggleGroup="$ticketType"/>
                 <JFXTextField fx:id="txtPrice" focusColor="#744b4a" layoutX="92.0" layoutY="197.0" text="Price"/>
-                <JFXButton fx:id="btnSave" layoutX="257.0" layoutY="243.0" onAction="#saveValue" prefHeight="25.0"
+                <JFXButton fx:id="btnSave" layoutX="135.0" layoutY="244.0" onAction="#saveValue" prefHeight="25.0"
                            prefWidth="68.0" style="-fx-background-color: #151928;" text="Save" textFill="#dad1d1"/>
             </children>
         </Pane>
