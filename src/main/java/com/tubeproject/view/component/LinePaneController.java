@@ -35,6 +35,7 @@ public class LinePaneController implements Initializable {
     private Line line;
     private String direction;
     private boolean isLast;
+    private boolean isExpanded;
 
 
     @Override
@@ -75,13 +76,20 @@ public class LinePaneController implements Initializable {
         lblYPos = lblChangePlatform.getLayoutBounds().getMaxY();
         fillVBox();
         vbxStations.setVisible(false);
+        this.isExpanded = false;
     }
 
     @FXML
     public void expandStations() {
-        vbxStations.setVisible(true);
-        lblChangePlatform.setLayoutY(lblYPos + vbxStations.getHeight());
-        parent.setMaxHeight(parent.getHeight() + lblYPos + vbxStations.getHeight());
+        if (isExpanded) {
+            vbxStations.setVisible(false);
+            isExpanded = false;
+        } else {
+            vbxStations.setVisible(true);
+            lblChangePlatform.setLayoutY(lblYPos + vbxStations.getHeight());
+            parent.setMaxHeight(parent.getHeight() + lblYPos + vbxStations.getHeight());
+            isExpanded = true;
+        }
     }
 
     private void fillVBox() {
