@@ -4,6 +4,7 @@ import com.jfoenix.controls.*;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 import com.tubeproject.controller.Line;
 import com.tubeproject.controller.Station;
+import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.DatabaseConnection;
 import com.tubeproject.model.builder.StationBuilder;
 import com.tubeproject.model.requests.Select;
@@ -75,9 +76,16 @@ public class EditLinesScreen extends Application implements Initializable {
 
     @FXML
     private void handleButtonActionHomePage() {
+        ContextMap.getContextMap().put("USER", null);
         StageManager.changeStage(anchorPane, Resources.ViewFiles.MAIN_SCREEN);
 
     }
+
+    @FXML
+    private void handleButtonActionGoBack() {
+        StageManager.changeStage(anchorPane, Resources.ViewFiles.ADMINISTRATOR_SCREEN);
+    }
+
 
     public static void startWindow() {
         launch();

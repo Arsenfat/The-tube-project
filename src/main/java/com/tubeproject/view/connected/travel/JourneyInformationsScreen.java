@@ -3,6 +3,7 @@ package com.tubeproject.view.connected.travel;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
+import com.tubeproject.model.ContextMap;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
@@ -42,7 +43,13 @@ public class JourneyInformationsScreen extends Application implements Initializa
 
     @FXML
     private void handleButtonActionHomePage() {
+        ContextMap.getContextMap().put("USER", null);
         StageManager.changeStage(anchorPane, Resources.ViewFiles.MAIN_SCREEN);
+    }
+
+    @FXML
+    private void handleButtonActionGoBack() {
+        StageManager.changeStage(anchorPane, Resources.ViewFiles.JOURNEY_SCREEN);
     }
 
     public static void startWindow() {

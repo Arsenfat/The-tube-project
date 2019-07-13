@@ -3,6 +3,7 @@ package com.tubeproject.view.connected.travel;
 import com.jfoenix.controls.*;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 import com.tubeproject.controller.Station;
+import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.DatabaseConnection;
 import com.tubeproject.model.requests.Select;
 import com.tubeproject.model.requests.select.GetAllStationsRequest;
@@ -116,6 +117,7 @@ public class TravelScreen extends Application implements Initializable {
 
     @FXML
     private void handleButtonActionHomePage() {
+        ContextMap.getContextMap().put("USER", null);
         StageManager.changeStage(anchorPane, Resources.ViewFiles.MAIN_SCREEN);
     }
 

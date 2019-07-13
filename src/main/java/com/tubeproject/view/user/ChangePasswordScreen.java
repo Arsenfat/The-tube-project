@@ -82,6 +82,7 @@ public class ChangePasswordScreen extends Application implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeImgView();
         webButtonPane.getChildren().add(new WebButton(this.getHostServices()));
+        initializeBackground();
     }
 
     private void initializeBackground() {
