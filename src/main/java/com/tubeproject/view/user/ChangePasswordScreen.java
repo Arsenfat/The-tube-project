@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTextField;
 import com.tubeproject.controller.User;
 import com.tubeproject.model.DatabaseConnection;
 import com.tubeproject.model.builder.UserBuilder;
+import com.tubeproject.model.interfaces.Injectable;
 import com.tubeproject.model.requests.Select;
 import com.tubeproject.model.requests.Update;
 import com.tubeproject.model.requests.select.EmailExistsRequest;
@@ -30,9 +31,10 @@ import javafx.stage.Stage;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Map;
 import java.util.ResourceBundle;
 
-public class ChangePasswordScreen extends Application implements Initializable {
+public class ChangePasswordScreen extends Application implements Initializable, Injectable {
 
     @FXML
     private ImageView imgView;
@@ -62,6 +64,11 @@ public class ChangePasswordScreen extends Application implements Initializable {
     @FXML
     private void handleButtonActionHomePage() {
         StageManager.changeStage(anchorPane, Resources.ViewFiles.MAIN_SCREEN);
+    }
+
+    @Override
+    public void injectMap(Map<String, Object> map) {
+
     }
 
     public static void startWindow() {

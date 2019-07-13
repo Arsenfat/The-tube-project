@@ -59,12 +59,12 @@
                 <Font size="18.0"/>
             </font>
         </Label>
-        <Label fx:id="LbBegin" layoutX="155.0" layoutY="82.0" text="b" textFill="#151928">
+        <Label fx:id="lbBegin" layoutX="155.0" layoutY="82.0" text="b" textFill="#151928">
             <font>
                 <Font size="18.0"/>
             </font>
         </Label>
-        <Label fx:id="LbEnd" layoutX="156.0" layoutY="124.0" text="e" textFill="#151928">
+        <Label fx:id="lbEnd" layoutX="156.0" layoutY="124.0" text="e" textFill="#151928">
             <font>
                 <Font size="18.0"/>
             </font>

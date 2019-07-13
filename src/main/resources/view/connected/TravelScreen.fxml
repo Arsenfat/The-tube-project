@@ -73,7 +73,8 @@
             </cursor>
         </JFXButton>
         <JFXButton fx:id="goBtn" layoutX="419.0" layoutY="261.0" prefHeight="31.0" prefWidth="48.0"
-                   style="-fx-background-color: #686f89; -fx-background-radius: 16.4, 15;" text="GO" textFill="#dad1d1">
+                   style="-fx-background-color: #686f89; -fx-background-radius: 16.4, 15;" onAction="#goToJourney"
+                   text="GO" textFill="#dad1d1">
             <font>
                 <Font size="16.0"/>
             </font>

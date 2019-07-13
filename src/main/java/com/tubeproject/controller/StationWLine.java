@@ -42,13 +42,7 @@ public class StationWLine extends Station {
 
     @Override
     public String toString() {
-        return "StationWLine{" +
-                "line=" + line +
-                ", naptan='" + naptan + '\'' +
-                ", name='" + name + '\'' +
-                ", wheelchair=" + wheelchair +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
-                '}';
+        String capitalizedLine = getLine().getName().substring(0, 1).toUpperCase() + getLine().getName().substring(1).toLowerCase();
+        return String.format("%s, %s", getName(), capitalizedLine);
     }
 }

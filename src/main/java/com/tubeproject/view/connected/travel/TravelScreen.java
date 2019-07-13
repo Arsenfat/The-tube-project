@@ -2,11 +2,10 @@ package com.tubeproject.view.connected.travel;
 
 import com.jfoenix.controls.*;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
-import com.tubeproject.controller.Station;
+import com.tubeproject.algorithm.PathCalculator;
+import com.tubeproject.controller.StationWLine;
 import com.tubeproject.model.ContextMap;
-import com.tubeproject.model.DatabaseConnection;
-import com.tubeproject.model.requests.Select;
-import com.tubeproject.model.requests.select.GetAllStationsRequest;
+import com.tubeproject.model.interfaces.Injectable;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
@@ -20,10 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.DateCell;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -33,15 +29,14 @@ import org.controlsfx.control.textfield.TextFields;
 
 import java.io.InputStream;
 import java.net.URL;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
-public class TravelScreen extends Application implements Initializable {
+public class TravelScreen extends Application implements Initializable, Injectable {
 
     @FXML
     private ImageView imgView;
@@ -94,6 +89,8 @@ public class TravelScreen extends Application implements Initializable {
     @FXML
     private Pane webButtonPane;
 
+    private Map<String, Object> contextMap;
+
     @FXML
     private void handleButtonActionArrive(ActionEvent event) {
         arriveBtn.setStyle("-fx-background-color:  #97bb91 ; -fx-text-fill: black");
@@ -121,6 +118,11 @@ public class TravelScreen extends Application implements Initializable {
         StageManager.changeStage(anchorPane, Resources.ViewFiles.MAIN_SCREEN);
     }
 
+    @Override
+    public void injectMap(Map<String, Object> map) {
+        contextMap = map;
+    }
+
     public static void startWindow() {
         launch();
     }
@@ -136,6 +138,25 @@ public class TravelScreen extends Application implements Initializable {
 
     }
 
+    @FXML
+    private void goToJourney() {
+        List<StationWLine> stationList = loadStation();
+        if (startBtn.getText() != null && endBtn.getText() != null && !startBtn.getText().equalsIgnoreCase("") && !endBtn.getText().equalsIgnoreCase("")) {
+            StationWLine start = stationList.stream().filter((station) -> startBtn.getText().equalsIgnoreCase(station.toString())).findFirst().orElse(null);
+            StationWLine end = stationList.stream().filter((station) -> endBtn.getText().equalsIgnoreCase(station.toString())).findFirst().orElse(null);
+            if (start != null && end != null) {
+                contextMap.put("START_STATION", start);
+                contextMap.put("END_STATION", end);
+                StageManager.changeStage(anchorPane, Resources.ViewFiles.JOURNEY_SCREEN);
+            } else {
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setTitle("Error, stations do not exist");
+                a.setHeaderText("Error, station does not exit !");
+                a.setContentText(String.format("Station %s does not exist", (start == null) ? start : (end == null) ? end : "none"));
+            }
+        }
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -146,7 +167,7 @@ public class TravelScreen extends Application implements Initializable {
         setClickoutEvent();
         initializeTextFieldEvent(txtStart, startBtn);
         initializeTextFieldEvent(txtEnd, endBtn);
-        List<String> listStationName = loadStation();
+        List<StationWLine> listStationName = loadStation();
         autocomplete(txtStart, listStationName);
         autocomplete(txtEnd, listStationName);
         checkTime();
@@ -260,7 +281,7 @@ public class TravelScreen extends Application implements Initializable {
 
     }
 
-    public void autocomplete(JFXTextField txtField, List<String> listStationName) {
+    public void autocomplete(JFXTextField txtField, List<StationWLine> listStationName) {
         TextFields.bindAutoCompletion(txtField, listStationName);
 
 
@@ -288,21 +309,8 @@ public class TravelScreen extends Application implements Initializable {
         });
     }
 
-    public List<String> loadStation() {
-        List<String> stationList = new ArrayList<>();
-        try {
-            DatabaseConnection.DatabaseOpen();
-            GetAllStationsRequest stations = new GetAllStationsRequest();
-            Select s = new Select(stations);
-
-            List<Station> tmpList = (List<Station>) s.select().get();
-
-            stationList = tmpList.stream().map(Station::getName).collect(Collectors.toList());
-            DatabaseConnection.DatabaseClose();
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return stationList;
+    public List<StationWLine> loadStation() {
+        return new ArrayList<>(PathCalculator.getTravelEdges().keySet());
     }
 
     public void initializeBurger() {

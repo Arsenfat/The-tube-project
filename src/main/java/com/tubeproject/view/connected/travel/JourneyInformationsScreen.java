@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 import com.tubeproject.model.ContextMap;
+import com.tubeproject.model.interfaces.Injectable;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
@@ -22,9 +23,10 @@ import javafx.stage.Stage;
 
 import java.io.InputStream;
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 
-public class JourneyInformationsScreen extends Application implements Initializable {
+public class JourneyInformationsScreen extends Application implements Initializable, Injectable {
 
     @FXML
     private ImageView imgView;
@@ -50,6 +52,11 @@ public class JourneyInformationsScreen extends Application implements Initializa
     @FXML
     private void handleButtonActionGoBack() {
         StageManager.changeStage(anchorPane, Resources.ViewFiles.JOURNEY_SCREEN);
+    }
+
+    @Override
+    public void injectMap(Map<String, Object> map) {
+
     }
 
     public static void startWindow() {

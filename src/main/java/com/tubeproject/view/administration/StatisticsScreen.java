@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.DatabaseConnection;
+import com.tubeproject.model.interfaces.Injectable;
 import com.tubeproject.model.requests.Select;
 import com.tubeproject.model.requests.select.ComputeNumberTravelsRequest;
 import com.tubeproject.model.requests.select.ComputeUserQuantityRequest;
@@ -29,9 +30,10 @@ import javafx.stage.Stage;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Map;
 import java.util.ResourceBundle;
 
-public class StatisticsScreen extends Application implements Initializable {
+public class StatisticsScreen extends Application implements Initializable, Injectable {
 
     @FXML
     private ImageView imgView;
@@ -66,6 +68,11 @@ public class StatisticsScreen extends Application implements Initializable {
     @FXML
     private void handleButtonActionGoBack() {
         StageManager.changeStage(anchorPane, Resources.ViewFiles.ADMINISTRATOR_SCREEN);
+    }
+
+    @Override
+    public void injectMap(Map<String, Object> map) {
+
     }
 
     public static void startWindow() {

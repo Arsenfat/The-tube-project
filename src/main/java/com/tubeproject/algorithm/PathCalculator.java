@@ -48,7 +48,7 @@ public class PathCalculator {
 
             //Quickest path graph initialization, weight of 2 on line change
             quickestGraph = new DefaultUndirectedWeightedGraph<>(DefaultWeightedEdge.class);
-            Map<StationWLine, List<ConnectionWLine>> correspEdgesQuickest = getCorrespondanceEdges(lineList, verticesList, 2);
+            Map<StationWLine, List<ConnectionWLine>> correspEdgesQuickest = getCorrespondanceEdges(lineList, verticesList, 3);
             fillVertexes(quickestGraph, verticesList);
             fillEdges(quickestGraph, noCorrespondEdges);
             fillEdges(quickestGraph, correspEdgesQuickest);

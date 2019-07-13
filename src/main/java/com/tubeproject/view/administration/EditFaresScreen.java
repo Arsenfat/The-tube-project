@@ -7,6 +7,7 @@ import com.tubeproject.controller.Zone;
 import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.DatabaseConnection;
 import com.tubeproject.model.builder.FareBuilder;
+import com.tubeproject.model.interfaces.Injectable;
 import com.tubeproject.model.requests.Select;
 import com.tubeproject.model.requests.Update;
 import com.tubeproject.model.requests.select.GetFaresRequest;
@@ -34,13 +35,10 @@ import javafx.stage.Stage;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.stream.Collectors;
 
-public class EditFaresScreen extends Application implements Initializable {
+public class EditFaresScreen extends Application implements Initializable, Injectable {
 
     @FXML
     private ImageView imgView;
@@ -97,6 +95,11 @@ public class EditFaresScreen extends Application implements Initializable {
         StageManager.changeStage(anchorPane, Resources.ViewFiles.ADMINISTRATOR_SCREEN);
     }
 
+
+    @Override
+    public void injectMap(Map<String, Object> map) {
+
+    }
 
     public static void startWindow() {
         launch();

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tubeproject.controller.Line;
+import com.tubeproject.model.interfaces.Injectable;
 import com.tubeproject.tool.LineMap;
 import com.tubeproject.tool.StationMapPos;
 import com.tubeproject.utils.FXMLUtils;
@@ -20,13 +21,19 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-public class TestTravelViewer extends Application implements Initializable {
+public class TestTravelViewer extends Application implements Initializable, Injectable {
 
     @FXML
     TravelViewer tV;
+
+    @Override
+    public void injectMap(Map<String, Object> map) {
+
+    }
 
     public static void startWindow() {
         launch();

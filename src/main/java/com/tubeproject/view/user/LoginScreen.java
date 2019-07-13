@@ -6,6 +6,7 @@ import com.tubeproject.controller.User;
 import com.tubeproject.core.Login;
 import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.DatabaseConnection;
+import com.tubeproject.model.interfaces.Injectable;
 import com.tubeproject.model.requests.Select;
 import com.tubeproject.model.requests.select.LoginRequest;
 import com.tubeproject.utils.EmailUtils;
@@ -35,10 +36,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class LoginScreen extends Application implements Initializable {
+public class LoginScreen extends Application implements Initializable, Injectable {
 
     @FXML
     private ImageView imgView;
@@ -66,6 +68,11 @@ public class LoginScreen extends Application implements Initializable {
 
     @FXML
     private Label lbConnectToServer;
+
+    @Override
+    public void injectMap(Map<String, Object> map) {
+
+    }
 
     @FXML
     private void handleButtonActionHomePage() {

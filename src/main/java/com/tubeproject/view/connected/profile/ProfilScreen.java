@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 import com.tubeproject.controller.User;
 import com.tubeproject.model.ContextMap;
+import com.tubeproject.model.interfaces.Injectable;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
@@ -30,9 +31,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.ResourceBundle;
 
-public class ProfilScreen extends Application implements Initializable {
+public class ProfilScreen extends Application implements Initializable, Injectable {
 
     @FXML
     private ImageView imgView;
@@ -81,6 +83,11 @@ public class ProfilScreen extends Application implements Initializable {
         Stage homeStage = (Stage) anchorPane.getScene().getWindow();
         homeStage.setScene(homeScene);
         homeStage.show();
+    }
+
+    @Override
+    public void injectMap(Map<String, Object> map) {
+
     }
 
     public static void startWindow() {

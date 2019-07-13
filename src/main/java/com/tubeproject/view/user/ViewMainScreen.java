@@ -1,5 +1,6 @@
 package com.tubeproject.view.user;
 
+import com.tubeproject.model.interfaces.Injectable;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
@@ -27,9 +28,10 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
-public class ViewMainScreen extends Application implements Initializable {
+public class ViewMainScreen extends Application implements Initializable, Injectable {
 
     @FXML
     private ImageView imgView;
@@ -84,7 +86,10 @@ public class ViewMainScreen extends Application implements Initializable {
         StageManager.changeStage(anchorPane, Resources.ViewFiles.SIGN_UP_SCREEN);
     }
 
+    @Override
+    public void injectMap(Map<String, Object> map) {
 
+    }
 
     public static void startWindow() {
         launch();

@@ -3,12 +3,12 @@ package com.tubeproject.view.connected.travel;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
+import com.tubeproject.algorithm.PathCalculator;
+import com.tubeproject.algorithm.PathResponse;
 import com.tubeproject.controller.Line;
-import com.tubeproject.controller.Station;
+import com.tubeproject.controller.StationWLine;
 import com.tubeproject.model.ContextMap;
-import com.tubeproject.model.DatabaseConnection;
-import com.tubeproject.model.requests.Select;
-import com.tubeproject.model.requests.select.GetStationsFromLineRequest;
+import com.tubeproject.model.interfaces.Injectable;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
@@ -27,12 +27,13 @@ import javafx.stage.Stage;
 
 import java.io.InputStream;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
-public class JourneyScreen extends Application implements Initializable {
+public class JourneyScreen extends Application implements Initializable, Injectable {
 
     @FXML
     private ImageView imgView;
@@ -55,7 +56,15 @@ public class JourneyScreen extends Application implements Initializable {
     @FXML
     private Label lbLessConnectionListLine;
 
+    @FXML
+    private Label lbBegin;
+
+    @FXML
+    private Label lbEnd;
+
     private List<Line> listLines = new ArrayList<>();
+
+    private Map<String, Object> contextMap;
 
     @FXML
     private void handleButtonActionHomePage() {
@@ -66,6 +75,22 @@ public class JourneyScreen extends Application implements Initializable {
     @FXML
     private void handleButtonActionGoBack() {
         StageManager.changeStage(anchorPane, Resources.ViewFiles.TRAVEL_SCREEN);
+    }
+
+    @Override
+    public void injectMap(Map<String, Object> map) {
+        contextMap = map;
+        PathResponse pathResponse = PathCalculator.calculatePath((StationWLine) contextMap.get("START_STATION"), (StationWLine) contextMap.get("END_STATION"));
+
+        fillPage(pathResponse);
+    }
+
+    private void fillPage(PathResponse pathResponse) {
+        lbBegin.setText(((StationWLine) contextMap.get("START_STATION")).getName());
+        lbEnd.setText(((StationWLine) contextMap.get("END_STATION")).getName());
+
+        initializeQuickestListLine(pathResponse.getQuickest());
+        initializeLessConnectionListLine(pathResponse.getLessConnection());
     }
 
     public static void startWindow() {
@@ -89,18 +114,7 @@ public class JourneyScreen extends Application implements Initializable {
         initializeImgView();
         webButtonPane.getChildren().add(new WebButton(this.getHostServices()));
         initializeBurger();
-        try {
-            DatabaseConnection.DatabaseOpen();
-            Line bakerloo = new Line(1, "Bakerloo");
-            GetStationsFromLineRequest getStationsFromLineRequest = new GetStationsFromLineRequest(bakerloo);
-            bakerloo.setStations((List<Station>) new Select(getStationsFromLineRequest).select().get());
-            listLines.add(bakerloo);
-            DatabaseConnection.DatabaseClose();
-        } catch (SQLException e) {
 
-        }
-        initializeQuickestListLine();
-        initializeLessConnectionListLine();
 
     }
 
@@ -136,11 +150,11 @@ public class JourneyScreen extends Application implements Initializable {
 
     }
 
-    public void initializeQuickestListLine() {
-        lbQuickestListLine.setText(listLines.get(0).getName());
+    public void initializeQuickestListLine(List<StationWLine> list) {
+        lbQuickestListLine.setText(list.stream().map((station) -> station.getLine().getName()).distinct().collect(Collectors.joining(", ")));
     }
 
-    public void initializeLessConnectionListLine() {
-        lbLessConnectionListLine.setText(listLines.get(0).getName());
+    public void initializeLessConnectionListLine(List<StationWLine> list) {
+        lbLessConnectionListLine.setText(list.stream().map((station) -> station.getLine().getName()).distinct().collect(Collectors.joining(", ")));
     }
 }

@@ -6,6 +6,7 @@ import com.tubeproject.controller.User;
 import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.DatabaseConnection;
 import com.tubeproject.model.builder.UserBuilder;
+import com.tubeproject.model.interfaces.Injectable;
 import com.tubeproject.model.requests.Insert;
 import com.tubeproject.model.requests.Select;
 import com.tubeproject.model.requests.insert.InsertUserRequest;
@@ -42,9 +43,10 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Map;
 import java.util.ResourceBundle;
 
-public class SignUpScreen extends Application implements Initializable {
+public class SignUpScreen extends Application implements Initializable, Injectable {
 
     @FXML
     private ImageView imgView;
@@ -90,6 +92,11 @@ public class SignUpScreen extends Application implements Initializable {
         Stage homeStage = (Stage) anchorPane.getScene().getWindow();
         homeStage.setScene(homeScene);
         homeStage.show();
+    }
+
+    @Override
+    public void injectMap(Map<String, Object> map) {
+
     }
 
     public static void startWindow() {

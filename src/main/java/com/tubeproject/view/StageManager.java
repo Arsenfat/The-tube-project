@@ -1,5 +1,7 @@
 package com.tubeproject.view;
 
+import com.tubeproject.model.ContextMap;
+import com.tubeproject.model.interfaces.Injectable;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -21,13 +23,18 @@ public class StageManager {
     private static void sceneChange(Node rootPane, String screen, String stylesheet) {
         AnchorPane homePage;
         try {
-            homePage = FXMLLoader.load(StageManager.class.getResource(screen));
-
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            homePage = fxmlLoader.load(StageManager.class.getResourceAsStream(screen));
+            Injectable injectableController = fxmlLoader.getController();
+            injectableController.injectMap(ContextMap.getContextMap());
+            System.out.println(ContextMap.getContextMap());
         } catch (IOException e) {
             System.out.println("Error while loading FXML");
             System.out.println(e);
+            System.out.println(e.getCause());
             return;
         }
+
         Scene homeScene = new Scene(homePage);
         Stage homeStage = (Stage) rootPane.getScene().getWindow();
         if (stylesheet != null)
