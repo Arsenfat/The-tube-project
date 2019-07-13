@@ -10,7 +10,7 @@ import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
 import com.tubeproject.view.StageManager;
-import com.tubeproject.view.component.BurgerMenu;
+import com.tubeproject.view.component.WebButton;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -46,18 +46,6 @@ public class TravelScreen extends Application implements Initializable {
 
     @FXML
     private AnchorPane anchorPane;
-
-    @FXML
-    private JFXButton facebookIcon;
-
-    @FXML
-    private JFXButton twitterIcon;
-
-    @FXML
-    private JFXButton instagramIcon;
-
-    @FXML
-    private JFXButton mailIcon;
 
     @FXML
     private JFXHamburger burger;
@@ -102,9 +90,7 @@ public class TravelScreen extends Application implements Initializable {
     private JFXDrawer drawer;
 
     @FXML
-    private void handleButtonActionHome(ActionEvent event) {
-
-    }
+    private Pane webButtonPane;
 
     @FXML
     private void handleButtonActionArrive(ActionEvent event) {
@@ -153,7 +139,6 @@ public class TravelScreen extends Application implements Initializable {
         drawer.setVisible(false);
         initializeImgView();
         initializeBackground();
-        initializeIcons();
         //initializeMap();
         setClickoutEvent();
         initializeTextFieldEvent(txtStart, startBtn);
@@ -163,6 +148,7 @@ public class TravelScreen extends Application implements Initializable {
         autocomplete(txtEnd, listStationName);
         checkTime();
         initializeBurger();
+        webButtonPane.getChildren().add(new WebButton(this.getHostServices()));
     }
 
     public static ArrayList<Node> getAllNodes(Parent root) {
@@ -190,26 +176,6 @@ public class TravelScreen extends Application implements Initializable {
         InputStream stream = getClass().getResourceAsStream(Resources.Images.LOGO1);
         Image img = new Image(stream);
         this.imgView.setImage(img);
-    }
-
-    private void initializeIcons() {
-        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        BackgroundImage bgImg = ImageUtils.loadBackgroundImage(Resources.Images.FACEBOOK, backgroundSize);
-        facebookIcon.setBackground(new Background(bgImg));
-
-        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.TWITTER, backgroundSize);
-        twitterIcon.setBackground(new Background(bgImg));
-
-
-        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.INSTAGRAM, backgroundSize);
-        instagramIcon.setBackground(new Background(bgImg));
-
-        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.MAIL, backgroundSize);
-        mailIcon.setBackground(new Background(bgImg));
-
     }
 
     private void initializeMap() {
@@ -337,7 +303,7 @@ public class TravelScreen extends Application implements Initializable {
     }
 
     public void initializeBurger() {
-        drawer.setSidePane(new BurgerMenu());
+        //drawer.setSidePane(new BurgerMenu());
         HamburgerSlideCloseTransition transition = new HamburgerSlideCloseTransition(burger);
         transition.setRate(-1);
         burger.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
