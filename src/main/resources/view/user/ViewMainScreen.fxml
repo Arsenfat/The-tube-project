@@ -26,7 +26,7 @@
                 <Cursor fx:constant="HAND"/>
             </cursor>
         </JFXButton>
-        <Label layoutX="199.0" layoutY="218.0" text="Do you want to go to Baker street ? " textFill="#151928">
+        <Label layoutX="199.0" layoutY="218.0" text="Do you want to go to" textFill="#151928">
             <font>
                 <Font name="System Bold" size="21.0"/>
             </font>
@@ -70,5 +70,11 @@
                 <Pane fx:id="webButtonPane" layoutX="578.0" layoutY="4.0" prefHeight="55.0" prefWidth="180.0"/>
             </children>
         </Pane>
+        <Label fx:id="lblAnimation" layoutX="410.0" layoutY="214.0" prefHeight="38.0" prefWidth="288.0"
+               textFill="#151928">
+            <font>
+                <Font name="System Bold" size="21.0"/>
+            </font>
+        </Label>
     </children>
 </AnchorPane>
