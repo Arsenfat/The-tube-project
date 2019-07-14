@@ -15,7 +15,7 @@
         <Pane fx:id="topPane" prefHeight="62.0" prefWidth="772.0" style="-fx-background-color: #000000;">
             <children>
                 <ImageView fx:id="imgView" fitHeight="31.0" fitWidth="102.0" layoutX="47.0" layoutY="18.0"
-                           onMouseClicked="#handleButtonActionHomePage" pickOnBounds="true" preserveRatio="true">
+                           pickOnBounds="true" preserveRatio="true">
                     <cursor>
                         <Cursor fx:constant="HAND"/>
                     </cursor>

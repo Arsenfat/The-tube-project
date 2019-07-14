@@ -49,9 +49,6 @@ public class TravelScreen extends Application implements Initializable, Injectab
     private JFXHamburger burger;
 
     @FXML
-    private ImageView imgMap;
-
-    @FXML
     private JFXButton startBtn;
 
     @FXML
@@ -115,7 +112,8 @@ public class TravelScreen extends Application implements Initializable, Injectab
 
 
     @FXML
-    private void handleButtonActionHomePage() {
+    private void handleButtonActionHomePage(MouseEvent event) {
+        System.out.println("yeah");
         ContextMap.getContextMap().put("USER", null);
         StageManager.changeStage(anchorPane, Resources.ViewFiles.MAIN_SCREEN);
     }
@@ -177,6 +175,7 @@ public class TravelScreen extends Application implements Initializable, Injectab
         checkTime();
         initializeBurger();
         webButtonPane.getChildren().add(new WebButton(this.getHostServices()));
+        imgView.setOnMouseClicked(this::handleButtonActionHomePage);
     }
 
     public static ArrayList<Node> getAllNodes(Parent root) {
@@ -204,25 +203,6 @@ public class TravelScreen extends Application implements Initializable, Injectab
         InputStream stream = getClass().getResourceAsStream(Resources.Images.LOGO1);
         Image img = new Image(stream);
         this.imgView.setImage(img);
-    }
-
-    private void initializeMap() {
-        InputStream stream = getClass().getResourceAsStream(Resources.Images.MAP);
-        Image img = new Image(stream);
-        this.imgMap.setImage(img);
-    }
-
-    public static boolean inHierarchy(Node node, Node potentialHierarchyElement) {
-        if (potentialHierarchyElement == null) {
-            return true;
-        }
-        while (node != null) {
-            if (node == potentialHierarchyElement) {
-                return true;
-            }
-            node = node.getParent();
-        }
-        return false;
     }
 
     public void setClickoutEvent() {
@@ -287,8 +267,6 @@ public class TravelScreen extends Application implements Initializable, Injectab
 
     public void autocomplete(JFXTextField txtField, List<StationWLine> listStationName) {
         TextFields.bindAutoCompletion(txtField, listStationName);
-
-
     }
 
     public void initializeTextFieldEvent(JFXTextField textField, JFXButton button) {
