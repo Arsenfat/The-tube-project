@@ -109,6 +109,7 @@ public class TravelScreen extends Application implements Initializable, Injectab
 
     @FXML
     private void handleButtonActionNow(ActionEvent event) {
+        nowBtn.setText("> Later");
         datePicker.setValue(LocalDate.now());
         time.setValue(LocalTime.now());
     }

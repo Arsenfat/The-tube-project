@@ -55,7 +55,7 @@ public class JourneyInformationsScreen extends Application implements Initializa
 
     @FXML
     private void handleButtonActionGoBack() {
-        StageManager.changeStage(anchorPane, Resources.ViewFiles.JOURNEY_SCREEN);
+        StageManager.changeStage(anchorPane, Resources.ViewFiles.JOURNEY_SCREEN, Resources.Stylesheets.MENU);
     }
 
     @Override

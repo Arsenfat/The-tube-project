@@ -20,7 +20,6 @@ import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -32,7 +31,6 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
@@ -80,19 +78,9 @@ public class LoginScreen extends Application implements Initializable, Injectabl
     }
 
     @FXML
-    private void handleButtonActionForgotPassword() {
-        AnchorPane homePage;
-        try {
-            homePage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.CHANGE_PASSWORD_SCREEN));
-
-        } catch (IOException e) {
-            System.out.println("Warning unandled exeption.");
-            return;
-        }
-        Scene homeScene = new Scene(homePage);
-        Stage homeStage = (Stage) anchorPane.getScene().getWindow();
-        homeStage.setScene(homeScene);
-        homeStage.show();
+    private void handleButtonActionForgotPassword(ActionEvent event) {
+        ContextMap.getContextMap().put("USER", null);
+        StageManager.changeStage(((Node) event.getSource()), Resources.ViewFiles.CHANGE_PASSWORD_SCREEN);
     }
 
 

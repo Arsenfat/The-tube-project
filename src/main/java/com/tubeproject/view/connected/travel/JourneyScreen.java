@@ -147,6 +147,7 @@ public class JourneyScreen extends Application implements Initializable, Injecta
         initializeImgView();
         webButtonPane.getChildren().add(new WebButton(this.getHostServices()));
         initializeBurger();
+        initializeBackground();
 
 
     }
