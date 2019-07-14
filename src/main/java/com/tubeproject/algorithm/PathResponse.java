@@ -4,7 +4,7 @@ import com.tubeproject.controller.StationWLine;
 
 import java.util.List;
 
-public class PathResponse {
+public class PathResponse implements Comparable {
     private List<StationWLine> quickest;
     private List<StationWLine> lessConnection;
 
@@ -31,5 +31,10 @@ public class PathResponse {
 
     public void setLessConnection(List<StationWLine> lessConnection) {
         this.lessConnection = lessConnection;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }

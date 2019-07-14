@@ -3,6 +3,7 @@ package com.tubeproject.view.administration;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
+import com.tubeproject.controller.User;
 import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.interfaces.Injectable;
 import com.tubeproject.utils.FXMLUtils;
@@ -52,6 +53,11 @@ public class ViewAdministrator extends Application implements Initializable, Inj
 
     @FXML
     private Button btnStats;
+
+    private BurgerMenu burgerPane;
+
+    private Map<String, Object> contextMap;
+
     @FXML
     private void handleButtonActionHomePage() {
         ContextMap.getContextMap().put("USER", null);
@@ -60,7 +66,8 @@ public class ViewAdministrator extends Application implements Initializable, Inj
 
     @Override
     public void injectMap(Map<String, Object> map) {
-
+        contextMap = map;
+        burgerPane.checkUserLoggedIn((User) contextMap.get("USER"));
     }
 
     public static void startWindow() {
@@ -106,7 +113,8 @@ public class ViewAdministrator extends Application implements Initializable, Inj
 
 
     public void initializeBurger() {
-        drawer.setSidePane(new BurgerMenu());
+        burgerPane = new BurgerMenu();
+        drawer.setSidePane(burgerPane);
         HamburgerSlideCloseTransition transition = new HamburgerSlideCloseTransition(burger);
         transition.setRate(-1);
         burger.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {

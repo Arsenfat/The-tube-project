@@ -3,6 +3,7 @@ package com.tubeproject.view.connected.travel;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
+import com.tubeproject.controller.User;
 import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.interfaces.Injectable;
 import com.tubeproject.utils.FXMLUtils;
@@ -43,6 +44,9 @@ public class JourneyInformationsScreen extends Application implements Initializa
     @FXML
     private JFXDrawer drawer;
 
+    private Map<String, Object> contextMap;
+    private BurgerMenu burgerPane;
+
     @FXML
     private void handleButtonActionHomePage() {
         ContextMap.getContextMap().put("USER", null);
@@ -56,6 +60,8 @@ public class JourneyInformationsScreen extends Application implements Initializa
 
     @Override
     public void injectMap(Map<String, Object> map) {
+        contextMap = map;
+        burgerPane.checkUserLoggedIn((User) contextMap.get("USER"));
 
     }
 
@@ -98,8 +104,8 @@ public class JourneyInformationsScreen extends Application implements Initializa
 
 
     public void initializeBurger() {
-
-        drawer.setSidePane(new BurgerMenu());
+        burgerPane = new BurgerMenu();
+        drawer.setSidePane(burgerPane);
             HamburgerSlideCloseTransition transition = new HamburgerSlideCloseTransition(burger);
             transition.setRate(-1);
             burger.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {

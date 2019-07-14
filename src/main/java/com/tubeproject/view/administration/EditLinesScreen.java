@@ -4,6 +4,7 @@ import com.jfoenix.controls.*;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 import com.tubeproject.controller.Line;
 import com.tubeproject.controller.Station;
+import com.tubeproject.controller.User;
 import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.DatabaseConnection;
 import com.tubeproject.model.builder.StationBuilder;
@@ -75,6 +76,10 @@ public class EditLinesScreen extends Application implements Initializable, Injec
     @FXML
     private JFXComboBox<Station> cmbStation;
 
+    private BurgerMenu burgerPane;
+
+    private Map<String, Object> contextMap;
+
     @FXML
     private void handleButtonActionHomePage() {
         ContextMap.getContextMap().put("USER", null);
@@ -89,7 +94,8 @@ public class EditLinesScreen extends Application implements Initializable, Injec
 
     @Override
     public void injectMap(Map<String, Object> map) {
-
+        contextMap = map;
+        burgerPane.checkUserLoggedIn((User) contextMap.get("USER"));
     }
 
     public static void startWindow() {
@@ -254,7 +260,8 @@ public class EditLinesScreen extends Application implements Initializable, Injec
     }
 
     public void initializeBurger() {
-        drawer.setSidePane(new BurgerMenu());
+        burgerPane = new BurgerMenu();
+        drawer.setSidePane(burgerPane);
 
         HamburgerSlideCloseTransition transition = new HamburgerSlideCloseTransition(burger);
         transition.setRate(-1);

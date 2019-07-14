@@ -7,12 +7,15 @@ import com.tubeproject.algorithm.PathCalculator;
 import com.tubeproject.algorithm.PathResponse;
 import com.tubeproject.controller.Line;
 import com.tubeproject.controller.StationWLine;
+import com.tubeproject.controller.User;
 import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.interfaces.Injectable;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
 import com.tubeproject.view.StageManager;
+import com.tubeproject.view.component.BurgerMenu;
+import com.tubeproject.view.component.TravelViewer;
 import com.tubeproject.view.component.WebButton;
 import javafx.application.Application;
 import javafx.fxml.FXML;
@@ -62,10 +65,19 @@ public class JourneyScreen extends Application implements Initializable, Injecta
     @FXML
     private Label lbEnd;
 
+    @FXML
+    private Pane travelViewer;
+
+    @FXML
+    private Pane pnlLessConnection;
+
+    @FXML
+    private Pane pnlQuickest;
+
     private List<Line> listLines = new ArrayList<>();
 
     private Map<String, Object> contextMap;
-
+    private BurgerMenu burgerPane;
     @FXML
     private void handleButtonActionHomePage() {
         ContextMap.getContextMap().put("USER", null);
@@ -80,9 +92,30 @@ public class JourneyScreen extends Application implements Initializable, Injecta
     @Override
     public void injectMap(Map<String, Object> map) {
         contextMap = map;
+        System.out.println(contextMap);
+        burgerPane.checkUserLoggedIn((User) contextMap.get("USER"));
         PathResponse pathResponse = PathCalculator.calculatePath((StationWLine) contextMap.get("START_STATION"), (StationWLine) contextMap.get("END_STATION"));
 
         fillPage(pathResponse);
+        TravelViewer quickest = new TravelViewer(267, 342, new Image(getClass().getResourceAsStream(Resources.Images.TUBE_MAP)));
+        quickest.drawTravel(pathResponse.getQuickest());
+        TravelViewer lessConnection = new TravelViewer(267, 342, new Image(getClass().getResourceAsStream(Resources.Images.TUBE_MAP)));
+        lessConnection.drawTravel(pathResponse.getLessConnection());
+
+        pnlQuickest.setOnMouseEntered((event) -> {
+            changeTravelViewer(quickest);
+        });
+
+        pnlLessConnection.setOnMouseEntered((event) -> {
+            changeTravelViewer(lessConnection);
+        });
+
+        changeTravelViewer(quickest);
+    }
+
+    private void changeTravelViewer(TravelViewer tv) {
+        travelViewer.getChildren().removeAll(travelViewer.getChildren());
+        travelViewer.getChildren().add(tv);
     }
 
     private void fillPage(PathResponse pathResponse) {
@@ -133,7 +166,8 @@ public class JourneyScreen extends Application implements Initializable, Injecta
 
 
     public void initializeBurger() {
-        //drawer.setSidePane(new BurgerMenu());
+        burgerPane = new BurgerMenu();
+        drawer.setSidePane(burgerPane);
         HamburgerSlideCloseTransition transition = new HamburgerSlideCloseTransition(burger);
         transition.setRate(-1);
         burger.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {

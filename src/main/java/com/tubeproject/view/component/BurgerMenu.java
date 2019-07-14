@@ -1,7 +1,6 @@
 package com.tubeproject.view.component;
 
 import com.tubeproject.controller.User;
-import com.tubeproject.model.ContextMap;
 import com.tubeproject.view.Resources;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -29,6 +28,9 @@ public class BurgerMenu extends VBox {
             System.out.println(ex);
         }
         getChildren().add(view);
-        controller.checkUserLoggedIn((User) ContextMap.getContextMap().get("USER"));
+    }
+
+    public void checkUserLoggedIn(User user) {
+        controller.checkUserLoggedIn(user);
     }
 }

@@ -4,6 +4,7 @@ import com.jfoenix.controls.*;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 import com.tubeproject.algorithm.PathCalculator;
 import com.tubeproject.controller.StationWLine;
+import com.tubeproject.controller.User;
 import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.interfaces.Injectable;
 import com.tubeproject.utils.FXMLUtils;
@@ -90,6 +91,7 @@ public class TravelScreen extends Application implements Initializable, Injectab
     private Pane webButtonPane;
 
     private Map<String, Object> contextMap;
+    private BurgerMenu burgerPane;
 
     @FXML
     private void handleButtonActionArrive(ActionEvent event) {
@@ -121,6 +123,8 @@ public class TravelScreen extends Application implements Initializable, Injectab
     @Override
     public void injectMap(Map<String, Object> map) {
         contextMap = map;
+        burgerPane.checkUserLoggedIn((User) contextMap.get("USER"));
+
     }
 
     public static void startWindow() {
@@ -314,7 +318,8 @@ public class TravelScreen extends Application implements Initializable, Injectab
     }
 
     public void initializeBurger() {
-        drawer.setSidePane(new BurgerMenu());
+        burgerPane = new BurgerMenu();
+        drawer.setSidePane(burgerPane);
         HamburgerSlideCloseTransition transition = new HamburgerSlideCloseTransition(burger);
         transition.setRate(-1);
         burger.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {

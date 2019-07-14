@@ -3,6 +3,7 @@ package com.tubeproject.view.administration;
 import com.jfoenix.controls.*;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 import com.tubeproject.controller.Fare;
+import com.tubeproject.controller.User;
 import com.tubeproject.controller.Zone;
 import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.DatabaseConnection;
@@ -79,6 +80,10 @@ public class EditFaresScreen extends Application implements Initializable, Injec
     @FXML
     private JFXButton btnSave;
 
+    private BurgerMenu burgerPane;
+
+    private Map<String, Object> contextMap;
+
     private List<Fare> fares;
 
     @FXML
@@ -98,7 +103,8 @@ public class EditFaresScreen extends Application implements Initializable, Injec
 
     @Override
     public void injectMap(Map<String, Object> map) {
-
+        contextMap = map;
+        burgerPane.checkUserLoggedIn((User) contextMap.get("USER"));
     }
 
     public static void startWindow() {
@@ -272,7 +278,8 @@ public class EditFaresScreen extends Application implements Initializable, Injec
 
 
     public void initializeBurger() {
-        drawer.setSidePane(new BurgerMenu());
+        burgerPane = new BurgerMenu();
+        drawer.setSidePane(burgerPane);
 
         HamburgerSlideCloseTransition transition = new HamburgerSlideCloseTransition(burger);
         transition.setRate(-1);

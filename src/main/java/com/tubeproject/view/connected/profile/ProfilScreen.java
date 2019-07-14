@@ -61,6 +61,7 @@ public class ProfilScreen extends Application implements Initializable, Injectab
     private Label lbBirth;
 
     private Map<String, Object> contextMap;
+    private BurgerMenu burgerPane;
 
     @FXML
     private void handleButtonActionHomePage() {
@@ -79,6 +80,7 @@ public class ProfilScreen extends Application implements Initializable, Injectab
     public void injectMap(Map<String, Object> map) {
         contextMap = map;
         initializeUser();
+        burgerPane.checkUserLoggedIn((User) contextMap.get("USER"));
     }
 
     public static void startWindow() {
@@ -133,7 +135,8 @@ public class ProfilScreen extends Application implements Initializable, Injectab
     }
 
     public void initializeBurger() {
-        drawer.setSidePane(new BurgerMenu());
+        burgerPane = new BurgerMenu();
+        drawer.setSidePane(burgerPane);
 
         HamburgerSlideCloseTransition transition = new HamburgerSlideCloseTransition(burger);
         transition.setRate(-1);

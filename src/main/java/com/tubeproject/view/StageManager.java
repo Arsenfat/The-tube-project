@@ -27,7 +27,6 @@ public class StageManager {
             homePage = fxmlLoader.load(StageManager.class.getResourceAsStream(screen));
             Injectable injectableController = fxmlLoader.getController();
             injectableController.injectMap(ContextMap.getContextMap());
-            System.out.println(ContextMap.getContextMap());
         } catch (IOException e) {
             System.out.println("Error while loading FXML");
             System.out.println(e);

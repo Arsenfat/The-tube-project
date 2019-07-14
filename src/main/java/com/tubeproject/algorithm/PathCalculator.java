@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
 public class PathCalculator {
@@ -30,15 +29,11 @@ public class PathCalculator {
     private static DijkstraShortestPath<StationWLine, DefaultWeightedEdge> dijkstraQuickest;
     private static DijkstraShortestPath<StationWLine, DefaultWeightedEdge> dijkstraLessConnection;
 
-    private static ThreadPoolExecutor threadPoolExecutor;
-    private static CompletionService<PathResponse> completionService;
     private PathCalculator() {
         //we don't instantiate
     }
 
     public static void initializeGraphs() {
-        threadPoolExecutor = new ThreadPoolExecutor(2, 2, 300, TimeUnit.SECONDS, new PriorityBlockingQueue<>());
-        completionService = new ExecutorCompletionService<>(threadPoolExecutor);
         try {
             DatabaseConnection.DatabaseOpen();
             //Data in common in both graphs
@@ -68,17 +63,7 @@ public class PathCalculator {
     }
 
     public static PathResponse calculatePath(StationWLine s1, StationWLine s2) {
-        completionService.submit(() -> calculateQuickest(s1, s2));
-        completionService.submit(() -> calculateLessConnection(s1, s2));
-        PathResponse pathResponse = new PathResponse();
-        try {
-            PathResponse pathResponse1 = completionService.take().get();
-            PathResponse pathResponse2 = completionService.take().get();
-            pathResponse = mergeResponses(pathResponse1, pathResponse2);
-        } catch (InterruptedException | ExecutionException e) {
-            System.out.println(e);
-        }
-
+        PathResponse pathResponse = mergeResponses(calculateQuickest(s1, s2), calculateLessConnection(s1, s2));
         return pathResponse;
     }
 
