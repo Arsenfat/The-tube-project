@@ -13,7 +13,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,11 +20,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.awt.*;
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
@@ -46,35 +41,6 @@ public class ViewMainScreen extends Application implements Initializable, Inject
     private javafx.scene.control.Label lblAnimation;
 
     private int number;
-
-
-    @FXML
-    private void handleButtonActionFacebook(ActionEvent event) {
-        Hyperlink myHyperlink = new Hyperlink();
-        myHyperlink.setText("My Link Text");
-
-        myHyperlink.setOnAction(e -> {
-            if (Desktop.isDesktopSupported()) {
-                try {
-                    Desktop.getDesktop().browse(new URI("https://www.facebook.com/Tube-Project-600314397160600/"));
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                } catch (URISyntaxException e1) {
-                    e1.printStackTrace();
-                }
-            }
-        });
-    }
-
-    @FXML
-    private void handleButtonActionTwitter(ActionEvent event) {
-
-    }
-
-    @FXML
-    private void HandleButtonActionEmail(ActionEvent event) {
-
-    }
 
     @FXML
     private void handleButtonActionLogin(ActionEvent event) {
