@@ -3,10 +3,12 @@ package com.tubeproject.view.administration;
 import com.jfoenix.controls.*;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 import com.tubeproject.controller.Fare;
+import com.tubeproject.controller.User;
 import com.tubeproject.controller.Zone;
 import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.DatabaseConnection;
 import com.tubeproject.model.builder.FareBuilder;
+import com.tubeproject.model.interfaces.Injectable;
 import com.tubeproject.model.requests.Select;
 import com.tubeproject.model.requests.Update;
 import com.tubeproject.model.requests.select.GetFaresRequest;
@@ -34,13 +36,10 @@ import javafx.stage.Stage;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.stream.Collectors;
 
-public class EditFaresScreen extends Application implements Initializable {
+public class EditFaresScreen extends Application implements Initializable, Injectable {
 
     @FXML
     private ImageView imgView;
@@ -81,6 +80,10 @@ public class EditFaresScreen extends Application implements Initializable {
     @FXML
     private JFXButton btnSave;
 
+    private BurgerMenu burgerPane;
+
+    private Map<String, Object> contextMap;
+
     private List<Fare> fares;
 
     @FXML
@@ -97,6 +100,12 @@ public class EditFaresScreen extends Application implements Initializable {
         StageManager.changeStage(anchorPane, Resources.ViewFiles.ADMINISTRATOR_SCREEN);
     }
 
+
+    @Override
+    public void injectMap(Map<String, Object> map) {
+        contextMap = map;
+        burgerPane.checkUserLoggedIn((User) contextMap.get("USER"));
+    }
 
     public static void startWindow() {
         launch();
@@ -269,7 +278,8 @@ public class EditFaresScreen extends Application implements Initializable {
 
 
     public void initializeBurger() {
-        drawer.setSidePane(new BurgerMenu());
+        burgerPane = new BurgerMenu();
+        drawer.setSidePane(burgerPane);
 
         HamburgerSlideCloseTransition transition = new HamburgerSlideCloseTransition(burger);
         transition.setRate(-1);

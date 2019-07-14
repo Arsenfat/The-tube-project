@@ -1,5 +1,10 @@
 package com.tubeproject.view.component;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tubeproject.controller.Line;
+import com.tubeproject.controller.StationWLine;
 import com.tubeproject.tool.LineMap;
 import com.tubeproject.tool.StationMapPos;
 import com.tubeproject.view.Resources;
@@ -9,15 +14,21 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.util.Callback;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TravelViewer extends Pane {
 
     private Node view;
     private TravelViewerController controller;
 
-    public TravelViewer() {
+    private static List<LineMap> allList;
+
+    public TravelViewer(double width, double height, Image map) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Resources.Components.TRAVEL_VIEWER));
         fxmlLoader.setControllerFactory(new Callback<Class<?>, Object>() {
             @Override
@@ -31,6 +42,8 @@ public class TravelViewer extends Pane {
         } catch (IOException ex) {
         }
         getChildren().add(view);
+        controller.init(width, height, map);
+        allList = load();
     }
 
 
@@ -42,15 +55,13 @@ public class TravelViewer extends Pane {
         controller.setMaxWidth(width);
     }
 
-    public void init(double width, double height, Image map) {
-        controller.init(width, height, map);
-    }
-
     public void reset() {
         controller.reset();
     }
 
-    public void drawTravel(List<LineMap> lineMapList) {
+    public void drawTravel(List<StationWLine> stationWLineList) {
+        List<LineMap> lineMapList = convertStationWline(stationWLineList, allList);
+
         double minX = 0;
         double maxX = 0;
         double minY = 0;
@@ -70,6 +81,52 @@ public class TravelViewer extends Pane {
         }
 
         //TODO LES MATHS DU ZOOM SI C'EST POSSIBLE
+    }
+
+    private List<LineMap> convertStationWline(List<StationWLine> stationWLineList, final List<LineMap> lineMapList) {
+        Map<Line, List<StationWLine>> map = new HashMap<>();
+
+        for (StationWLine stationWLine : stationWLineList) {
+            List<StationWLine> lineStationList = map.computeIfAbsent(stationWLine.getLine(), (key) -> new ArrayList<>());
+            lineStationList.add(stationWLine);
+        }
+
+        List<LineMap> listToReturn = new ArrayList<>();
+
+        for (Map.Entry<Line, List<StationWLine>> entry : map.entrySet()) {
+            Line line = entry.getKey();
+
+            List<StationMapPos> mapPos = new ArrayList<>();
+            for (StationWLine station : entry.getValue()) {
+                for (StationMapPos stationMapPos : lineMapList.stream().filter(tmpLine -> tmpLine.getId() == line.getId()).findFirst().orElse(new LineMap()).getStationTool()) {
+                    if (station.getNaptan().equalsIgnoreCase(stationMapPos.getNaptan())) {
+                        mapPos.add(stationMapPos);
+                        break;
+                    }
+                }
+            }
+
+            listToReturn.add(new LineMap(line, mapPos));
+        }
+
+
+        return listToReturn;
+    }
+
+    private List<LineMap> load() {
+        try {
+
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.readValue(getClass().getResourceAsStream("/manip.json").readAllBytes(), new TypeReference<List<LineMap>>() {
+            });
+        } catch (JsonProcessingException e) {
+            System.out.println("ERROR: json processing error " + e);
+        } catch (FileNotFoundException e) {
+            System.out.println("ERROR: file not found " + e);
+        } catch (IOException e) {
+            System.out.println("ERROR: IO exception " + e);
+        }
+        return null;
     }
 
     private double threeMin(double v1, double v2, double v3) {

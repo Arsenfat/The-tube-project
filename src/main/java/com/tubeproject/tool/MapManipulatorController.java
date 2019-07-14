@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tubeproject.controller.Line;
 import com.tubeproject.controller.Station;
 import com.tubeproject.model.DatabaseConnection;
+import com.tubeproject.model.interfaces.Injectable;
 import com.tubeproject.model.requests.Select;
 import com.tubeproject.model.requests.select.GetAllLinesWithStationsRequest;
 import com.tubeproject.model.requests.select.GetAllStationsRequest;
@@ -35,11 +36,12 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-public class MapManipulatorController extends Application implements Initializable {
+public class MapManipulatorController extends Application implements Initializable, Injectable {
 
 
     private static List<LineMap> lineList;
@@ -59,6 +61,11 @@ public class MapManipulatorController extends Application implements Initializab
 
     @FXML
     Pane parentPane;
+
+    @Override
+    public void injectMap(Map<String, Object> map) {
+
+    }
 
     public static void launchWindow() {
         launch();

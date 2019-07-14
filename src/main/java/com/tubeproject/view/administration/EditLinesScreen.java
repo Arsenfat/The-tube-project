@@ -4,9 +4,11 @@ import com.jfoenix.controls.*;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 import com.tubeproject.controller.Line;
 import com.tubeproject.controller.Station;
+import com.tubeproject.controller.User;
 import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.DatabaseConnection;
 import com.tubeproject.model.builder.StationBuilder;
+import com.tubeproject.model.interfaces.Injectable;
 import com.tubeproject.model.requests.Select;
 import com.tubeproject.model.requests.Update;
 import com.tubeproject.model.requests.select.GetAllLinesWithStationsRequest;
@@ -36,7 +38,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.*;
 
-public class EditLinesScreen extends Application implements Initializable {
+public class EditLinesScreen extends Application implements Initializable, Injectable {
 
     @FXML
     private ImageView imgView;
@@ -74,6 +76,10 @@ public class EditLinesScreen extends Application implements Initializable {
     @FXML
     private JFXComboBox<Station> cmbStation;
 
+    private BurgerMenu burgerPane;
+
+    private Map<String, Object> contextMap;
+
     @FXML
     private void handleButtonActionHomePage() {
         ContextMap.getContextMap().put("USER", null);
@@ -86,6 +92,11 @@ public class EditLinesScreen extends Application implements Initializable {
         StageManager.changeStage(anchorPane, Resources.ViewFiles.ADMINISTRATOR_SCREEN);
     }
 
+    @Override
+    public void injectMap(Map<String, Object> map) {
+        contextMap = map;
+        burgerPane.checkUserLoggedIn((User) contextMap.get("USER"));
+    }
 
     public static void startWindow() {
         launch();
@@ -249,7 +260,8 @@ public class EditLinesScreen extends Application implements Initializable {
     }
 
     public void initializeBurger() {
-        drawer.setSidePane(new BurgerMenu());
+        burgerPane = new BurgerMenu();
+        drawer.setSidePane(burgerPane);
 
         HamburgerSlideCloseTransition transition = new HamburgerSlideCloseTransition(burger);
         transition.setRate(-1);

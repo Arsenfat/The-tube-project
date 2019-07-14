@@ -3,9 +3,9 @@ package com.tubeproject.view.user;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.tubeproject.controller.User;
-import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.DatabaseConnection;
 import com.tubeproject.model.builder.UserBuilder;
+import com.tubeproject.model.interfaces.Injectable;
 import com.tubeproject.model.requests.Insert;
 import com.tubeproject.model.requests.Select;
 import com.tubeproject.model.requests.insert.InsertUserRequest;
@@ -21,7 +21,6 @@ import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.DateCell;
@@ -35,16 +34,16 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Map;
 import java.util.ResourceBundle;
 
-public class SignUpScreen extends Application implements Initializable {
+public class SignUpScreen extends Application implements Initializable, Injectable {
 
     @FXML
     private ImageView imgView;
@@ -76,20 +75,16 @@ public class SignUpScreen extends Application implements Initializable {
     @FXML
     private DatePicker datePicker;
 
+    private Map<String, Object> contextMap;
+
     @FXML
     private void handleButtonActionHomePage() {
-        AnchorPane homePage;
-        try {
-            homePage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.MAIN_SCREEN));
+        StageManager.changeStage(anchorPane, Resources.ViewFiles.MAIN_SCREEN);
+    }
 
-        } catch (IOException e) {
-            System.out.println("Warning unandled exeption.");
-            return;
-        }
-        Scene homeScene = new Scene(homePage);
-        Stage homeStage = (Stage) anchorPane.getScene().getWindow();
-        homeStage.setScene(homeScene);
-        homeStage.show();
+    @Override
+    public void injectMap(Map<String, Object> map) {
+        contextMap = map;
     }
 
     public static void startWindow() {
@@ -196,7 +191,7 @@ public class SignUpScreen extends Application implements Initializable {
                 insert.insert();
                 userToInsert.setPassword("");
                 userToInsert.setSalt("");
-                ContextMap.getContextMap().put("USER", userToInsert);
+                contextMap.put("USER", userToInsert);
                 StageManager.changeStage(anchorPane, Resources.ViewFiles.TRAVEL_SCREEN, Resources.Stylesheets.MENU);
             } else {
                 changeLabelVisibility(true);
