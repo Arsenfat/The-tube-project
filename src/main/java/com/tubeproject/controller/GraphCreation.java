@@ -26,6 +26,7 @@ public class GraphCreation {
     public List<Node> getData() throws SQLException {
         //Toujours initialiser la context map
         Map<String, Object> ctxMap = ContextMap.getContextMap();
+        List<Line> lines = new ArrayList<Line>();
 
         DatabaseConnection.DatabaseOpen();
         GetAllConnections gac = new GetAllConnections();
@@ -38,6 +39,23 @@ public class GraphCreation {
                 .stream()
                 .map(station -> new Node(station.getName(), station.getLatitude(), station.getLongitude()))
                 .collect(Collectors.toList());
+
+        lines = this.getLine();
+
+        for (Node node : nodes)
+        {
+            for (Line line : lines)
+            {
+                for (Station station : line.getStations())
+                {
+                    if (station.getName().equals(node.getValue()))
+                    {
+                        node.addLines(line.getName());
+                    }
+                }
+            }
+            //System.out.println("station: " + node.getValue() + " line: " + node.getLines());
+        }
 
         for (Station station : map.keySet()){
             List<Edge> edges = new ArrayList<Edge>();
@@ -84,7 +102,7 @@ public class GraphCreation {
         }
     }
 
-    public void getLine() throws SQLException {
+    public List<Line> getLine() throws SQLException {
             DatabaseConnection.DatabaseOpen();
 
             GetAllLinesWithStationsRequest obj = new GetAllLinesWithStationsRequest();
@@ -93,20 +111,26 @@ public class GraphCreation {
             if (opt.isPresent()) {
                 List<Line> l = new ArrayList<>();
                 l = (List<Line>)opt.get();
-                this.displayStationLocation(l);
+                //this.displayStationLocation(l);
+                return l;
             }
             else {
                 System.out.println("Impossible to retrieve lines");
             }
             DatabaseConnection.DatabaseClose();
             System.out.println("Error: Connection to the server failed.");
+        return null;
     }
 
 
     public void displayStationLocation (List<Line> l){
 
-        for (Station value : l.get(1).getStations()){
-            System.out.println("name is: " + value.getName() + " location: " + value.getLatitude() + " " + value.getLongitude());
+        for (Line value : l){
+            System.out.println("line: " + value.getName());
+            for (Station station : value.getStations())
+            {
+                System.out.println("name is: " + station.getName() + " location: " + station.getLatitude() + " " + station.getLongitude());
+            }
         }
 
     }

@@ -1,4 +1,5 @@
 package com.tubeproject.controller;
+import java.sql.SQLException;
 import java.util.PriorityQueue;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,6 +20,43 @@ public class Astar{
         Collections.reverse(path);
 
         return path;
+    }
+
+    public List<String> printPathWithLine(List<Node> path) throws SQLException {
+
+        List<String> pathLines = new ArrayList<>();
+        GraphCreation graph = new GraphCreation();
+        List<Line> lines = graph.getLine();
+
+        for ( Node node : path)
+        {
+            List<String> pathLinesTemp = new ArrayList<>();
+            for (Line l : lines)
+            {
+                for (Station station : l.getStations())
+                {
+                    if (node.getValue().equals(station.getName()))
+                    {
+                        pathLinesTemp.add(l.getName());
+                    }
+                }
+            }
+            for (String s : pathLinesTemp)
+            {
+                System.out.println("s : " + s);
+                if (pathLines.isEmpty())
+                {
+                    pathLines.add(s);
+                }
+                else if (!s.equals(pathLines.get(pathLines.size()-1)))
+                {
+                    pathLines.add(s);
+                }
+            }
+            System.out.println("////////////////////////////////////////////");
+        }
+
+        return pathLines;
     }
 
     //search the shortest path by taking the departure node and the end node
@@ -75,9 +113,16 @@ public class Astar{
                 //System.out.println("child:");
                 //System.out.println(child.getValue());
                 double cost = e.getCost();
+                for (String line : current.getLines())
+                {
+                    if (child.getLines().indexOf(line) < 0)
+                    {
+                        System.out.println("inside line change");
+                    }
+                }
                 double temp_g_scores = current.getG_scores() + cost;
                 double temp_f_scores = temp_g_scores + child.getH_scores(goal.getLatitude(), goal.getLongitude());
-                //System.out.println(child.toString() + " wihth h value: " + child.getH_scores(goal.getLatitude(), goal.getLongitude()) + " and f value:" + temp_f_scores );
+                System.out.println(child.toString() + " wihth h value: " + child.getH_scores(goal.getLatitude(), goal.getLongitude()) + " and f value:" + temp_f_scores );
 
                 //if the new f cost is higher then we skip it
 

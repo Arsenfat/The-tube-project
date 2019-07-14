@@ -11,6 +11,7 @@ public class Node{
     private final double latitude;
     private final double longitude;
     private double f_scores = 0;
+    private List<String> lines = new ArrayList<>();
     private List<Edge> adjacencies = new ArrayList<Edge>();
     private Node parent;
 
@@ -26,6 +27,18 @@ public class Node{
         this.h_scores = Math.sqrt ( Math.pow((this.longitude - goalLat), 2) + Math.pow((this.latitude - goalLong), 2) );
 
         return this.h_scores;
+    }
+
+    public List<String> getLines() {
+        return lines;
+    }
+
+    public void addLines(String line) {
+        this.lines.add(line);
+    }
+
+    public void setLines(List<String> lines) {
+        this.lines = lines;
     }
 
     public List<Edge> getAdjacencies() {
