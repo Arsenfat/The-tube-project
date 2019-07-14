@@ -8,7 +8,6 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.*?>
 <AnchorPane fx:id="anchorPane" prefHeight="435.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tubeproject.view.connected.travel.JourneyScreen">
@@ -59,12 +58,12 @@
                 <Font size="18.0"/>
             </font>
         </Label>
-        <Label fx:id="lbBegin" layoutX="155.0" layoutY="82.0" text="b" textFill="#151928">
+        <Label fx:id="LbBegin" layoutX="155.0" layoutY="82.0" text="b" textFill="#151928">
             <font>
                 <Font size="18.0"/>
             </font>
         </Label>
-        <Label fx:id="lbEnd" layoutX="156.0" layoutY="124.0" text="e" textFill="#151928">
+        <Label fx:id="LbEnd" layoutX="156.0" layoutY="124.0" text="e" textFill="#151928">
             <font>
                 <Font size="18.0"/>
             </font>
@@ -82,27 +81,12 @@
         <Pane fx:id="pnlQuickest" layoutX="23.0" layoutY="195.0" prefHeight="71.0" prefWidth="446.0"
               style="-fx-background-color: #dad1d1;">
             <children>
-                <Line endX="99.99996948242188" endY="20.20001220703125" layoutX="206.0" layoutY="51.0" startX="100.0"
-                      startY="-51.0"/>
-                <Line endX="99.99996948242188" endY="20.20001220703125" layoutX="279.0" layoutY="51.0" startX="100.0"
-                      startY="-51.0"/>
-                <Label fx:id="lbQuickestListLine" layoutX="14.0" layoutY="27.0" text="Lines names"/>
-                <Label layoutX="317.0" layoutY="1.0" text="Ticket" textFill="#151928">
+                <Label fx:id="lbQuickestListLine" layoutX="14.0" layoutY="25.0" text="Lines names">
                     <font>
-                        <Font size="18.0"/>
+                        <Font size="15.0"/>
                     </font>
                 </Label>
-                <Label layoutX="387.0" layoutY="1.0" text="Oyster" textFill="#151928">
-                    <font>
-                        <Font size="18.0"/>
-                    </font>
-                </Label>
-                <Label layoutX="319.0" layoutY="31.0" text="£6.50" textFill="#151928">
-                    <font>
-                        <Font size="18.0"/>
-                    </font>
-                </Label>
-                <Label layoutX="391.0" layoutY="31.0" text="£5.50" textFill="#151928">
+                <Label layoutX="379.0" layoutY="22.0" text="0:00" textFill="#151928">
                     <font>
                         <Font size="18.0"/>
                     </font>
@@ -112,30 +96,15 @@
                 <Cursor fx:constant="HAND"/>
             </cursor>
         </Pane>
-        <Pane fx:id="pnlLessConnection" layoutX="23.0" layoutY="293.0" prefHeight="71.0" prefWidth="446.0"
+        <Pane fx:id="pnlLesConnection" layoutX="23.0" layoutY="293.0" prefHeight="71.0" prefWidth="446.0"
               style="-fx-background-color: #dad1d1;">
             <children>
-                <Line endX="99.99996948242188" endY="20.199981689453125" layoutX="207.0" layoutY="51.0" startX="100.0"
-                      startY="-51.0"/>
-                <Line endX="99.99996948242188" endY="20.199981689453125" layoutX="279.0" layoutY="51.0" startX="100.0"
-                      startY="-51.0"/>
-                <Label fx:id="lbLessConnectionListLine" layoutX="14.0" layoutY="27.0" text="Lines names"/>
-                <Label layoutX="318.0" layoutY="-1.0" text="Ticket" textFill="#151928">
+                <Label fx:id="lbLessConnectionListLine" layoutX="14.0" layoutY="27.0" text="Lines names">
                     <font>
-                        <Font size="18.0"/>
+                        <Font size="15.0"/>
                     </font>
                 </Label>
-                <Label layoutX="388.0" layoutY="-1.0" text="Oyster" textFill="#151928">
-                    <font>
-                        <Font size="18.0"/>
-                    </font>
-                </Label>
-                <Label layoutX="323.0" layoutY="30.0" text="£6.50" textFill="#151928">
-                    <font>
-                        <Font size="18.0"/>
-                    </font>
-                </Label>
-                <Label layoutX="394.0" layoutY="31.0" text="£5.50" textFill="#151928">
+                <Label layoutX="378.0" layoutY="25.0" text="0:00" textFill="#151928">
                     <font>
                         <Font size="18.0"/>
                     </font>
@@ -145,7 +114,7 @@
                 <Cursor fx:constant="HAND"/>
             </cursor>
         </Pane>
-        <Pane fx:id="travelViewer" layoutX="490.0" layoutY="74.0" prefHeight="342.0" prefWidth="267.0"
+        <Pane layoutX="490.0" layoutY="74.0" prefHeight="342.0" prefWidth="267.0"
               style="-fx-background-color: lightGreen;"/>
         <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" layoutX="-1.0" prefHeight="490.0" prefWidth="2.0"/>
     </children>
