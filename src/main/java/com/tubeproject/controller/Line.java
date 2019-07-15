@@ -1,6 +1,7 @@
 package com.tubeproject.controller;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Line {
 
@@ -53,5 +54,19 @@ public class Line {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line = (Line) o;
+        return id == line.id &&
+                name.equals(line.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
     }
 }

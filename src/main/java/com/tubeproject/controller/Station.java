@@ -3,11 +3,11 @@ package com.tubeproject.controller;
 import java.util.Objects;
 
 public class Station {
-    private String naptan;
-    private String name;
-    private boolean wheelchair;
-    private double latitude;
-    private double longitude;
+    protected String naptan;
+    protected String name;
+    protected boolean wheelchair;
+    protected double latitude;
+    protected double longitude;
 
     public Station() {
     }

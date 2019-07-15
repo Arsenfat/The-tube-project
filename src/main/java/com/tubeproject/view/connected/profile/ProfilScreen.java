@@ -1,19 +1,18 @@
 package com.tubeproject.view.connected.profile;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 import com.tubeproject.controller.User;
-import com.tubeproject.model.ContextMap;
+import com.tubeproject.model.interfaces.Injectable;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
 import com.tubeproject.view.StageManager;
 import com.tubeproject.view.component.BurgerMenu;
+import com.tubeproject.view.component.WebButton;
 import javafx.application.Application;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -23,19 +22,16 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.ResourceBundle;
 
-public class ProfilScreen extends Application implements Initializable {
+public class ProfilScreen extends Application implements Initializable, Injectable {
 
     @FXML
     private ImageView imgView;
@@ -44,16 +40,7 @@ public class ProfilScreen extends Application implements Initializable {
     private AnchorPane anchorPane;
 
     @FXML
-    private JFXButton facebookIcon;
-
-    @FXML
-    private JFXButton twitterIcon;
-
-    @FXML
-    private JFXButton instagramIcon;
-
-    @FXML
-    private JFXButton mailIcon;
+    private Pane webButtonPane;
 
     @FXML
     private JFXHamburger burger;
@@ -73,25 +60,27 @@ public class ProfilScreen extends Application implements Initializable {
     @FXML
     private Label lbBirth;
 
+    private Map<String, Object> contextMap;
+    private BurgerMenu burgerPane;
+
     @FXML
     private void handleButtonActionHomePage() {
+        contextMap.put("USER", null);
         StageManager.changeStage(anchorPane, Resources.ViewFiles.MAIN_SCREEN);
     }
 
     @FXML
     private void handleButtonActionForgotPassword() {
-        AnchorPane homePage;
-        try {
-            homePage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.CHANGE_PASSWORD_SCREEN));
+        contextMap.put("USER", null);
+        StageManager.changeStage(anchorPane, Resources.ViewFiles.CHANGE_PASSWORD_SCREEN);
 
-        } catch (IOException e) {
-            System.out.println("Warning unandled exeption.");
-            return;
-        }
-        Scene homeScene = new Scene(homePage);
-        Stage homeStage = (Stage) anchorPane.getScene().getWindow();
-        homeStage.setScene(homeScene);
-        homeStage.show();
+    }
+
+    @Override
+    public void injectMap(Map<String, Object> map) {
+        contextMap = map;
+        initializeUser();
+        burgerPane.checkUserLoggedIn((User) contextMap.get("USER"));
     }
 
     public static void startWindow() {
@@ -114,9 +103,8 @@ public class ProfilScreen extends Application implements Initializable {
         drawer.setVisible(false);
         initializeImgView();
         initializeBackground();
-        initializeIcons();
+        webButtonPane.getChildren().add(new WebButton(this.getHostServices()));
         initializeBurger();
-        initializeUser();
     }
 
     public static ArrayList<Node> getAllNodes(Parent root) {
@@ -146,28 +134,9 @@ public class ProfilScreen extends Application implements Initializable {
         this.imgView.setImage(img);
     }
 
-    private void initializeIcons() {
-        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        BackgroundImage bgImg = ImageUtils.loadBackgroundImage(Resources.Images.FACEBOOK, backgroundSize);
-        facebookIcon.setBackground(new Background(bgImg));
-
-        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.TWITTER, backgroundSize);
-        twitterIcon.setBackground(new Background(bgImg));
-
-
-        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.INSTAGRAM, backgroundSize);
-        instagramIcon.setBackground(new Background(bgImg));
-
-        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.MAIL, backgroundSize);
-        mailIcon.setBackground(new Background(bgImg));
-
-    }
-
     public void initializeBurger() {
-        drawer.setSidePane(new BurgerMenu());
+        burgerPane = new BurgerMenu();
+        drawer.setSidePane(burgerPane);
 
         HamburgerSlideCloseTransition transition = new HamburgerSlideCloseTransition(burger);
         transition.setRate(-1);
@@ -185,7 +154,7 @@ public class ProfilScreen extends Application implements Initializable {
     }
 
     public void initializeUser() {
-        User user = (User) ContextMap.getContextMap().get("USER");
+        User user = (User) contextMap.get("USER");
         if (user != null) {
             lbFirstName.setText(user.getFirstName());
             lbLastName.setText(user.getLastName());

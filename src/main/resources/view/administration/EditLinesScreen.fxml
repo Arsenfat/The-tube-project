@@ -5,11 +5,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.*?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity"
-            prefHeight="435.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/11.0.1"
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="435.0" prefWidth="753.0"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.tubeproject.view.administration.EditLinesScreen">
     <children>
         <Pane fx:id="topPane" prefHeight="62.0" prefWidth="772.0" style="-fx-background-color: #000000;">
@@ -36,10 +35,7 @@
                 <Insets/>
             </opaqueInsets>
             <children>
-                <JFXButton fx:id="facebookIcon" layoutX="636.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
-                <JFXButton fx:id="twitterIcon" layoutX="668.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
-                <JFXButton fx:id="instagramIcon" layoutX="700.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
-                <JFXButton fx:id="mailIcon" layoutX="734.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
+                <Pane fx:id="webButtonPane" layoutX="578.0" layoutY="4.0" prefHeight="55.0" prefWidth="180.0"/>
             </children>
         </Pane>
         <Label fx:id="smhLabel" layoutX="341.0" layoutY="94.0" text="Edit lines" textAlignment="CENTER"
@@ -48,8 +44,8 @@
                 <Font name="System Bold" size="21.0"/>
             </font>
         </Label>
-        <JFXComboBox fx:id="cmbStation" layoutX="109.0" layoutY="222.0" prefHeight="23.0" prefWidth="161.0"
-                     promptText="Station"/>
+        <JFXComboBox fx:id="cmbStation" focusColor="#744b4a" layoutX="109.0" layoutY="222.0" prefHeight="23.0"
+                     prefWidth="161.0" promptText="Station"/>
         <Pane layoutX="286.0" layoutY="150.0" prefHeight="238.0" prefWidth="404.0">
             <children>
                 <Label layoutX="38.0" layoutY="17.0" text="Naptan :" textFill="#151928">
@@ -62,8 +58,8 @@
                         <Font name="System Bold" size="16.0"/>
                     </font>
                 </Label>
-                <JFXCheckBox fx:id="chkWheelchair" layoutX="37.0" layoutY="150.0" prefHeight="37.0" prefWidth="330.0"
-                             text="Wheelchair access">
+                <JFXCheckBox fx:id="chkWheelchair" checkedColor="#151928" layoutX="37.0" layoutY="150.0"
+                             prefHeight="37.0" prefWidth="330.0" text="Wheelchair access">
                     <cursor>
                         <Cursor fx:constant="HAND"/>
                     </cursor>
@@ -110,12 +106,19 @@
                         <Cursor fx:constant="HAND"/>
                     </cursor>
                 </JFXTextField>
-                <JFXButton fx:id="btnSave" layoutX="300.0" layoutY="193.0" onAction="#updateData" prefHeight="31.0"
-                           prefWidth="90.0" text="Save"/>
+                <JFXButton fx:id="btnSave" layoutX="37.0" layoutY="193.0" onAction="#updateData" prefHeight="31.0"
+                           prefWidth="90.0" style="-fx-background-color: #151928;" text="Save" textFill="#dad1d1"/>
             </children>
         </Pane>
+        <JFXComboBox fx:id="cmbLine" focusColor="#744b4a" layoutX="109.0" layoutY="170.0" prefHeight="23.0"
+                     prefWidth="161.0" promptText="Line"/>
         <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" prefHeight="490.0" prefWidth="2.0"/>
-        <JFXComboBox fx:id="cmbLine" layoutX="109.0" layoutY="170.0" prefHeight="23.0" prefWidth="161.0"
-                     promptText="Line"/>
+        <JFXButton fx:id="btnGoBack" layoutX="612.0" layoutY="379.0" onAction="#handleButtonActionGoBack"
+                   prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: #151928;" text="Go back"
+                   textFill="#dad1d1">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXButton>
     </children>
 </AnchorPane>

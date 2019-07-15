@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
@@ -36,10 +38,7 @@
                 <Insets/>
             </opaqueInsets>
             <children>
-                <JFXButton fx:id="facebookIcon" layoutX="636.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
-                <JFXButton fx:id="twitterIcon" layoutX="668.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
-                <JFXButton fx:id="instagramIcon" layoutX="700.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
-                <JFXButton fx:id="mailIcon" layoutX="734.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
+                <Pane fx:id="webButtonPane" layoutX="580.0" layoutY="5.0" prefHeight="55.0" prefWidth="180.0"/>
             </children>
         </Pane>
         <Label fx:id="smhLabel" layoutX="350.0" layoutY="89.0" text="Statistics" textAlignment="CENTER"
@@ -48,36 +47,33 @@
                 <Font name="System Bold" size="21.0"/>
             </font>
         </Label>
-        <Label layoutX="213.0" layoutY="238.0" text="Total number of travels :" textFill="#151928">
+        <Label layoutX="180.0" layoutY="235.0" text="Total number of travels :" textFill="#151928">
             <font>
-                <Font size="16.0"/>
+                <Font size="21.0"/>
             </font>
         </Label>
-        <Label layoutX="181.0" layoutY="306.0" text="Total time of transportation :" textFill="#151928">
+        <Label layoutX="180.0" layoutY="169.0" text="Total number of users :" textFill="#151928">
             <font>
-                <Font size="16.0"/>
+                <Font size="21.0"/>
             </font>
         </Label>
-        <Label layoutX="223.0" layoutY="172.0" text="Total number of users :" textFill="#151928">
+        <Label fx:id="lblNbUsers" layoutX="459.0" layoutY="169.0" text="00" textFill="#151928">
             <font>
-                <Font size="16.0"/>
+                <Font size="20.0"/>
             </font>
         </Label>
-        <Label layoutX="437.0" layoutY="172.0" text="00" textFill="#151928">
+        <Label fx:id="lblNbTravels" layoutX="459.0" layoutY="235.0" text="00" textFill="#151928">
             <font>
-                <Font size="16.0"/>
-            </font>
-        </Label>
-        <Label layoutX="437.0" layoutY="238.0" text="00" textFill="#151928">
-            <font>
-                <Font size="16.0"/>
-            </font>
-        </Label>
-        <Label layoutX="437.0" layoutY="306.0" text="00" textFill="#151928">
-            <font>
-                <Font size="16.0"/>
+                <Font size="20.0"/>
             </font>
         </Label>
         <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" prefHeight="490.0" prefWidth="2.0"/>
+        <JFXButton fx:id="btnGoBack" layoutX="614.0" layoutY="381.0" onAction="#handleButtonActionGoBack"
+                   prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: #151928;" text="Go back"
+                   textFill="#dad1d1">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXButton>
     </children>
 </AnchorPane>

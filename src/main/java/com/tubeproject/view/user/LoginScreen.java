@@ -1,12 +1,12 @@
 package com.tubeproject.view.user;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.tubeproject.controller.User;
 import com.tubeproject.core.Login;
 import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.DatabaseConnection;
+import com.tubeproject.model.interfaces.Injectable;
 import com.tubeproject.model.requests.Select;
 import com.tubeproject.model.requests.select.LoginRequest;
 import com.tubeproject.utils.EmailUtils;
@@ -14,34 +14,31 @@ import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
 import com.tubeproject.view.StageManager;
+import com.tubeproject.view.component.WebButton;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class LoginScreen extends Application implements Initializable {
+public class LoginScreen extends Application implements Initializable, Injectable {
 
     @FXML
     private ImageView imgView;
@@ -56,16 +53,7 @@ public class LoginScreen extends Application implements Initializable {
     private AnchorPane anchorPane;
 
     @FXML
-    private JFXButton facebookIcon;
-
-    @FXML
-    private JFXButton twitterIcon;
-
-    @FXML
-    private JFXButton instagramIcon;
-
-    @FXML
-    private JFXButton mailIcon;
+    private Pane webButtonPane;
 
     @FXML
     private JFXTextField txtUsername;
@@ -79,25 +67,20 @@ public class LoginScreen extends Application implements Initializable {
     @FXML
     private Label lbConnectToServer;
 
+    @Override
+    public void injectMap(Map<String, Object> map) {
+
+    }
+
     @FXML
     private void handleButtonActionHomePage() {
         StageManager.changeStage(anchorPane, Resources.ViewFiles.MAIN_SCREEN);
     }
 
     @FXML
-    private void handleButtonActionForgotPassword() {
-        AnchorPane homePage;
-        try {
-            homePage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.CHANGE_PASSWORD_SCREEN));
-
-        } catch (IOException e) {
-            System.out.println("Warning unandled exeption.");
-            return;
-        }
-        Scene homeScene = new Scene(homePage);
-        Stage homeStage = (Stage) anchorPane.getScene().getWindow();
-        homeStage.setScene(homeScene);
-        homeStage.show();
+    private void handleButtonActionForgotPassword(ActionEvent event) {
+        ContextMap.getContextMap().put("USER", null);
+        StageManager.changeStage(((Node) event.getSource()), Resources.ViewFiles.CHANGE_PASSWORD_SCREEN);
     }
 
 
@@ -130,7 +113,7 @@ public class LoginScreen extends Application implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeImgView();
         initializeBackground();
-        initializeIcons();
+        webButtonPane.getChildren().add(new WebButton(this.getHostServices()));
     }
 
     private void initializeImgView() {
@@ -151,26 +134,6 @@ public class LoginScreen extends Application implements Initializable {
         anchorPane.setBackground(new Background(bgImg));
     }
 
-    private void initializeIcons() {
-
-        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        BackgroundImage bgImg = ImageUtils.loadBackgroundImage(Resources.Images.FACEBOOK, backgroundSize);
-        facebookIcon.setBackground(new Background(bgImg));
-
-        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.TWITTER, backgroundSize);
-        twitterIcon.setBackground(new Background(bgImg));
-
-
-        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.INSTAGRAM, backgroundSize);
-        instagramIcon.setBackground(new Background(bgImg));
-
-        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.MAIL, backgroundSize);
-        mailIcon.setBackground(new Background(bgImg));
-
-    }
 
     private void checkFields() {
         String red = "#ef5353";

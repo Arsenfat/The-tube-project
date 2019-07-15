@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.Cursor?>
@@ -26,7 +26,7 @@
                 <Cursor fx:constant="HAND"/>
             </cursor>
         </JFXButton>
-        <Label layoutX="199.0" layoutY="218.0" text="Do you want to go to Baker street ? " textFill="#151928">
+        <Label layoutX="199.0" layoutY="218.0" text="Do you want to go to" textFill="#151928">
             <font>
                 <Font name="System Bold" size="21.0"/>
             </font>
@@ -67,14 +67,14 @@
                 <Insets/>
             </opaqueInsets>
             <children>
-                <JFXButton fx:id="facebookIcon" layoutX="636.0" layoutY="19.0" onAction="#handleButtonActionFacebook"
-                           prefHeight="25.0" prefWidth="24.0"/>
-                <JFXButton fx:id="twitterIcon" layoutX="668.0" layoutY="19.0" onAction="#handleButtonActionTwitter"
-                           prefHeight="25.0" prefWidth="24.0"/>
-                <JFXButton fx:id="instagramIcon" layoutX="700.0" layoutY="19.0" prefHeight="25.0" prefWidth="24.0"/>
-                <JFXButton fx:id="mailIcon" layoutX="734.0" layoutY="19.0" onAction="#HandleButtonActionEmail"
-                           prefHeight="25.0" prefWidth="24.0"/>
+                <Pane fx:id="webButtonPane" layoutX="578.0" layoutY="4.0" prefHeight="55.0" prefWidth="180.0"/>
             </children>
         </Pane>
+        <Label fx:id="lblAnimation" layoutX="410.0" layoutY="214.0" prefHeight="38.0" prefWidth="288.0"
+               textFill="#151928">
+            <font>
+                <Font name="System Bold" size="21.0"/>
+            </font>
+        </Label>
     </children>
 </AnchorPane>

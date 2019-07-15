@@ -1,12 +1,11 @@
 package com.tubeproject.view.user;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.tubeproject.controller.User;
-import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.DatabaseConnection;
 import com.tubeproject.model.builder.UserBuilder;
+import com.tubeproject.model.interfaces.Injectable;
 import com.tubeproject.model.requests.Insert;
 import com.tubeproject.model.requests.Select;
 import com.tubeproject.model.requests.insert.InsertUserRequest;
@@ -16,12 +15,12 @@ import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
 import com.tubeproject.view.StageManager;
+import com.tubeproject.view.component.WebButton;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.DateCell;
@@ -30,24 +29,21 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Map;
 import java.util.ResourceBundle;
 
-public class SignUpScreen extends Application implements Initializable {
+public class SignUpScreen extends Application implements Initializable, Injectable {
 
     @FXML
     private ImageView imgView;
@@ -59,16 +55,7 @@ public class SignUpScreen extends Application implements Initializable {
     private JFXTextField txtFirstName;
 
     @FXML
-    private JFXButton facebookIcon;
-
-    @FXML
-    private JFXButton twitterIcon;
-
-    @FXML
-    private JFXButton instagramIcon;
-
-    @FXML
-    private JFXButton mailIcon;
+    private Pane webButtonPane;
 
     @FXML
     private JFXTextField txtLastName;
@@ -88,21 +75,16 @@ public class SignUpScreen extends Application implements Initializable {
     @FXML
     private DatePicker datePicker;
 
+    private Map<String, Object> contextMap;
+
     @FXML
     private void handleButtonActionHomePage() {
-        System.out.println("you've clicked");
-        AnchorPane homePage;
-        try {
-            homePage = FXMLLoader.load(getClass().getResource(Resources.ViewFiles.MAIN_SCREEN));
+        StageManager.changeStage(anchorPane, Resources.ViewFiles.MAIN_SCREEN);
+    }
 
-        } catch (IOException e) {
-            System.out.println("Warning unandled exeption.");
-            return;
-        }
-        Scene homeScene = new Scene(homePage);
-        Stage homeStage = (Stage) anchorPane.getScene().getWindow();
-        homeStage.setScene(homeScene);
-        homeStage.show();
+    @Override
+    public void injectMap(Map<String, Object> map) {
+        contextMap = map;
     }
 
     public static void startWindow() {
@@ -124,7 +106,7 @@ public class SignUpScreen extends Application implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeImgView();
         initializeBackground();
-        initializeIcons();
+        webButtonPane.getChildren().add(new WebButton(this.getHostServices()));
         checkTime();
     }
 
@@ -154,26 +136,6 @@ public class SignUpScreen extends Application implements Initializable {
         anchorPane.setBackground(new Background(bgImg));
     }
 
-    private void initializeIcons() {
-        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        BackgroundImage bgImg = ImageUtils.loadBackgroundImage(Resources.Images.FACEBOOK, backgroundSize);
-        facebookIcon.setBackground(new Background(bgImg));
-
-        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.TWITTER, backgroundSize);
-        twitterIcon.setBackground(new Background(bgImg));
-
-
-        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.INSTAGRAM, backgroundSize);
-        instagramIcon.setBackground(new Background(bgImg));
-
-        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.MAIL, backgroundSize);
-        mailIcon.setBackground(new Background(bgImg));
-
-
-    }
 
     private boolean checkFields() {
         String red = "#ef5353";
@@ -229,7 +191,7 @@ public class SignUpScreen extends Application implements Initializable {
                 insert.insert();
                 userToInsert.setPassword("");
                 userToInsert.setSalt("");
-                ContextMap.getContextMap().put("USER", userToInsert);
+                contextMap.put("USER", userToInsert);
                 StageManager.changeStage(anchorPane, Resources.ViewFiles.TRAVEL_SCREEN, Resources.Stylesheets.MENU);
             } else {
                 changeLabelVisibility(true);

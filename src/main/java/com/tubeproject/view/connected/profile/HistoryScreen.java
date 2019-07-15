@@ -1,14 +1,17 @@
 package com.tubeproject.view.connected.profile;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
+import com.tubeproject.controller.User;
+import com.tubeproject.model.ContextMap;
+import com.tubeproject.model.interfaces.Injectable;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
 import com.tubeproject.view.StageManager;
 import com.tubeproject.view.component.BurgerMenu;
+import com.tubeproject.view.component.WebButton;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,18 +21,16 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.ResourceBundle;
 
-public class HistoryScreen extends Application implements Initializable {
+public class HistoryScreen extends Application implements Initializable, Injectable {
 
     @FXML
     private ImageView imgView;
@@ -38,16 +39,7 @@ public class HistoryScreen extends Application implements Initializable {
     private AnchorPane anchorPane;
 
     @FXML
-    private JFXButton facebookIcon;
-
-    @FXML
-    private JFXButton twitterIcon;
-
-    @FXML
-    private JFXButton instagramIcon;
-
-    @FXML
-    private JFXButton mailIcon;
+    private Pane webButtonPane;
 
     @FXML
     private JFXHamburger burger;
@@ -55,10 +47,21 @@ public class HistoryScreen extends Application implements Initializable {
     @FXML
     private JFXDrawer drawer;
 
+    private Map<String, Object> contextMap;
+    private BurgerMenu burgerPane;
+
     @FXML
     private void handleButtonActionHomePage() {
+        ContextMap.getContextMap().put("USER", null);
         StageManager.changeStage(anchorPane, Resources.ViewFiles.MAIN_SCREEN);
     }
+
+    @Override
+    public void injectMap(Map<String, Object> map) {
+        contextMap = map;
+        burgerPane.checkUserLoggedIn((User) contextMap.get("USER"));
+    }
+
 
     public static void startWindow() {
         launch();
@@ -81,7 +84,7 @@ public class HistoryScreen extends Application implements Initializable {
         drawer.setVisible(false);
         initializeImgView();
         initializeBackground();
-        initializeIcons();
+        webButtonPane.getChildren().add(new WebButton(this.getHostServices()));
         initializeBurger();
     }
 
@@ -112,28 +115,9 @@ public class HistoryScreen extends Application implements Initializable {
         this.imgView.setImage(img);
     }
 
-    private void initializeIcons() {
-        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        BackgroundImage bgImg = ImageUtils.loadBackgroundImage(Resources.Images.FACEBOOK, backgroundSize);
-        facebookIcon.setBackground(new Background(bgImg));
-
-        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.TWITTER, backgroundSize);
-        twitterIcon.setBackground(new Background(bgImg));
-
-
-        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.INSTAGRAM, backgroundSize);
-        instagramIcon.setBackground(new Background(bgImg));
-
-        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.MAIL, backgroundSize);
-        mailIcon.setBackground(new Background(bgImg));
-
-    }
-
     public void initializeBurger() {
-        drawer.setSidePane(new BurgerMenu());
+        burgerPane = new BurgerMenu();
+        drawer.setSidePane(burgerPane);
         HamburgerSlideCloseTransition transition = new HamburgerSlideCloseTransition(burger);
         transition.setRate(-1);
         burger.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {

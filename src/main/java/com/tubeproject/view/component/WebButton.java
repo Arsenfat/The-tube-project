@@ -1,7 +1,7 @@
 package com.tubeproject.view.component;
 
-import com.tubeproject.controller.User;
 import com.tubeproject.view.Resources;
+import javafx.application.HostServices;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
@@ -9,16 +9,16 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 
-public class BurgerMenu extends VBox {
+public class WebButton extends VBox {
     private Node view;
-    private BurgerMenuController controller;
+    private WebButtonController controller;
 
-    public BurgerMenu() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Resources.Components.BURGER_MENU));
+    public WebButton(HostServices hostServices) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Resources.Components.WEB_BUTTON));
         fxmlLoader.setControllerFactory(new Callback<Class<?>, Object>() {
             @Override
             public Object call(Class<?> param) {
-                return controller = new BurgerMenuController();
+                return controller = new WebButtonController();
             }
         });
         try {
@@ -27,10 +27,7 @@ public class BurgerMenu extends VBox {
         } catch (IOException ex) {
             System.out.println(ex);
         }
+        controller.setHostServices(hostServices);
         getChildren().add(view);
-    }
-
-    public void checkUserLoggedIn(User user) {
-        controller.checkUserLoggedIn(user);
     }
 }

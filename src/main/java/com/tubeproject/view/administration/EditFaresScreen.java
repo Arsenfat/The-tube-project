@@ -3,9 +3,12 @@ package com.tubeproject.view.administration;
 import com.jfoenix.controls.*;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 import com.tubeproject.controller.Fare;
+import com.tubeproject.controller.User;
 import com.tubeproject.controller.Zone;
+import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.DatabaseConnection;
 import com.tubeproject.model.builder.FareBuilder;
+import com.tubeproject.model.interfaces.Injectable;
 import com.tubeproject.model.requests.Select;
 import com.tubeproject.model.requests.Update;
 import com.tubeproject.model.requests.select.GetFaresRequest;
@@ -15,6 +18,7 @@ import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
 import com.tubeproject.view.StageManager;
 import com.tubeproject.view.component.BurgerMenu;
+import com.tubeproject.view.component.WebButton;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -26,40 +30,22 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.stream.Collectors;
 
-public class EditFaresScreen extends Application implements Initializable {
+public class EditFaresScreen extends Application implements Initializable, Injectable {
 
     @FXML
     private ImageView imgView;
 
     @FXML
     private AnchorPane anchorPane;
-
-    @FXML
-    private JFXButton facebookIcon;
-
-    @FXML
-    private JFXButton twitterIcon;
-
-    @FXML
-    private JFXButton instagramIcon;
-
-    @FXML
-    private JFXButton mailIcon;
 
     @FXML
     private JFXHamburger burger;
@@ -91,12 +77,34 @@ public class EditFaresScreen extends Application implements Initializable {
     @FXML
     private JFXTextField txtPrice;
 
+    @FXML
+    private JFXButton btnSave;
+
+    private BurgerMenu burgerPane;
+
+    private Map<String, Object> contextMap;
+
     private List<Fare> fares;
 
+    @FXML
+    private Pane webButtonPane;
 
     @FXML
     private void handleButtonActionHomePage() {
+        ContextMap.getContextMap().put("USER", null);
         StageManager.changeStage(anchorPane, Resources.ViewFiles.MAIN_SCREEN);
+    }
+
+    @FXML
+    private void handleButtonActionGoBack() {
+        StageManager.changeStage(anchorPane, Resources.ViewFiles.ADMINISTRATOR_SCREEN);
+    }
+
+
+    @Override
+    public void injectMap(Map<String, Object> map) {
+        contextMap = map;
+        burgerPane.checkUserLoggedIn((User) contextMap.get("USER"));
     }
 
     public static void startWindow() {
@@ -119,10 +127,10 @@ public class EditFaresScreen extends Application implements Initializable {
         drawer.setVisible(false);
         initializeImgView();
         initializeBackground();
-        initializeIcons();
         initializeBurger();
         fares = loadData();
         fillForm(fares);
+        webButtonPane.getChildren().add(new WebButton(this.getHostServices()));
     }
 
     private List<Fare> loadData() {
@@ -174,6 +182,12 @@ public class EditFaresScreen extends Application implements Initializable {
                             && fare.getArrivingZone().equals(newValue)
                             && fare.getType().equals(Fare.Type.ADULT);
                 }).findFirst().orElseGet(() -> new FareBuilder().createFare()).getPrice()));
+                rdAdult.setDisable(false);
+                rdChild.setDisable(false);
+                rdOysOffPeak.setDisable(false);
+                rdOysPeak.setDisable(false);
+                txtPrice.setDisable(false);
+                btnSave.setDisable(false);
             }
         }));
 
@@ -262,28 +276,10 @@ public class EditFaresScreen extends Application implements Initializable {
         this.imgView.setImage(img);
     }
 
-    private void initializeIcons() {
-        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        BackgroundImage bgImg = ImageUtils.loadBackgroundImage(Resources.Images.FACEBOOK, backgroundSize);
-        facebookIcon.setBackground(new Background(bgImg));
-
-        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.TWITTER, backgroundSize);
-        twitterIcon.setBackground(new Background(bgImg));
-
-
-        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.INSTAGRAM, backgroundSize);
-        instagramIcon.setBackground(new Background(bgImg));
-
-        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.MAIL, backgroundSize);
-        mailIcon.setBackground(new Background(bgImg));
-
-    }
 
     public void initializeBurger() {
-        drawer.setSidePane(new BurgerMenu());
+        burgerPane = new BurgerMenu();
+        drawer.setSidePane(burgerPane);
 
         HamburgerSlideCloseTransition transition = new HamburgerSlideCloseTransition(burger);
         transition.setRate(-1);

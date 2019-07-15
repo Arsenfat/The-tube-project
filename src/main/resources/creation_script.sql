@@ -48,6 +48,18 @@ CREATE TABLE `station_durations`
     CONSTRAINT FOREIGN KEY (station_arriving) REFERENCES `stations` (naptan)
 );
 
+CREATE TABLE `station_line_durations`
+(
+    `station_departing` VARCHAR(12) NOT NULL,
+    `station_arriving`  VARCHAR(12) NOT NULL,
+    `line`              INT(2)      NOT NULL,
+    `duration`          DOUBLE      NOT NULL,
+    CONSTRAINT PRIMARY KEY (station_departing, station_arriving),
+    CONSTRAINT FOREIGN KEY (station_departing) REFERENCES `stations` (naptan),
+    CONSTRAINT FOREIGN KEY (station_arriving) REFERENCES `stations` (naptan),
+    CONSTRAINT FOREIGN KEY (line) REFERENCES `lines` (id)
+);
+
 CREATE TABLE `fares`
 (
     `zone_from`       int,

@@ -1,19 +1,23 @@
 package com.tubeproject.view.connected.travel;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
+import com.tubeproject.algorithm.PathCalculator;
+import com.tubeproject.algorithm.PathResponse;
 import com.tubeproject.controller.Line;
-import com.tubeproject.controller.Station;
-import com.tubeproject.model.DatabaseConnection;
-import com.tubeproject.model.requests.Select;
-import com.tubeproject.model.requests.select.GetStationsFromLineRequest;
+import com.tubeproject.controller.StationWLine;
+import com.tubeproject.controller.User;
+import com.tubeproject.model.ContextMap;
+import com.tubeproject.model.interfaces.Injectable;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
 import com.tubeproject.view.StageManager;
 import com.tubeproject.view.component.BurgerMenu;
+import com.tubeproject.view.component.TravelViewer;
+import com.tubeproject.view.component.WebButton;
+
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,20 +26,18 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.io.InputStream;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
-public class JourneyScreen extends Application implements Initializable {
+public class JourneyScreen extends Application implements Initializable, Injectable {
 
     @FXML
     private ImageView imgView;
@@ -44,16 +46,7 @@ public class JourneyScreen extends Application implements Initializable {
     private AnchorPane anchorPane;
 
     @FXML
-    private JFXButton facebookIcon;
-
-    @FXML
-    private JFXButton twitterIcon;
-
-    @FXML
-    private JFXButton instagramIcon;
-
-    @FXML
-    private JFXButton mailIcon;
+    private Pane webButtonPane;
 
     @FXML
     private JFXHamburger burger;
@@ -67,16 +60,71 @@ public class JourneyScreen extends Application implements Initializable {
     @FXML
     private Label lbLessConnectionListLine;
 
-    private List<Line> listLines = new ArrayList<>();
+    @FXML
+    private Label lbBegin;
 
     @FXML
+    private Label lbEnd;
+
+    @FXML
+    private Pane travelViewer;
+
+    @FXML
+    private Pane pnlLessConnection;
+
+    @FXML
+    private Pane pnlQuickest;
+
+    private List<Line> listLines = new ArrayList<>();
+
+    private Map<String, Object> contextMap;
+    private BurgerMenu burgerPane;
+    @FXML
     private void handleButtonActionHomePage() {
+        ContextMap.getContextMap().put("USER", null);
         StageManager.changeStage(anchorPane, Resources.ViewFiles.MAIN_SCREEN);
     }
 
     @FXML
     private void handleButtonActionGoBack() {
         StageManager.changeStage(anchorPane, Resources.ViewFiles.TRAVEL_SCREEN);
+    }
+
+    @Override
+    public void injectMap(Map<String, Object> map) {
+        contextMap = map;
+        System.out.println(contextMap);
+        burgerPane.checkUserLoggedIn((User) contextMap.get("USER"));
+        PathResponse pathResponse = PathCalculator.calculatePath((StationWLine) contextMap.get("START_STATION"), (StationWLine) contextMap.get("END_STATION"));
+
+        fillPage(pathResponse);
+        TravelViewer quickest = new TravelViewer(267, 342, new Image(getClass().getResourceAsStream(Resources.Images.TUBE_MAP)));
+        quickest.drawTravel(pathResponse.getQuickest());
+        TravelViewer lessConnection = new TravelViewer(267, 342, new Image(getClass().getResourceAsStream(Resources.Images.TUBE_MAP)));
+        lessConnection.drawTravel(pathResponse.getLessConnection());
+
+        pnlQuickest.setOnMouseEntered((event) -> {
+            changeTravelViewer(quickest);
+        });
+
+        pnlLessConnection.setOnMouseEntered((event) -> {
+            changeTravelViewer(lessConnection);
+        });
+
+        changeTravelViewer(quickest);
+    }
+
+    private void changeTravelViewer(TravelViewer tv) {
+        travelViewer.getChildren().removeAll(travelViewer.getChildren());
+        travelViewer.getChildren().add(tv);
+    }
+
+    private void fillPage(PathResponse pathResponse) {
+        lbBegin.setText(((StationWLine) contextMap.get("START_STATION")).getName());
+        lbEnd.setText(((StationWLine) contextMap.get("END_STATION")).getName());
+
+        initializeQuickestListLine(pathResponse.getQuickest());
+        initializeLessConnectionListLine(pathResponse.getLessConnection());
     }
 
     public static void startWindow() {
@@ -98,21 +146,10 @@ public class JourneyScreen extends Application implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         drawer.setVisible(false);
         initializeImgView();
-        initializeBackground();
-        initializeIcons();
+        webButtonPane.getChildren().add(new WebButton(this.getHostServices()));
         initializeBurger();
-        try {
-            DatabaseConnection.DatabaseOpen();
-            Line bakerloo = new Line(1, "Bakerloo");
-            GetStationsFromLineRequest getStationsFromLineRequest = new GetStationsFromLineRequest(bakerloo);
-            bakerloo.setStations((List<Station>) new Select(getStationsFromLineRequest).select().get());
-            listLines.add(bakerloo);
-            DatabaseConnection.DatabaseClose();
-        } catch (SQLException e) {
+        initializeBackground();
 
-        }
-        initializeQuickestListLine();
-        initializeLessConnectionListLine();
 
     }
 
@@ -129,28 +166,10 @@ public class JourneyScreen extends Application implements Initializable {
         this.imgView.setImage(img);
     }
 
-    private void initializeIcons() {
-        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        BackgroundImage bgImg = ImageUtils.loadBackgroundImage(Resources.Images.FACEBOOK, backgroundSize);
-        facebookIcon.setBackground(new Background(bgImg));
-
-        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.TWITTER, backgroundSize);
-        twitterIcon.setBackground(new Background(bgImg));
-
-
-        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.INSTAGRAM, backgroundSize);
-        instagramIcon.setBackground(new Background(bgImg));
-
-        backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
-        bgImg = ImageUtils.loadBackgroundImage(Resources.Images.MAIL, backgroundSize);
-        mailIcon.setBackground(new Background(bgImg));
-
-    }
 
     public void initializeBurger() {
-        drawer.setSidePane(new BurgerMenu());
+        burgerPane = new BurgerMenu();
+        drawer.setSidePane(burgerPane);
         HamburgerSlideCloseTransition transition = new HamburgerSlideCloseTransition(burger);
         transition.setRate(-1);
         burger.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
@@ -167,11 +186,11 @@ public class JourneyScreen extends Application implements Initializable {
 
     }
 
-    public void initializeQuickestListLine() {
-        lbQuickestListLine.setText(listLines.get(0).getName());
+    public void initializeQuickestListLine(List<StationWLine> list) {
+        lbQuickestListLine.setText(list.stream().map((station) -> station.getLine().getName()).distinct().collect(Collectors.joining(", ")));
     }
 
-    public void initializeLessConnectionListLine() {
-        lbLessConnectionListLine.setText(listLines.get(0).getName());
+    public void initializeLessConnectionListLine(List<StationWLine> list) {
+        lbLessConnectionListLine.setText(list.stream().map((station) -> station.getLine().getName()).distinct().collect(Collectors.joining(", ")));
     }
 }

@@ -43,5 +43,6 @@ public class Resources {
         public static final String TRAVEL_VIEWER = "/view/components/TravelViewer.fxml";
         public static final String BURGER_MENU = "/view/components/BurgerMenu.fxml";
         public static final String LINE_PANE = "/view/components/LinePane.fxml";
+        public static final String WEB_BUTTON = "/view/components/WebButton.fxml";
     }
 }
