@@ -41,7 +41,6 @@
                 <Pane fx:id="webButtonPane" layoutX="580.0" layoutY="4.0" prefHeight="55.0" prefWidth="180.0"/>
             </children>
         </Pane>
-        <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" prefHeight="490.0" prefWidth="2.0"/>
         <Label layoutX="26.0" layoutY="70.0" text="From:" textFill="#151928">
             <font>
                 <Font size="16.0"/>
@@ -105,12 +104,12 @@
                 <Font size="15.0"/>
             </font>
         </Label>
-
         <JFXButton layoutX="691.0" layoutY="390.0" onAction="#handleButtonActionGoBack" prefHeight="1.0"
                    prefWidth="82.0" style="-fx-background-color: #151928;" text="Go back" textFill="#dad1d1">
             <cursor>
                 <Cursor fx:constant="HAND"/>
             </cursor>
         </JFXButton>
+        <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" prefHeight="490.0" prefWidth="2.0"/>
     </children>
 </AnchorPane>
