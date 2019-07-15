@@ -19,6 +19,7 @@ import com.tubeproject.view.Resources;
 import com.tubeproject.view.StageManager;
 import com.tubeproject.view.component.BurgerMenu;
 import com.tubeproject.view.component.WebButton;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -188,11 +189,13 @@ public class EditLinesScreen extends Application implements Initializable, Injec
     }
 
     private void fillForm(Station station) {
-        naptanValue.setText(station.getNaptan());
-        txtName.setText(station.getName());
-        txtLatitude.setText(String.format("%.02f", station.getLatitude()));
-        txtLongitude.setText(String.format("%.02f", station.getLongitude()));
-        chkWheelchair.setSelected(station.isWheelchair());
+        if (station != null) {
+            naptanValue.setText(station.getNaptan());
+            txtName.setText(station.getName());
+            txtLatitude.setText(String.format("%.02f", station.getLatitude()));
+            txtLongitude.setText(String.format("%.02f", station.getLongitude()));
+            chkWheelchair.setSelected(station.isWheelchair());
+        }
     }
 
     @FXML

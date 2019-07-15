@@ -17,6 +17,7 @@ import com.tubeproject.view.StageManager;
 import com.tubeproject.view.component.BurgerMenu;
 import com.tubeproject.view.component.TravelViewer;
 import com.tubeproject.view.component.WebButton;
+
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

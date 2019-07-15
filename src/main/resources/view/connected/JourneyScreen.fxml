@@ -83,7 +83,17 @@
             <children>
                 <Label fx:id="lbQuickestListLine" layoutX="14.0" layoutY="25.0" text="Lines names">
                     <font>
-                        <Font size="15.0"/>
+                        <Font size="18.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="386.0" layoutY="1.0" text="Oyster" textFill="#151928">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="319.0" layoutY="31.0" text="£6.50" textFill="#151928">
+                    <font>
+                        <Font size="18.0"/>
                     </font>
                 </Label>
                 <Label layoutX="379.0" layoutY="22.0" text="0:00" textFill="#151928">
@@ -104,7 +114,7 @@
                         <Font size="15.0"/>
                     </font>
                 </Label>
-                <Label layoutX="378.0" layoutY="25.0" text="0:00" textFill="#151928">
+                <Label layoutX="392.0" layoutY="30.0" text="£5.50" textFill="#151928">
                     <font>
                         <Font size="18.0"/>
                     </font>
