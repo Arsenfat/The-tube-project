@@ -5,7 +5,6 @@ import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 import com.tubeproject.algorithm.PathCalculator;
 import com.tubeproject.algorithm.PathResponse;
-import com.tubeproject.controller.Line;
 import com.tubeproject.controller.StationWLine;
 import com.tubeproject.controller.User;
 import com.tubeproject.model.ContextMap;
@@ -17,7 +16,6 @@ import com.tubeproject.view.StageManager;
 import com.tubeproject.view.component.BurgerMenu;
 import com.tubeproject.view.component.TravelViewer;
 import com.tubeproject.view.component.WebButton;
-
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,7 +29,6 @@ import javafx.stage.Stage;
 
 import java.io.InputStream;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -75,10 +72,16 @@ public class JourneyScreen extends Application implements Initializable, Injecta
     @FXML
     private Pane pnlQuickest;
 
-    private List<Line> listLines = new ArrayList<>();
+    @FXML
+    private Label lblQuickest;
+
+    @FXML
+    private Label lblLessConnection;
+
 
     private Map<String, Object> contextMap;
     private BurgerMenu burgerPane;
+
     @FXML
     private void handleButtonActionHomePage() {
         ContextMap.getContextMap().put("USER", null);
@@ -93,7 +96,6 @@ public class JourneyScreen extends Application implements Initializable, Injecta
     @Override
     public void injectMap(Map<String, Object> map) {
         contextMap = map;
-        System.out.println(contextMap);
         burgerPane.checkUserLoggedIn((User) contextMap.get("USER"));
         PathResponse pathResponse = PathCalculator.calculatePath((StationWLine) contextMap.get("START_STATION"), (StationWLine) contextMap.get("END_STATION"));
 
@@ -103,15 +105,21 @@ public class JourneyScreen extends Application implements Initializable, Injecta
         TravelViewer lessConnection = new TravelViewer(267, 342, new Image(getClass().getResourceAsStream(Resources.Images.TUBE_MAP)));
         lessConnection.drawTravel(pathResponse.getLessConnection());
 
-        pnlQuickest.setOnMouseEntered((event) -> {
-            changeTravelViewer(quickest);
-        });
+        pnlQuickest.setOnMouseEntered((event) -> changeTravelViewer(quickest));
+        pnlQuickest.setOnMouseClicked((event) -> goToJourneyScreenInformation(pathResponse.getQuickest(), (String) contextMap.get("QUICKEST")));
 
-        pnlLessConnection.setOnMouseEntered((event) -> {
-            changeTravelViewer(lessConnection);
-        });
+        pnlLessConnection.setOnMouseEntered((event) -> changeTravelViewer(lessConnection));
+        pnlLessConnection.setOnMouseClicked((event) -> goToJourneyScreenInformation(pathResponse.getLessConnection(), (String) contextMap.get("LESS_CONNECTION")));
 
         changeTravelViewer(quickest);
+    }
+
+    private void goToJourneyScreenInformation(List<StationWLine> list, String time) {
+        contextMap.put("TRAVEL", list);
+        contextMap.put("TIME", time);
+        contextMap.remove("QUICKEST");
+        contextMap.remove("LESS_CONNECTION");
+        StageManager.changeStage(anchorPane, Resources.ViewFiles.JOURNEY_INFORMATIONS_SCREEN, Resources.Stylesheets.MENU);
     }
 
     private void changeTravelViewer(TravelViewer tv) {
@@ -123,8 +131,10 @@ public class JourneyScreen extends Application implements Initializable, Injecta
         lbBegin.setText(((StationWLine) contextMap.get("START_STATION")).getName());
         lbEnd.setText(((StationWLine) contextMap.get("END_STATION")).getName());
 
-        initializeQuickestListLine(pathResponse.getQuickest());
-        initializeLessConnectionListLine(pathResponse.getLessConnection());
+        String timeQuickest = initializeQuickestListLine(pathResponse.getQuickest(), pathResponse.getQuickestWeight());
+        String timeLessConnection = initializeLessConnectionListLine(pathResponse.getLessConnection(), pathResponse.getLessConnectionWeight());
+        contextMap.put("LESS_CONNECTION", timeLessConnection);
+        contextMap.put("QUICKEST", timeQuickest);
     }
 
     public static void startWindow() {
@@ -186,11 +196,45 @@ public class JourneyScreen extends Application implements Initializable, Injecta
 
     }
 
-    public void initializeQuickestListLine(List<StationWLine> list) {
-        lbQuickestListLine.setText(list.stream().map((station) -> station.getLine().getName()).distinct().collect(Collectors.joining(", ")));
+    private String doubleToTime(double time) {
+        long intPart;
+        double fracPart;
+
+        intPart = (long) time;
+        fracPart = time - intPart;
+        int nbHours = (int) Math.floor(intPart / 60);
+        int nbMinutes = (int) Math.ceil(fracPart * 60);
+
+        return String.format("%02d:%02d", nbHours, nbMinutes);
+
     }
 
-    public void initializeLessConnectionListLine(List<StationWLine> list) {
-        lbLessConnectionListLine.setText(list.stream().map((station) -> station.getLine().getName()).distinct().collect(Collectors.joining(", ")));
+
+    public String initializeQuickestListLine(List<StationWLine> list, double time) {
+        List<String> changes = list.stream().map((station) -> station.getLine().getName()).distinct().collect(Collectors.toList());
+        lbQuickestListLine.setText(list.stream().map((station) -> station.getLine().getName()).distinct().collect(Collectors.joining(", ")));
+        String amendtime;
+        if (changes.size() > 1) {
+            amendtime = doubleToTime(time - (changes.size() - 1) * 3);
+            lblQuickest.setText(amendtime);
+        } else {
+            amendtime = doubleToTime(time - 3);
+            lblQuickest.setText(amendtime);
+        }
+        return amendtime;
+    }
+
+    public String initializeLessConnectionListLine(List<StationWLine> list, double time) {
+        List<String> changes = list.stream().map((station) -> station.getLine().getName()).distinct().collect(Collectors.toList());
+        String amendtime;
+        if (changes.size() > 1) {
+            amendtime = doubleToTime(time - (changes.size() - 1) * 15);
+            lblLessConnection.setText(amendtime);
+        } else {
+            amendtime = doubleToTime(time);
+            lblLessConnection.setText(amendtime);
+        }
+        lbLessConnectionListLine.setText(String.join(", ", changes));
+        return amendtime;
     }
 }

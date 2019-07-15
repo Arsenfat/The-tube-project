@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<Pane fx:id="parent" prefHeight="125.0" prefWidth="584.0" xmlns="http://javafx.com/javafx/11.0.1"
+<Pane fx:id="parent" prefHeight="125.0" prefWidth="584.0" xmlns="http://javafx.com/javafx/11"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tubeproject.view.component.LinePaneController">
     <children>
         <Label fx:id="lblLine" layoutX="42.0" layoutY="8.0" text="Line" textFill="#151928">

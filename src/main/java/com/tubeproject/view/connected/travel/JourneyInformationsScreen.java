@@ -3,39 +3,41 @@ package com.tubeproject.view.connected.travel;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
-import com.tubeproject.controller.Line;
-import com.tubeproject.controller.Station;
-import com.tubeproject.model.DatabaseConnection;
-import com.tubeproject.model.requests.Select;
-import com.tubeproject.model.requests.select.GetStationsFromLineRequest;
-import com.tubeproject.controller.User;
+import com.tubeproject.controller.*;
 import com.tubeproject.model.ContextMap;
+import com.tubeproject.model.DatabaseConnection;
 import com.tubeproject.model.interfaces.Injectable;
+import com.tubeproject.model.requests.Select;
+import com.tubeproject.model.requests.select.GetFaresRequest;
+import com.tubeproject.model.requests.select.GetZoneFromStationRequest;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
 import com.tubeproject.view.StageManager;
-import com.tubeproject.view.component.LinePane;
 import com.tubeproject.view.component.BurgerMenu;
 import com.tubeproject.view.component.WebButton;
-
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class JourneyInformationsScreen extends Application implements Initializable, Injectable {
 
@@ -54,8 +56,26 @@ public class JourneyInformationsScreen extends Application implements Initializa
     @FXML
     private JFXDrawer drawer;
 
+    @FXML
+    private Label lblFrom;
+
+    @FXML
+    private Label lblTo;
+
+    @FXML
+    private Label wheelchair;
+
     private Map<String, Object> contextMap;
     private BurgerMenu burgerPane;
+
+    @FXML
+    private Label lblHour;
+
+    @FXML
+    private Label lblOyster;
+
+    @FXML
+    private Label lblTicket;
 
     @FXML
     private ScrollPane scrlPane;
@@ -78,7 +98,13 @@ public class JourneyInformationsScreen extends Application implements Initializa
     public void injectMap(Map<String, Object> map) {
         contextMap = map;
         burgerPane.checkUserLoggedIn((User) contextMap.get("USER"));
-
+        fillLinePane((List<StationWLine>) contextMap.get("TRAVEL"));
+        lblHour.setText((String) contextMap.get("TIME"));
+        StationWLine start = (StationWLine) contextMap.get("START_STATION");
+        StationWLine end = (StationWLine) contextMap.get("END_STATION");
+        lblFrom.setText(start.getName());
+        lblTo.setText(end.getName());
+        fillFares(start, end);
     }
 
     public static void startWindow() {
@@ -103,25 +129,110 @@ public class JourneyInformationsScreen extends Application implements Initializa
         initializeBackground();
         webButtonPane.getChildren().add(new WebButton(this.getHostServices()));
         initializeBurger();
+
+        VBox.setVgrow(vbxLineContainer, Priority.ALWAYS);
+        VBox.setVgrow(scrlPane, Priority.ALWAYS);
+        scrlPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        vbxLineContainer.setSpacing(10);
+        vbxLineContainer.setPadding(new Insets(10, 0, 10, 10));
+        vbxLineContainer.setFillWidth(true);
+    }
+
+    private void fillFares(StationWLine start, StationWLine end) {
+        List<Zone> startZones = loadZones(start);
+        List<Zone> endZones = loadZones(end);
+        List<Fare> fares = loadFares();
+        int startZone_filter = startZones.stream().min(Zone::compareTo).orElse(new Zone("", 1)).getId();
+        int endZone_filter = endZones.stream().min(Zone::compareTo).orElse(new Zone("", 1)).getId();
+        int startZoneCorrection = Integer.min(startZone_filter, endZone_filter);
+        int endZoneCorrection = Integer.max(startZone_filter, endZone_filter);
+
+        int startZone = startZoneCorrection;
+        int endZone = calculerFin(startZoneCorrection, endZoneCorrection);
+
+        List<Fare> filteredFares = fares.stream().filter(fare -> fare.getDepartingZone().getId() == startZone && fare.getArrivingZone().getId() == endZone).collect(Collectors.toList());
+        Fare ticketAdult = filteredFares.stream().filter((fare) -> fare.getType().equals(Fare.Type.ADULT)).findFirst().orElse(fares.get(fares.size() - 1));
+        Fare oysterPeak = filteredFares.stream().filter((fare) -> fare.getType().equals(Fare.Type.OYSTER_PEAK)).findFirst().orElse(fares.get(fares.size() - 1));
+        lblOyster.setText(String.format("£%.02f", oysterPeak.getPrice()));
+        lblTicket.setText(String.format("£%.02f", ticketAdult.getPrice()));
+
+    }
+
+    int calculerFin(int i1, int i2) {
+        if (i1 > 1 || i2 > 6)
+            return 6;
+        return i2;
+    }
+
+    private List<Fare> loadFares() {
+        List<Fare> fares = new ArrayList<>();
         try {
             DatabaseConnection.DatabaseOpen();
-            Line bakerloo = new Line(1, "Bakerloo");
-            GetStationsFromLineRequest getStationsFromLineRequest = new GetStationsFromLineRequest(bakerloo);
-            bakerloo.setStations((List<Station>) new Select(getStationsFromLineRequest).select().get());
-            for (int i = 0; i < 10; i++) {
-                LinePane lp = new LinePane(bakerloo, String.format("%d lo", i), false);
-                vbxLineContainer.getChildren().add(lp);
-                vbxLineContainer.setPrefHeight(vbxLineContainer.getMaxHeight() + lp.getHeight());
-            }
+            GetFaresRequest getFaresRequest = new GetFaresRequest();
+            Select s = new Select(getFaresRequest);
+            fares = (List<Fare>) s.select().get();
+            DatabaseConnection.DatabaseClose();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
 
-            VBox.setVgrow(vbxLineContainer, Priority.ALWAYS);
-            VBox.setVgrow(scrlPane, Priority.ALWAYS);
+        return fares;
+    }
+
+    private List<Zone> loadZones(StationWLine station) {
+        List<Zone> zones = new ArrayList<>();
+        try {
+            DatabaseConnection.DatabaseOpen();
+            GetZoneFromStationRequest getZoneFromStationRequest = new GetZoneFromStationRequest(station);
+            Select s = new Select(getZoneFromStationRequest);
+            zones = (List<Zone>) s.select().get();
 
             DatabaseConnection.DatabaseClose();
         } catch (SQLException e) {
-            System.out.println("ERROR");
             System.out.println(e);
         }
+        return zones;
+    }
+
+    private void fillLinePane(List<StationWLine> list) {
+        Map<Line, List<StationWLine>> map = list.stream().collect(Collectors.groupingBy(StationWLine::getLine));
+        Font point23 = new Font("System Bold", 23.0);
+        Font point15 = new Font(15.0);
+
+        Line current = new Line();
+        boolean wheelchairFriendly = list.get(0).isWheelchair();
+        for (int i = 0; i < list.size(); i++) {
+            StationWLine station = list.get(i);
+            if (!current.equals(station.getLine())) {
+                if (i > 0 && i < list.size() - 1) {
+                    Label lblPlatform = new Label("Change platform");
+                    lblPlatform.setFont(point23);
+                    vbxLineContainer.getChildren().add(lblPlatform);
+                    wheelchairFriendly &= station.isWheelchair();
+                }
+                current = station.getLine();
+                Label line = new Label(capitalize(current.getName()));
+                line.setFont(point23);
+                vbxLineContainer.getChildren().add(line);
+            }
+
+            Label lblStation = new Label(station.getName());
+            lblStation.setFont(point15);
+            vbxLineContainer.getChildren().add(lblStation);
+
+        }
+
+        if (wheelchairFriendly) {
+            wheelchair.setText("Wheelchair friendly");
+        } else {
+            wheelchair.setText("Non-wheelchair friendly");
+        }
+
+    }
+
+    private String capitalize(String s) {
+        return String.format("%s%s", s.substring(0, 1).toUpperCase(), s.substring(1).toLowerCase());
+
     }
 
     private void initializeBackground() {

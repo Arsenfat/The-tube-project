@@ -9,6 +9,7 @@ import com.tubeproject.model.builder.ConnectionWLineBuilder;
 import com.tubeproject.model.requests.Select;
 import com.tubeproject.model.requests.select.GetAllConnectionsWLineRequest;
 import com.tubeproject.model.requests.select.GetAllLinesWithStationsRequest;
+import org.jgrapht.GraphPath;
 import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
 import org.jgrapht.graph.DefaultUndirectedWeightedGraph;
 import org.jgrapht.graph.DefaultWeightedEdge;
@@ -72,20 +73,26 @@ public class PathCalculator {
         PathResponse pFinal = new PathResponse();
         if (p1.getQuickest() != null) {
             pFinal.setQuickest(p1.getQuickest());
+            pFinal.setQuickestWeight(p1.getQuickestWeight());
             pFinal.setLessConnection(p2.getLessConnection());
+            pFinal.setLessConnectionWeight(p2.getLessConnectionWeight());
         } else {
             pFinal.setQuickest(p2.getQuickest());
+            pFinal.setQuickestWeight(p2.getQuickestWeight());
             pFinal.setLessConnection(p1.getLessConnection());
+            pFinal.setLessConnectionWeight(p1.getLessConnectionWeight());
         }
         return pFinal;
     }
 
     public static PathResponse calculateQuickest(StationWLine s1, StationWLine s2) {
-        return new PathResponse(dijkstraQuickest.getPath(s1, s2).getVertexList(), null);
+        GraphPath<StationWLine, DefaultWeightedEdge> t = dijkstraQuickest.getPath(s1, s2);
+        return new PathResponse(t.getVertexList(), t.getWeight(), null, 0);
     }
 
     public static PathResponse calculateLessConnection(StationWLine s1, StationWLine s2) {
-        return new PathResponse(null, dijkstraLessConnection.getPath(s1, s2).getVertexList());
+        GraphPath<StationWLine, DefaultWeightedEdge> t = dijkstraLessConnection.getPath(s1, s2);
+        return new PathResponse(null, 0, t.getVertexList(), t.getWeight());
     }
 
     public static Map<StationWLine, List<ConnectionWLine>> getTravelEdges() {
