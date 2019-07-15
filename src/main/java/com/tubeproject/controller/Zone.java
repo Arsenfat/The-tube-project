@@ -2,7 +2,7 @@ package com.tubeproject.controller;
 
 import java.util.Objects;
 
-public class Zone {
+public class Zone implements Comparable<Zone> {
 
     private String name;
     private int id;
@@ -45,5 +45,10 @@ public class Zone {
     @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public int compareTo(Zone z) {
+        return Integer.compare(this.getId(), z.getId());
     }
 }

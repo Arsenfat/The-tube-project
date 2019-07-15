@@ -7,14 +7,18 @@ import java.util.List;
 public class PathResponse implements Comparable {
     private List<StationWLine> quickest;
     private List<StationWLine> lessConnection;
+    private double quickestWeight;
+    private double lessConnectionWeight;
 
     public PathResponse() {
 
     }
 
-    public PathResponse(List<StationWLine> quickest, List<StationWLine> lessConnection) {
+    public PathResponse(List<StationWLine> quickest, double quickestWeight, List<StationWLine> lessConnection, double lessConnectionWeight) {
         this.quickest = quickest;
+        this.quickestWeight = quickestWeight;
         this.lessConnection = lessConnection;
+        this.lessConnectionWeight = lessConnectionWeight;
     }
 
     public List<StationWLine> getQuickest() {
@@ -31,6 +35,22 @@ public class PathResponse implements Comparable {
 
     public void setLessConnection(List<StationWLine> lessConnection) {
         this.lessConnection = lessConnection;
+    }
+
+    public double getQuickestWeight() {
+        return quickestWeight;
+    }
+
+    public void setQuickestWeight(double quickestWeight) {
+        this.quickestWeight = quickestWeight;
+    }
+
+    public double getLessConnectionWeight() {
+        return lessConnectionWeight;
+    }
+
+    public void setLessConnectionWeight(double lessConnectionWeight) {
+        this.lessConnectionWeight = lessConnectionWeight;
     }
 
     @Override

@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.*?>
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="435.0" prefWidth="753.0"
-            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11"
             fx:controller="com.tubeproject.view.connected.travel.JourneyInformationsScreen">
     <children>
         <Pane fx:id="topPane" prefHeight="62.0" prefWidth="774.0" style="-fx-background-color: #000000;">
@@ -42,32 +42,32 @@
             </children>
         </Pane>
         <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" prefHeight="490.0" prefWidth="2.0"/>
-        <Label layoutX="26.0" layoutY="70.0" text="From" textFill="#151928">
+        <Label layoutX="26.0" layoutY="70.0" text="From:" textFill="#151928">
             <font>
                 <Font size="16.0"/>
             </font>
         </Label>
-        <Label layoutX="26.0" layoutY="101.0" text="To" textFill="#151928">
+        <Label layoutX="26.0" layoutY="101.0" text="To:" textFill="#151928">
             <font>
                 <Font size="16.0"/>
             </font>
         </Label>
-        <Label layoutX="67.0" layoutY="70.0" text="Baker" textFill="#151928">
+        <Label fx:id="lblFrom" layoutX="90.0" layoutY="70.0" text="Baker" textFill="#151928">
             <font>
                 <Font size="16.0"/>
             </font>
         </Label>
-        <Label layoutX="47.0" layoutY="101.0" text="Baker" textFill="#151928">
+        <Label fx:id="lblTo" layoutX="90.0" layoutY="101.0" text="Baker" textFill="#151928">
             <font>
                 <Font size="16.0"/>
             </font>
         </Label>
-        <Label layoutX="328.0" layoutY="73.0" text="0:00" textFill="#151928">
+        <Label fx:id="lblHour" layoutX="327.0" layoutY="76.0" text="00:00" textFill="#151928">
             <font>
                 <Font size="30.0"/>
             </font>
         </Label>
-        <Label layoutX="408.0" layoutY="79.0" prefHeight="20.0" prefWidth="38.0" text="min" textFill="#151928">
+        <Label layoutX="426.0" layoutY="80.0" prefHeight="29.0" prefWidth="68.0" text="min" textFill="#151928">
             <font>
                 <Font size="23.0"/>
             </font>
@@ -89,18 +89,18 @@
                       style="-fx-background-color: transparent;"/>
             </content>
         </ScrollPane>
-        <Label layoutX="677.0" layoutY="69.0" text="£6.50" textFill="#151928">
+        <Label fx:id="lblTicket" layoutX="691.0" layoutY="70.0" text="£6.50" textFill="#151928">
             <font>
                 <Font size="18.0"/>
             </font>
         </Label>
-        <Label layoutX="677.0" layoutY="100.0" text="£5.50" textFill="#151928">
+        <Label fx:id="lblOyster" layoutX="691.0" layoutY="99.0" text="£5.50" textFill="#151928">
             <font>
                 <Font size="18.0"/>
             </font>
         </Label>
-        <Label layoutX="327.0" layoutY="127.0" prefHeight="34.0" prefWidth="132.0" text="Wheelchair friendly"
-               textFill="#151928">
+        <Label fx:id="wheelchair" layoutX="327.0" layoutY="127.0" prefHeight="34.0" prefWidth="200.0"
+               text="Wheelchair friendly" textFill="#151928">
             <font>
                 <Font size="15.0"/>
             </font>
