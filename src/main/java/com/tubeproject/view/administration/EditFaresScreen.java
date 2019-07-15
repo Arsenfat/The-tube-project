@@ -94,7 +94,7 @@ public class EditFaresScreen implements Initializable, Injectable {
 
     @FXML
     private void handleButtonActionGoBack() {
-        StageManager.changeStage(anchorPane, Resources.ViewFiles.ADMINISTRATOR_SCREEN);
+        StageManager.changeStage(anchorPane, Resources.ViewFiles.ADMINISTRATOR_SCREEN, Resources.Stylesheets.MENU);
     }
 
 
