@@ -13,17 +13,15 @@ import com.tubeproject.model.requests.Select;
 import com.tubeproject.model.requests.Update;
 import com.tubeproject.model.requests.select.GetFaresRequest;
 import com.tubeproject.model.requests.update.UpdateFareRequest;
-import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
 import com.tubeproject.view.StageManager;
 import com.tubeproject.view.component.BurgerMenu;
 import com.tubeproject.view.component.WebButton;
-import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
@@ -31,7 +29,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -39,7 +36,7 @@ import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class EditFaresScreen extends Application implements Initializable, Injectable {
+public class EditFaresScreen implements Initializable, Injectable {
 
     @FXML
     private ImageView imgView;
@@ -105,22 +102,8 @@ public class EditFaresScreen extends Application implements Initializable, Injec
     public void injectMap(Map<String, Object> map) {
         contextMap = map;
         burgerPane.checkUserLoggedIn((User) contextMap.get("USER"));
+        webButtonPane.getChildren().add(new WebButton((HostServices) contextMap.get("HOSTED")));
     }
-
-    public static void startWindow() {
-        launch();
-    }
-
-    @Override
-    public void start(Stage stage) throws Exception {
-        anchorPane = FXMLUtils.loadFXML(Resources.ViewFiles.EDIT_FARES_SCREEN);
-
-        Scene scene = new Scene(anchorPane);
-        scene.getStylesheets().add(getClass().getResource(Resources.Stylesheets.MENU).toExternalForm());
-        stage.setScene(scene);
-        stage.show();
-    }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -130,7 +113,6 @@ public class EditFaresScreen extends Application implements Initializable, Injec
         initializeBurger();
         fares = loadData();
         fillForm(fares);
-        webButtonPane.getChildren().add(new WebButton(this.getHostServices()));
     }
 
     private List<Fare> loadData() {

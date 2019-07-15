@@ -6,29 +6,26 @@ import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 import com.tubeproject.controller.User;
 import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.interfaces.Injectable;
-import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
 import com.tubeproject.view.StageManager;
 import com.tubeproject.view.component.BurgerMenu;
 import com.tubeproject.view.component.WebButton;
-import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
 
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class ViewAdministrator extends Application implements Initializable, Injectable {
+public class ViewAdministrator implements Initializable, Injectable {
 
     @FXML
     private ImageView imgView;
@@ -68,20 +65,7 @@ public class ViewAdministrator extends Application implements Initializable, Inj
     public void injectMap(Map<String, Object> map) {
         contextMap = map;
         burgerPane.checkUserLoggedIn((User) contextMap.get("USER"));
-    }
-
-    public static void startWindow() {
-        launch();
-    }
-
-    @Override
-    public void start(Stage stage) throws Exception {
-        anchorPane = FXMLUtils.loadFXML(Resources.ViewFiles.ADMINISTRATOR_SCREEN);
-
-        Scene scene = new Scene(anchorPane);
-        stage.setScene(scene);
-        stage.show();
-        scene.getStylesheets().add(getClass().getResource(Resources.Stylesheets.MENU).toExternalForm());
+        webButtonPane.getChildren().add(new WebButton((HostServices) contextMap.get("HOSTED")));
     }
 
 
@@ -90,7 +74,6 @@ public class ViewAdministrator extends Application implements Initializable, Inj
         drawer.setVisible(false);
         initializeImgView();
         initializeBackground();
-        webButtonPane.getChildren().add(new WebButton(this.getHostServices()));
         initializeBurger();
         editLines.setOnAction((event) -> StageManager.changeStage(anchorPane, Resources.ViewFiles.EDIT_LINES_SCREEN, Resources.Stylesheets.MENU));
         editFares.setOnAction((event) -> StageManager.changeStage(anchorPane, Resources.ViewFiles.EDIT_FARES_SCREEN, Resources.Stylesheets.MENU));

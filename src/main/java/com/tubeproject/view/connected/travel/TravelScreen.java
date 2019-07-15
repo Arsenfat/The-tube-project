@@ -7,25 +7,22 @@ import com.tubeproject.controller.StationWLine;
 import com.tubeproject.controller.User;
 import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.interfaces.Injectable;
-import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
 import com.tubeproject.view.StageManager;
 import com.tubeproject.view.component.BurgerMenu;
 import com.tubeproject.view.component.WebButton;
-import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
 import org.controlsfx.control.textfield.TextFields;
 
 import java.io.InputStream;
@@ -37,7 +34,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class TravelScreen extends Application implements Initializable, Injectable {
+public class TravelScreen implements Initializable, Injectable {
 
     @FXML
     private ImageView imgView;
@@ -122,22 +119,8 @@ public class TravelScreen extends Application implements Initializable, Injectab
     @Override
     public void injectMap(Map<String, Object> map) {
         contextMap = map;
+        webButtonPane.getChildren().add(new WebButton((HostServices) contextMap.get("HOSTED")));
         burgerPane.checkUserLoggedIn((User) contextMap.get("USER"));
-
-    }
-
-    public static void startWindow() {
-        launch();
-    }
-
-    @Override
-    public void start(Stage stage) throws Exception {
-        anchorPane = FXMLUtils.loadFXML(Resources.ViewFiles.TRAVEL_SCREEN);
-
-        Scene scene = new Scene(anchorPane);
-        stage.setScene(scene);
-        stage.show();
-        scene.getStylesheets().add(getClass().getResource(Resources.Stylesheets.MENU).toExternalForm());
 
     }
 
@@ -175,7 +158,6 @@ public class TravelScreen extends Application implements Initializable, Injectab
         autocomplete(txtEnd, listStationName);
         checkTime();
         initializeBurger();
-        webButtonPane.getChildren().add(new WebButton(this.getHostServices()));
         imgView.setOnMouseClicked(this::handleButtonActionHomePage);
     }
 

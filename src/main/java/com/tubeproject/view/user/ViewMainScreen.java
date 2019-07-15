@@ -1,5 +1,6 @@
 package com.tubeproject.view.user;
 
+import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.interfaces.Injectable;
 import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
@@ -54,7 +55,6 @@ public class ViewMainScreen extends Application implements Initializable, Inject
 
     @Override
     public void injectMap(Map<String, Object> map) {
-
     }
 
     public static void startWindow() {
@@ -73,6 +73,8 @@ public class ViewMainScreen extends Application implements Initializable, Inject
             System.exit(0);
         });
         stage.show();
+        ContextMap.getContextMap().put("HOSTED", this.getHostServices());
+
     }
 
 

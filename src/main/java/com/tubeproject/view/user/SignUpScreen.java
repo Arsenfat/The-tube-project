@@ -11,18 +11,16 @@ import com.tubeproject.model.requests.Select;
 import com.tubeproject.model.requests.insert.InsertUserRequest;
 import com.tubeproject.model.requests.select.EmailExistsRequest;
 import com.tubeproject.utils.EmailUtils;
-import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
 import com.tubeproject.view.StageManager;
 import com.tubeproject.view.component.WebButton;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
-import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -31,7 +29,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.InputStream;
@@ -43,7 +40,7 @@ import java.time.Period;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class SignUpScreen extends Application implements Initializable, Injectable {
+public class SignUpScreen implements Initializable, Injectable {
 
     @FXML
     private ImageView imgView;
@@ -85,28 +82,15 @@ public class SignUpScreen extends Application implements Initializable, Injectab
     @Override
     public void injectMap(Map<String, Object> map) {
         contextMap = map;
+        webButtonPane.getChildren().add(new WebButton((HostServices) contextMap.get("HOSTED")));
     }
 
-    public static void startWindow() {
-        launch();
-    }
-
-    @Override
-    public void start(Stage stage) throws Exception {
-        AnchorPane anchorPane = FXMLUtils.loadFXML(Resources.ViewFiles.SIGN_UP_SCREEN);
-
-        Scene scene = new Scene(anchorPane);
-        stage.setScene(scene);
-        stage.show();
-        scene.getStylesheets().add(getClass().getResource(Resources.Stylesheets.SIGN_UP_SCREEN).toExternalForm());
-    }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeImgView();
         initializeBackground();
-        webButtonPane.getChildren().add(new WebButton(this.getHostServices()));
         checkTime();
     }
 

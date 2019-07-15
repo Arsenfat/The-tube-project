@@ -11,22 +11,19 @@ import com.tubeproject.model.requests.Update;
 import com.tubeproject.model.requests.select.EmailExistsRequest;
 import com.tubeproject.model.requests.update.UpdatePasswordRequest;
 import com.tubeproject.utils.EmailUtils;
-import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
 import com.tubeproject.view.StageManager;
 import com.tubeproject.view.component.WebButton;
-import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
-import javafx.stage.Stage;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -34,7 +31,7 @@ import java.sql.SQLException;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class ChangePasswordScreen extends Application implements Initializable, Injectable {
+public class ChangePasswordScreen implements Initializable, Injectable {
 
     @FXML
     private ImageView imgView;
@@ -60,7 +57,7 @@ public class ChangePasswordScreen extends Application implements Initializable, 
     @FXML
     private JFXPasswordField pwdConfirm;
 
-
+    private Map<String, Object> contextMap;
     @FXML
     private void handleButtonActionHomePage() {
         StageManager.changeStage(anchorPane, Resources.ViewFiles.MAIN_SCREEN);
@@ -68,27 +65,14 @@ public class ChangePasswordScreen extends Application implements Initializable, 
 
     @Override
     public void injectMap(Map<String, Object> map) {
-
+        contextMap = map;
+        webButtonPane.getChildren().add(new WebButton((HostServices) contextMap.get("HOSTED")));
     }
 
-    public static void startWindow() {
-        launch();
-    }
-
-    @Override
-    public void start(Stage stage) throws Exception {
-        anchorPane = FXMLUtils.loadFXML(Resources.ViewFiles.CHANGE_PASSWORD_SCREEN);
-
-        Scene scene = new Scene(anchorPane);
-        stage.setScene(scene);
-        stage.show();
-
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeImgView();
-        webButtonPane.getChildren().add(new WebButton(this.getHostServices()));
         initializeBackground();
     }
 

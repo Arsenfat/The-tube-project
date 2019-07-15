@@ -9,23 +9,20 @@ import com.tubeproject.controller.StationWLine;
 import com.tubeproject.controller.User;
 import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.interfaces.Injectable;
-import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
 import com.tubeproject.view.StageManager;
 import com.tubeproject.view.component.BurgerMenu;
 import com.tubeproject.view.component.TravelViewer;
 import com.tubeproject.view.component.WebButton;
-import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -34,7 +31,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-public class JourneyScreen extends Application implements Initializable, Injectable {
+public class JourneyScreen implements Initializable, Injectable {
 
     @FXML
     private ImageView imgView;
@@ -90,12 +87,13 @@ public class JourneyScreen extends Application implements Initializable, Injecta
 
     @FXML
     private void handleButtonActionGoBack() {
-        StageManager.changeStage(anchorPane, Resources.ViewFiles.TRAVEL_SCREEN);
+        StageManager.changeStage(anchorPane, Resources.ViewFiles.TRAVEL_SCREEN, Resources.Stylesheets.MENU);
     }
 
     @Override
     public void injectMap(Map<String, Object> map) {
         contextMap = map;
+        webButtonPane.getChildren().add(new WebButton((HostServices) contextMap.get("HOSTED")));
         burgerPane.checkUserLoggedIn((User) contextMap.get("USER"));
         PathResponse pathResponse = PathCalculator.calculatePath((StationWLine) contextMap.get("START_STATION"), (StationWLine) contextMap.get("END_STATION"));
 
@@ -137,26 +135,11 @@ public class JourneyScreen extends Application implements Initializable, Injecta
         contextMap.put("QUICKEST", timeQuickest);
     }
 
-    public static void startWindow() {
-        launch();
-    }
-
-    @Override
-    public void start(Stage stage) throws Exception {
-        anchorPane = FXMLUtils.loadFXML(Resources.ViewFiles.JOURNEY_SCREEN);
-        Scene scene = new Scene(anchorPane);
-        stage.setScene(scene);
-        stage.show();
-        scene.getStylesheets().add(getClass().getResource(Resources.Stylesheets.MENU).toExternalForm());
-
-    }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         drawer.setVisible(false);
         initializeImgView();
-        webButtonPane.getChildren().add(new WebButton(this.getHostServices()));
         initializeBurger();
         initializeBackground();
 
@@ -197,30 +180,17 @@ public class JourneyScreen extends Application implements Initializable, Injecta
     }
 
     private String doubleToTime(double time) {
-        long intPart;
-        double fracPart;
-
-        intPart = (long) time;
-        fracPart = time - intPart;
-        int nbHours = (int) Math.floor(intPart / 60);
-        int nbMinutes = (int) Math.ceil(fracPart * 60);
-
+        int nbHours = (int) Math.floor(time / 60);
+        int nbMinutes = (int) time % 60;
         return String.format("%02d:%02d", nbHours, nbMinutes);
-
     }
 
 
     public String initializeQuickestListLine(List<StationWLine> list, double time) {
         List<String> changes = list.stream().map((station) -> station.getLine().getName()).distinct().collect(Collectors.toList());
         lbQuickestListLine.setText(list.stream().map((station) -> station.getLine().getName()).distinct().collect(Collectors.joining(", ")));
-        String amendtime;
-        if (changes.size() > 1) {
-            amendtime = doubleToTime(time - (changes.size() - 1) * 3);
-            lblQuickest.setText(amendtime);
-        } else {
-            amendtime = doubleToTime(time - 3);
-            lblQuickest.setText(amendtime);
-        }
+        String amendtime = doubleToTime(time);
+        lblQuickest.setText(amendtime);
         return amendtime;
     }
 
@@ -228,7 +198,7 @@ public class JourneyScreen extends Application implements Initializable, Injecta
         List<String> changes = list.stream().map((station) -> station.getLine().getName()).distinct().collect(Collectors.toList());
         String amendtime;
         if (changes.size() > 1) {
-            amendtime = doubleToTime(time - (changes.size() - 1) * 15);
+            amendtime = doubleToTime(time - (changes.size() - 1) * 11);
             lblLessConnection.setText(amendtime);
         } else {
             amendtime = doubleToTime(time);

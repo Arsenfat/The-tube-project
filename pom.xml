@@ -6,7 +6,7 @@
 
     <groupId>INSEEC</groupId>
     <artifactId>TubeProject</artifactId>
-    <version>0.5-SNAPSHOT</version>
+    <version>1.0-RELEASE</version>
     <properties>
         <maven.compiler.target>11</maven.compiler.target>
         <maven.compiler.source>11</maven.compiler.source>

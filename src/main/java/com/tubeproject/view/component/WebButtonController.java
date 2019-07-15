@@ -44,7 +44,7 @@ public class WebButtonController implements Initializable {
 
     public void setUrlTwitter() {
         hostServices.showDocument("https://twitter.com/TfL?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor");
-        ;
+
     }
 
     public void setUrlInstagram() {

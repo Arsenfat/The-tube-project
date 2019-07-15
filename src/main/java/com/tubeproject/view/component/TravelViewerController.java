@@ -29,13 +29,7 @@ public class TravelViewerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println(parent.getWidth() + " " + parent.getHeight());
-
         parent.setStyle("-fx-background-color: blue;");
-        imgView.setOnMouseClicked((mouseEvent -> {
-            System.out.println(String.format("CLICK %f, %f", mouseEvent.getX(), mouseEvent.getY()));
-        }));
-
     }
 
     public void init(double width, double height, Image map) {

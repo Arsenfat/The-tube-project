@@ -5,25 +5,22 @@ import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 import com.tubeproject.controller.User;
 import com.tubeproject.model.interfaces.Injectable;
-import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
 import com.tubeproject.view.StageManager;
 import com.tubeproject.view.component.BurgerMenu;
 import com.tubeproject.view.component.WebButton;
-import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -31,7 +28,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class ProfilScreen extends Application implements Initializable, Injectable {
+public class ProfilScreen implements Initializable, Injectable {
 
     @FXML
     private ImageView imgView;
@@ -81,21 +78,9 @@ public class ProfilScreen extends Application implements Initializable, Injectab
         contextMap = map;
         initializeUser();
         burgerPane.checkUserLoggedIn((User) contextMap.get("USER"));
+        webButtonPane.getChildren().add(new WebButton((HostServices) contextMap.get("HOSTED")));
     }
 
-    public static void startWindow() {
-        launch();
-    }
-
-    @Override
-    public void start(Stage stage) throws Exception {
-        anchorPane = FXMLUtils.loadFXML(Resources.ViewFiles.PROFIL_SCREEN);
-
-        Scene scene = new Scene(anchorPane);
-        stage.setScene(scene);
-        stage.show();
-        scene.getStylesheets().add(getClass().getResource(Resources.Stylesheets.MENU).toExternalForm());
-    }
 
 
     @Override
@@ -103,7 +88,6 @@ public class ProfilScreen extends Application implements Initializable, Injectab
         drawer.setVisible(false);
         initializeImgView();
         initializeBackground();
-        webButtonPane.getChildren().add(new WebButton(this.getHostServices()));
         initializeBurger();
     }
 

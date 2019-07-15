@@ -13,25 +13,21 @@ import com.tubeproject.model.requests.Select;
 import com.tubeproject.model.requests.Update;
 import com.tubeproject.model.requests.select.GetAllLinesWithStationsRequest;
 import com.tubeproject.model.requests.update.UpdateStationRequest;
-import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
 import com.tubeproject.view.StageManager;
 import com.tubeproject.view.component.BurgerMenu;
 import com.tubeproject.view.component.WebButton;
-
-import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
 import java.io.InputStream;
@@ -39,7 +35,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.*;
 
-public class EditLinesScreen extends Application implements Initializable, Injectable {
+public class EditLinesScreen implements Initializable, Injectable {
 
     @FXML
     private ImageView imgView;
@@ -97,21 +93,7 @@ public class EditLinesScreen extends Application implements Initializable, Injec
     public void injectMap(Map<String, Object> map) {
         contextMap = map;
         burgerPane.checkUserLoggedIn((User) contextMap.get("USER"));
-    }
-
-    public static void startWindow() {
-        launch();
-    }
-
-    @Override
-    public void start(Stage stage) throws Exception {
-        anchorPane = FXMLUtils.loadFXML(Resources.ViewFiles.EDIT_LINES_SCREEN);
-
-        Scene scene = new Scene(anchorPane);
-        stage.setScene(scene);
-        stage.show();
-        scene.getStylesheets().add(getClass().getResource(Resources.Stylesheets.MENU).toExternalForm());
-
+        webButtonPane.getChildren().add(new WebButton((HostServices) contextMap.get("HOSTED")));
     }
 
 
@@ -124,7 +106,6 @@ public class EditLinesScreen extends Application implements Initializable, Injec
         chkWheelchair.setAllowIndeterminate(false);
         List<Line> lineList = loadData();
         fillCombBox(lineList);
-        webButtonPane.getChildren().add(new WebButton(this.getHostServices()));
     }
 
     private List<Line> loadData() {

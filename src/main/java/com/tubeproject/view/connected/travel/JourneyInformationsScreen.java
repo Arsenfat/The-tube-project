@@ -10,17 +10,15 @@ import com.tubeproject.model.interfaces.Injectable;
 import com.tubeproject.model.requests.Select;
 import com.tubeproject.model.requests.select.GetFaresRequest;
 import com.tubeproject.model.requests.select.GetZoneFromStationRequest;
-import com.tubeproject.utils.FXMLUtils;
 import com.tubeproject.utils.ImageUtils;
 import com.tubeproject.view.Resources;
 import com.tubeproject.view.StageManager;
 import com.tubeproject.view.component.BurgerMenu;
 import com.tubeproject.view.component.WebButton;
-import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
@@ -28,7 +26,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -39,7 +36,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-public class JourneyInformationsScreen extends Application implements Initializable, Injectable {
+public class JourneyInformationsScreen implements Initializable, Injectable {
 
     @FXML
     private ImageView imgView;
@@ -98,6 +95,7 @@ public class JourneyInformationsScreen extends Application implements Initializa
     public void injectMap(Map<String, Object> map) {
         contextMap = map;
         burgerPane.checkUserLoggedIn((User) contextMap.get("USER"));
+        webButtonPane.getChildren().add(new WebButton((HostServices) contextMap.get("HOSTED")));
         fillLinePane((List<StationWLine>) contextMap.get("TRAVEL"));
         lblHour.setText((String) contextMap.get("TIME"));
         StationWLine start = (StationWLine) contextMap.get("START_STATION");
@@ -107,27 +105,12 @@ public class JourneyInformationsScreen extends Application implements Initializa
         fillFares(start, end);
     }
 
-    public static void startWindow() {
-        launch();
-    }
-
-    @Override
-    public void start(Stage stage) throws Exception {
-        anchorPane = FXMLUtils.loadFXML(Resources.ViewFiles.JOURNEY_INFORMATIONS_SCREEN);
-
-        Scene scene = new Scene(anchorPane);
-        stage.setScene(scene);
-        scene.getStylesheets().add(StageManager.class.getResource(Resources.Stylesheets.TRANSPARENT_SCROLL_PANE).toExternalForm());
-        stage.show();
-    }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         drawer.setVisible(false);
         initializeImgView();
         initializeBackground();
-        webButtonPane.getChildren().add(new WebButton(this.getHostServices()));
         initializeBurger();
 
         VBox.setVgrow(vbxLineContainer, Priority.ALWAYS);
