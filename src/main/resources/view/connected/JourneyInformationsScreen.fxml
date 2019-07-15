@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.*?>
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="435.0" prefWidth="753.0"
+            xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11"
+            fx:controller="com.tubeproject.view.connected.travel.JourneyInformationsScreen">
+    <children>
+        <Pane fx:id="topPane" prefHeight="62.0" prefWidth="774.0" style="-fx-background-color: #000000;">
+            <children>
+                <ImageView fx:id="imgView" fitHeight="31.0" fitWidth="102.0" layoutX="47.0" layoutY="18.0"
+                           onMouseClicked="#handleButtonActionHomePage" pickOnBounds="true" preserveRatio="true">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </ImageView>
+                <JFXHamburger id="jfx-hamburger" fx:id="burger" layoutX="692.0" layoutY="21.0">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </JFXHamburger>
+            </children>
+            <opaqueInsets>
+                <Insets/>
+            </opaqueInsets>
+        </Pane>
+        <Pane fx:id="bottomPane" focusTraversable="true" layoutY="428.0" prefHeight="62.0" prefWidth="774.0"
+              style="-fx-background-color: #000000;">
+            <opaqueInsets>
+                <Insets/>
+            </opaqueInsets>
+            <children>
+                <Pane fx:id="webButtonPane" layoutX="580.0" layoutY="4.0" prefHeight="55.0" prefWidth="180.0"/>
+            </children>
+        </Pane>
+        <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" prefHeight="490.0" prefWidth="2.0"/>
+        <Label layoutX="26.0" layoutY="70.0" text="From:" textFill="#151928">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Label>
+        <Label layoutX="26.0" layoutY="101.0" text="To:" textFill="#151928">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Label>
+        <Label fx:id="lblFrom" layoutX="90.0" layoutY="70.0" text="Baker" textFill="#151928">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Label>
+        <Label fx:id="lblTo" layoutX="90.0" layoutY="101.0" text="Baker" textFill="#151928">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Label>
+        <Label fx:id="lblHour" layoutX="327.0" layoutY="76.0" text="00:00" textFill="#151928">
+            <font>
+                <Font size="30.0"/>
+            </font>
+        </Label>
+        <Label layoutX="426.0" layoutY="80.0" prefHeight="29.0" prefWidth="68.0" text="min" textFill="#151928">
+            <font>
+                <Font size="23.0"/>
+            </font>
+        </Label>
+        <Line endX="136.00006103515625" layoutX="391.0" layoutY="118.0" startX="-131.2000274658203"/>
+        <Label layoutX="620.0" layoutY="69.0" text="Ticket" textFill="#151928">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Label>
+        <Label layoutX="620.0" layoutY="100.0" text="Oyster" textFill="#151928">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Label>
+        <ScrollPane fx:id="scrlPane" layoutX="107.0" layoutY="190.0" prefHeight="200.0" prefWidth="574.0">
+            <content>
+                <VBox fx:id="vbxLineContainer" prefHeight="261.0" prefWidth="558.0"
+                      style="-fx-background-color: transparent;"/>
+            </content>
+        </ScrollPane>
+        <Label fx:id="lblTicket" layoutX="691.0" layoutY="70.0" text="£6.50" textFill="#151928">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Label>
+        <Label fx:id="lblOyster" layoutX="691.0" layoutY="99.0" text="£5.50" textFill="#151928">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Label>
+        <Label fx:id="wheelchair" layoutX="327.0" layoutY="127.0" prefHeight="34.0" prefWidth="200.0"
+               text="Wheelchair friendly" textFill="#151928">
+            <font>
+                <Font size="15.0"/>
+            </font>
+        </Label>
+
+        <JFXButton layoutX="691.0" layoutY="390.0" onAction="#handleButtonActionGoBack" prefHeight="1.0"
+                   prefWidth="82.0" style="-fx-background-color: #151928;" text="Go back" textFill="#dad1d1">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXButton>
+    </children>
+</AnchorPane>

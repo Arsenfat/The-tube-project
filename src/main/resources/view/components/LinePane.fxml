@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<Pane fx:id="parent" prefHeight="125.0" prefWidth="584.0" xmlns="http://javafx.com/javafx/11"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tubeproject.view.component.LinePaneController">
+    <children>
+        <Label fx:id="lblLine" layoutX="42.0" layoutY="8.0" text="Line" textFill="#151928">
+            <font>
+                <Font name="System Bold" size="23.0"/>
+            </font>
+        </Label>
+        <Label fx:id="lblDirection" layoutX="42.0" layoutY="35.0" text="Direction" textFill="#151928">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Label>
+        <Label fx:id="lblStations" layoutX="71.0" layoutY="62.0" onMouseClicked="#expandStations" text="10 stations"
+               textFill="#151928">
+            <font>
+                <Font size="15.0"/>
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </Label>
+        <Label fx:id="lblChangePlatform" layoutX="42.0" layoutY="84.0" onMouseClicked="#expandStations"
+               text="Change platform" textFill="#151928">
+            <font>
+                <Font name="System Bold" size="23.0"/>
+            </font>
+        </Label>
+        <VBox fx:id="vbxStations" layoutX="71.0" layoutY="78.0" prefHeight="12.0" prefWidth="100.0"/>
+    </children>
+</Pane>

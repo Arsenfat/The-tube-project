@@ -1,0 +1,172 @@
+[
+    {
+        "departingPoint": "1000003",
+        "arrivingPoint": "1000138",
+        "duration": 3.0
+    },
+    {
+        "departingPoint": "1000138",
+        "arrivingPoint": "1000149",
+        "duration": 2.5
+    },
+    {
+        "departingPoint": "1000149",
+        "arrivingPoint": "1000014",
+        "duration": 3.5
+    },
+    {
+        "departingPoint": "1000014",
+        "arrivingPoint": "1000080",
+        "duration": 2.75
+    },
+    {
+        "departingPoint": "1000080",
+        "arrivingPoint": "1000129",
+        "duration": 3.0
+    },
+    {
+        "departingPoint": "1000129",
+        "arrivingPoint": "1000078",
+        "duration": 4.5
+    },
+    {
+        "departingPoint": "1000078",
+        "arrivingPoint": "1000091",
+        "duration": 2.5
+    },
+    {
+        "departingPoint": "1000091",
+        "arrivingPoint": "1000011",
+        "duration": 4.75
+    },
+    {
+        "departingPoint": "1000011",
+        "arrivingPoint": "1000082",
+        "duration": 4.666666666666667
+    },
+    {
+        "departingPoint": "1000082",
+        "arrivingPoint": "1000257",
+        "duration": 7.0
+    },
+    {
+        "departingPoint": "1000257",
+        "arrivingPoint": "1000183",
+        "duration": 1.6666666666666667
+    },
+    {
+        "departingPoint": "1000183",
+        "arrivingPoint": "1000164",
+        "duration": 2.0
+    },
+    {
+        "departingPoint": "1000164",
+        "arrivingPoint": "1000102",
+        "duration": 2.3333333333333335
+    },
+    {
+        "departingPoint": "1000102",
+        "arrivingPoint": "1000161",
+        "duration": 2.6666666666666665
+    },
+    {
+        "departingPoint": "1000161",
+        "arrivingPoint": "1000181",
+        "duration": 1.6666666666666667
+    },
+    {
+        "departingPoint": "1000181",
+        "arrivingPoint": "1000166",
+        "duration": 2.0
+    },
+    {
+        "departingPoint": "1000166",
+        "arrivingPoint": "1000165",
+        "duration": 2.0
+    },
+    {
+        "departingPoint": "1000165",
+        "arrivingPoint": "1000150",
+        "duration": 2.0
+    },
+    {
+        "departingPoint": "1000150",
+        "arrivingPoint": "1000193",
+        "duration": 4.333333333333333
+    },
+    {
+        "departingPoint": "1000193",
+        "arrivingPoint": "1000049",
+        "duration": 3.6666666666666665
+    },
+    {
+        "departingPoint": "1000049",
+        "arrivingPoint": "1000042",
+        "duration": 3.6666666666666665
+    },
+    {
+        "departingPoint": "1000042",
+        "arrivingPoint": "1000006",
+        "duration": 3.6666666666666665
+    },
+    {
+        "departingPoint": "1000042",
+        "arrivingPoint": "1000046",
+        "duration": 8.0
+    },
+    {
+        "departingPoint": "1000102",
+        "arrivingPoint": "1000264",
+        "duration": 1.3333333333333333
+    },
+    {
+        "departingPoint": "1000264",
+        "arrivingPoint": "1000189",
+        "duration": 2.0
+    },
+    {
+        "departingPoint": "1000189",
+        "arrivingPoint": "1000066",
+        "duration": 1.6666666666666667
+    },
+    {
+        "departingPoint": "1000066",
+        "arrivingPoint": "1000199",
+        "duration": 1.6666666666666667
+    },
+    {
+        "departingPoint": "1000199",
+        "arrivingPoint": "1000197",
+        "duration": 3.75
+    },
+    {
+        "departingPoint": "1000197",
+        "arrivingPoint": "1000120",
+        "duration": 2.0
+    },
+    {
+        "departingPoint": "1000120",
+        "arrivingPoint": "1000111",
+        "duration": 2.0
+    },
+    {
+        "departingPoint": "1000111",
+        "arrivingPoint": "1000246",
+        "duration": 4.0
+    },
+    {
+        "departingPoint": "1000150",
+        "arrivingPoint": "1000057",
+        "duration": 3.3333333333333335
+    },
+    {
+        "departingPoint": "1000057",
+        "arrivingPoint": "1000255",
+        "duration": 3.3333333333333335
+    },
+    {
+        "departingPoint": "1000255",
+        "arrivingPoint": "1000057",
+        "duration": 2.0
+    }
+]

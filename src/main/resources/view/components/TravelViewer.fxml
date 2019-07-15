@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<Pane xmlns:fx="http://javafx.com/fxml" fx:id="parent"
+      fx:controller="com.tubeproject.view.component.TravelViewerController">
+    <children>
+        <ImageView fx:id="imgView"/>
+    </children>
+</Pane>

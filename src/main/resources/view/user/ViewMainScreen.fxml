@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.*?>
+<AnchorPane fx:id="anchorPane" prefHeight="435.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/11"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tubeproject.view.user.ViewMainScreen">
+    <children>
+        <Label layoutX="234.0" layoutY="167.0" text="Welcome to the Tube project" textFill="#151928">
+            <font>
+                <Font name="System Bold" size="21.0"/>
+            </font>
+        </Label>
+        <JFXButton layoutX="234.0" layoutY="293.0" onAction="#handleButtonActionSignUp"
+                   onMouseClicked="#handleButtonActionSignUp" prefHeight="53.0" prefWidth="124.0"
+                   style="-fx-background-color: #151928;" text="Sign Up" textFill="#dad1d1">
+            <font>
+                <Font size="16.0"/>
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXButton>
+        <Label layoutX="199.0" layoutY="218.0" text="Do you want to go to" textFill="#151928">
+            <font>
+                <Font name="System Bold" size="21.0"/>
+            </font>
+        </Label>
+        <Pane prefHeight="62.0" prefWidth="772.0" style="-fx-background-color: #000000;">
+            <children>
+                <ImageView fx:id="imgView" fitHeight="31.0" fitWidth="102.0" layoutX="47.0" layoutY="18.0"
+                           pickOnBounds="true" preserveRatio="true">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </ImageView>
+                <JFXButton layoutX="670.0" layoutY="12.0" onAction="#handleButtonActionSignUp"
+                           style="-fx-background-color: #dad1d1;" text="Sign Up" textFill="#151928">
+                    <font>
+                        <Font size="16.0"/>
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </JFXButton>
+            </children>
+            <opaqueInsets>
+                <Insets/>
+            </opaqueInsets>
+        </Pane>
+        <JFXButton layoutX="398.0" layoutY="293.0" onAction="#handleButtonActionLogin" prefHeight="53.0"
+                   prefWidth="124.0" style="-fx-background-color: #151928;" text="Login" textFill="#dad1d1">
+            <font>
+                <Font size="16.0"/>
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </JFXButton>
+        <Pane layoutY="428.0" prefHeight="62.0" prefWidth="772.0" style="-fx-background-color: #000000;">
+            <opaqueInsets>
+                <Insets/>
+            </opaqueInsets>
+            <children>
+                <Pane fx:id="webButtonPane" layoutX="578.0" layoutY="4.0" prefHeight="55.0" prefWidth="180.0"/>
+            </children>
+        </Pane>
+        <Label fx:id="lblAnimation" layoutX="410.0" layoutY="214.0" prefHeight="38.0" prefWidth="288.0"
+               textFill="#151928">
+            <font>
+                <Font name="System Bold" size="21.0"/>
+            </font>
+        </Label>
+    </children>
+</AnchorPane>
