@@ -68,6 +68,7 @@ public class ViewMainScreen extends Application implements Initializable, Inject
         Scene scene = new Scene(anchorPane);
         stage.setScene(scene);
         stage.setResizable(false);
+        stage.setTitle("The Tube Project");
         stage.setOnCloseRequest(event -> {
             System.out.println("Application shutdown");
             System.exit(0);
