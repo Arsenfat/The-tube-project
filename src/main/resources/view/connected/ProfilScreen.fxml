@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.*?>
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="435.0" prefWidth="753.0"
-            xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11"
+            xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.tubeproject.view.connected.profile.ProfilScreen">
     <children>
         <Pane fx:id="topPane" prefHeight="62.0" prefWidth="772.0" style="-fx-background-color: #000000;">
@@ -68,7 +68,7 @@
                 <Font size="16.0"/>
             </font>
         </Label>
-        <Label fx:id="lbFirstName" layoutX="427.0" layoutY="140.0" text="Sophie" textFill="#151928">
+        <Label fx:id="lbFirstName" layoutX="430.0" layoutY="140.0" text="Sophie" textFill="#151928">
             <font>
                 <Font size="16.0"/>
             </font>
@@ -78,7 +78,7 @@
                 <Font size="16.0"/>
             </font>
         </Label>
-        <Label fx:id="lbEmail" layoutX="427.0" layoutY="218.0" text="sophie.pages@yahoo.fr" textFill="#151928">
+        <Label fx:id="lbEmail" layoutX="430.0" layoutY="218.0" text="sophie.pages@yahoo.fr" textFill="#151928">
             <font>
                 <Font size="16.0"/>
             </font>
