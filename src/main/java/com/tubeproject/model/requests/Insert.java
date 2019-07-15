@@ -6,11 +6,13 @@ import com.tubeproject.model.interfaces.Insertable;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Insert {
     private Insertable insertable;
     private String description = "none";
+    private int id = -1;
 
     public Insert(Insertable i) {
         insertable = i;
@@ -34,14 +36,17 @@ public class Insert {
         }
 
         try {
-            stmt.execute();
+            stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(String.format("Error while executing stmt -> %s", this.description));
             System.out.println(e);
             return;
         }
 
-        try {
+        try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+            if (generatedKeys.next()) {
+                this.id = (int) generatedKeys.getLong(1);
+            }
             connection.commit();
             stmt.close();
         } catch (SQLException e) {
@@ -49,5 +54,9 @@ public class Insert {
             System.out.println(e);
 
         }
+    }
+
+    public int getId() {
+        return this.id;
     }
 }

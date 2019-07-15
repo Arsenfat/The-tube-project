@@ -7,7 +7,10 @@ import com.tubeproject.controller.*;
 import com.tubeproject.model.ContextMap;
 import com.tubeproject.model.DatabaseConnection;
 import com.tubeproject.model.interfaces.Injectable;
+import com.tubeproject.model.requests.Insert;
 import com.tubeproject.model.requests.Select;
+import com.tubeproject.model.requests.insert.InsertStationsTravelRequest;
+import com.tubeproject.model.requests.insert.InsertTravelRequest;
 import com.tubeproject.model.requests.select.GetFaresRequest;
 import com.tubeproject.model.requests.select.GetZoneFromStationRequest;
 import com.tubeproject.utils.ImageUtils;
@@ -94,15 +97,39 @@ public class JourneyInformationsScreen implements Initializable, Injectable {
     @Override
     public void injectMap(Map<String, Object> map) {
         contextMap = map;
-        burgerPane.checkUserLoggedIn((User) contextMap.get("USER"));
+        User user = (User) contextMap.get("USER");
+        burgerPane.checkUserLoggedIn(user);
         webButtonPane.getChildren().add(new WebButton((HostServices) contextMap.get("HOSTED")));
-        fillLinePane((List<StationWLine>) contextMap.get("TRAVEL"));
+        List<StationWLine> travel = (List<StationWLine>) contextMap.get("TRAVEL");
+        fillLinePane(travel);
         lblHour.setText((String) contextMap.get("TIME"));
         StationWLine start = (StationWLine) contextMap.get("START_STATION");
         StationWLine end = (StationWLine) contextMap.get("END_STATION");
         lblFrom.setText(start.getName());
         lblTo.setText(end.getName());
         fillFares(start, end);
+        new Thread(() -> insertTravel(user, start, end, travel)).start();
+    }
+
+    private void insertTravel(User user, Station start, Station end, List<StationWLine> travel) {
+        try {
+            DatabaseConnection.DatabaseOpen();
+            InsertTravelRequest insertTravelRequest = new InsertTravelRequest(user, start, end);
+            Insert insert = new Insert(insertTravelRequest);
+            insert.insert();
+            int id = insert.getId();
+            if (id > -1) {
+                travel
+                        .stream()
+                        .map(stationWLine -> new InsertStationsTravelRequest(id, stationWLine))
+                        .map(Insert::new)
+                        .forEach(Insert::insert);
+            }
+
+            DatabaseConnection.DatabaseClose();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
     }
 
 
