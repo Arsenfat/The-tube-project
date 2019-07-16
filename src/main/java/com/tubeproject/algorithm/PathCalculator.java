@@ -4,6 +4,7 @@ import com.tubeproject.controller.ConnectionWLine;
 import com.tubeproject.controller.Line;
 import com.tubeproject.controller.Station;
 import com.tubeproject.controller.StationWLine;
+import com.tubeproject.core.CentralPooling;
 import com.tubeproject.model.DatabaseConnection;
 import com.tubeproject.model.builder.ConnectionWLineBuilder;
 import com.tubeproject.model.requests.Select;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
 public class PathCalculator {
@@ -30,11 +32,14 @@ public class PathCalculator {
     private static DijkstraShortestPath<StationWLine, DefaultWeightedEdge> dijkstraQuickest;
     private static DijkstraShortestPath<StationWLine, DefaultWeightedEdge> dijkstraLessConnection;
 
+    private static CompletionService<PathResponse> service;
+
     private PathCalculator() {
         //we don't instantiate
     }
 
     public static void initializeGraphs() {
+        service = new ExecutorCompletionService<>(CentralPooling.getExecutor());
         try {
             DatabaseConnection.DatabaseOpen();
             //Data in common in both graphs
@@ -64,7 +69,16 @@ public class PathCalculator {
     }
 
     public static PathResponse calculatePath(StationWLine s1, StationWLine s2) {
-        PathResponse pathResponse = mergeResponses(calculateQuickest(s1, s2), calculateLessConnection(s1, s2));
+        service.submit(() -> calculateQuickest(s1, s2));
+        service.submit(() -> calculateLessConnection(s1, s2));
+        PathResponse pathResponse = new PathResponse();
+        try {
+            PathResponse p1 = service.take().get(1, TimeUnit.SECONDS);
+            PathResponse p2 = service.take().get(1, TimeUnit.SECONDS);
+            pathResponse = mergeResponses(p1, p2);
+        } catch (ExecutionException | InterruptedException | TimeoutException e) {
+            System.out.println(e);
+        }
         return pathResponse;
     }
 

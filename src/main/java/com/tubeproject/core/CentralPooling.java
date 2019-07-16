@@ -18,4 +18,10 @@ public class CentralPooling {
             pool = new CentralPooling();
         pool.threadPool.execute(runnable);
     }
+
+    public static ExecutorService getExecutor() {
+        if (pool == null)
+            pool = new CentralPooling();
+        return pool.threadPool;
+    }
 }
