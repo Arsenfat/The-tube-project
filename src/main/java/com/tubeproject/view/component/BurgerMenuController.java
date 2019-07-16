@@ -66,6 +66,11 @@ public class BurgerMenuController implements Initializable {
         StageManager.changeStage(((Node) e.getSource()), Resources.ViewFiles.PROFIL_SCREEN, Resources.Stylesheets.MENU);
     }
 
+    @FXML
+    public void history(ActionEvent e) {
+        StageManager.changeStage(((Node) e.getSource()), Resources.ViewFiles.HISTORY_SCREEN, Resources.Stylesheets.MENU);
+    }
+
 
     @FXML
     public void logOut(ActionEvent e) {
