@@ -37,6 +37,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.PriorityBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public class JourneyInformationsScreen implements Initializable, Injectable {
@@ -83,6 +87,12 @@ public class JourneyInformationsScreen implements Initializable, Injectable {
     @FXML
     private VBox vbxLineContainer;
 
+    private static ExecutorService threadPoolExecutor;
+
+    static {
+        threadPoolExecutor = new ThreadPoolExecutor(1, 1, 300, TimeUnit.SECONDS, new PriorityBlockingQueue<>());
+    }
+
     @FXML
     private void handleButtonActionHomePage() {
         ContextMap.getContextMap().put("USER", null);
@@ -108,7 +118,7 @@ public class JourneyInformationsScreen implements Initializable, Injectable {
         lblFrom.setText(start.getName());
         lblTo.setText(end.getName());
         fillFares(start, end);
-        new Thread(() -> insertTravel(user, start, end, travel)).start();
+        threadPoolExecutor.submit(() -> insertTravel(user, start, end, travel));
     }
 
     private void insertTravel(User user, Station start, Station end, List<StationWLine> travel) {
