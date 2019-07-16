@@ -133,7 +133,7 @@ public class TravelScreen implements Initializable, Injectable {
             if (start != null && end != null) {
                 contextMap.put("START_STATION", start);
                 contextMap.put("END_STATION", end);
-                StageManager.changeStage(anchorPane, Resources.ViewFiles.JOURNEY_SCREEN);
+                StageManager.changeStage(anchorPane, Resources.ViewFiles.JOURNEY_SCREEN, Resources.Stylesheets.MENU);
             } else {
                 Alert a = new Alert(Alert.AlertType.ERROR);
                 a.setTitle("Error, stations do not exist");
